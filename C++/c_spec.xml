@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="c" name="C" inherit="cbased" inherit_url="cbase_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.c;*.inl;*.h">
+        <Pair file1="*.inl" file2="*.h"/>
+        <Pair file1="*.c" file2="*.h"/>
+        <Pair file1="*.cc" file2="*.hh"/>
+        <Pair file1="*.cc" file2="*.h"/>        
+      </FilePattern>
+      <SyntaxBlocks>
+        <Block open="#include "/>
+      </SyntaxBlocks>
+    </SPECIFICATION>
+    <STYLES>
+      <Style id="format_tag" extend="true">
+        <Blocks>
+          <Block open="//$" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor_keyword" name="Preprocessor Directives" bold="0" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="define"/>
+          <Keyword text="defined"/>
+          <Keyword text="elif"/>
+          <Keyword text="else"/>
+          <Keyword text="endif"/>
+          <Keyword text="error"/>
+          <Keyword text="if"/>
+          <Keyword text="ifdef"/>
+          <Keyword text="ifndef"/>
+          <Keyword text="include"/>
+          <Keyword text="line"/>
+          <Keyword text="pragma"/>
+          <Keyword text="undef"/>
+        </Keywords>
+      </Style>
+      <Style id="preprocessor_parameter" name="Preprocessor parameter" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="disable"/>
+          <Keyword text="push"/>
+          <Keyword text="pop"/>
+          <Keyword text="on"/>
+        </Keywords>
+      </Style>
+      <Style id="preprocessor_directive" name="Preprocessor directive" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="alloc_text"/>
+          <Keyword text="auto_inline"/>
+          <Keyword text="bss_seg"/>
+          <Keyword text="check_stack"/>
+          <Keyword text="code_seg"/>
+          <Keyword text="comment"/>
+          <Keyword text="component"/>
+          <Keyword text="conform1"/>
+          <Keyword text="const_seg"/>
+          <Keyword text="data_seg"/>
+          <Keyword text="deprecated"/>
+          <Keyword text="endregion"/>
+          <Keyword text="fenv_access"/>
+          <Keyword text="float_control"/>
+          <Keyword text="fp_contract"/>
+          <Keyword text="function"/>
+          <Keyword text="hdrstop"/>
+          <Keyword text="include_alias"/>
+          <Keyword text="init_seg1"/>
+          <Keyword text="inline_depth"/>
+          <Keyword text="inline_recursion"/>
+          <Keyword text="intrinsic"/>
+          <Keyword text="make_public"/>
+          <Keyword text="managed"/>
+          <Keyword text="message"/>
+          <Keyword text="omp"/>
+          <Keyword text="once"/>
+          <Keyword text="optimize"/>
+          <Keyword text="pack"/>
+          <Keyword text="pointers_to_members1"/>
+          <Keyword text="pop_macro"/>
+          <Keyword text="push_macro"/>
+          <Keyword text="region"/>
+          <Keyword text="runtime_checks"/>
+          <Keyword text="section"/>
+          <Keyword text="setlocale"/>
+          <Keyword text="unmanaged"/>
+          <Keyword text="vtordisp1"/>
+          <Keyword text="warning"/>
+        </Keywords>
+      </Style>
+      <Style id="preprocessor" extend="true">
+        <Keywords>
+          <Keyword text="__LINE__"/>
+          <Keyword text="__FILE__"/>
+          <Keyword text="__DATE__"/>
+          <Keyword text="__TIME__"/>
+          <Keyword text="__STDC__"/>
+          <Keyword text="TRACE"/>
+          <Keyword text="NDEBUG"/>
+          <Keyword text="offsetof" pattern="%CurrentWord%(%|%)" descr="&lt;stddef.h&gt;\nsize_t offsetof(structName, memberName);\nRetrieves the offset of a member from the beginning of its parent structure."/>
+        </Keywords>
+      </Style>
+      <Style id="statements" name="Statements" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="break"/>
+          <Keyword text="case"/>
+          <Keyword text="continue"/>
+          <Keyword text="default"/>
+          <Keyword text="do"/>
+          <Keyword text="else"/>
+          <Keyword text="for"/>
+          <Keyword text="goto"/>
+          <Keyword text="if"/>
+          <Keyword text="return"/>
+          <Keyword text="switch"/>
+          <Keyword text="while"/>
+        </Keywords>
+      </Style>
+      <Style id="identifiers" name="Identifiers" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="auto"/>
+          <Keyword text="char"/>
+          <Keyword text="const"/>
+          <Keyword text="double"/>
+          <Keyword text="enum"/>
+          <Keyword text="extern"/>
+          <Keyword text="float"/>
+          <Keyword text="int"/>
+          <Keyword text="linkage"/>
+          <Keyword text="long"/>
+          <Keyword text="register"/>
+          <Keyword text="scope"/>
+          <Keyword text="short"/>
+          <Keyword text="signed"/>
+          <Keyword text="sizeof"/>
+          <Keyword text="static"/>
+          <Keyword text="struct"/>
+          <Keyword text="typedef"/>
+          <Keyword text="union"/>
+          <Keyword text="unsigned"/>
+          <Keyword text="void"/>
+        </Keywords>
+      </Style>
+      <Style id="function" name="Functions" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords pattern="%CurrentWord%(%|%)">
+          <Keyword text="abort" descr="&lt;stdlib.h&gt;\nvoid abort(void);\nCauses an abnormal program termination." />
+          <Keyword text="abs" descr="&lt;stdlib.h&gt;\nint abs(int x);\nReturns the absolute value of x." />
+          <Keyword text="acos" descr="&lt;math.h&gt;\ndouble acos(double x);\nReturns the arc cosine of x in radians." />
+          <Keyword text="asctime" descr="&lt;time.h&gt;\nchar *asctime(const struct tm *timeptr);\nReturns a pointer\nto a string which represents the day and time of\nthe structure timeptr." />
+          <Keyword text="asin" descr="&lt;math.h&gt;\ndouble asin(double x);\nReturns the arc sine of x in radians." />
+          <Keyword text="assert" descr="&lt;assert.h&gt;\nThe assert header is used for debugging purposes." />
+          <Keyword text="atan" descr="&lt;math.h&gt;\ndouble atan(double x);\nReturns the arc tangent of x in radians." />
+          <Keyword text="atan2" descr="&lt;math.h&gt;\ndouble atan2(doubly y, double  x);\nReturns the arc tangent in radians of y/x based on the signs\nof both values to determine the correct quadrant." />
+          <Keyword text="atexit" descr="&lt;stdlib.h&gt;\nint atexit(void (*func)(void));\nCauses the specified function to be called\nwhen the program terminates normally." />
+          <Keyword text="atof" descr="&lt;stdlib.h&gt;\ndouble atof(const char *str);\nThe string pointed to by the argument str is converted\nto a floating-point number (type double)." />
+          <Keyword text="atoi" descr="&lt;stdlib.h&gt;\nint atoi(const char *str);\nThe string pointed to by the argument str is converted\nto an integer (type int)." />
+          <Keyword text="atol" descr="&lt;stdlib.h&gt;\nlong int atol(const char *str);\nThe string pointed to by the argument str\nis converted to a long integer (type long int)." />
+          <Keyword text="bsearch" descr="&lt;stdlib.h&gt;\nvoid *bsearch(const void *key, const void *base, size_t nitems, size_t size, int (*compar)(const void *, const void *));\nPerforms a binary search. The beginning of the array is pointed to by base.\nIt searches for an element equal to that pointed to by key." />
+          <Keyword text="calloc" descr="&lt;stdlib.h&gt;\nvoid *calloc(size_t nitems, size_t size);\nAllocates the requested memory and returns a pointer to it." />
+          <Keyword text="ceil" descr="&lt;math.h&gt;\ndouble ceil(double x);\nReturns the smallest integer value greater than or equal to x." />
+          <Keyword text="clearerr" descr="&lt;stdio.h&gt;\nvoid clearerr(FILE *stream);\nClears the end-of-file and error indicators for the given stream." />
+          <Keyword text="clock" descr="&lt;time.h&gt;\nclock_t clock(void);\nReturns the processor clock time used since the beginning of\nan implementation-defined era (normally the beginning of the program)." />
+          <Keyword text="cos" descr="&lt;math.h&gt;\ndouble cos(double x);\nReturns the cosine of a radian angle x." />
+          <Keyword text="cosh" descr="&lt;math.h&gt;\ndouble cosh(double x);\nReturns the hyperbolic cosine of x." />
+          <Keyword text="ctime" descr="&lt;time.h&gt;\nchar *ctime(const time_t *timer);\nReturns a string representing the localtime based on the argument timer." />
+          <Keyword text="difftime" descr="&lt;time.h&gt;\ndouble difftime(time_t time1, time_t time2);\nCalculates the difference of seconds between time1 and time2 (time1-time2)." />
+          <Keyword text="div" descr="&lt;stdlib.h&gt;\ndiv_t div(int numer, int denom);\nDivides numer (numerator) by denom (denominator)." />
+          <Keyword text="exit" descr="&lt;stdlib.h&gt;\nvoid exit(int status);\nCauses the program to terminate normally." />
+          <Keyword text="exp" descr="&lt;math.h&gt;\ndouble exp(double x);\nReturns the value of e raised to the xth power." />
+          <Keyword text="fabs" descr="&lt;math.h&gt;\ndouble fabs(double x);\nReturns the absolute value of x (a negative value\nbecomes positive, positive value is unchanged)." />
+          <Keyword text="fclose" descr="&lt;stdio.h&gt;\nint fclose(FILE *stream);\nCloses the stream. All buffers are flushed." />
+          <Keyword text="feof" descr="&lt;stdio.h&gt;\nint feof(FILE *stream);\nTests the end-of-file indicator for the given stream." />
+          <Keyword text="ferror" descr="&lt;stdio.h&gt;\nint ferror(FILE *stream);\nTests the error indicator for the given stream." />
+          <Keyword text="fflush" descr="&lt;stdio.h&gt;\nint fflush(FILE *stream);\nFlushes the output buffer of a stream." />
+          <Keyword text="fgetc" descr="&lt;stdio.h&gt;\nint fgetc(FILE *stream);\nGets the next character (an unsigned char) from the\nspecified stream and advances the position indicator for the stream." />
+          <Keyword text="fgetpos" descr="&lt;stdio.h&gt;\nint fgetpos(FILE *stream, fpos_t *pos);\nGets the current file position of the stream and writes it to pos." />
+          <Keyword text="fgets" descr="&lt;stdio.h&gt;\nchar *fgets(char *str, int n, FILE *stream);\nReads a line from the specified stream and stores\nit into the string pointed to by str" />
+          <Keyword text="floor" descr="&lt;math.h&gt;\ndouble floor(double x);\nReturns the largest integer value less than or equal to x." />
+          <Keyword text="fmod" descr="&lt;math.h&gt;\ndouble fabs(double x);\nReturns the absolute value of x (a negative value becomes positive,\npositive value is unchanged)." />
+          <Keyword text="fopen" descr="&lt;stdio.h&gt;\nFILE *fopen(const char *filename, const char *mode);\nOpens the filename pointed to by filename." />
+          <Keyword text="fprintf" descr="&lt;stdio.h&gt;\nint fprintf(FILE *stream, const char *format, ...);\nSends formatted output to a stream" />
+          <Keyword text="fputc" descr="&lt;stdio.h&gt;\nint fputc(int char, FILE *stream);\nWrites a character (an unsigned char) specified by the argument char\nto the specified stream and advances the position indicator for the stream." />
+          <Keyword text="fputs" descr="&lt;stdio.h&gt;\nint fputs(const char *str, FILE *stream);\nWrites a string to the specified stream up to but not including the null character." />
+          <Keyword text="fread" descr="&lt;stdio.h&gt;\nsize_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);\nReads data from the given stream into the array pointed to by ptr." />
+          <Keyword text="free" descr="&lt;stdlib.h&gt;\nvoid free(void *ptr);\nDeallocates the memory previously allocated by a call to calloc, malloc, or realloc." />
+          <Keyword text="freopen" descr="&lt;stdio.h&gt;\nFILE *freopen(const char *filename, const char *mode, FILE *stream);\nAssociates a new filename with the given open stream." />
+          <Keyword text="frexp" descr="&lt;math.h&gt;\ndouble frexp(double x, int *exponent);\nThe floating-point number x is broken up into a mantissa and exponent.\nThe returned value is the mantissa and the integer pointed to by exponent is the exponent.\nThe resultant value is x=mantissa * 2^exponent." />
+          <Keyword text="fscanf" descr="&lt;stdio.h&gt;\nint fscanf(FILE *stream, const char *format, ...);\nReads formatted input from a stream" />
+          <Keyword text="fseek" descr="&lt;stdio.h&gt;\nint fseek(FILE *stream, long int offset, int whence);\nSets the file position of the stream to the given offset." />
+          <Keyword text="fsetpos" descr="&lt;stdio.h&gt;\nint fsetpos(FILE *stream, const fpos_t *pos);\nSets the file position of the given stream to the given position." />
+          <Keyword text="ftell" descr="&lt;stdio.h&gt;\nlong int ftell(FILE *stream);\nReturns the current file position of the given stream.\nIf it is a binary stream, then the value is the number of bytes\nfrom the beginning of the file." />
+          <Keyword text="fwrite" descr="&lt;stdio.h&gt;\nsize_t fwrite(const void *ptr, size_t  size, size_t nmemb, FILE *stream);\nWrites data from the array pointed to by ptr to the given stream.\nIt writes nmemb number of elements of size size.\nThe total number of bytes written is (size*nmemb)." />
+          <Keyword text="getc" descr="&lt;stdio.h&gt;\nint getc(FILE *stream);\nGets the next character (an unsigned char) from the\nspecified stream and advances the position indicator for the stream." />
+          <Keyword text="getchar" descr="&lt;stdio.h&gt;\nint getchar(void);\nGets a character (an unsigned char) from stdin." />
+          <Keyword text="getenv" descr="&lt;stdlib.h&gt;\nchar *getenv(const char *name);\nSearches for the environment string pointed to by name and returns\nthe associated value to the string.\nThis returned value should not be written to." />
+          <Keyword text="gets" descr="&lt;stdio.h&gt;\nchar *gets(char *str);\nReads a line from stdin and stores it into the string pointed to by str." />
+          <Keyword text="gmtime" descr="&lt;time.h&gt;\nstruct tm *gmtime(const time_t *timer);\nThe value of timer is broken up into the structure tm and expressed in\nCoordinated Universal Time (UTC) also known as Greenwich Mean Time (GMT)." />
+          <Keyword text="isalnum" descr="&lt;ctype.h&gt;\nint isalnum(int character);\nA letter (A to Z or a to z) or a digit (0 to 9)" />
+          <Keyword text="isalpha" descr="&lt;ctype.h&gt;\nint isalpha(int character);\nA letter (A to Z or a to z)" />
+          <Keyword text="iscntrl" descr="&lt;ctype.h&gt;\nint iscntrl(int character);\nAny control character (0x00 to 0x1F or 0x7F)" />
+          <Keyword text="isdigit" descr="&lt;ctype.h&gt;\nint isdigit(int character);\nA digit (0 to 9)" />
+          <Keyword text="isgraph" descr="&lt;ctype.h&gt;\nint isgraph(int character);\nAny printing character except for the space character (0x21 to 0x7E)" />
+          <Keyword text="islower" descr="&lt;ctype.h&gt;\nint islower(int character);\nA lowercase letter (a to z)" />
+          <Keyword text="isprint" descr="&lt;ctype.h&gt;\nint isprint(int character);\nAny printing character (0x20 to 0x7E)" />
+          <Keyword text="ispunct" descr="&lt;ctype.h&gt;\nint ispunct(int character);\nAny punctuation character (any printing character except for space character or isalnum)" />
+          <Keyword text="isspace" descr="&lt;ctype.h&gt;\nint isspace(int character);\nA whitespace character (space, tab, carriage return, new line, vertical tab, or formfeed)" />
+          <Keyword text="isupper" descr="&lt;ctype.h&gt;\nint isupper(int character);\nAn uppercase letter (A to Z)" />
+          <Keyword text="isxdigit" descr="&lt;ctype.h&gt;\nint isxdigit(int character);\nA hexadecimal digit (0 to 9, A to F, or a to f)" />
+          <Keyword text="labs" descr="&lt;stdlib.h&gt;\nlong int labs(long int x);\nReturns the absolute value of x.\nNot that in two's compliment that the most maximum number\ncannot be represented as a positive number.\nThe result in this case is undefined." />
+          <Keyword text="ldexp" descr="&lt;math.h&gt;\ndouble ldexp(double x, int  exponent);\nReturns x multiplied by 2 raised to the power of exponent." />
+          <Keyword text="ldiv" descr="&lt;stdlib.h&gt;\nldiv_t ldiv(long int numer, long int denom);\nDivides numer (numerator) by denom (denominator)." />
+          <Keyword text="localeconv" descr="&lt;locale.h&gt;\nstruct lconv *localeconv( void );\nGets detailed information on locale settings." />
+          <Keyword text="localtime" descr="&lt;time.h&gt;\nstruct tm *localtime(const time_t *timer);\nThe value of timer is broken up into the structure tm and expressed in the local time zone." />
+          <Keyword text="log" descr="&lt;math.h&gt;\ndouble log(double x);\nReturns the natural logarithm (base-e logarithm) of x." />
+          <Keyword text="log10" descr="&lt;math.h&gt;\ndouble log10(double x);\nReturns the common logarithm (base-10 logarithm) of x." />
+          <Keyword text="longjmp" descr="&lt;setjmp.h&gt;\nvoid longjmp(jmp_buf env, int value);\nRestores stack environment and execution locale." />
+          <Keyword text="malloc" descr="&lt;stdlib.h&gt;\nvoid *malloc(size_t size);\nAllocates the requested memory and returns a pointer to it.\nThe requested size is size bytes." />
+          <Keyword text="mblen" descr="&lt;stdlib.h&gt;\nint mblen(const char *str, size_t n);\nReturns the length of a multibyte character pointed to by the argument str." />
+          <Keyword text="mbstowcs" descr="&lt;stdlib.h&gt;\nsize_t mbstowcs(schar_t *pwcs, const char *str, size_t n);\nConverts the string of multibyte characters pointed to by the\nargument str to the array pointed to by pwcs." />
+          <Keyword text="mbtowc" descr="&lt;stdlib.h&gt;\nint mbtowc(whcar_t *pwc, const char *str, size_t n);\nExamines the multibyte character pointed to by the argument str." />
+          <Keyword text="memchr" descr="&lt;string.h&gt;\nvoid *memchr(const void *str, int c, size_t n);\nSearches for the first occurrence of the character c (an unsigned char)\nin the first n bytes of the string pointed to by the argument str." />
+          <Keyword text="memcmp" descr="&lt;string.h&gt;\nint memcmp(const void *str1, const void *str2, size_t n);\nCompares the first n bytes of str1 and str2.\nDoes not stop comparing even after the null character\n(it always checks n characters)." />
+          <Keyword text="memcpy" descr="&lt;string.h&gt;\nvoid *memcpy(void *str1, const void *str2, size_t n);\nCopies n characters from str2 to str1." />
+          <Keyword text="memmove" descr="&lt;string.h&gt;\nvoid *memmove(void *str1, const void *str2, size_t n);\nCopies n characters from str2 to str1." />
+          <Keyword text="memset" descr="&lt;string.h&gt;\nvoid *memset(void *str, int c, size_t n);\nCopies the character c (an unsigned char) to the first n\ncharacters of the string pointed to by the argument str." />
+          <Keyword text="mktime" descr="&lt;time.h&gt;\ntime_t mktime(struct tm *timeptr);\nConverts the structure pointed to by timeptr into a time_t value\naccording to the local time zone." />
+          <Keyword text="modf" descr="&lt;math.h&gt;\ndouble modf(double x, double *integer);\nBreaks the floating-point number x into integer and fraction components." />
+          <Keyword text="perror" descr="&lt;stdio.h&gt;\nint puts(const char *str);\nWrites a string to stdout up to but not including the null character." />
+          <Keyword text="pow" descr="&lt;math.h&gt;\ndouble pow(double x, double  y);\nReturns x raised to the power of y." />
+          <Keyword text="printf" descr="&lt;stdio.h&gt;\nint printf(const char *format, ...);\nprintf	 sends formatted output to stdout" />
+          <Keyword text="putc" descr="&lt;stdio.h&gt;\nint putc(int char, FILE *stream);\nWrites a character (an unsigned char) specified by the argument char to the specified stream\nand advances the position indicator for the stream." />
+          <Keyword text="putchar" descr="&lt;stdio.h&gt;\nint putchar(int char);\nWrites a character (an unsigned char) specified by the argument char to stdout." />
+          <Keyword text="puts" descr="&lt;stdio.h&gt;\nint puts(const char *str);\nWrites a string to stdout up to but not including the null character.\nA newline character is appended to the output." />
+          <Keyword text="qsort" descr="&lt;stdlib.h&gt;\nvoid qsort(void *base, size_t nitems, size_t size, int (*compar)(const void *, const void*));\nSorts an array." />
+          <Keyword text="raise" descr="&lt;signal.h&gt;\nint raise(int sig);\nCauses signal sig to be generated." />
+          <Keyword text="rand" descr="&lt;stdlib.h&gt;\nint rand(void);\nReturns a pseudo-random number in the range of 0 to RAND_MAX." />
+          <Keyword text="realloc" descr="&lt;stdlib.h&gt;\nvoid *realloc(void *ptr, size_t size);\nAttempts to resize the memory block pointed to by ptr that\nwas previously allocated with a call to malloc or calloc." />
+          <Keyword text="remove" descr="&lt;stdio.h&gt;\nint remove(const char *filename);\nDeletes the given filename so that it is no longer accessible (unlinks the file)." />
+          <Keyword text="rename" descr="&lt;stdio.h&gt;\nint rename(const char *old_filename, const char *new_filename);\nCauses the filename referred to by\nold_filename to be changed to new_filename." />
+          <Keyword text="rewind" descr="&lt;stdio.h&gt;\nvoid rewind(FILE *stream);\nSets the file position to the beginning of the file of the given stream." />
+          <Keyword text="scanf" descr="&lt;stdio.h&gt;\nint scanf(const char *format, ...);\nReads formatted input from stdin" />
+          <Keyword text="setbuf" descr="&lt;stdio.h&gt;\nvoid setbuf(FILE *stream, char *buffer);\nDefines how a stream should be buffered." />
+          <Keyword text="setjmp" descr="&lt;setjmp.h&gt;\nint setjmp(jmp_buf environment);\nSaves the environment into the variable environment." />
+          <Keyword text="setlocale" descr="&lt;locale.h&gt;\nchar *setlocale(int category, const char *locale);\nSets or reads location dependent information." />
+          <Keyword text="setvbuf" descr="&lt;stdio.h&gt;\nint setvbuf(FILE *stream, char *buffer, int mode, size_t size);\nDefines how a stream should be buffered." />
+          <Keyword text="signal" descr="&lt;signal.h&gt;\nvoid (*signal(int sig, void (*func)(int)))(int);\nControls how a signal is handled." />
+          <Keyword text="sin" descr="&lt;math.h&gt;\ndouble sin(double x);\nReturns the sine of a radian angle x." />
+          <Keyword text="sinh" descr="&lt;math.h&gt;\ndouble sinh(double x);\nReturns the hyperbolic sine of x" />
+          <Keyword text="sprintf" descr="&lt;stdio.h&gt;\nint sprintf(char *str, const char *format, ...);\nSends formatted output to a string" />
+          <Keyword text="sqrt" descr="&lt;math.h&gt;\ndouble sqrt(double x);\nReturns the square root of x." />
+          <Keyword text="srand" descr="&lt;stdlib.h&gt;\nvoid srand(unsigned int seed);\nThis function seeds the random number generator used by the function rand." />
+          <Keyword text="sscanf" descr="&lt;stdio.h&gt;\nint sscanf(const char *str, const char *format, ...);\nReads formatted input from a string" />
+          <Keyword text="stderr" descr="&lt;stdio.h&gt;\nFILE *stderr;\nStandard error stream." />
+          <Keyword text="stdin" descr="&lt;stdio.h&gt;\nFILE *stdin;\nStandard input stream." />
+          <Keyword text="stdout" descr="&lt;stdio.h&gt;\nFILE *stdout;\nStandard output stream." />
+          <Keyword text="strcat" descr="&lt;string.h&gt;\nchar *strcat(char *str1, const char *str2);\nAppends the string pointed to by str2 to the end of the string pointed to by str1." />
+          <Keyword text="strchr" descr="&lt;string.h&gt;\nchar *strchr(const char *str, int c);\nSearches for the first occurrence of the character c (an unsigned char)\nin the string pointed to by the argument str." />
+          <Keyword text="strcmp" descr="&lt;string.h&gt;\nint strcmp(const char *str1, const char *str2);\nCompares the string pointed to by str1 to\nthe string pointed to by str2." />
+          <Keyword text="strcoll" descr="&lt;string.h&gt;\nint strcoll(const char *str1, const char *str2);\nCompares string str1 to str2." />
+          <Keyword text="strcpy" descr="&lt;string.h&gt;\nchar *strcpy(char *str1, const char *str2);\nCopies the string pointed to by str2 to str1." />
+          <Keyword text="strcspn" descr="&lt;string.h&gt;\nsize_t strcspn(const char *str1, const char *str2);\nFinds the first sequence of characters in the string str1 that does not\ncontain any character specified in str2." />
+          <Keyword text="strerror" descr="&lt;string.h&gt;\nchar *strerror(int errnum);\nSearches an internal array for the error number errnum\nand returns a pointer to an error message string." />
+          <Keyword text="strftime" descr="&lt;time.h&gt;\nsize_t strftime(char *str, size_t maxsize, const char *format, const struct tm *timeptr);\nFormats the time represented in the structure timeptr according to\nthe formatting rules defined in format and stored into str." />
+          <Keyword text="strlen" descr="&lt;string.h&gt;\nsize_t strlen(const char *str);\nComputes the length of the string str up to but not including the terminating null character." />
+          <Keyword text="strncat" descr="&lt;string.h&gt;\nchar *strncat(char *str1, const char *str2, size_t n);\nAppends the string pointed to by str2 to the end of the string\npointed to by str1 up to n characters long." />
+          <Keyword text="strncmp" descr="&lt;string.h&gt;\nint strncmp(const char *str1, const char *str2, size_t n);\nCompares at most the first n bytes of str1 and str2.\nStops comparing after the null character." />
+          <Keyword text="strncpy" descr="&lt;string.h&gt;\nchar *strncpy(char *str1, const char *str2, size_t n);\nCopies up to n characters from the string pointed to by str2 to str1." />
+          <Keyword text="strpbrk" descr="&lt;string.h&gt;\nchar *strpbrk(const char *str1, const char *str2);\nFinds the first character in the string str1 that matches\nany character specified in str2." />
+          <Keyword text="strrchr" descr="&lt;string.h&gt;\nchar *strrchr(const char *str, int c);\nSearches for the last occurrence of the character c (an unsigned char)\nin the string pointed to by the argument str." />
+          <Keyword text="strspn" descr="&lt;string.h&gt;\nsize_t strspn(const char *str1, const char *str2);\nFinds the first sequence of characters in the string str1 that\ncontains any character specified in str2." />
+          <Keyword text="strstr" descr="&lt;string.h&gt;\nchar *strstr(const char *str1, const char *str2);\nFinds the first occurrence of the entire string str2\n(not including the terminating null character) which appears in the string str1." />
+          <Keyword text="strtod" descr="&lt;stdlib.h&gt;\ndouble strtod(const char *str, char **endptr);\nThe string pointed to by the argument str is converted to a\nfloating-point number (type double)." />
+          <Keyword text="strtok" descr="&lt;string.h&gt;\nchar *strtok(char *str1, const char *str2);\nBreaks string str1 into a series of tokens." />
+          <Keyword text="strtol" descr="&lt;stdlib.h&gt;\nlong int strtol(const char *str, char **endptr, int base);\nThe string pointed to by the argument str is converted to\na long integer (type long int)." />
+          <Keyword text="strtoul" descr="&lt;stdlib.h&gt;\nunsigned long int strtoul(const char *str, char **endptr, int base);\nThe string pointed to by the argument str is converted to\nan unsigned long integer (type unsigned long int)." />
+          <Keyword text="strxfrm" descr="&lt;string.h&gt;\nsize_t strxfrm(char *str1, const char *str2, size_t n);\nTransforms the string str2 and places the result into str1." />
+          <Keyword text="system" descr="&lt;stdlib.h&gt;\nint system(const char *string);\nThe command specified by string is passed to\nthe host environment to be executed by the command processor." />
+          <Keyword text="tan" descr="&lt;math.h&gt;\ndouble tan(double x);\nReturns the tangent of a radian angle x." />
+          <Keyword text="tanh" descr="&lt;math.h&gt;\ndouble tanh(double x);\nReturns the hyperbolic tangent of x." />
+          <Keyword text="time" descr="&lt;time.h&gt;\ntime_t time(time_t *timer);\nCalculates the current calender time and encodes it into time_t format." />
+          <Keyword text="tmpfile" descr="&lt;stdio.h&gt;\nFILE *tmpfile(void);\nCreates a temporary file in binary update mode" />
+          <Keyword text="tmpnam" descr="&lt;stdio.h&gt;\nchar *tmpnam(char *str);\nGenerates and returns a valid temporary filename which does not exist." />
+          <Keyword text="tolower" descr="&lt;ctype.h&gt;\nint tolower(int character);\nIf the character is an uppercase character (A to Z),\nthen it is converted to lowercase (a to z)" />
+          <Keyword text="toupper" descr="&lt;ctype.h&gt;\nint toupper(int character);\nIf the character is a lowercase character (a to z),\nthen it is converted to uppercase (A to Z)" />
+          <Keyword text="ungetc" descr="&lt;stdio.h&gt;\nint puts(const char *str);\nWrites a string to stdout up to but not including the null character." />
+          <Keyword text="va_arg" descr="&lt;stdarg.h&gt;\ntype va_arg(va_list ap,  type);\nExpands to the next argument in the paramater list\nof the function with type type." />
+          <Keyword text="va_end" descr="&lt;stdarg.h&gt;\nvoid va_end(va_list ap);\nAllows a function with variable arguments which used the va_start macro to return." />
+          <Keyword text="va_start" descr="&lt;stdarg.h&gt;\nvoid va_start(va_list ap,  last_arg);\nInitializes ap for use with the va_arg and va_end macros." />
+          <Keyword text="vfprintf" descr="&lt;stdio.h&gt;\nint vfprintf(FILE *stream, const char *format, va_list arg);\nSends formatted output to a stream using an argument list" />
+          <Keyword text="vprintf" descr="&lt;stdio.h&gt;\nint vprintf(const char *format, va_list arg);\nSends formatted output to stdout using an argument list" />
+          <Keyword text="vsprintf" descr="&lt;stdio.h&gt;\nint vsprintf(char *str, const char *format, va_list arg);\nSends formatted output to a string using an argument list" />
+          <Keyword text="wcstombs" descr="&lt;stdlib.h&gt;\nsize_t wcstombs(char *str, const wchar_t *pwcs, size_t n);\nConverts the codes stored in the array pwcs to multibyte\ncharacters and stores them in the string str." />
+          <Keyword text="wctomb" descr="&lt;stdlib.h&gt;\nint mbtowc(whcar_t *pwc, const char *str, size_t n);\nExamines the multibyte character pointed to by the argument str." />
+        </Keywords>
+      </Style>
+      <Style id="data_types" name="Data Types" image="10" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="FILE" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="clock_t" descr="&lt;time.h&gt;\nclock_t is a type suitable for storing the processor time."/>
+          <Keyword text="div_t" descr="&lt;stdlib.h&gt;\ndiv_t is the structure returned by the div  function."/>
+          <Keyword text="errno" descr="&lt;errno.h&gt;"/>
+          <Keyword text="fpos_t" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="jmp_buf" descr="&lt;setjmp.h&gt;"/>
+          <Keyword text="ldiv_t" descr="&lt;stdlib.h&gt;"/>
+          <Keyword text="ptrdiff_t" descr="&lt;stddef.h&gt;"/>
+          <Keyword text="sig_atomic_t" descr="&lt;signal.h&gt;"/>
+          <Keyword text="size_t" descr="&lt;stdlib.h&gt;"/>
+          <Keyword text="tm" descr="&lt;time.h&gt;\nUsed by asctime snd other time functions to store and retrieve time information."/>
+          <Keyword text="va_list" descr="&lt;stdarg.h&gt;\nThe va_list type is a type suitable for use in accessing the\narguments of a function with the stdarg macros."/>
+          <Keyword text="wchar_t" descr="&lt;stdlib.h&gt;"/>
+        </Keywords>
+      </Style>
+      <Style id="constants" name="Constants" image="7" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="BUFSIZ" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="CLOCKS_PER_SEC" descr="&lt;time.h&gt;\nCLOCKS_PER_SEC is the number of processor clocks per second."/>
+          <Keyword text="EDOM" descr="&lt;errno.h&gt;"/>
+          <Keyword text="EOF" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="ERANGE" descr="&lt;errno.h&gt;"/>
+          <Keyword text="EXIT_FAILURE" descr="&lt;stdlib.h&gt;"/>
+          <Keyword text="EXIT_SUCCESS" descr="&lt;stdlib.h&gt;"/>
+          <Keyword text="FILENAME_MAX" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="FOPEN_MAX" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="HUGE_VAL" descr="&lt;math.h&gt;"/>
+          <Keyword text="LC_ALL" descr="&lt;locale.h&gt;"/>
+          <Keyword text="LC_COLLATE" descr="&lt;locale.h&gt;"/>
+          <Keyword text="LC_CTYPE" descr="&lt;locale.h&gt;"/>
+          <Keyword text="LC_MONETARY" descr="&lt;locale.h&gt;"/>
+          <Keyword text="LC_NUMERIC" descr="&lt;locale.h&gt;"/>
+          <Keyword text="LC_TIME" descr="&lt;locale.h&gt;"/>
+          <Keyword text="L_tmpnam" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="MB_CUR_MAX" descr="&lt;stdlib.h&gt;"/>
+          <Keyword text="NULL"/>
+          <Keyword text="RAND_MAX" descr="&lt;stdlib.h&gt;"/>
+          <Keyword text="SEEK_CUR" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="SEEK_END" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="SEEK_SET" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="SIGABRT" descr="&lt;signal.h&gt;"/>
+          <Keyword text="SIGFPE" descr="&lt;signal.h&gt;"/>
+          <Keyword text="SIGILL" descr="&lt;signal.h&gt;"/>
+          <Keyword text="SIGINT" descr="&lt;signal.h&gt;"/>
+          <Keyword text="SIGSEGV" descr="&lt;signal.h&gt;"/>
+          <Keyword text="SIGTERM" descr="&lt;signal.h&gt;"/>
+          <Keyword text="SIG_DFL" descr="&lt;signal.h&gt;"/>
+          <Keyword text="SIG_ERR" descr="&lt;signal.h&gt;"/>
+          <Keyword text="SIG_IGN" descr="&lt;signal.h&gt;"/>
+          <Keyword text="TMP_MAX" descr="&lt;stdio.h&gt;\nMaximum number of unique filenames that the tmpnam function can generate.\nL_tmpnam is the length of temporary filenames generated by tmpnam."/>
+          <Keyword text="_IOFBF" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="_IOFBF" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="_IONBF" descr="&lt;stdio.h&gt;"/>
+          <Keyword text="false"/>
+          <Keyword text="true"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

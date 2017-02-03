@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Theno" type="LangUser"/>
+  <SYNTAX id="asp" inherit="vb" inherit_url="vb_user.xml">
+    <CodeTemplates>
+      <Template key="TODO Block" descr="TODO Block" keystroke="226" shift="true" alt="true">&apos;&apos;TODO: %|% - %SelectedLine% /</Template>
+      <Template key="Definition Block" descr="Definition Block" keystroke="226" shift="true" ctrl="true">&apos;&apos;Block: %|% - %SelectedLine% /</Template>
+    </CodeTemplates>
+  </SYNTAX>
+</XMLConfigSettings>

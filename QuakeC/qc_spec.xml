@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Michael Coburn" type="LangSpec"/>
+  <SYNTAX id="quakec" name="QuakeC" inherit="cbased" inherit_url="cbase_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.qc;*.qh">
+        <Pair file1="*.qc" file2="*.qh"/>
+      </FilePattern>
+      <SyntaxBlocks>
+        <Block open="#include "/>
+      </SyntaxBlocks>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="Function" match="([A-Za-z_][\w]*\s*\([^)]*\))\s*([\w]+)\s*=\s+\{" name="\2" descr="\1 \2" scope="1" image="18"/>
+    </LABELS>
+    <STYLES>
+      <Style id="format_tag" extend="true">
+        <Blocks>
+          <Block open="//$" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="command" name="Command" image="6" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="$" close=""/>
+        </Blocks>
+      </Style>
+      <Style name="Reserved" image="13" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="self"/>
+          <Keyword text="other"/>
+        </Keywords>
+      </Style>
+      <Style id="keywords" name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="break"/>
+          <Keyword text="case"/>
+          <Keyword text="const"/>
+          <Keyword text="continue"/>
+          <Keyword text="default"/>
+          <Keyword text="else"/>
+          <Keyword text="float"/>
+          <Keyword text="for"/>
+          <Keyword text="goto"/>
+          <Keyword text="if"/>
+          <Keyword text="local"/>
+          <Keyword text="nosave"/>
+          <Keyword text="return"/>
+          <Keyword text="switch"/>
+          <Keyword text="var"/>
+          <Keyword text="void"/>
+          <Keyword text="while"/>
+        </Keywords>
+      </Style>
+      <Style name="Functions" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords pattern="%CurrentWord% (%|%)">
+          <Keyword text="makevectors" descr="\bvoid(vector ang) makevectors\b0\nsets v_forward, etc globals"/>
+          <Keyword text="setorigin" descr="\bvoid(entity e, vector o) setorigin\b0"/>
+          <Keyword text="setmodel" descr="\bvoid(entity e, string m) setmodel\b0\nset movetype and solid first"/>
+          <Keyword text="setsize" descr="\bvoid(entity e, vector min, vector max) setsize\b0"/>
+          <Keyword text="break" descr="\bvoid() break\b0"/>
+          <Keyword text="random" descr="\bfloat() random\b0\nreturns 0 - 1"/>
+          <Keyword text="sound" descr="\bvoid(entity e, float chan, string samp, float vol, float atten) sound\b0"/>
+          <Keyword text="normalize" descr="\bvector(vector v) normalize\b0"/>
+          <Keyword text="error" descr="void(string e) error"/>
+          <Keyword text="objerror" descr="\bvoid(string e) objerror\b0"/>
+          <Keyword text="vlen" descr="\bfloat(vector v) vlen\b0"/>
+          <Keyword text="vectoyaw" descr="\bfloat(vector v) vectoyaw\b0"/>
+          <Keyword text="spawn" descr="\bentity() spawn\b0"/>
+          <Keyword text="remove" descr="\bvoid(entity e) remove\b0"/>
+          <Keyword text="traceline" descr="\bvoid(vector v1, vector v2, float nomonsters, entity forent) traceline\b0\nsets trace_* globals\nnomonsters can be:\nAn entity will also be ignored for testing if forent == test,\nforent->owner == test, or test->owner == forent\na forent of world is ignored	"/>
+          <Keyword text="checkclient" descr="\bentity() checkclient\b0\nreturns a client to look for"/>
+          <Keyword text="find" descr="\bentity(entity start, .string fld, string match) find\b0"/>
+          <Keyword text="precache_sound" descr="\bstring(string s) precache_sound\b0"/>
+          <Keyword text="precache_model" descr="\bstring(string s) precache_model\b0"/>
+          <Keyword text="stuffcmd" descr="\bvoid(entity client, string s) stuffcmd\b0"/>
+          <Keyword text="findradius" descr="\bentity(vector org, float rad) findradius\b0"/>
+          <Keyword text="bprint" descr="\bvoid(string s) bprint\b0"/>
+          <Keyword text="sprint" descr="\bvoid(entity client, string s) sprint\b0"/>
+          <Keyword text="dprint" descr="\bvoid(string s) dprint\b0"/>
+          <Keyword text="ftos" descr="\bstring(float f) ftos\b0"/>
+          <Keyword text="vtos" descr="\bstring(vector v) vtos\b0"/>
+          <Keyword text="coredump" descr="\bvoid() coredump\b0\nprints all edicts"/>
+          <Keyword text="traceon" descr="\bvoid() traceon\b0\nturns statment trace on"/>
+          <Keyword text="traceoff" descr="\bvoid() traceoff\b0"/>
+          <Keyword text="eprint" descr="\bvoid(entity e) eprint\b0\nprints an entire edict"/>
+          <Keyword text="walkmove" descr="\bfloat(float yaw, float dist) walkmove\b0\nreturns TRUE or FALSE"/>
+          <Keyword text="droptofloor" descr="\bfloat(float yaw, float dist) droptofloor\b0\nTRUE if landed on floor"/>
+          <Keyword text="lightstyle" descr="\bvoid(float style, string value) lightstyle\b0"/>
+          <Keyword text="rint" descr="\bfloat(float v) rint\b0\nround to nearest int"/>
+          <Keyword text="floor" descr="\bfloat(float v) floor\b0\nlargest integer &lt;=v"/>
+          <Keyword text="ceil" descr="\bfloat(float v) ceil\b0\nsmallest integer &gt;= v"/>
+          <Keyword text="checkbottom" descr="\bfloat(entity e) checkbottom\b0\ntrue if self is on ground"/>
+          <Keyword text="pointcontents" descr="\bfloat(vector v) pointcontents\b0\nreturns a CONTENT_*"/>
+          <Keyword text="fabs" descr="\bfloat(float f) fabs\b0"/>
+          <Keyword text="aim" descr="\bvector(entity e, float speed) aim\b0\nreturns the shooting vector"/>
+          <Keyword text="cvar" descr="\bfloat(string s) cvar\b0\nreturn cvar.value"/>
+          <Keyword text="localcmd" descr="\bvoid(string s) localcmd\b0\nput string into local que"/>
+          <Keyword text="nextent" descr="\bentity(entity e) nextent\b0\nfor looping through all ents"/>
+          <Keyword text="particle" descr="\bvoid(vector o, vector d, float color, float count) particle\b0\nstart a particle effect"/>
+          <Keyword text="ChangeYaw" descr="\bvoid() ChangeYaw\b0\nturn towards self.ideal_yaw at self.yaw_speed"/>
+          <Keyword text="vectoangles" descr="\bvector(vector v) vectoangles\b0"/>
+          <Keyword text="WriteByte" descr="\bvoid(float to, float f) WriteByte\b0"/>
+          <Keyword text="WriteChar" descr="\bvoid(float to, float f) WriteChar\b0"/>
+          <Keyword text="WriteShort" descr="\bvoid(float to, float f) WriteShort\b0"/>
+          <Keyword text="WriteLong" descr="\bvoid(float to, float f) WriteLong\b0"/>
+          <Keyword text="WriteCoord" descr="\bvoid(float to, float f) WriteCoord\b0"/>
+          <Keyword text="WriteAngle" descr="\bvoid(float to, float f) WriteAngle\b0"/>
+          <Keyword text="WriteString" descr="\bvoid(float to, string s) WriteString\b0"/>
+          <Keyword text="WriteEntity" descr="\bvoid(float to, entity s) WriteEntity\b0"/>
+          <Keyword text="movetogoal" descr="\bvoid(float step) movetogoal\b0"/>
+          <Keyword text="precache_file" descr="\bstring(string s) precache_file\b0\nno effect except for -copy"/>
+          <Keyword text="makestatic" descr="\bvoid(entity e) makestatic\b0"/>
+          <Keyword text="changelevel" descr="\bvoid(string s) changelevel\b0"/>
+          <Keyword text="cvar_set" descr="\bvoid(string var, string val) cvar_set\b0\nsets cvar.value"/>
+          <Keyword text="centerprint" descr="\bvoid(entity client, string s) centerprint\b0\nsprint, but in middle"/>
+          <Keyword text="ambientsound" descr="\bvoid(vector pos, string samp, float vol, float atten) ambientsound\b0"/>
+          <Keyword text="precache_model2" descr="\bstring(string s) precache_model2\b0\nregistered version only"/>
+          <Keyword text="precache_sound2" descr="\bstring(string s) precache_sound2\b0\nregistered version only"/>
+          <Keyword text="precache_file2" descr="\bstring(string s) precache_file2\b0\nregistered version only"/>
+          <Keyword text="setspawnparms" descr="\bvoid(entity e) setspawnparms\b0\nset parm1... to the values at level start for coop respawn"/>
+        </Keywords>
+      </Style>
+      <Style name="Data Types" image="10" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="entity"/>
+          <Keyword text="float"/>
+          <Keyword text="int"/>
+          <Keyword text="string"/>
+          <Keyword text="vector"/>
+        </Keywords>
+      </Style>
+      <Style name="Constants" image="7" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="FALSE"/>
+          <Keyword text="TRUE"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

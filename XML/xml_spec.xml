@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="xml" name="XML" inherit="def_text" inherit_url="deftext_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.xml"/>
+      <Delimiters>,;.?&amp;/+%\*=|!~^#&lt;&gt;</Delimiters>
+      <OpenClose>()[]''&quot;&quot;</OpenClose>
+      <Words>0-9A-Za-z_--:</Words>
+      <Operators>=</Operators>
+      <Encoding default="utf-8" bom="false">
+        <Block open="encoding=&quot;"/>
+      </Encoding>
+      <SyntaxBlocks>
+        <Block open="&lt;?xml "/>
+      </SyntaxBlocks>
+      <Bars navigation="true" hierarchy="true"/>      
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="" match="&lt;([\w:]+)(?:\s+([\w:]+=&quot;[^&quot;]*&quot;))?((?:\s+[\w:]+=&quot;[^&quot;]*&quot;)*)(/)?&gt;" name="\1 \2" descr="\1 \2\3" image="9" scope="1">
+        <Scope if="\4" equal="/" value="0"/>        
+        <Containers open="xml_open_tag"/>
+      </Label>
+    </LABELS>
+    <SCOPES open_container="xml_open_tag" close_container="xml_close_tag">
+      <DynamicScope open_lead="&lt;" strict="false"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="matching_brace" name="Matching Brace" bold="2" italic="2" underline="2" clr="#FFFFFFFF" bkclr="Matching Braces"/>
+      <Style id="indent" name="Indentation Guides" dstyle="true" clr="Indentation Guides" dbkclr="true" bkclr="Indentation Guides" overview="3"/>
+      <Style id="indent_highlight" name="Indentation Guides (Highlighted)" dstyle="true" clr="Indentation Guides (Highlighted)" dbkclr="true" bkclr="Indentation Guides (Highlighted)" overview="3"/>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&lt;!--" close="--&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="doctype"/>
+        </Containers>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_header"/>
+          <Open id="xml_stylesheet"/>
+        </Containers>
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_header"/>
+          <Open id="xml_stylesheet"/>
+        </Containers>
+      </Style>
+      <Style id="doctype_entity" name="Doctype Entity" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="doctype"/>
+        </Containers>
+        <Blocks>
+          <Block open="[" close="]"/>
+        </Blocks>
+      </Style>
+      <Style name="XML Stylesheet Attributes" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF" text="">
+        <Containers>
+          <Open id="xml_stylesheet"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="type"/>
+          <Keyword text="href"/>
+        </Keywords>
+      </Style>
+      <Style name="XML Header Attributes" image="11" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_header"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="version"/>
+          <Keyword text="encoding"/>
+        </Keywords>
+      </Style>
+      <Style id="entity" name="Entities" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="string"/>
+        </Containers>
+        <Blocks>
+          <Block open="&amp;" close=";">
+            <Close text=""/>
+          </Block>
+          <Block open="&amp;#" close=";">
+            <Close text=""/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="xml_open_tag" name="Open Tags" bold="0" italic="0" underline="0" clr="Tag" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&lt;" close="&gt;">
+            <Close text="/&gt;"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="xml_close_tag" name="Close Tags" bold="0" italic="0" underline="0" clr="Tag" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&lt;/" close="&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="xml_node" name="Node" bold="1" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_close_tag"/>
+        </Containers>
+        <Words>
+          <Word lead_with="&lt;" lead="&lt;"/>
+          <Word trail_with="&gt;" trail="&gt;"/>
+        </Words>
+      </Style>
+      <Style id="xml_attribute" name="Attribute" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Words>
+          <Word trail_with="=" trail="="/>
+        </Words>
+      </Style>
+      <Style id="xml_header" name="XML Header" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&lt;?xml" close="?&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="xml_stylesheet" name="XML Stylesheet" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&lt;?xml-stylesheet" close="?&gt;"/>
+        </Blocks>
+      </Style>
+      <Style name="Entities Values" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="entity"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="aacute"/>
+          <Keyword text="agrave"/>
+          <Keyword text="acirc"/>
+          <Keyword text="amp"/>
+          <Keyword text="atilde"/>
+          <Keyword text="aring"/>
+          <Keyword text="auml"/>
+          <Keyword text="aelig"/>
+          <Keyword text="ccedil"/>
+          <Keyword text="copy"/>
+          <Keyword text="eacute"/>
+          <Keyword text="egrave"/>
+          <Keyword text="ecirc"/>
+          <Keyword text="euml"/>
+          <Keyword text="iacute"/>
+          <Keyword text="igrave"/>
+          <Keyword text="icirc"/>
+          <Keyword text="iuml"/>
+          <Keyword text="eth"/>
+          <Keyword text="gt"/>
+          <Keyword text="lt"/>
+          <Keyword text="nbsp"/>
+          <Keyword text="ntilde"/>
+          <Keyword text="oacute"/>
+          <Keyword text="ograve"/>
+          <Keyword text="ocirc"/>
+          <Keyword text="otilde"/>
+          <Keyword text="ouml"/>
+          <Keyword text="oslash"/>
+          <Keyword text="quot"/>
+          <Keyword text="reg"/>
+          <Keyword text="szlig"/>
+          <Keyword text="uacute"/>
+          <Keyword text="ugrave"/>
+          <Keyword text="ucirc"/>
+          <Keyword text="uuml"/>
+          <Keyword text="yacute"/>
+          <Keyword text="thorn"/>
+          <Keyword text="trade"/>
+          <Keyword text="yuml"/>
+        </Keywords>
+      </Style>
+      <Style name="Not Allowed" bold="1" italic="0" underline="0" clr="Error" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+        </Containers>
+        <Blocks>
+          <!--<Block text="&apos;"/>-->
+          <Block text="&lt;"/>
+		      <Block text="&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="doctype" name="XML Doctype" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&lt;!DOCTYPE" close="&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="cdata" name="CDATA" include="text:normal" bold="0" italic="0" underline="0" clr="#FF000000" bkclr="Embedded Language 1 Back" overview="1">
+        <Containers>
+          <Open id="normal"/>
+        </Containers>
+        <Blocks>
+          <Block open="&lt;![CDATA[" close="]]&gt;"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

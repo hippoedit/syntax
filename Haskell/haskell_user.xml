@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="voidex" type="LangUser"/>
+  <SYNTAX id="haskell" inherit="def_source" inherit_url="defsource_user.xml">
+    <TOOLS>
+      <Tool name="colorize" arguments="-html -partial %FileName%" initial_dir="%FileDir%" capture_output="true" key="67" alt="true" out_file_n="2" out_line_n="3" out_column_n="4" out_def_pattern="false" out_pattern="([a-zA-Z. ]+\\\\)+([a-zA-Z .]+):([0-9]+):([0-9]+):.*" command="colorize"/>
+      <Tool name="make" arguments="--make -threaded %Document%" initial_dir="%FileDir%" capture_output="true" key="77" alt="true" out_file_n="2" out_line_n="3" out_column_n="4" out_def_pattern="false" out_pattern="([a-zA-Z. ]+\\\\)+([a-zA-Z .]+):([0-9]+):([0-9]+):.*" command="ghc"/>
+      <Tool name="hlint" arguments="%FileName%" initial_dir="%FileDir%" capture_output="true" key="72" alt="true" out_file_n="2" out_line_n="3" out_column_n="4" out_def_pattern="false" out_pattern="[a-zA-Z]:\\\\\\\\([a-zA-Z. ]+\\\\\\\\)+([a-zA-Z .]+):([0-9]+):([0-9]+):.*" command="hlint"/>
+      <Tool name="run" arguments="%FileName%" initial_dir="%FileDir%" key="82" alt="true" command="winghci.exe"/>
+    </TOOLS>
+  </SYNTAX>
+</XMLConfigSettings>
+

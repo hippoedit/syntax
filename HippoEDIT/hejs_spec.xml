@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="hejs" name="HE Java Script" inherit="js" inherit_url="js_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.hejs"/>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="Include" match="#include\s+&quot;([\w\.\/]+)&quot;" name="\1" image="15" navigation="false">
+        <Containers open="preprocessor"/>
+      </Label>
+      <Label group="Region" match="region\s+(\w+)" name="\1" scope="1" image="12">
+        <Containers open="format_tag"/>
+      </Label>
+    </LABELS>
+    <SCOPES>
+      <Scope open="region" close="endregion" has_name="true" decoration="true" collapsed="true">
+        <Containers open="format_tag"/>
+      </Scope>
+    </SCOPES>
+    <STYLES>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style id="comment" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style id="format_tag" name="Format tags" bold="0" italic="0" underline="0" clr="Format tag" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="//$" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="xml_dlg" name="XML Dialog" include="hexmldlg:normal" bold="0" italic="0" underline="0" clr="#66666600" bkclr="Embedded Language 2 Back" overview="1">
+        <Blocks>
+          <Block open="&apos;@" close="@&apos;"/>
+          <Block open="&apos;@" close="&apos;"/>
+        </Blocks>
+      </Style>
+      <Style name="Reserved" image="13" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Keywords>
+        </Keywords>
+      </Style>
+      <Style name="Objects" extend="true">
+        <Keywords>
+          <Keyword text="Application"/>
+          <Keyword text="CommandListener"/>
+        </Keywords>
+      </Style>
+      <Style name="Properties" image="11" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Active" descr="Active project"/>
+          <Keyword text="ActiveDocument" descr="Active document object"/>
+          <Keyword text="ActiveView" descr="Returns active view of the document"/>
+          <Keyword text="Applicable" descr="Returns true, if search type is applicable in current situation"/>
+          <Keyword text="Application" descr="Returns Application Object during plug-in initialization"/>
+          <Keyword text="Arguments" descr="Returns the WshArguments object (a collection of arguments)"/>
+          <Keyword text="AtEndOfLine" descr="Returns true if the file pointer is positioned immediately before the end-of-line marker in a TextStream file; false if it is not. Read-only"/>
+          <Keyword text="AtEndOfStream" descr="Returns true if the file pointer is at the end of a TextStream file; false if it is not. Read-only"/>
+          <Keyword text="AutoExecute" descr="Gets AutoExecute property"/>
+          <Keyword text="BackColor" descr="BackColor property"/>
+          <Keyword text="BlockMode" descr="Reads block mode property"/>
+          <Keyword text="Bold" descr="Bold property"/>
+          <Keyword text="Bookmarks" descr="Bookmark Collection"/>
+          <Keyword text="Bottom" descr="Bottom"/>
+          <Keyword text="BuildVersion" descr="Returns the HippoEDIT build version number"/>
+          <Keyword text="CanClose" descr="Indicates that pane can be closed"/>
+          <Keyword text="CanRedo" descr="Checks if redo action possible"/>
+          <Keyword text="CanUndo" descr="Checks if undo action possible"/>
+          <Keyword text="CaptureOutput" descr="Returns Capture Output flag"/>
+          <Keyword text="Checked" descr="Checked"/>
+          <Keyword text="Close" descr="Close tag range"/>
+          <Keyword text="CloseContainers" descr="Close style container list"/>
+          <Keyword text="CloseTags" descr="Close tag collection"/>
+          <Keyword text="Collapsed" descr="Collapsed state"/>
+          <Keyword text="Column" descr="Read-only property that returns the column number of the current character position in a TextStream file"/>
+          <Keyword text="Containers" descr="Style container list"/>
+          <Keyword text="Context" descr="Label context"/>
+          <Keyword text="Count" descr="Returns elements count"/>
+          <Keyword text="Decoration" descr="Indicates that the scope is only for decoration, and not influence syntax"/>
+          <Keyword text="DefaultEncoding" descr="Returns default encoding"/>
+          <Keyword text="DefaultLineBreak" descr="Returns default line break style"/>
+          <Keyword text="DefaultSyntax" descr="Returns default syntax"/>
+          <Keyword text="Description" descr="Description property"/>
+          <Keyword text="DescriptionMatch" descr="Description match regular expression"/>
+          <Keyword text="Dialog" descr="Returns parent dialog"/>
+          <Keyword text="Disabled" descr="Disabled"/>
+          <Keyword text="Document" descr="Document associated with view"/>
+          <Keyword text="Documents" descr="Returns document list"/>
+          <Keyword text="EmbeddedScopes" descr="Embedded styles"/>
+          <Keyword text="Enabled" descr="Enabled"/>
+          <Keyword text="Encoding" descr="Document encoding"/>
+          <Keyword text="End" descr="Range end position"/>
+          <Keyword text="FileNameOnly" descr="Indicates that only file names should be displayed"/>
+          <Keyword text="FilePattern" descr="Return file pattern string"/>
+          <Keyword text="FileSystemManager" descr="File System Manager object"/>
+          <Keyword text="Filters" descr="File Filters List"/>
+          <Keyword text="FolderFavorites" descr="Favorite Folders management object"/>
+          <Keyword text="ForeColor" descr="ForeColor property"/>
+          <Keyword text="FullName" descr="Returns the fully qualified path of the host executable"/>
+          <Keyword text="GUID" descr="Returns Unique ID"/>
+          <Keyword text="Group" descr="Label group"/>
+          <Keyword text="HTML" descr="Reads item content as HTML"/>
+          <Keyword text="Handle" descr="Returns native HMENU handle"/>
+          <Keyword text="HeaderEnd" descr="Header end position"/>
+          <Keyword text="Height" descr="Returns difference between Bottom and Top"/>
+          <Keyword text="Highlight" descr="Highlight"/>
+          <Keyword text="HotSpot" descr="HotSpot property"/>
+          <Keyword text="ID" descr="ID property"/>
+          <Keyword text="Image" descr="Image property"/>
+          <Keyword text="IncludeHidden" descr="Indicates that only hidden document should be processed also"/>
+          <Keyword text="IncludeStyle" descr="Include style"/>
+          <Keyword text="Info" descr="Definition information"/>
+          <Keyword text="Initial" descr="Indicates that project is initial, non-modified state"/>
+          <Keyword text="Interactive" descr="Identifies the script mode"/>
+          <Keyword text="IsEmpty" descr="Check if range is empty (Height and Width equals 0)"/>
+          <Keyword text="IsNormalized" descr="Check if range is normalized (TopLeft point less or equal to BottomRight)"/>
+          <Keyword text="IsValid" descr="Check if document position is valid (line and position is bigger then 0)"/>
+          <Keyword text="Italic" descr="Italic property"/>
+          <Keyword text="Item" descr="Exposes a specified item from a collection"/>
+          <Keyword text="Items" descr="Returns clipboard items"/>
+          <Keyword text="ItemsCount" descr="Returns items count"/>
+          <Keyword text="KeywordCount" descr="Keyword count"/>
+          <Keyword text="Label" descr="Connected Label"/>
+          <Keyword text="LabelDataValid" descr="True if label data is valid"/>
+          <Keyword text="Labels" descr="Labels collection"/>
+          <Keyword text="Layout" descr="Returns layout property"/>
+          <Keyword text="Left" descr="Left"/>
+          <Keyword text="Level" descr="Hierarchy level"/>
+          <Keyword text="Line" descr="Line"/>
+          <Keyword text="LineBreak" descr="Default Line Break Style"/>
+          <Keyword text="LineCount" descr="Line count property"/>
+          <Keyword text="MainFile" descr="Main File path"/>
+          <Keyword text="MainWindow" descr="Main window handle"/>
+          <Keyword text="Marker" descr="Marker"/>
+          <Keyword text="Mask" descr="Mask"/>
+          <Keyword text="Match" descr="Match regular expression"/>
+          <Keyword text="MaxCount" descr="Returns maximum item count"/>
+          <Keyword text="Menu" descr="Returns Menu object item belongs"/>
+          <Keyword text="Middle" descr="Middle tags ranges"/>
+          <Keyword text="MiddleContainers" descr="Middle style container list"/>
+          <Keyword text="MiddleTags" descr="Middle tag collection"/>
+          <Keyword text="Modified" descr="Modified state"/>
+          <Keyword text="Name" descr="Name property"/>
+          <Keyword text="Named" descr="Returns a collection of named arguments"/>
+          <Keyword text="Navigation" descr="Navigation relevant flag"/>
+          <Keyword text="NoRecent" descr="Returns NoRecent flag"/>
+          <Keyword text="NotClosedScopes" descr="Not Closed Scopes collection"/>
+          <Keyword text="NotOpenScopes" descr="Not Open Scopes collection"/>
+          <Keyword text="Number" descr="Number"/>
+          <Keyword text="Open" descr="Open tag range"/>
+          <Keyword text="OpenContainers" descr="Open style container list"/>
+          <Keyword text="OpenModified" descr="Indicates that modified document should be open in editor"/>
+          <Keyword text="OpenTag" descr="Open tag"/>
+          <Keyword text="Overview" descr="Overview property"/>
+          <Keyword text="OverviewScopes" descr="Embedded styles"/>
+          <Keyword text="Parameters" descr="Returns parameters storage"/>
+          <Keyword text="Parent" descr="Returns parent control"/>
+          <Keyword text="Path" descr="Document file path"/>
+          <Keyword text="Plugin" descr="Return parent plugin"/>
+          <Keyword text="Pos" descr="Position"/>
+          <Keyword text="Position" descr="Returns item position"/>
+          <Keyword text="Project" descr="Project object"/>
+          <Keyword text="Prompt" descr="Prompt string"/>
+          <Keyword text="RTF" descr="Reads item content as HTML"/>
+          <Keyword text="Radio" descr="Radio"/>
+          <Keyword text="Range" descr="Returns Range object"/>
+          <Keyword text="Ranges" descr="Text ranges collection"/>
+          <Keyword text="ReadOnly" descr="Read-Only state"/>
+          <Keyword text="Recent" descr="Recent project files"/>
+          <Keyword text="ReplaceActive" descr="Returns true, if replace should be active"/>
+          <Keyword text="Right" descr="Right"/>
+          <Keyword text="Running" descr="Returns output running state"/>
+          <Keyword text="Scope" descr="Connected Scope"/>
+          <Keyword text="ScopeDataValid" descr="True if scope data is valid"/>
+          <Keyword text="ScopeDataVersion" descr="Scope data version"/>
+          <Keyword text="Scopes" descr="Scopes collection"/>
+          <Keyword text="ScriptArguments" descr="Script arguments"/>
+          <Keyword text="ScriptFullName" descr="Returns the full path of the currently running script"/>
+          <Keyword text="ScriptName" descr="Script name"/>
+          <Keyword text="Selection" descr="Returns current cursor position"/>
+          <Keyword text="SentenceStart" descr="Sentence Start Mode"/>
+          <Keyword text="Separator" descr="Show separator"/>
+          <Keyword text="Settings" descr="Global settings object"/>
+          <Keyword text="Shell" descr="Shell Object"/>
+          <Keyword text="ShowInContextMenu" descr="Returns 'Show in Context Menu' flag"/>
+          <Keyword text="ShowInToolbar" descr="Returns 'Show in Toolbar' flag"/>
+          <Keyword text="Slow" descr="Slow document property"/>
+          <Keyword text="Start" descr="Range start position"/>
+          <Keyword text="StdErr" descr="Exposes the write-only error output stream for the current script"/>
+          <Keyword text="StdIn" descr="Exposes the read-only input stream for the current script"/>
+          <Keyword text="StdOut" descr="Exposes the write-only output stream for the current script"/>
+          <Keyword text="Strict" descr="Strict Mode"/>
+          <Keyword text="StrikeOut" descr="StrikeOut property"/>
+          <Keyword text="Style" descr="Returns Style"/>
+          <Keyword text="Styles" descr="Returns syntax style collection"/>
+          <Keyword text="SubImage" descr="SubImage"/>
+          <Keyword text="Surrounder" descr="Indicates that template can be used for surrounding"/>
+          <Keyword text="Syntax" descr="Returns tool associated syntax"/>
+          <Keyword text="Syntaxes" descr="Returns syntaxes collection"/>
+          <Keyword text="Text" descr="Text property"/>
+          <Keyword text="TextColor" descr="Text Color"/>
+          <Keyword text="Title" descr="Title"/>
+          <Keyword text="Top" descr="Top"/>
+          <Keyword text="Underline" descr="Underline property"/>
+          <Keyword text="UnderlineColor" descr="UnderlineColor property"/>
+          <Keyword text="UnderlineStyle" descr="UnderlineStyle property"/>
+          <Keyword text="Unnamed" descr="Returns a collection of unnamed arguments"/>
+          <Keyword text="UserDirectory" descr="Returns user data directory"/>
+          <Keyword text="Value" descr="Value"/>
+          <Keyword text="Values" descr="Gets name value pairs collection"/>
+          <Keyword text="VerbID" descr="Returns ToolBar ID"/>
+          <Keyword text="Version" descr="Returns Version"/>
+          <Keyword text="Views" descr="Returns document view collection"/>
+          <Keyword text="WScript" descr="Returns WScript emulation object"/>
+          <Keyword text="Width" descr="Return difference between Right and Left"/>
+          <Keyword text="Window" descr="Returns window handle"/>
+          <Keyword text="WorkingDirectory" descr="Working Directory path"/>
+          <Keyword text="x" descr="x"/>
+          <Keyword text="y" descr="y"/>
+        </Keywords>
+      </Style>
+      <Style id="methods" name="Methods" extend="true">
+        <Keywords pattern="%CurrentWord%(%|%)">
+          <Keyword text="__import" descr="boolean __import(String sPath, boolean bOnce = true)\nDynamically import file into global scope"/>
+          <Keyword text="__include" descr="boolean __include(String sPath)\nDynamically include file into global scope"/>
+          <Keyword text="__require" descr="Object __require(String sPath)\nAccess external module (include) without exposing it to global scope"/>
+          <Keyword text="Activate" descr="void Activate()\nActivates the document"/>
+          <Keyword text="Activate" descr="void Activate()\nActivates the view"/>
+          <Keyword text="Activate" descr="void Activate(boolean bSetFocus = false)\nActivates the pane"/>
+          <Keyword text="Add" descr="ISettingsStorage* Add(String strName)\nAdds new storage object to collection and return pointer to it"/>
+          <Keyword text="AddAutoCorrection" descr="void AddAutoCorrection(String strFrom, String strTo, String strLanguage)\nAdd auto correction item"/>
+          <Keyword text="AddButton" descr="void AddButton(VARIANT pHandler = null, eToolButtonStyle eStyle = eToolButtonStyleStandard)\nAdd button to the toolbar"/>
+          <Keyword text="AddCommand" descr="void AddCommand(String sCommand, boolean bAddToHistory = true)\nPass command to running tool"/>
+          <Keyword text="AddFavorite" descr="void AddFavorite(String strDirectoryName)\nAdd directory to favorite folders tree"/>
+          <Keyword text="AddFile" descr="void AddFile(String strFileName)\nAdds file to the project"/>
+          <Keyword text="AddIndicator" descr="void AddIndicator(ICommandHandler* pHandler, integer nSize = -1, boolean bVisible = true, integer nFlags = 0)\nAdd indicator to the status bar"/>
+          <Keyword text="AddItem" descr="void AddItem(String sName = &quot;&quot;, VARIANT pHandler = null, eItemPos ePos = eItemPosDesigned)\nAdds new context menu handler or separator when handler is null"/>
+          <Keyword text="AddPane" descr="void AddPane(IPane* pPane)\nAdd new tool pane"/>
+          <Keyword text="AddScriptInfo" descr="void AddScriptInfo(String strGUID, String strTitle, String strVersion = &quot;&quot;, String strDescription = &quot;&quot;, String strAuthor = &quot;&quot;, String strEmail = &quot;&quot;, String strHomePage = &quot;&quot;)\nPlaces version and copyright information about the script to engine"/>
+          <Keyword text="AddSubMenu" descr="IMenuObject* AddSubMenu(String sName, eItemPos ePos)\nAdds sub menu and return pointer to it"/>
+          <Keyword text="AddSyntax" descr="void AddSyntax(String strSyntaxName, boolean bInherited = true)\nAdd syntax for which toolbar should be shown"/>
+          <Keyword text="AddUndoActionType" descr="integer AddUndoActionType(String strDescription)\nRegisters new Undo type and returns its ID"/>
+          <Keyword text="Apply" descr="void Apply()\nCalled when settings should be applied"/>
+          <Keyword text="ApplySettings" descr="void ApplySettings()\nCalled when settings should be applied by user request"/>
+          <Keyword text="AttachHandler" descr="void AttachHandler(IDispatch* pHandler)\nAttach IDispatch Handler"/>
+          <Keyword text="BeginUndoGroup" descr="void BeginUndoGroup(boolean bMerge = false, UINT nActionType = 0)\nStart undo group or merge with previous"/>
+          <Keyword text="Capture" descr="void Capture(String sCmdLine, long dwOoptions = 0, String sInitialDir = &quot;&quot;, String sExitCmd = &quot;&quot;, ULONG nCodePage = 0, String sPattern = &quot;&quot;, integer nFile = 0, integer nLine = 0, integer nColumn = 0)\nCaptures external tool output"/>
+          <Keyword text="CaptureOutput" descr="String CaptureOutput(String sCmdLine, String sInitialDir = &quot;&quot;, String sExitCmd = &quot;&quot;, ULONG nCodePage = 0)\nCaptures and return tool output"/>
+          <Keyword text="CenterLine" descr="void CenterLine(IPosition* pt, boolean bSmoothScroll = false)\nCenters position in view area"/>
+          <Keyword text="Children" descr="IScopes* Children(IScope* pScope)\nFind Scope children and returns scopes collection"/>
+          <Keyword text="Clear" descr="void Clear()\nClears the contents"/>
+          <Keyword text="ClientPointToText" descr="IPosition* ClientPointToText(IPoint* pPoint)\nConverts client coordinates (defined as IPoint) into text coordinates"/>
+          <Keyword text="ClientToText" descr="IPosition* ClientToText(integer nX, integer nY)\nConverts client coordinates into text coordinates"/>
+          <Keyword text="Clipboard" descr="IClipboard* Clipboard(String strName = &quot;&quot;)\nReturn clipboard object by name"/>
+          <Keyword text="Clone" descr="IOutputPane* Clone(String strPaneID, boolean bInitialize = true)\nCreates a copy of the output pane"/>
+          <Keyword text="Close" descr="void Close()\nCloses an open TextStream file"/>
+          <Keyword text="Close" descr="void Close(boolean bModifiedCheck = false)\nCloses the document"/>
+          <Keyword text="Close" descr="void Close(integer nReturnCode)\nCloses dialog"/>
+          <Keyword text="ClosePane" descr="void ClosePane(String strPaneID, IPane* pPane = null)\nClose open tool pane"/>
+          <Keyword text="CollectSyntaxes" descr="ISyntaxes* CollectSyntaxes(boolean bDisabled = true,  boolean bAbstract = true, boolean bWithoutExt = true)\nCollects syntaxes by criteria"/>
+          <Keyword text="CommandToIndex" descr="integer CommandToIndex(String strCommandName)\nGet command index"/>
+          <Keyword text="ConnectObject" descr="void ConnectObject(IDispatch* pobjEventSource, String strPrefix)\nConnects the object's event sources to functions with a given prefix"/>
+          <Keyword text="CodeTemplate" descr="IScriptCodeTemplateHandler* CodeTemplate(VARIANT onText, VARIANT onDescription = null, VARIANT onEnabled = null)\nCreate a Code Template"/>
+          <Keyword text="CreateCommand" descr="IScriptCommandHandler* CreateCommand(String strName, String strTitle = &quot;&quot;, String strPrompt = &quot;&quot;, integer nImage = -1, VARIANT onAction = null)\nCreate a command"/>
+          <Keyword text="CommandListener" descr="IScriptCommandHandlerListener* CommandListener(VARIANT onBeforeExecute, VARIANT onAfterExecute)\nCreate a command listener"/>
+          <Keyword text="CreateObject" descr="IDispatch* CreateObject(String strProgID, String strPrefix = &quot;&quot;)\nCreates a COM object"/>
+          <Keyword text="CreatePlugin" descr="IPlugin* CreatePlugin(String psGUID)\nCreates Plugin by GUID"/>
+          <Keyword text="Point" descr="IPoint* Point(integer nX = -1, integer nY = -1)\nCreates Point Object"/>
+          <Keyword text="CreatePopupMenu" descr="IMenuObject* CreatePopupMenu()\nCreates a popup menu and returns a newly created Menu Object"/>
+          <Keyword text="Position" descr="IPosition* Position(integer nLine = -1, integer nPosition = -1)\nCreates Position Object"/>
+          <Keyword text="Range" descr="IRange* Range(integer nStartLine = -1, integer nStartPos = -1, integer nEndLine = -1, integer nEndPos = -1)\nCreates Range Object"/>
+          <Keyword text="CreateRange" descr="IRange* CreateRange(IPosition* pStartPosition, IPosition* pEndPosition)\nCreates Range Object from Positions"/>
+          <Keyword text="Storage" descr="ISettingsStorage* Storage()\nCreates initial storage object"/>
+          <Keyword text="DeleteItem" descr="void DeleteItem(integer nPosition)\nDelete item by position"/>
+          <Keyword text="DeleteText" descr="void DeleteText(IRange* pRange, UINT nAction)\nDeletes text from specific range"/>
+          <Keyword text="DetachHandler" descr="void DetachHandler(IDispatch* pHandler)\nDetach IDispatch Handler"/>
+          <Keyword text="DisableBookmark" descr="void DisableBookmark(integer nLine, boolean bToggle = false)\nDisables bookmark for specific line"/>
+          <Keyword text="DisconnectObject" descr="void DisconnectObject(IDispatch* pObj)\nDisconnects a connected object's event sources"/>
+          <Keyword text="Echo" descr="void Echo(VARIANT params, ...)\nOutputs text to either a message box or the command console window"/>
+          <Keyword text="EnsureVisible" descr="void EnsureVisible(IPosition* pt, boolean bSmoothScroll = false)\nEnsures that text point is withing view area"/>
+          <Keyword text="Execute" descr="void Execute()\nExecute command"/>
+          <Keyword text="ExecuteCommand" descr="void ExecuteCommand(String strName, integer nCount = 1)\nExecute existing command nCount times, with 'enabled' check"/>
+          <Keyword text="FilePathByTitle" descr="String FilePathByTitle(String strTitle)nResolve file by title"/>
+          <Keyword text="FillFavoritesMenu" descr="void FillFavoritesMenu(OLE_HANDLE hMenu)\nCreates native menu"/>
+          <Keyword text="Find" descr="IRange* Find(IPosition* ptStart, String strText, integer dwFlags)\nFinds text in the document"/>
+          <Keyword text="FindAll" descr="IRanges* FindAll(String strText, integer dwFlags)\nFinds all matches text in the document"/>
+          <Keyword text="FindCodeTemplate" descr="ICodeTemplateHandler* FindCodeTemplate(String strKey, String strSyntax = &quot;&quot;)\nSearch for existing Code Template handler"/>
+          <Keyword text="FindCommand" descr="ICommandHandler* FindCommand(String strName, integer* pnID = 0)\nSearch for existing command by name"/>
+          <Keyword text="FindEx" descr="void FindEx(String strWhat, eSearchType nType, eSearchAction nAction, integer nSearchIn, eSearchResultType nResult, integer dwFlags, integer dwFlagsEx = 0);\nFind text in a way similar to interactive search"/>
+          <Keyword text="FindInFiles" descr="IFileRanges* FindInFiles(String strText, String strPath, integer dwFlags, integer dwFlagsEx, String strInclude, String strExclude)\nFinds text in specific file or directory files"/>
+          <Keyword text="FindInFilesAll" descr="IFilesRanges* FindInFilesAll(String strText, String strPath, integer dwFlags, integer dwFlagsEx, String strInclude, String strExclude)\nFinds all matches text in the document"/>
+          <Keyword text="FindLabel" descr="ILabel* FindLabel(IPosition* pPos)\nFind Label from point"/>
+          <Keyword text="FindLabels" descr="ILabels* FindLabels(IRange* pRange)\nFind Labels from range"/>
+          <Keyword text="FindScope" descr="IScope* FindScope(IPosition* pPos, boolean bAll = false)\nFind Scope from point"/>
+          <Keyword text="FindScopes" descr="IScopes* FindScopes(IRange* pRange, boolean bIncludeParents = false)\nFind Scopes from range"/>
+          <Keyword text="FlushUndoGroup" descr="integer FlushUndoGroup()\nFlush last undo group and returns undo group position"/>
+          <Keyword text="FromPoint" descr="Object FromPoint(IPosition* pPos)\nFind Label/Scope from point"/>
+          <Keyword text="FromRange" descr="Objects FromRange(IRange* pRange)\nFind Labels/Scopes from range"/>
+          <Keyword text="Get" descr="ISettingsStorage* Get(String strName, boolean bCreate)\nGets child storage object by name"/>
+          <Keyword text="GetBookmark" descr="boolean GetBookmark(integer nLine, integer nBookmark = -1)\nReads bookmark from specific line"/>
+          <Keyword text="GetCommand" descr="ICommandHandler* GetCommand(integer nPosition)\nReturns command handler from position"/>
+          <Keyword text="GetDescription" descr="String GetDescription()\nReturns Code template description"/>
+          <Keyword text="GetDocument" descr="IHEDocument* GetDocument(String strPathName)\nReturns opened document, if one exist"/>
+          <Keyword text="GetFileNameColor" descr="OLE_COLOR GetFileNameColor(String strPathName)\nReturns color associated with provided file name"/>
+          <Keyword text="GetFiles" descr="SAFEARRAY(String) GetFiles(String strPatern)\nCollects file names from project, using filter (null is take all)"/>
+          <Keyword text="GetLine" descr="String GetLine(integer nLine)\nReturns copy of document line chars"/>
+          <Keyword text="GetLineBreak" descr="String GetLineBreak(integer nLine)\nReturns line break chars"/>
+          <Keyword text="GetLineLength" descr="integer GetLineLength(integer nLine)\nReturns line length"/>
+          <Keyword text="GetMenuItemPos" descr="IMenuLocation* GetMenuItemPos(String strCommandName)\nFinds menu position by command name"/>
+          <Keyword text="GetObject" descr="IDispatch* GetObject(String strPathname, String strProgID = &quot;&quot;, String strPrefix = &quot;&quot;)\nRetrieves an existing object with the specified ProgID, or creates a new one from a file"/>
+          <Keyword text="GetOptionsPage" descr="ISearchOptions* GetOptionsPage(OLE_HANDLE hWnd)\nReturns/Creates option search page"/>
+          <Keyword text="GetStorage" descr="void GetStorage(eStorageType eType, String strName, eAccessType access, ISettingsStorage** ppStorage)\nReturns storage object"/>
+          <Keyword text="GetStyle" descr="IStyle* GetStyle(String sID)\nReturns style by style ID"/>
+          <Keyword text="GetStyleFromPos" descr="IStyleRange* GetStyleFromPos(IPosition* pt, boolean bRangesOnly = true)\nReturns top style with ranges from position"/>
+          <Keyword text="GetStylesFromPos" descr="IStyles* GetStylesFromPos(IPosition* ppt)\nReturns style stack from position"/>
+          <Keyword text="GetStylesFromPos" descr="IStyles* GetStylesFromPos(IPosition* pt)\nReturns style stack from position"/>
+          <Keyword text="GetSubMenu" descr="IMenuObject* GetSubMenu(integer nPosition)\nReturns sub menu from position"/>
+          <Keyword text="GetSyntax" descr="ISyntax* GetSyntax(String strSyntax)\nGet syntax by Name"/>
+          <Keyword text="GetText" descr="String GetText()\nReturns Code template expanded text"/>
+          <Keyword text="GetText" descr="String GetText(IRange* pRange)\nReturns copy of text"/>
+          <Keyword text="GetToolBar" descr="IToolBar* GetToolBar(String strToolbarID, boolean bCreate)\nFinds or creates toolbar instance by name"/>
+          <Keyword text="GetUndoActionDescription" descr="String GetUndoActionDescription(integer nActionType)\nReturns description, associated with Undo Action type, if provided type registered"/>
+          <Keyword text="GetUserVariable" descr="String GetUserVariable(String sName)\nRead user variable value by name"/>
+          <Keyword text="GoToLine" descr="void GoToLine(integer nLine)\nNavigates to specific line"/>
+          <Keyword text="HandlerToIndex" descr="integer HandlerToIndex(ICommandHandler* pHandler)\nGet command index by handler"/>
+          <Keyword text="Inflate" descr="void Inflate(integer nLeft, integer nTop, integer nRight, integer nBottom)\nInflate range"/>
+          <Keyword text="InsertButton" descr="void InsertButton(integer nPosition, VARIANT pHandler = null, eToolButtonStyle eStyle = eToolButtonStyleStandard)\nInserts button to the toolbar"/>
+          <Keyword text="InsertIndicator" descr="void InsertIndicator(integer nPosition, ICommandHandler* pHandler, integer nSize = -1, boolean bVisible = true, integer nFlags = 0)\nInserts button to the toolbar"/>
+          <Keyword text="InsertItem" descr="void InsertItem(integer nPosition, String sName = &quot;&quot;, VARIANT pHandler = null)\nInserts new context menu handler or separator when handler is null"/>
+          <Keyword text="InsertSubMenu" descr="IMenuObject* InsertSubMenu(integer nPosition, String sName)\nInsert sub menu"/>
+          <Keyword text="InsertText" descr="IPosition* InsertText(IPosition* ptStart, String strChars, UINT nAction)\nInserts text in specific position"/>
+          <Keyword text="InsertUndoRecord" descr="integer InsertUndoRecord(UINT nActionType)\nInsert abstract undo step for informing registered listener"/>
+          <Keyword text="IsFileInProject" descr="boolean IsFileInProject(String strFileName)\nChecks if file is in project"/>
+          <Keyword text="IsInheritedFrom" descr="boolean IsInheritedFrom(String szSyntax)\nCheck, if syntax is inherited from another syntax"/>
+          <Keyword text="IsInside" descr="boolean IsInside(IPosition* pPosition)\nChecks if position is inside of range (greater or equal start and less than end position)"/>
+          <Keyword text="IsIntersects" descr="boolean IsIntersects(IPosition* pPosition)\nChecks if position intersects range (greater or equal start and less or equal than end position)"/>
+          <Keyword text="IsKeyword" descr="boolean IsKeyword(String szWord)\nCheck, if word is known keyword"/>
+          <Keyword text="IsKnownTerm" descr="boolean IsKnownTerm(IStyle* pStyle, String szWord)\nCheck, if word exist in document, using statistic data"/>
+          <Keyword text="IsProtected" descr="boolean IsProtected(IPosition* pt)\nCheck, if document point inside of protected area"/>
+          <Keyword text="IsRangeInside" descr="boolean IsRangeInside(IRange* pRange)\nChecks if other range is inside of range (greater or equal start and less than end position)"/>
+          <Keyword text="IsRangeIntersects" descr="boolean IsRangeIntersects(IRange* pRange)\nChecks if other range intersects range (greater or equal start and less or equal than end position)"/>
+          <Keyword text="KeyboardEvent" descr="void KeyboardEvent(char nVirtualCode, char nScanCode, eKeyboardEventFlag dwFlags, integer dwExtraInfo = 0)\nEmulates Keyboard Event"/>
+          <Keyword text="Load" descr="IHEDocument* Load(String strFileName)\nCalled when file to be loaded"/>
+          <Keyword text="LoadDocument" descr="IHEDocument* LoadDocument(String strFileName)\nCalled when document file to be loaded"/>
+          <Keyword text="LoadProject" descr="IProject* LoadProject(String strPath = &quot;&quot;)\nLoad and activates project by name"/>
+          <Keyword text="MarkPosition" descr="void MarkPosition(IPosition* pt)\nMarks the text position"/>
+          <Keyword text="MouseEvent" descr="void MouseEvent(eMouseEvent nCommand, UINT data, VARIANT mouse_position = null)\nEmulates Mouse Event"/>
+          <Keyword text="MovePosition" descr="boolean MovePosition(IPosition* pPosition, integer nDelta)\nMoves position"/>
+          <Keyword text="MovePositionLine" descr="boolean MovePositionLine(IPosition* pPosition, integer nDelta)\nMoves position line"/>
+          <Keyword text="Navigate" descr="IHEDocument* Navigate(String strPathName, integer nLine, integer nPos, boolean bActivate = true)\nNavigates to position in document, opening it if necessary"/>
+          <Keyword text="Navigate" descr="void Navigate()\nNavigate to bookmark"/>
+          <Keyword text="NewFile" descr="IHEDocument* NewFile(String strPath = &quot;&quot;, String strContent = &quot;&quot;, String strSyntax = &quot;&quot;, integer nEncoding = 0)\nCreates a new file and returns reference to it"/>
+          <Keyword text="Normalize" descr="void Normalize()\nNormalizes the range"/>
+          <Keyword text="OnFileUpdate" descr="void OnFileUpdate(String sPath, eFileSystemEvent eEvent)\nCalled after registered file system event"/>
+          <Keyword text="OnSubMenuUpdate" descr="void OnSubMenuUpdate(IMenuObject* pMenu)\nCalled before first level sub menu is displayed"/>
+          <Keyword text="OpenFile" descr="IHEDocument* OpenFile(String strPath = &quot;&quot;, boolean bInteractive = true, String strSyntax = &quot;&quot;, integer nEncoding = 0)\nOpens an existing file with or w/o file dialog and returns reference to it"/>
+          <Keyword text="OpenURL" descr="void OpenURL(String strURL, boolean bNewWindow = false, boolean bActivate = true )\nOpens URL in the internal browser"/>
+          <Keyword text="Output" descr="IOutputPane* Output(String strPaneID = &quot;&quot;)\nReturn output pane by name"/>
+          <Keyword text="Parent" descr="IScope* Parent(IScope* pScope)\nFind Scope parent"/>
+          <Keyword text="PathFromRelative" descr="String PathFromRelative(String strPathRelative, boolean bCheckExist = false)\nConvert path from relative to full form"/>
+          <Keyword text="PathToRelative" descr="String PathToRelative(String strPathAbsolute)\nConvert path to relative form"/>
+          <Keyword text="Quit" descr="void Quit(integer intErrorCode = 0)\nForces script execution to stop at any time"/>
+          <Keyword text="Read" descr="String Read(integer Characters)\nReads a specified number of characters from a TextStream file and returns the resulting string"/>
+          <Keyword text="ReadAll" descr="String ReadAll()\nReads an entire TextStream file and returns the resulting string"/>
+          <Keyword text="ReadLine" descr="String ReadLine()\nReads an entire line (up to, but not including, the newline character) from a TextStream file and returns the resulting string"/>
+          <Keyword text="Redo" descr="void Redo(integer nPosition = -1)\nRedo of the last editing steps until nNewPosition, if nNewPosition == -1 - until last begin of undo group"/>
+          <Keyword text="RegisterCodeTemplate" descr="void RegisterCodeTemplate(String strKey, ICodeTemplateHandler* pCodeTemplateHandler, String strSyntax = &quot;&quot; )\nRegister Code Template handler"/>
+          <Keyword text="RegisterCommand" descr="integer RegisterCommand(ICommandHandler* pCommandHandler)\nRegister new command"/>
+          <Keyword text="RegisterCommandListener" descr="void RegisterCommandListener(String strName, ICommandHandlerListener* pCommandHandlerListener)\nRegister listener for existing command by name"/>
+          <Keyword text="RegisterIcon" descr="integer RegisterIcon(OLE_HANDLE hIcon)\nRegister Icon by Window Handle HICON"/>
+          <Keyword text="RegisterImageBitmap" descr="integer RegisterImageBitmap(OLE_HANDLE hBitmap)\nRegister Icon from Bitmap"/>
+          <Keyword text="RegisterImagePath" descr="integer RegisterImagePath(String sPath)\nRegister Icon by path"/>
+          <Keyword text="RegisterImageString" descr="integer RegisterImageString(String sIcon)\nRegister in-line Icon base64 encoded binary data"/>
+          <Keyword text="RegisterListener" descr="void RegisterListener(String strFileName, boolean bWhatchSubTree, integer dwFlags, VARIANT pListener)\nRegister file system listener"/>
+          <Keyword text="RegisterMacroTranslator" descr="void RegisterMacroTranslator(String strName, String strTitle, String strPrompt, integer strPrompt, VARIANT onTranslateMacroStep)\Register macro translator"/>
+          <Keyword text="RegisterOptionsPage" descr="void RegisterOptionsPage(String strTitle, VARIANT onInit, VARIANT onApply, VARIANT onContextHelp = null)\nRegisters Options page"/>
+          <Keyword text="RegisterTool" descr="integer RegisterTool(IToolHandler* pToolHandler)\nRegister a tool"/>
+          <Keyword text="Remove" descr="void Remove(integer Index)\nRemove child storage object from collection"/>
+          <Keyword text="RemoveAll" descr="void RemoveAll(boolean bNodes = true, boolean bAttributes = true)\nRemove children and attributes"/>
+          <Keyword text="RemoveAutoCorrection" descr="void RemoveAutoCorrection(String strFrom, String strLanguage)\nRemove auto correction item"/>
+          <Keyword text="RemoveButton" descr="void RemoveButton(integer nIndex)\nRemove button from the toolbar"/>
+          <Keyword text="RemoveIndicator" descr="void RemoveIndicator(integer nIndex)\nRemove button from the toolbar"/>
+          <Keyword text="RemoveSyntax" descr="void RemoveSyntax(String strSyntaxName, boolean bInherited = true)\nRemove syntax for which toolbar should be shown"/>
+          <Keyword text="ReplaceEx" descr="void ReplaceEx(String strWhat, String strTo, eSearchType nType, eSearchAction nAction, integer nSearchIn, eSearchResultType nResult, integer dwFlags, integer dwFlagsEx = 0)\nReplace text in a way similar to interactive search"/>
+          <Keyword text="ReplaceText" descr="IPosition* ReplaceText(IRange* pRange, String strChars, UINT nAction)\nReplace text in specific range"/>
+          <Keyword text="Save" descr="void Save(String strPath = &quot;&quot;)\nSaves the document"/>
+          <Keyword text="Select" descr="void Select(IRange* pRange, boolean bMerge = false)\nSelects provided text range"/>
+          <Keyword text="SelectFiles" descr="SAFEARRAY(String) SelectFiles(boolean bOpenDialog = true, String strDefExt = &quot;&quot;, String strFileName = 0, ULONG dwFlags = 0, String strFilters = 0, String strInitialDir = 0)\nDisplays Application File Save/Open dialog"/>
+          <Keyword text="SendMessage" descr="void SendMessage(OLE_HANDLE hWnd, UINT nCommand, UINT wParam, UINT lParam)\nSends Window Message"/>
+          <Keyword text="SetBookmark" descr="void SetBookmark(integer nLine, integer nBookmark = -1, boolean bToggle = false)\nSets bookmark for specific line"/>
+          <Keyword text="SetDefaultItem" descr="void SetDefaultItem(ICommandHandler* pHandler)\nSets default menu item (bold)"/>
+          <Keyword text="SetPattern" descr="void SetPattern(String sPattern = &quot;&quot;, integer nFile = 0, integer nLine = 0, integer nColumn = 0)\nSets output pattern"/>
+          <Keyword text="ShowOptions" descr="void ShowOptions(String strPage)\nShow options dialog"/>
+          <Keyword text="ShowQuickInfo" descr="IPosition* ShowQuickInfo(String strText, DWORD dwFlags = 0)\nShows quick info tooltip"/>
+          <Keyword text="ShowUsage" descr="void ShowUsage()\nMakes a script self-documenting by displaying information about how it should be used"/>
+          <Keyword text="Skip" descr="void Skip(integer Characters)\nSkips a specified number of characters when reading a TextStream file"/>
+          <Keyword text="SkipLine" descr="void SkipLine()\nSkips a complete line when reading a TextStream file"/>
+          <Keyword text="Sleep" descr="void Sleep(integer intTime)\nForces script execution to stop at any time"/>
+          <Keyword text="TextToClient" descr="IPoint* TextToClient(IPosition* ptText)\nConverts text coordinates to client coordinates"/>
+          <Keyword text="Track" descr="ICommandHandler* Track(boolean bFromMousePosition = true)\nTrack menu object or from cursor or mouse position and returns selected handler"/>
+          <Keyword text="TranslateFavoritesID" descr="String TranslateFavoritesID(integer nID)\nTranslates favorite folder ID to folder"/>
+          <Keyword text="UnRegisterCodeTemplate" descr="void UnRegisterCodeTemplate(String strKey, String strSyntax = &quot;&quot; )\nUnRegister Code Template handler"/>
+          <Keyword text="UnRegisterCommand" descr="void UnRegisterCommand(ICommandHandler* pCommandHandler)\nUnRegister a command"/>
+          <Keyword text="UnRegisterCommandListener" descr="void UnRegisterCommandListener(String strName, ICommandHandlerListener* pCommandHandlerListener)\nUnRegister listener for existing command by instance"/>
+          <Keyword text="UnRegisterListener" descr="void UnRegisterListener(String strFileName, VARIANT pListener)\nUnRegister file system listener"/>
+          <Keyword text="UnRegisterMacroTranslator" descr="void UnRegisterMacroTranslator(String strName)\UnRegister macro translator"/>
+          <Keyword text="UnRegisterOptionsPage" descr="void UnRegisterOptionsPage(String strTitle)\nUnRegisters Options page"/>
+          <Keyword text="UnRegisterTool" descr="void UnRegisterTool(IToolHandler* pToolHandler)\nUnRegister a tool"/>
+          <Keyword text="Undo" descr="void Undo(integer nPosition = -1)\nUndo of the last editing steps until nNewPosition, if nNewPosition == -1 - until last begin of undo group"/>
+          <Keyword text="Update" descr="void Update(integer nLine)\nUpdates all connected views, cleaning all buffers from line nLine"/>
+          <Keyword text="UpdateAll" descr="void UpdateAll()\nUpdate all open documents"/>
+          <Keyword text="UpdateControls" descr="void UpdateControls(OLE_HANDLE hWndHost, boolean bReplaceMode)\nCalled when controls state should be updated"/>
+          <Keyword text="Write" descr="void Write(String Text)\nWrites a specified string to a TextStream file"/>
+          <Keyword text="WriteBlankLines" descr="void WriteBlankLines(integer Lines)\nWrites a specified number of newline characters to a TextStream file"/>
+          <Keyword text="WriteLine" descr="void WriteLine(String Text = &quot;&quot;)\nWrites a specified string and newline character to a TextStream file"/>
+          <Keyword text="alert" descr="void alert(String strMessage)\nDisplays a message in a simple dialog box with the OK button"/>
+          <Keyword text="append" descr="void append(String strText)\nAppends text to the end of document"/>
+          <Keyword text="appendln" descr="void appendln(String strText)\nAppends text and new line to the end of document"/>
+          <Keyword text="attachEvent" descr="boolean attachEvent(String strEventName, VARIANT pEventHandler)\nHelper to attach more than one handler to event plug"/>
+          <Keyword text="confirm" descr="boolean confirm(String strMessage)\nDisplays a message in a simple dialog box with the OK button and the Cancel button"/>
+          <Keyword text="detachEvent" descr="boolean detachEvent(String strEventName, VARIANT pEventHandler)\nHelper to detach handler from event plug"/>
+          <Keyword text="dialog" descr="integer dialog(String strLayout, VARIANT* pParameters = null)\nDisplays free style dialog box, based on XML layout description"/>
+          <Keyword text="get" descr="String get()\nReads actual clipboard content"/>
+          <Keyword text="progress" descr="void progress(integer nPercent, String strText = &quot;&quot;)\nSets progress state"/>
+          <Keyword text="prompt" descr="String prompt(String strMessage, String strDefault = &quot;&quot;)\nDisplays a dialog box to enter a string with possible default value"/>
+          <Keyword text="quit" descr="void quit(integer intErrorCode = 0)\nForces script execution to stop at any time"/>
+          <Keyword text="read" descr="VARIANT read(String strValueName)\nReads object from storage"/>
+          <Keyword text="set" descr="void set(String strText, boolean bBlockMode = false)\nSets actual clipboard content"/>
+          <Keyword text="sleep" descr="void sleep(integer nMilliseconds)\nPauses execution for the specified time in milliseconds"/>
+          <Keyword text="status" descr="void status(String strMessage, eMessageType eType = eMessageTypeNone)\nSets status message"/>
+          <Keyword text="write" descr="void write(String strText)\nAppends a string to the output pane"/>
+          <Keyword text="write" descr="void write(String strText)\nInserts or overwrites a string at the current cursor position"/>
+          <Keyword text="write" descr="void write(String strValueName, VARIANT pVar)\nWrites object to storage"/>
+          <Keyword text="writeln" descr="void writeln(String strText = &quot;&quot;)\nAppends a string and a new line to the output pane"/>
+          <Keyword text="writeln" descr="void writeln(String strText)\nInserts or overwrites a string and a new line at the current cursor position"/>
+          <Keyword text="md5" descr="String md5(String strText)\nCreates a MD5 hash from string"/>
+          <Keyword text="uuid_generate" descr="String uuid_generate()\nGenerates new UUID"/>
+        </Keywords>
+      </Style>
+      <Style name="Events" extend="true">
+        <Keywords>
+          <Keyword text="onAfterExecuteHandler" descr="boolean onAfterExecute(String strCommandName)\nAfter command execute, return true to continue"/>
+          <Keyword text="onBackColor" descr="Dynamic update of BackColor handler"/>
+          <Keyword text="onBeforeExecuteHandler" descr="boolean onBeforeExecute(String strCommandName)\nBefore command execute, return true to continue"/>
+          <Keyword text="onBundleInstalled" descr="void onBundleInstalled(IBundle* pBundle)\nCalled after new bundle installed"/>
+          <Keyword text="onBundleUninstalled" descr="void onBundleUninstalled(IBundle* pBundle)\nCalled after new bundle uninstalled"/>
+          <Keyword text="onCanCloseApplication" descr="boolean onCanCloseApplication()\nCalled to determine if application can be closed, return 'true' indicates yes"/>
+          <Keyword text="onCanCloseWorkspace" descr="boolean onCanCloseWorkspace()\nCalled to determine if workspace can be closed, return 'true' indicates yes"/>
+          <Keyword text="onChecked" descr="Dynamic update of Checked state handler"/>
+          <Keyword text="onContextHelp" descr="String onContextHelp(UINT nCntrlID)\nCalled to display option related page"/>
+          <Keyword text="onCursorPosChange" descr="void onCursorPosChange(IHEView* pView, IPosition* pPos)\nCalled when cursor position in active document changed"/>
+          <Keyword text="onDescription" descr="GetDescription handler (function)"/>
+          <Keyword text="onDocumentClose" descr="void onDocumentClose(IHEDocument* pDocument)\nCalled when before document closed"/>
+          <Keyword text="onDocumentListUpdate" descr="void onDocumentListUpdate()\nCalled when document list has been updated"/>
+          <Keyword text="onDocumentNameChange" descr="void onDocumentNameChange(String pszOldName, String pszNewName, boolean bRename)\nCalled when document name changed"/>
+          <Keyword text="onDocumentOpen" descr="void onDocumentOpen(IHEDocument* pDocument)\nCalled after document opened"/>
+          <Keyword text="onDocumentSave" descr="void onDocumentSave(IHEDocument* pDocument)\nCalled after document saved"/>
+          <Keyword text="onDocumentStateUpdate" descr="void onDocumentStateUpdate(IHEDocument* pDocument)\nCalled when document state has been updated"/>
+          <Keyword text="onDocumentSwitch" descr="void onDocumentSwitch(IHEDocument* pActiveDocument)\nCalled when active document has been changed"/>
+          <Keyword text="onEditOperation" descr="void onEditOperation(IHEDocument* pDocument, eAction action)\nCalled after text has been inserted or typed"/>
+          <Keyword text="onEnabled" descr="onEnabled handler (function)"/>
+          <Keyword text="onExecute" descr="Execute handler (function)"/>
+          <Keyword text="onFocusLost" descr="void onFocusLost(IHEView* pView)\nCalled when focus set removed from the document"/>
+          <Keyword text="onFocusSet" descr="void onFocusSet(IHEView* pView)\nCalled when focus set to a document"/>
+          <Keyword text="onIdle" descr="void onIdle()\nCalled on Application Idle to process background jobs synchronously"/>
+          <Keyword text="onImage" descr="Dynamic update of Image handler"/>
+          <Keyword text="onInitContextMenu" descr="onInitContextMenu handler (function)"/>
+          <Keyword text="onInitMainMenu" descr="onInitMainMenu handler (function)"/>
+          <Keyword text="onInitToolbars" descr="onInitToolbars handler (function)"/>
+          <Keyword text="onInitStatusBar" descr="onInitStatusBar handler (function)"/>
+          <Keyword text="onMainSubmenuUpdate" descr="onMainSubmenuUpdate handler (function)"/>
+          <Keyword text="onMenuCreate" descr="void onMenuCreate(String sCommand, IMenuObject* pMenu)\nCalled when toolbar menu should created"/>
+          <Keyword text="onModifiedChange" descr="void onModifiedChange(IHEDocument* pDocument, boolean bModified)\nCalled when modified state of the document has been changed"/>
+          <Keyword text="onNewDocument" descr="void onNewDocument(IHEDocument* pDocument)\nCalled after document created"/>
+          <Keyword text="onPopupCreate" descr="void onPopupCreate(String sCommand, OLE_HANDLE* ppPopup)\nCalled when toolbar menu should created"/>
+          <Keyword text="onPrompt" descr="String onPrompt()\nDynamic update of Prompt handler"/>
+          <Keyword text="onProjectLoad" descr="void onProjectLoad(IProject* pProject)\nCalled after project has been loaded"/>
+          <Keyword text="onProjectSave" descr="void onProjectSave(IProject* pProject)\nCalled before project has been saved"/>
+          <Keyword text="onRadio" descr="Dynamic update of Radio state handler"/>
+          <Keyword text="onScroll" descr="void onScroll(IHEView* pView, ULONG nScrollX, ULONG nScrollY)\nCalled after scroll of the view"/>
+          <Keyword text="onSelectionChange" descr="void onSelectionChange(IHEView* pView, IRange* pSelection, boolean bBlockMode)\nCalled after change of selection in active view"/>
+          <Keyword text="onSettingsChange" descr="void onSettingsChange(ISettings* pSettings)\nCalled after global settings change"/>
+          <Keyword text="onSyntaxChange" descr="void onSyntaxChange(IHEDocument* pDocument, ISyntax* pOldSyntax)\nCalled after document created"/>
+          <Keyword text="onText" descr="onGetText handler (function)"/>
+          <Keyword text="onTextColor" descr="Dynamic update of TextColor handler"/>
+          <Keyword text="onTextInsert" descr="void onTextInsert(IHEDocument* pDocument, IPosition* pPos, String strText, eAction action)\nCalled after text has been inserted or typed"/>
+          <Keyword text="onTitle" descr="Dynamic update of Title handler"/>
+          <Keyword text="onWorkspaceClose" descr="void onWorkspaceClose(boolean bSaveState)\nCalled before workspace has been closed"/>
+          <Keyword text="onWorkspaceOpen" descr="void onWorkspaceOpen(boolean bSaveState)\nCalled after workspace has been loaded"/>
+        </Keywords>
+      </Style>
+      <Style name="Constants" extend="true">
+        <Keywords>
+          <Keyword text="eFindBookmark" descr="Bookmark found lines"/>
+          <Keyword text="eFindCloseOnFound" descr="Close search dialog when found"/>
+          <Keyword text="eFindDirectionUp" descr="Search from current position up"/>
+          <Keyword text="eFindExtendSel" descr="Extend current selection till found position"/>
+          <Keyword text="eFindExFileNamesOnly" descr="Collect only file names"/>
+          <Keyword text="eFindExIncludeHidden" descr="Include hidden files in search"/>
+          <Keyword text="eFindExRecursive" descr="Recursively searches subfoldes also"/>
+          <Keyword text="eFindHex" descr="Interpret given text as hex value"/>
+          <Keyword text="eFindHiddenText" descr="Search hidden (collapsed) text also"/>
+          <Keyword text="eFindHighlight" descr="Highlight matching results"/>
+          <Keyword text="eFindIncremental" descr="Use incremental search"/>
+          <Keyword text="eFindInteractive" descr="If set, search dialog is displayed"/>
+          <Keyword text="eFindMatchCase" descr="Takes into account case when searching"/>
+          <Keyword text="eFindOutputResults" descr="Redirect results also to find results pane"/>
+          <Keyword text="eFindRegexp" descr="Regular expression search"/>
+          <Keyword text="eFindSilent" descr="Do not display any messages during search"/>
+          <Keyword text="eFindWholeWord" descr="Searches whole word only, can not be combined with regular expression search"/>
+          <Keyword text="eFindWrap" descr="Wrap search, when end of document reached"/>
+          <Keyword text="eActionAddBrace" descr="Closed brace added"/>
+          <Keyword text="eActionAutoComplete" descr="Text Autocompleted"/>
+          <Keyword text="eActionAutoCorrect" descr="Misspelled word corrected from auto correction dictionary"/>
+          <Keyword text="eActionAutoExpand" descr="Template auto expanded"/>
+          <Keyword text="eActionAutoIndent" descr="Text Auto Indented"/>
+          <Keyword text="eActionBackspace" descr="Text back delete"/>
+          <Keyword text="eActionBookmarkedLinesCut" descr="Bookmarked lines cut"/>
+          <Keyword text="eActionBookmarkedLinesDelete" descr="Bookmarked lines deleted"/>
+          <Keyword text="eActionCapitalize" descr="Selection Capitalized"/>
+          <Keyword text="eActionComment" descr="Selected text is commented"/>
+          <Keyword text="eActionConvertSymbol" descr="Symbol converted"/>
+          <Keyword text="eActionCopySelection" descr="Selection Copied"/>
+          <Keyword text="eActionCorrectCaps" descr="CapsLock is corrected"/>
+          <Keyword text="eActionCorrectCase" descr="Case corrected"/>
+          <Keyword text="eActionCRLFMode" descr="Line Breaks changed"/>
+          <Keyword text="eActionCut" descr="Selected text cut"/>
+          <Keyword text="eActionDelete" descr="Text deleted"/>
+          <Keyword text="eActionDeleteDuplicates" descr="Duplicates deleted"/>
+          <Keyword text="eActionDeleteSelection" descr="Selection Deleted"/>
+          <Keyword text="eActionDragDrop" descr="Text drag and drop"/>
+          <Keyword text="eActionEncoding" descr="Encoding Changed"/>
+          <Keyword text="eActionFormat" descr="Selected text formatted"/>
+          <Keyword text="eActionIndent" descr="Slection indented"/>
+          <Keyword text="eActionInsertFile" descr="File Inserted"/>
+          <Keyword text="eActionJoinLines" descr="Selected lines are joined in one"/>
+          <Keyword text="eActionLast" descr="Last Marker (do not use)"/>
+          <Keyword text="eActionLineAbove" descr="Line above inserted"/>
+          <Keyword text="eActionLineBelow" descr="Line below inserted"/>
+          <Keyword text="eActionLineCut" descr="Line cut"/>
+          <Keyword text="eActionLineDelete" descr="Line deleted"/>
+          <Keyword text="eActionLineDeleteTillEnd" descr="Text deleted till line end"/>
+          <Keyword text="eActionLineDuplicate" descr="Selected line was duplicated"/>
+          <Keyword text="eActionLineMoveDown" descr="Line moved down"/>
+          <Keyword text="eActionLineMoveUp" descr="Selected line was moved"/>
+          <Keyword text="eActionLineTranspose" descr="Selected line was trasposed"/>
+          <Keyword text="eActionLowerCase" descr="Text converted to Lower case"/>
+          <Keyword text="eActionMoveSelection" descr="Selection Moved"/>
+          <Keyword text="eActionPaste" descr="Text pasted"/>
+          <Keyword text="eActionPasteAsHTML" descr="Text pasted as HTML"/>
+          <Keyword text="eActionRemoveBrace" descr="Brace removed"/>
+          <Keyword text="eActionReplace" descr="Text replaced"/>
+          <Keyword text="eActionReplaceAll" descr="Replace All"/>
+          <Keyword text="eActionSentencize" descr="Text converted in Sentence like form"/>
+          <Keyword text="eActionSmartTab" descr="Tab character replaced by correct indent"/>
+          <Keyword text="eActionSmartComment" descr="Smart Comment was applied"/>
+          <Keyword text="eActionSortLines" descr="Selected lines are sorted"/>
+          <Keyword text="eActionSpaceToTabs" descr="Typed Spaces converted to Tabs"/>
+          <Keyword text="eActionSwapCase" descr="Case of text swapped"/>
+          <Keyword text="eActionSyntax" descr="Syntax Changed"/>
+          <Keyword text="eActionTabsToSpace" descr="Typed Tabs converted to Spaces"/>
+          <Keyword text="eActionToolCommand" descr="Tool Command executed"/>
+          <Keyword text="eActionTrimWhiteSpace" descr="White space trimmed"/>
+          <Keyword text="eActionTyping" descr="Typing"/>
+          <Keyword text="eActionUnComment" descr="Selected text is uncommented"/>
+          <Keyword text="eActionUnknown" descr="Unknown"/>
+          <Keyword text="eActionUpperCase" descr="Text converted to Upper case"/>
+          <Keyword text="eActionVirtualSpace" descr="Virtual Spaces Ensured"/>
+          <Keyword text="eActionWrap" descr="Text is wrapped by Hard Wrap"/>
+          <Keyword text="eAccessTypeRead" descr="Only data Read"/>
+          <Keyword text="eAccessTypeReadWrite" descr="Read and Write of data"/>
+          <Keyword text="eAccessTypeWrite" descr="Only data Write"/>
+          <Keyword text="eCMSBottomMargin" descr="Context menu click on bottom margin"/>
+          <Keyword text="eCMSFormat" descr="Formatting Context Menu (when called with CTRL pressed)"/>
+          <Keyword text="eCMSFrame" descr="Context menu click on document frame/tab"/>
+          <Keyword text="eCMSLeftMargin" descr="Context menu click on left margin (indicator margin)"/>
+          <Keyword text="eCMSMargin" descr="Context menu click on margin (area between left margin and text)"/>
+          <Keyword text="eCMSNormal" descr="Normal editor context menu"/>
+          <Keyword text="eCMSReadOnly" descr="Context menu for Read-Only document"/>
+          <Keyword text="eCMSRightMargin" descr="Context menu click on right margin (wrap indicators area)"/>
+          <Keyword text="eCMSTopMargin" descr="Context menu click on top margin (horizontal ruler)"/>
+          <Keyword text="eCRLFStyleAuto"/>
+          <Keyword text="eCRLFStyleDOS"/>
+          <Keyword text="eCRLFStyleIBM"/>
+          <Keyword text="eCRLFStyleMac"/>
+          <Keyword text="eCRLFStyleMixed"/>
+          <Keyword text="eCRLFStyleOther"/>
+          <Keyword text="eCRLFStyleUnix"/>
+          <Keyword text="eCheckStateChecked" descr="Checked"/>
+          <Keyword text="eCheckStateIndeterminate" descr="Indeterminate"/>
+          <Keyword text="eCheckStateUnchecked" descr="Unchecked"/>
+          <Keyword text="eDialogResultAbort" descr="Abort"/>
+          <Keyword text="eDialogResultCancel" descr="Cancel"/>
+          <Keyword text="eDialogResultClose" descr="Close"/>
+          <Keyword text="eDialogResultContinue" descr="Continue - positive"/>
+          <Keyword text="eDialogResultHelp" descr="Help"/>
+          <Keyword text="eDialogResultNo" descr="No"/>
+          <Keyword text="eDialogResultNone" descr="None"/>
+          <Keyword text="eDialogResultOK" descr="OK - positive"/>
+          <Keyword text="eDialogResultOther" descr="Other"/>
+          <Keyword text="eDialogResultRetry" descr="Retry - positive"/>
+          <Keyword text="eDialogResultYes" descr="Yes - positive"/>
+          <Keyword text="eFileSystemEventChanged" descr="File modification time has been changed"/>
+          <Keyword text="eFileSystemEventChangedAttribute" descr="File attributes were changed"/>
+          <Keyword text="eFileSystemEventCreated" descr="File was created"/>
+          <Keyword text="eFileSystemEventRemoved" descr="File was removed"/>
+          <Keyword text="eFileSystemEventUpdated" descr="Directory was updated; Directory only flag"/>
+          <Keyword text="eItemPosBottom" descr="Bottom position in the menu"/>
+          <Keyword text="eItemPosDesigned" descr="Middle position in the menu"/>
+          <Keyword text="eItemPosTop" descr="Top position in the menu"/>
+          <Keyword text="eKeyboardEventFlagExtendedKey" descr="If specified, the scan code was preceded by a prefix byte that has the value 0xE0 (224)"/>
+          <Keyword text="eKeyboardEventFlagKeyUp" descr="If specified, the key is being released. If not specified, the key is being pressed."/>
+          <Keyword text="eKeyboardEventFlagScanCode" descr="If specified, wScan identifies the key and wVk is ignored."/>
+          <Keyword text="eKeyboardEventFlagUnicode" descr="If specified, the system synthesizes a VK_PACKET keystroke. The wVk parameter must be zero. This flag can only be combined with the eKeyboardEventFlagKeyUp flag."/>
+          <Keyword text="eLabelContextExitGlobal" descr="Used for return statements"/>
+          <Keyword text="eLabelContextExitScope" descr="Used for break, continue statements"/>
+          <Keyword text="eLabelContextLast" descr="Last context value (do not use)"/>
+          <Keyword text="eLabelContextNone" descr="No context exist"/>
+          <Keyword text="eMessageTypeError" descr="Error status message"/>
+          <Keyword text="eMessageTypeInfo" descr="Information status message"/>
+          <Keyword text="eMessageTypeLast" descr="Last status message (do not use)"/>
+          <Keyword text="eMessageTypeNone" descr="Standard status message"/>
+          <Keyword text="eMessageTypeWarning" descr="Warning status message"/>
+          <Keyword text="eMouseEventHWhell" descr="hwheel button rolled"/>
+          <Keyword text="eMouseEventLeftDown" descr="left button down"/>
+          <Keyword text="eMouseEventLeftUp" descr="left button up"/>
+          <Keyword text="eMouseEventMiddleDown" descr="middle button down"/>
+          <Keyword text="eMouseEventMiddleUp" descr="middle button up"/>
+          <Keyword text="eMouseEventMove" descr="mouse move"/>
+          <Keyword text="eMouseEventRightDown" descr="right button down"/>
+          <Keyword text="eMouseEventRightUp" descr="right button up"/>
+          <Keyword text="eMouseEventWhell" descr="wheel button rolled"/>
+          <Keyword text="eMouseEventXDown" descr="x button down"/>
+          <Keyword text="eMouseEventXUp" descr="x button up"/>
+          <Keyword text="ePaneLayoutBottom" descr="Pane docked to bottom of the screen"/>
+          <Keyword text="ePaneLayoutClient" descr="Pane occupies client area"/>
+          <Keyword text="ePaneLayoutFloat" descr="Pane should be floating"/>
+          <Keyword text="ePaneLayoutLeft" descr="Pane docked to left of the screen"/>
+          <Keyword text="ePaneLayoutRight" descr="Pane docked to right of the screen"/>
+          <Keyword text="ePaneLayoutTop" descr="Pane docked to top of the screen"/>
+          <Keyword text="eSearchActionConfigureFind" descr="Interactive Search action"/>
+          <Keyword text="eSearchActionConfigureReplace" descr="Interactive Replace action"/>
+          <Keyword text="eSearchActionFind" descr="Single search action"/>
+          <Keyword text="eSearchActionFindAll" descr="Cumulative search action"/>
+          <Keyword text="eSearchActionNone" descr="Undefined search action"/>
+          <Keyword text="eSearchActionReplaceAll" descr="Cumulative replace action"/>
+          <Keyword text="eSearchResultTypeCountOnly" descr="Search results are only counted"/>
+          <Keyword text="eSearchResultTypeNewFile" descr="Search results are forwarded in new document"/>
+          <Keyword text="eSearchResultTypeNone" descr="No search result output"/>
+          <Keyword text="eSearchResultTypeOutput" descr="Search results are forwarded in standard search result window"/>
+          <Keyword text="eSearchTypeCurrentDocument" descr="Search in current document"/>
+          <Keyword text="eSearchTypeCurrentDocumentBookmarks" descr="Search bookmarked lines of current document"/>
+          <Keyword text="eSearchTypeCurrentFileDir" descr="Search in directory of the current file"/>
+          <Keyword text="eSearchTypeExternal" descr="External Search Type"/>
+          <Keyword text="eSearchTypeFavoriteDir" descr="Search in favorite directories"/>
+          <Keyword text="eSearchTypeFolders" descr="Generic search in files"/>
+          <Keyword text="eSearchTypeLast" descr="Last search type marker"/>
+          <Keyword text="eSearchTypeOpenDocuments" descr="Search among open documents"/>
+          <Keyword text="eSearchTypeRecentFiles" descr="Search among recent files"/>
+          <Keyword text="eSearchTypeScope" descr="Search in current scope of the current document"/>
+          <Keyword text="eSearchTypeSelection" descr="Search inside text selection of current document"/>
+          <Keyword text="eSearchTypeUndefined" descr="Undefined search type"/>
+          <Keyword text="eStorageTypeGlobal" descr="Global settings storage"/>
+          <Keyword text="eStorageTypeSession" descr="Temporal session global storage"/>
+          <Keyword text="eStorageTypeWorkspace" descr="Workspace based storage"/>
+          <Keyword text="eStorageTypeProject" descr="Project based storage"/>
+          <Keyword text="eToolAutoExecuteNever" descr="Do not auto execute the tool"/>
+          <Keyword text="eToolAutoExecuteOnAppStart" descr="Auto Execute tool on application start"/>
+          <Keyword text="eToolAutoExecuteOnDocClose" descr="Auto Execute tool before document closed"/>
+          <Keyword text="eToolAutoExecuteOnDocCreate" descr="Auto Execute tool after document created"/>
+          <Keyword text="eToolAutoExecuteOnDocOpen" descr="Auto Execute tool after document opened"/>
+          <Keyword text="eToolAutoExecuteOnDocSave" descr="Auto Execute tool on after document saved"/>
+          <Keyword text="eToolButtonStyleDropMenu" descr="Toolbar button with drop menu"/>
+          <Keyword text="eToolButtonStyleFullDropMenu" descr="Toolbar button with drop menu and WITHOUT default button action"/>
+          <Keyword text="eToolButtonStylePopup" descr="Toolbar owned popup"/>
+          <Keyword text="eToolButtonStyleStandard" descr="Standard toolbar button"/>
+          <Keyword text="eToolOutputTypeCreateNewDocument" descr="Create a new document from tool output"/>
+          <Keyword text="eToolOutputTypeDiscard" descr="Discard tool output"/>
+          <Keyword text="eToolOutputTypeInsertAfterSelection" descr="Insert tool output after current selection"/>
+          <Keyword text="eToolOutputTypeInsertBeforeSelection" descr="Insert tool output before current selection"/>
+          <Keyword text="eToolOutputTypeReplaceClipboard" descr="Replace Clipboard content by tool output"/>
+          <Keyword text="eToolOutputTypeReplaceDocument" descr="Replace current document by tool output"/>
+          <Keyword text="eToolOutputTypeReplaceSelection" descr="Replace selected text by tool output"/>
+          <Keyword text="eToolOutputTypeShowAsToolTip" descr="Show tool output as a tooltip"/>
+          <Keyword text="eToolOutputTypeWindow" descr="Send tool output to 'Output Window'"/>
+          <Keyword text="eToolSaveAll" descr="Replace selected text by tool output"/>
+          <Keyword text="eToolSaveAllProject" descr="Replace current document by tool output"/>
+          <Keyword text="eToolSaveCurrent" descr="Send tool output to 'Output Window'"/>
+          <Keyword text="eToolSaveNothing" descr="Discard tool output"/>
+          <Keyword text="eUnderlineStyleDiagonal" descr="Diagonal text underlining"/>
+          <Keyword text="eUnderlineStyleNone" descr="No text underlining"/>
+          <Keyword text="eUnderlineStylePlain" descr="Solid line (1px) text underlining"/>
+          <Keyword text="eUnderlineStylePlain2x" descr="Solid line (2px) text underlining"/>
+          <Keyword text="eUnderlineStylePlain3x" descr="Solid line (3px) text underlining"/>
+          <Keyword text="eUnderlineStylePlain4x" descr="Solid line (4px) text underlining"/>
+          <Keyword text="eUnderlineStyleSquiggle" descr="Wave text underlining"/>
+          <Keyword text="eUnderlineStyleTT" descr="T-like text underlining"/>
+          <Keyword text="ecCaseModeAsTyped" descr="Keep case of keywords as it typed"/>
+          <Keyword text="ecCaseModeCapital" descr="Capitalize keywords"/>
+          <Keyword text="ecCaseModeLikeInDict" descr="Convert to case of keyword defined in syntax schema"/>
+          <Keyword text="ecCaseModeLowercase" descr="Convert keywords to lowercase"/>
+          <Keyword text="ecCaseModeUppercase" descr="Convert keywords to uppercase"/>
+          <Keyword text="ecImageTypeCompletionImg" descr="Image to be displayed in Completion list"/>
+          <Keyword text="ecImageTypeMarkerImg" descr="Image to be displayed on selection margin (as bookmark etc)"/>
+          <Keyword text="eTabModeAsTyped" descr="Keep tabs and spaces as they typed"/>
+          <Keyword text="eTabModeAuto" descr="Determine mode from content"/>
+          <Keyword text="eTabModeSpacesToTabs" descr="Convert typed Spaces into Tabs"/>
+          <Keyword text="eTabModeTabsToSpaces" descr="Convert typed Tabs into Spaces"/>
+          <Keyword text="eWordWrapModeColumnNum" descr="Word Wrap done after specified column (See method SetWordWrapPos)"/>
+          <Keyword text="eWordWrapModeColumnNumInsHB" descr="Word Wrap done after specified column inserting Hard Break ('Enter') in wrap position"/>
+          <Keyword text="eWordWrapModeDisabled" descr="Word Wrap is disabled"/>
+          <Keyword text="eWordWrapModeWindowEdge" descr="Word Wrap done by window edge"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

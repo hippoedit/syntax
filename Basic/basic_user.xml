@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+	<FILEINFO author="Admin-SS" type="LangUser"/>
+	<SYNTAX id="basic" inherit="def_source" inherit_url="defsource_user.xml">
+		<CodeTemplates>
+		  <Template key="DW" descr="Do While Loop">Do While {condition}\n\t{statements}\n'[use 'Exit Do' inside an If...Then...Else statement to exit]\nLoop\n</Template>
+		  <Template key="DU" descr="Do Until Loop">Do Until {condition}\n\t{statements}\n'[use 'Exit Do' inside an If...Then...Else statement to exit]\nLoop\n</Template>
+		  <Template key="DLU" descr="Do Loop Until">Do \n\t{statements}\n'[use 'Exit Do' inside an If...Then...Else statement to exit]\nLoop Until {condition}\n</Template>
+		  <Template key="SC" descr="Select Case">Select Case {testexpression}\n    Case {expression1}\t{statements1}\n    Case {expression2}\n\t\t {statements2}\n    Case Else\t{statements3}\nEnd Select\n</Template>
+		  <Template key="FN" descr="For Next">For {counter} To {end} [Step]\n\t{statements}\n'[use 'Exit For' inside an If...Then...Else statement to exit]\nNext\n</Template>
+		  <Template key="WS" descr="initialize Wscript Shell Initialisation">Dim WS\nset WS = CreateObject(&quot;wscript.Shell&quot;)</Template>
+		  <Template key="WW" descr="While Wend">While {condition}\n\t{statements}\nWend  </Template>
+		  <Template key="WSN" descr="initialize WSH Network">Dim WSnet\nSet WSNet = WScript.CreateObject(&quot;WScript.Network&quot;)</Template>
+		  <Template key="IT" descr="If Then struct">If {condition} Then\n\t{statements}\nEnd If</Template>
+		  <Template key="ITE" descr="If Then Else">If {condition} Then\n         {statements}\n     ElseIf {condition} Then\n         {statements}\n     ElseIf {condition} then\n         {statements}\n     Else\n         {statements}\n     End If</Template>
+		  <Template key="FSO" descr="initialize File System Object">Dim FSO\nSet FSO = CreateObject(&quot;scripting.filesystemobject&quot;)</Template>
+		  <Template key="FE" descr="For Each">For Each {item} In  {collection}\n\t{statements}\n'[use 'Exit For' inside an If...Then...Else statement to exit]Next\n</Template>
+		  <Template key="Fun" descr="Function">Function {FuncName}({arguments})\n\t{statements}\n[FuncName = {return statement}]\nEnd Function</Template>
+		  <Template key="Sub" descr="Sub">Sub {SubName}({arguments})\n\t{statements}\nEnd Sub\n</Template>
+		  <Template key="MB" descr="MsgBox">MsgBox [(] prompt[, buttons][, title][, helpfile, context] [)]</Template>
+		  <Template key="_MB" descr="MsgBox Help">MsgBox [(] prompt[, buttons][, title][, helpfile, context] [)]\n\nvbOKOnly              0 Display OK button only.\n vbOKCancel            1 Display OK and Cancel buttons.\nvbAbortRetryIgnore    2 Display Abort, Retry, and Ignore buttons.\nvbYesNoCancel         3 Display Yes, No, and Cancel buttons.\nvbYesNo               4 Display Yes and No buttons.\nvbRetryCancel         5 Display Retry and Cancel buttons.\nvbCritical           16 Display Critical Message icon.\nvbQuestion           32 Display Warning Query icon.\nvbExclamation        48 Display Warning Message icon.\nvbInformation        64 Display Information Message icon.\n\nvbDefaultButton1      0 First button is default.\nvbDefaultButton2    256 Second button is default.\nvbDefaultButton3    512 Third button is default.\nvbDefaultButton4    768 Fourth button is default.\n\nvbApplicationModal    0 Application modal;\nvbSystemModal      4096 System modal; \n\nReturn Values:\nvbOK    1 ok\nvbCancel  2 Cancel\n\cvbAbort   3 Abort\nvbRetry   4 Retry\n\bvbIgnore\b0  5 \iIgnore\i0\n\lvbYes\r6 Yes\nvbNo      7 No</Template>
+		  <Template key="IB" descr="InputBox">InputBox(prompt[, title][, default][, xpos][, ypos][, helpfile, context])</Template>
+		  <Template key="_Op" descr="VBScript Operators">VBScript Operators\nArithmetic  				Comparison  						Logical\nDescription 	 Symbol 	Description 			 Symbol 	Description 		Symbol\nExponentiation 		^ 		Equality 					= 		Logical negation 	Not\nUnary negation 		- 		Inequality 					&lt;&gt; 		Logical conjunction And\nMultiplication 		* 		Less than 					&lt; 		Logical disjunction Or\nDivision 			/ 		Greater than 				&gt; 		Logical exclusion 	Xor\nInteger division 	\ 		Less than or equal to 		&lt;= 		Logical equivalence Eqv\nModulus arithmetic 	Mod 	Greater than or equal to 	&gt;= 		Logical implication Imp\nAddition 		 	+ 		Object equivalence 	  	 	Is\nSubtraction 	 	- 	  \nString concatenation 	&amp;</Template>
+	  </CodeTemplates>
+	</SYNTAX>
+</XMLConfigSettings>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangUser"/>
+  <SYNTAX id="abap">
+    <CodeTemplates>
+      <Template key="cor" descr="Correction (*&gt;&gt;X&lt;&lt;$*&gt;&gt;X&lt;&lt;)">*&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; AA_%|% &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;START\n*%DateTime%\n*&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; AA_ &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;END</Template>
+      <Template key="case" descr="Case (§) when">CASE %|% .\n	WHEN .\n	WHEN .\n	WHEN OTHERS.\nENDCASE.</Template>
+      <Template key="method" descr="Method (§)">**********************************************************************\n* METHOD    :  %Name%\n* Created   :  %DateTime%\n**********************************************************************\nMETHOD %Name% .\n%|%\nENDMETHOD. "%Name%</Template>
+      <Template key="ife" descr="If (§) Else">IF %|%.\n\nELSE.\n\nENDIF.</Template>
+      <Template key="cf" descr="Call Function (§)">CALL FUNCTION '%|%'.\n	EXPORTING\n\n	IMPORTING\n	\n	EXCEPTIONS\n	  OTHERS = 1.</Template>
+      <Template key="form" descr="Form (§)">**********************************************************************\n* FORM    :  %Form name%\n* Created :  %DateTime%\n**********************************************************************\nFORM %Form name% USING  %|%\n                     CHANGING .\n%SelectedText%\nENDFORM. "%Form name%</Template>
+      <Template key="try" descr="Try (§)">TRY %|%.\n%SelectedText%\nCATCH .\n\nENDTRY.</Template>
+      <Template key="catch" descr="Catch (§)">CATCH SYSTEM-EXCEPTIONS %|%.\n%SelectedText%\nENDCATCH.</Template>
+      <Template key="region" descr="Region (§)">"$ Region %Region Name%\n%SelectedText%\n"$ Endregion %Region Name%</Template>
+      <Template key="report" descr="Report (§)">*----------------------------------------------------------------------*\n* Report : %DocumentName%\n* Author : D038062\n*----------------------------------------------------------------------*\n\nREPORT   %DocumentName%\n            no standard page heading\n            line-size  80\n            line-count 65(0)\n            message-id %|%\n            defining database  .</Template>
+      <Template key="loop" descr="Loop (§)">LOOP AT %|% .\n%SelectedText%\nENDLOOP.</Template>
+      <Template key="*--" descr="*-------...">*--------------------------------------------------------------------*</Template>
+      <Template key="***" descr="***.....">**********************************************************************</Template>
+      <Template key="modulei" descr="Module Input (§)">MODULE %Module Name% INPUT.\n%SelectedText%\nENDMODULE. "%Module Name%</Template>
+      <Template key="do" descr="do (§)">DO %|%  TIMES.\n"%SelectedText%"\nENDDO.</Template>
+      <Template key="while" descr="While (§)">WHILE %|%.\n%SelectedText%\nENDWHILE.</Template>
+      <Template key="define" descr="DEFINE (§)">DEFINE %Macro Name%.\n%SelectedText%\nEND-OF-DEFINITION. "%Macro Name%</Template>
+      <Template key="classd" descr="Class Definition">*---------------------------------------------------------------------*\n*       CLASS %Class Name% DEFINITION\n*---------------------------------------------------------------------*\nCLASS %Class Name%.\n  PUBLIC SECTION.\n    METHODS: constructor\n    IMPORTING %|%\n    TYPE REF TO\n 	 FOR EVENT\n     OF\n     IMPORTING   .\n\n  PRIVATE SECTION.\n\nENDCLASS. "%Class Name%</Template>
+      <Template key="select" descr="Select (§)">SELECT * FROM %Database table name%\n         WHERE %|% EQ g1\n         AND   f2 BETWEEN g2 AND g3.\n\nENDSELECT. "%Database table name%\n</Template>
+      <Template key="movec" descr="move-corresponding">move-corresponding</Template>
+      <Template key="/" descr="/SAPAPO/$">/SAPAPO/%|%</Template>
+      <Template key="if" descr="If (§)">IF %|%.\n%SelectedText%\nENDIF.</Template>
+    </CodeTemplates>
+  </SYNTAX>
+</XMLConfigSettings>

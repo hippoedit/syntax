@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Theno" type="LangSpec"/>
+  <SYNTAX id="asp" name="ASP" inherit="vb" inherit_url="vb_spec.xml">
+    <LABELS>
+      <Label group="Block" match="Block:\s*((\w*\s?)+)\s+-\s+(.*?)($|/)" name="\1" descr="\3" image="14" scope="1">
+        <Containers open="remark"/>
+      </Label>
+      <Label group="TODO" match="TODO:\s*((\w*\s?)+)\s+-\s+(.*?)($|/)" name="\1" descr="\3" image="15" scope="1">
+        <Containers open="remark"/>
+      </Label>
+    </LABELS>
+    <SCOPES>
+      <Scope open="Block" close="/" separator="true">
+        <Containers open="remark"/>
+      </Scope>
+      <Scope open="TODO" close="/" separator="true">
+        <Containers open="remark"/>
+      </Scope>
+    </SCOPES>
+    <STYLES>
+      <Style id="collections" name="Collections" image="16" bold="0" italic="0" underline="0" overview="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ClientCertificate"/>
+          <Keyword text="Contents"/>
+          <Keyword text="Cookies"/>
+          <Keyword text="Form"/>
+          <Keyword text="QueryString"/>
+          <Keyword text="ServerVariables"/>
+          <Keyword text="StaticObjects"/>
+        </Keywords>
+      </Style>
+      <Style id="directives" name="Directives" image="19" bold="0" italic="0" underline="0" overview="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="EnableSessionState"/>
+          <Keyword text="Language"/>
+          <Keyword text="Transaction"/>
+        </Keywords>
+      </Style>
+      <Style id="events" name="Events" bold="0" italic="0" underline="0" overview="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Application_OnEnd"/>
+          <Keyword text="Application_OnStart"/>
+          <Keyword text="OnEndPage"/>
+          <Keyword text="OnStartPage"/>
+          <Keyword text="OnTransactionAbort"/>
+          <Keyword text="OnTransactionCommit"/>
+          <Keyword text="Session_OnEnd"/>
+          <Keyword text="Session_OnStart"/>
+        </Keywords>
+      </Style>
+      <Style id="methods" name="Methods" bold="0" italic="0" underline="0" overview="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Abandon"/>
+          <Keyword text="AddHeader"/>
+          <Keyword text="AppendToLog"/>
+          <Keyword text="BinaryRead"/>
+          <Keyword text="BinaryWrite"/>
+          <Keyword text="Clear"/>
+          <Keyword text="CreateObject"/>
+          <Keyword text="End"/>
+          <Keyword text="Execute"/>
+          <Keyword text="Flush"/>
+          <Keyword text="GetLastError"/>
+          <Keyword text="HTMLEncode"/>
+          <Keyword text="Lock"/>
+          <Keyword text="MapPath"/>
+          <Keyword text="Redirect"/>
+          <Keyword text="Remove"/>
+          <Keyword text="RemoveAll"/>
+          <Keyword text="SetAbort"/>
+          <Keyword text="SetComplete"/>
+          <Keyword text="Transfer"/>
+          <Keyword text="Unlock"/>
+          <Keyword text="URLEncode"/>
+          <Keyword text="Write"/>
+        </Keywords>
+      </Style>
+      <Style id="objects" name="Objects" extend="true">
+        <Keywords>
+          <Keyword text="Application"/>
+          <Keyword text="ASPError"/>
+          <Keyword text="ObjectContext"/>
+          <Keyword text="Request"/>
+          <Keyword text="Response"/>
+          <Keyword text="Server"/>
+          <Keyword text="Session"/>
+        </Keywords>
+      </Style>
+      <Style id="properties" name="Properties" image="7" bold="0" italic="0" underline="0" overview="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ASPCode"/>
+          <Keyword text="ASPDescription"/>
+          <Keyword text="Buffer"/>
+          <Keyword text="CacheControl"/>
+          <Keyword text="Category"/>
+          <Keyword text="Charset"/>
+          <Keyword text="CodePage"/>
+          <Keyword text="Column"/>
+          <Keyword text="ContentType"/>
+          <Keyword text="Description"/>
+          <Keyword text="Expires"/>
+          <Keyword text="ExpiresAbsolute"/>
+          <Keyword text="File"/>
+          <Keyword text="IsClientConnected"/>
+          <Keyword text="LCID"/>
+          <Keyword text="Line"/>
+          <Keyword text="Number"/>
+          <Keyword text="PICS"/>
+          <Keyword text="ScriptTimeout"/>
+          <Keyword text="SessionID"/>
+          <Keyword text="Source"/>
+          <Keyword text="Status"/>
+          <Keyword text="Timeout"/>
+          <Keyword text="TotalBytes"/>
+        </Keywords>
+      </Style>
+      <Style id="remark" name="Remarks" image="13" bold="0" italic="1" underline="0" overview="0" clr="Format tag" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="''" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

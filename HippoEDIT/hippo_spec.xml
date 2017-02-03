@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="hippo" name="HippoEDIT config" inherit="xml" inherit_url="xml_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*_spec.xml;*_user.xml">
+        <Pair file1="*_spec.xml" file2="*_user.xml"/>
+      </FilePattern>
+      <CaseSensitive>true</CaseSensitive>
+      <SyntaxBlocks>
+        <Block open="&lt;XMLConfigSettings"/>
+      </SyntaxBlocks>
+      <Bars navigation="true" hierarchy="true"/>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="SPECIFICATION" match="&lt;SPECIFICATION&gt;" image="9" scope="1">
+        <Containers open="xml_open_tag"/>
+      </Label>
+      <Label group="STYLES" match="&lt;STYLES&gt;" image="9" scope="1">
+        <Containers open="xml_open_tag"/>
+      </Label>
+      <Label group="SCOPES" match="&lt;SCOPES&gt;" image="9" scope="1">
+        <Containers open="xml_open_tag"/>
+      </Label>
+      <Label group="LABELS" match="&lt;LABELS&gt;" image="9" scope="1">
+        <Containers open="xml_open_tag"/>
+      </Label>
+      <Label group="FONTS" match="&lt;FONTS&gt;" image="9" scope="1">
+        <Containers open="xml_open_tag"/>
+      </Label>
+    </LABELS>
+    <STYLES>
+      <Style id="scope" name="Text Highlights" bold="1" italic="2" underline="2" clr="Keyword" bkclr="#FFFFFFFF"/>
+      <Style id="scope_error" name="Text Highlights Error" bold="1" italic="0" underline="0" clr="Error" bkclr="#FFFFFFFF" overview="1"/>
+      <Style name="Scopes Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="xml_close_tag"/>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="Escape"/>
+          <Keyword text="Highlight"/>
+          <Keyword text="LABELS"/>
+          <Keyword text="Label"/>
+          <Keyword text="Middle"/>
+          <Keyword text="SCOPES"/>
+          <Keyword text="Scope"/>
+          <Keyword text="Skip"/>
+          <Keyword text="DynamicScope"/>
+          <Keyword text="SubImage"/>
+          <Keyword text="Image"/>
+          <Keyword text="Word"/>
+        </Keywords>
+      </Style>
+      <Style name="Format Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="xml_close_tag"/>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="FORMAT"/>
+          <Keyword text="DefaultIndent"/>
+          <Keyword text="DefaultKeywordCase"/>
+          <Keyword text="FormatWords"/>
+          <Keyword text="FormatWord"/>
+          <Keyword text="ResetFormatSymbols"/>
+        </Keywords>
+      </Style>
+      <Style name="Specification Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="xml_close_tag"/>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="Bars"/>
+          <Keyword text="CaseSensitive"/>
+          <Keyword text="Delimiters"/>
+          <Keyword text="Display"/>
+          <Keyword text="Encoding"/>
+          <Keyword text="EscapeChar"/>
+          <Keyword text="FILEINFO"/>
+          <Keyword text="FONTS"/>
+          <Keyword text="FilePattern"/>
+          <Keyword text="Font"/>
+          <Keyword text="Formatting"/>
+          <Keyword text="HierarchySeparator"/>
+          <Keyword text="LexerDll"/>
+          <Keyword text="LineEnd"/>
+          <Keyword text="LineSpacing"/>
+          <Keyword text="MaxLineLength"/>
+          <Keyword text="Numbers"/>
+          <Keyword text="OpenClose"/>
+          <Keyword text="Operators"/>
+          <Keyword text="Pair"/>
+          <Keyword text="SPECIFICATION"/>
+          <Keyword text="SYNTAX"/>
+          <Keyword text="Scripting"/>
+          <Keyword text="Separator"/>
+          <Keyword text="ShowInheritedStyles"/>
+          <Keyword text="ShowInheritedTemplates"/>
+          <Keyword text="StyleBitmap"/>
+          <Keyword text="SyntaxBlocks"/>
+          <Keyword text="WordWrap"/>
+          <Keyword text="Words"/>
+          <Keyword text="WrapBy"/>
+          <Keyword text="XMLConfigSettings"/>
+        </Keywords>
+      </Style>
+      <Style name="Styles Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="xml_close_tag"/>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="Block"/>
+          <Keyword text="Blocks"/>
+          <Keyword text="Close"/>
+          <Keyword text="Containers"/>
+          <Keyword text="Keyword"/>
+          <Keyword text="Keywords"/>
+          <Keyword text="Open"/>
+          <Keyword text="Regexp"/>
+          <Keyword text="STYLES"/>
+          <Keyword text="Style"/>
+        </Keywords>
+      </Style>
+      <Style name="User Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="xml_close_tag"/>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="CodeTemplates"/>
+          <Keyword text="Template"/>
+          <Keyword text="TOOLS"/>
+          <Keyword text="Tool"/>
+          <Keyword text="HELP"/>
+          <Keyword text="Help"/>
+        </Keywords>
+      </Style>
+      <Style name="User Attributes" image="9" bold="2" italic="2" underline="2" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_close_tag"/>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="name"/>
+          <Keyword text="arguments"/>
+          <Keyword text="command"/>
+          <Keyword text="virt"/>
+          <Keyword text="ctrl"/>
+          <Keyword text="alt"/>
+          <Keyword text="shift"/>
+        </Keywords>
+      </Style>
+      <Style name="Insert" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="xml_close_tag"/>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="InsertDateTime"/>
+          <Keyword text="Insert"/>
+        </Keywords>
+      </Style>
+      <Style name="Attributes" image="9" bold="2" italic="2" underline="2" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="key"/>
+          <Keyword text="type"/>
+          <Keyword text="mask"/>
+          <Keyword text="author"/>
+          <Keyword text="descr"/>
+          <Keyword text="inherit_url"/>
+          <Keyword text="init"/>
+          <Keyword text="word"/>
+          <Keyword text="next_line"/>
+          <Keyword text="range_till_next"/>
+          <Keyword text="pos_sent_start"/>
+          <Keyword text="range_sentence"/>
+          <Keyword text="indent"/>
+          <Keyword text="text"/>
+          <Keyword text="name"/>
+          <Keyword text="image"/>
+          <Keyword text="bold"/>
+          <Keyword text="italic"/>
+          <Keyword text="underline"/>
+          <Keyword text="clr"/>
+          <Keyword text="bkclr"/>
+          <Keyword text="dstyle"/>
+          <Keyword text="dbkclr"/>
+          <Keyword text="hotspot"/>
+          <Keyword text="id"/>
+          <Keyword text="only_monospaced"/>
+          <Keyword text="face_name"/>
+          <Keyword text="quality"/>
+          <Keyword text="charset"/>
+          <Keyword text="size"/>
+          <Keyword text="open_container"/>
+          <Keyword text="close_container"/>
+          <Keyword text="open"/>
+          <Keyword text="close"/>
+          <Keyword text="start_pos"/>
+          <Keyword text="middle"/>
+          <Keyword text="strict"/>
+          <Keyword text="has_name"/>
+          <Keyword text="extend"/>
+          <Keyword text="exclude"/>
+          <Keyword text="abstract"/>
+          <Keyword text="inherit"/>
+          <Keyword text="include"/>
+          <Keyword text="header"/>
+          <Keyword text="sent_start"/>
+          <Keyword text="separator"/>
+          <Keyword text="file1"/>
+          <Keyword text="file2"/>
+          <Keyword text="readonly"/>
+          <Keyword text="format"/>
+          <Keyword text="scope"/>
+          <Keyword text="navigation"/>
+          <Keyword text="match"/>
+          <Keyword text="group"/>
+          <Keyword text="if"/>
+          <Keyword text="equal"/>
+        </Keywords>
+      </Style>
+      <Style name="Formatting symbols" text="1" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+        </Containers>
+        <Blocks>
+          <Block text="\\n"/>
+          <Block text="\i"/>
+          <Block text="\i0"/>
+          <Block text="\b"/>
+          <Block text="\b0"/>
+          <Block text="\l"/>
+          <Block text="\c"/>
+          <Block text="\r"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

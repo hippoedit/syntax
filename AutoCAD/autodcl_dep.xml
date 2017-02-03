@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="Dependency"/>
+  <SYNTAX id="auto_dcl">
+	<File local="./download/syntax/autolisp_spec.xml" dest="data/syntax/autolisp_spec.xml" descr="AutoCAD LISP syntax"/>
+  </SYNTAX>
+</XMLConfigSettings>

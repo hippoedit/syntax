@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Alexandr Cojocari" type="LangSpec"/>
+  <SYNTAX id="haxe" name="haXe" descr="haxe" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.hx"/>
+      <CaseSensitive>true</CaseSensitive>
+      <OpenClose>()[]{}''""</OpenClose>
+      <LineEnd>;</LineEnd>
+      <EscapeChar>\</EscapeChar>
+      <Operators>@?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]{}</Operators>
+      <Delimiters>&quot;'@#{}</Delimiters>
+      <Words init="A-Za-z_">0-9A-Za-z_</Words>
+      <HierarchySeparator>
+        <Separator text="::"/>
+        <Separator text="."/>
+      </HierarchySeparator>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <FormatWords>
+        <FormatWord word="if" next_line="true" range_sentence="true"/>
+        <FormatWord word="else" next_line="true" range_sentence="true"/>
+        <FormatWord word="while" next_line="true" range_sentence="true"/>
+        <FormatWord word="case" next_line="true" range_till_next="true"/>
+        <FormatWord word="for" next_line="true" range_sentence="true"/>
+      </FormatWords>
+    </FORMAT>
+    <LABELS>
+      <Label group="Function" match="(static|public|private)?\s+function\s*(\w+)\s*\(([^)]*)?\)\s*(:\s*\w+)?\s*\{" name="\2" descr="\1 \2 (\3)\4" image="6" scope="1">
+        <SubImage if="\1" equal="public" value="2"/>
+        <SubImage if="\1" equal="private" value="4"/>
+      </Label>
+      <Label group="Class" match="(public|private)?\s+class\s+(\w+)\s+(extends\s+\w+)?\s*\{" name="\2" descr="Class \2 \3" image="5" scope="1">
+        <SubImage if="\1" equal="public" value="2"/>
+        <SubImage if="\1" equal="private" value="4"/>
+      </Label>
+      <Label group="" match="(if|switch|while|for)\s*\(((?:[^\(\)]|\\r|\\n|\((?-1)\))*+)\)\s*\{" name="\1" descr="\1 (\2)" scope="1" image="13" navigation="false"/>      
+    </LABELS>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+      <Scope open="if" middle="else" close="end">
+        <Containers open="preprocessor"/>
+      </Scope>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="char"/>
+          <Open id="documentation"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Blocks>
+          <Block open="0x">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="//" close="\n"/>
+          <Block open="/*" close="*/"/>
+        </Blocks>
+        <Containers>
+          <Close id="normal"/>
+          <Close id="todo"/>
+        </Containers>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style name="Line Breaks" text="1" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+        </Containers>
+        <Blocks>
+          <Block text="\\r"/>
+          <Block text="\\n"/>
+          <Block text="\\t"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF"/>
+      <Style id="documentation" name="Documentation" text="1" bold="0" italic="1" underline="0" clr="Documentation" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="///" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor_keyword" name="Preprocessor Directives" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="else"/>
+          <Keyword text="end"/>
+          <Keyword text="if"/>
+        </Keywords>
+      </Style>
+      <Style name="Constants" image="7" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="false"/>
+          <Keyword text="true"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+          <Open id="documentation"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="break"/>
+          <Keyword text="callback"/>
+          <Keyword text="case"/>
+          <Keyword text="catch"/>
+          <Keyword text="class"/>
+          <Keyword text="continue"/>
+          <Keyword text="default"/>
+          <Keyword text="do"/>
+          <Keyword text="else"/>
+          <Keyword text="enum"/>
+          <Keyword text="extends"/>
+          <Keyword text="for"/>
+          <Keyword text="function"/>
+          <Keyword text="if"/>
+          <Keyword text="implements"/>
+          <Keyword text="import"/>
+          <Keyword text="in"/>
+          <Keyword text="interface"/>
+          <Keyword text="new"/>
+          <Keyword text="package"/>
+          <Keyword text="return"/>
+          <Keyword text="switch"/>
+          <Keyword text="throw"/>
+          <Keyword text="try"/>
+          <Keyword text="typedef"/>
+          <Keyword text="using"/>
+          <Keyword text="var"/>
+          <Keyword text="while"/>
+        </Keywords>
+      </Style>
+      <Style name="Keywords2" image="11" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="author"/>
+          <Keyword text="copy"/>
+          <Keyword text="default"/>
+          <Keyword text="deprecated"/>
+          <Keyword text="eventType"/>
+          <Keyword text="example"/>
+          <Keyword text="exampleText"/>
+          <Keyword text="exception"/>
+          <Keyword text="haxe"/>
+          <Keyword text="inheritDoc"/>
+          <Keyword text="internal"/>
+          <Keyword text="link"/>
+          <Keyword text="param"/>
+          <Keyword text="see"/>
+          <Keyword text="serial"/>
+          <Keyword text="serialData"/>
+          <Keyword text="serialField"/>
+          <Keyword text="since"/>
+          <Keyword text="throws"/>
+          <Keyword text="usage"/>
+          <Keyword text="version"/>
+        </Keywords>
+      </Style>
+      <Style name="Keywords3" image="10" bold="1" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="null"/>
+          <Keyword text="true"/>
+          <Keyword text="false"/>
+        </Keywords>
+      </Style>
+      <Style name="Keywords4" image="5" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Void"/>
+          <Keyword text="Int"/>
+          <Keyword text="Float"/>
+          <Keyword text="Dynamic"/>
+          <Keyword text="Bool"/>
+          <Keyword text="UInt"/>
+          <Keyword text="Iterator"/>
+          <Keyword text="Array"/>
+          <Keyword text="List"/>
+          <Keyword text="Hash"/>
+          <Keyword text="IntHash"/>
+          <Keyword text="Date"/>
+          <Keyword text="String"/>
+          <Keyword text="Xml"/>
+          <Keyword text="dynamic"/>
+          <Keyword text="extern"/>
+          <Keyword text="inline"/>
+          <Keyword text="override"/>
+          <Keyword text="private"/>
+          <Keyword text="public"/>
+          <Keyword text="static"/>
+          <Keyword text="untyped"/>
+          <Keyword text="cast"/>
+          <Keyword text="trace"/>
+          <Keyword text="super"/>
+          <Keyword text="this"/>
+          <Keyword text="arguments"/>
+          <Keyword text="never"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

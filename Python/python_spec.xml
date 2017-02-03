@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="python" name="Python" inherit="def_source" inherit_url="defsource_spec.xml" version="1.1">
+    <SPECIFICATION>
+      <FilePattern mask="*.py;*.pyw;*.pyp"/>
+      <CaseSensitive>true</CaseSensitive>
+      <OpenClose>()[]{}''``""</OpenClose>
+      <Delimiters>,;.?:()[]</Delimiters>
+      <EscapeChar>\</EscapeChar>
+      <Operators>?%--+/&amp;*=&lt;&gt;|!~^()[]</Operators>
+      <Words>0-9A-Za-z_</Words>
+      <Encoding bom="false">
+        <Block open="coding:"/>
+        <Block open="coding="/>
+        <Block open="vim:fileencoding"/>
+      </Encoding>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="Definition" match="\&lt;(def|class)\s+(\w+)\s*(\([^)]*\))?\s*:" name="\2" descr="\1 \2\3" image="5" scope="1" style="function" highlight="\2">
+        <Image if="\1" equal="def" value="6"/>
+      </Label>
+      <Label group="Function" match="(\w+)\(" name="\1" descr="\1" navigation="false" context="function_call" style="function"  highlight="\1" visible="false"/>      
+    </LABELS>
+    <SCOPES>
+      <IndentScope/>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+          <Block open="r&quot;" close="&quot;" escaping="false"/>
+          <Block open="R&quot;" close="&quot;" escaping="false"/>
+          <Block open="u&quot;" close="&quot;"/>
+          <Block open="U&quot;" close="&quot;"/>
+          <Block open="ur&quot;" close="&quot;" escaping="false"/>
+          <Block open="UR&quot;" close="&quot;" escaping="false"/>
+          <Block open="Ur&quot;" close="&quot;" escaping="false"/>
+          <Block open="uR&quot;" close="&quot;" escaping="false"/>
+          <Block open="&quot;&quot;&quot;" close="&quot;&quot;&quot;"/>
+          <Block open="'" close="'"/>
+          <Block open="r'" close="'" escaping="false"/>
+          <Block open="R'" close="'" escaping="false"/>
+          <Block open="u'" close="'"/>
+          <Block open="U'" close="'"/>
+          <Block open="ur'" close="'" escaping="false"/>
+          <Block open="UR'" close="'" escaping="false"/>
+          <Block open="Ur'" close="'" escaping="false"/>
+          <Block open="uR'" close="'" escaping="false"/>
+          <Block open="'''" close="'''"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF"/>
+      <Style name="Include" text="1" bold="0" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#!" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="and"/>
+          <Keyword text="as"/>
+          <Keyword text="assert"/>
+          <Keyword text="break"/>
+          <Keyword text="class"/>
+          <Keyword text="continue"/>
+          <Keyword text="def"/>
+          <Keyword text="del"/>
+          <Keyword text="elif"/>
+          <Keyword text="else"/>
+          <Keyword text="except"/>
+          <Keyword text="exec"/>
+          <Keyword text="finally"/>
+          <Keyword text="for"/>
+          <Keyword text="from"/>
+          <Keyword text="global"/>
+          <Keyword text="if"/>
+          <Keyword text="import"/>
+          <Keyword text="in"/>
+          <Keyword text="is"/>
+          <Keyword text="lambda"/>
+          <Keyword text="not"/>
+          <Keyword text="or"/>
+          <Keyword text="pass"/>
+          <Keyword text="print"/>
+          <Keyword text="raise"/>
+          <Keyword text="return"/>
+          <Keyword text="try"/>
+          <Keyword text="while"/>
+          <Keyword text="with"/>
+          <Keyword text="yield"/>
+		</Keywords>
+      </Style>
+      <Style id="function" name="Functions" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="abs"/>
+          <Keyword text="all"/>
+          <Keyword text="any"/>
+          <Keyword text="basestring"/>
+          <Keyword text="bin"/>
+          <Keyword text="bool"/>
+          <Keyword text="callable"/>
+          <Keyword text="chr"/>
+          <Keyword text="classmethod"/>
+          <Keyword text="cmp"/>
+          <Keyword text="compile"/>
+          <Keyword text="complex"/>
+          <Keyword text="delattr"/>
+          <Keyword text="dict"/>
+          <Keyword text="dir"/>
+          <Keyword text="divmod"/>
+          <Keyword text="enumerate"/>
+          <Keyword text="eval"/>
+          <Keyword text="execfile"/>
+          <Keyword text="file"/>
+          <Keyword text="filter"/>
+          <Keyword text="float"/>
+          <Keyword text="format"/>
+          <Keyword text="frozenset"/>
+          <Keyword text="getattr"/>
+          <Keyword text="globals"/>
+          <Keyword text="hasattr"/>
+          <Keyword text="hash"/>
+          <Keyword text="help"/>
+          <Keyword text="hex"/>
+          <Keyword text="id"/>
+          <Keyword text="input"/>
+          <Keyword text="int"/>
+          <Keyword text="isinstance"/>
+          <Keyword text="issubclass"/>
+          <Keyword text="iter"/>
+          <Keyword text="len"/>
+          <Keyword text="list"/>
+          <Keyword text="locals"/>
+          <Keyword text="long"/>
+          <Keyword text="map"/>
+          <Keyword text="max"/>
+          <Keyword text="memoryview"/>
+          <Keyword text="min"/>
+          <Keyword text="next"/>
+          <Keyword text="object"/>
+          <Keyword text="oct"/>
+          <Keyword text="open"/>
+          <Keyword text="ord"/>
+          <Keyword text="pow"/>
+          <Keyword text="print"/>
+          <Keyword text="property"/>
+          <Keyword text="range"/>
+          <Keyword text="raw_input"/>
+          <Keyword text="reduce"/>
+          <Keyword text="reload"/>
+          <Keyword text="repr"/>
+          <Keyword text="reversed"/>
+          <Keyword text="round"/>
+          <Keyword text="set"/>
+          <Keyword text="setattr"/>
+          <Keyword text="slice"/>
+          <Keyword text="sorted"/>
+          <Keyword text="staticmethod"/>
+          <Keyword text="str"/>
+          <Keyword text="sum"/>
+          <Keyword text="super"/>
+          <Keyword text="tuple"/>
+          <Keyword text="type"/>
+          <Keyword text="type"/>
+          <Keyword text="unichr"/>
+          <Keyword text="unicode"/>
+          <Keyword text="vars"/>
+          <Keyword text="xrange"/>
+          <Keyword text="zip"/>
+          <Keyword text="__import__"/>
+          <Keyword text="apply"/>
+          <Keyword text="buffer"/>
+          <Keyword text="coerce"/>
+          <Keyword text="intern"/>
+		</Keywords>
+      </Style>
+      <Style name="Methods" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="__abs__"/>
+          <Keyword text="__add__"/>
+          <Keyword text="__and__"/>
+          <Keyword text="__call__"/>
+          <Keyword text="__cmp__"/>
+          <Keyword text="__coerce__"/>
+          <Keyword text="__del__"/>
+          <Keyword text="__delattr__"/>
+          <Keyword text="__delitem__"/>
+          <Keyword text="__delslice__"/>
+          <Keyword text="__div__"/>
+          <Keyword text="__divmod__"/>
+          <Keyword text="__float__"/>
+          <Keyword text="__getattr__"/>
+          <Keyword text="__getitem__"/>
+          <Keyword text="__getslice__"/>
+          <Keyword text="__hash__"/>
+          <Keyword text="__hex__"/>
+          <Keyword text="__iadd__"/>
+          <Keyword text="__isub__"/>
+          <Keyword text="__imod__"/>
+          <Keyword text="__idiv__"/>
+          <Keyword text="__ipow__"/>
+          <Keyword text="__iand__"/>
+          <Keyword text="__ior__"/>
+          <Keyword text="__ixor__"/>
+          <Keyword text="__ilshift__"/>
+          <Keyword text="__irshift__"/>
+          <Keyword text="__invert__"/>
+          <Keyword text="__int__"/>
+          <Keyword text="__init__"/>
+          <Keyword text="__len__"/>
+          <Keyword text="__long__"/>
+          <Keyword text="__lshift__"/>
+          <Keyword text="__mod__"/>
+          <Keyword text="__mul__"/>
+          <Keyword text="__neg__"/>
+          <Keyword text="__nonzero__"/>
+          <Keyword text="__oct__"/>
+          <Keyword text="__or__"/>
+          <Keyword text="__pos__"/>
+          <Keyword text="__pow__"/>
+          <Keyword text="__radd__"/>
+          <Keyword text="__rdiv__"/>
+          <Keyword text="__rdivmod__"/>
+          <Keyword text="__rmod__"/>
+          <Keyword text="__rpow__"/>
+          <Keyword text="__rlshift__"/>
+          <Keyword text="__rrshift__"/>
+          <Keyword text="__rshift__"/>
+          <Keyword text="__rsub__"/>
+          <Keyword text="__rmul__"/>
+          <Keyword text="__repr__"/>
+          <Keyword text="__rand__"/>
+          <Keyword text="__rxor__"/>
+          <Keyword text="__ror__"/>
+          <Keyword text="__setattr__"/>
+          <Keyword text="__setitem__"/>
+          <Keyword text="__setslice__"/>
+          <Keyword text="__str__"/>
+          <Keyword text="__sub__"/>
+          <Keyword text="__xor__"/>
+        </Keywords>
+      </Style>
+      <Style name="Attributes" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="__bases__"/>
+          <Keyword text="__class__"/>
+          <Keyword text="__dict__"/>
+          <Keyword text="__methods__"/>
+          <Keyword text="__members__"/>
+          <Keyword text="__name__"/>
+          <Keyword text="__version__"/>
+        </Keywords>
+      </Style>
+      <Style name="Exceptions" image="11" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ArithmeticError"/>
+          <Keyword text="AssertionError"/>
+          <Keyword text="AttributeError"/>
+          <Keyword text="BaseException"/>
+          <Keyword text="DeprecationWarning"/>
+          <Keyword text="EOFError"/>
+          <Keyword text="EnvironmentError"/>
+          <Keyword text="Exception"/>
+          <Keyword text="FloatingPointError"/>
+          <Keyword text="FutureWarning"/>
+          <Keyword text="GeneratorExit"/>
+          <Keyword text="IOError"/>
+          <Keyword text="ImportError"/>
+          <Keyword text="ImportWarning"/>
+          <Keyword text="IndexError"/>
+          <Keyword text="KeyError"/>
+          <Keyword text="KeyboardInterrupt"/>
+          <Keyword text="LookupError"/>
+          <Keyword text="MemoryError"/>
+          <Keyword text="NameError"/>
+          <Keyword text="NotImplementedError"/>
+          <Keyword text="OSError"/>
+          <Keyword text="OverflowError"/>
+          <Keyword text="PendingDeprecationWarning"/>
+          <Keyword text="ReferenceError"/>
+          <Keyword text="RuntimeError"/>
+          <Keyword text="RuntimeWarning"/>
+          <Keyword text="StandardError"/>
+          <Keyword text="StopIteration"/>
+          <Keyword text="SyntaxError"/>
+          <Keyword text="SyntaxWarning"/>
+          <Keyword text="SystemError"/>
+          <Keyword text="SystemExit"/>
+          <Keyword text="TypeError"/>
+          <Keyword text="UnboundLocalError"/>
+          <Keyword text="UnicodeDecodeError"/>
+          <Keyword text="UnicodeEncodeError"/>
+          <Keyword text="UnicodeError"/>
+          <Keyword text="UnicodeTranslateError"/>
+          <Keyword text="UnicodeWarning"/>
+          <Keyword text="UserWarning"/>
+          <Keyword text="VMSError"/>
+          <Keyword text="ValueError"/>
+          <Keyword text="Warning"/>
+          <Keyword text="WindowsError"/>
+          <Keyword text="ZeroDivisionError"/>
+		</Keywords>
+      </Style>
+      <Style name="Libs" image="7" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="AST"/>
+          <Keyword text="atexit"/>
+          <Keyword text="BaseHTTPServer"/>
+          <Keyword text="Bastion"/>
+          <Keyword text="cmd"/>
+          <Keyword text="codecs"/>
+          <Keyword text="commands"/>
+          <Keyword text="compileall"/>
+          <Keyword text="copy"/>
+          <Keyword text="CGIHTTPServer"/>
+          <Keyword text="Complex"/>
+          <Keyword text="dbhash"/>
+          <Keyword text="dircmp"/>
+          <Keyword text="dis"/>
+          <Keyword text="dospath"/>
+          <Keyword text="dumbdbm"/>
+          <Keyword text="emacs"/>
+          <Keyword text="find"/>
+          <Keyword text="fmt"/>
+          <Keyword text="fnmatch"/>
+          <Keyword text="ftplib"/>
+          <Keyword text="getopt"/>
+          <Keyword text="glob"/>
+          <Keyword text="gopherlib"/>
+          <Keyword text="grep"/>
+          <Keyword text="htmllib"/>
+          <Keyword text="httplib"/>
+          <Keyword text="ihooks"/>
+          <Keyword text="imghdr"/>
+          <Keyword text="imputil"/>
+          <Keyword text="linecache"/>
+          <Keyword text="lockfile"/>
+          <Keyword text="macpath"/>
+          <Keyword text="macurl2path"/>
+          <Keyword text="mailbox"/>
+          <Keyword text="mailcap"/>
+          <Keyword text="mimetools"/>
+          <Keyword text="mimify"/>
+          <Keyword text="mutex"/>
+          <Keyword text="math"/>
+          <Keyword text="Mimewriter"/>
+          <Keyword text="newdir"/>
+          <Keyword text="ni"/>
+          <Keyword text="nntplib"/>
+          <Keyword text="ntpath"/>
+          <Keyword text="nturl2path"/>
+          <Keyword text="os"/>
+          <Keyword text="ospath"/>
+          <Keyword text="pdb"/>
+          <Keyword text="pickle"/>
+          <Keyword text="pipes"/>
+          <Keyword text="poly"/>
+          <Keyword text="popen2"/>
+          <Keyword text="posixfile"/>
+          <Keyword text="posixpath"/>
+          <Keyword text="profile"/>
+          <Keyword text="pstats"/>
+          <Keyword text="pyclbr"/>
+          <Keyword text="pyexpat"/>
+          <Keyword text="Para"/>
+          <Keyword text="quopri"/>
+          <Keyword text="Queue"/>
+          <Keyword text="rand"/>
+          <Keyword text="random"/>
+          <Keyword text="regex"/>
+          <Keyword text="regsub"/>
+          <Keyword text="rfc822"/>
+          <Keyword text="sched"/>
+          <Keyword text="sgmllib"/>
+          <Keyword text="shelve"/>
+          <Keyword text="site"/>
+          <Keyword text="sndhdr"/>
+          <Keyword text="string"/>
+          <Keyword text="sys"/>
+          <Keyword text="snmp"/>
+          <Keyword text="SimpleHTTPServer"/>
+          <Keyword text="StringIO"/>
+          <Keyword text="SocketServer"/>
+          <Keyword text="tb"/>
+          <Keyword text="tempfile"/>
+          <Keyword text="toaiff"/>
+          <Keyword text="token"/>
+          <Keyword text="tokenize"/>
+          <Keyword text="traceback"/>
+          <Keyword text="tty"/>
+          <Keyword text="types"/>
+          <Keyword text="tzparse"/>
+          <Keyword text="Tkinter"/>
+          <Keyword text="unicodedata"/>
+          <Keyword text="urllib"/>
+          <Keyword text="urlparse"/>
+          <Keyword text="util"/>
+          <Keyword text="uu"/>
+          <Keyword text="UserDict"/>
+          <Keyword text="UserList"/>
+          <Keyword text="wave"/>
+          <Keyword text="webbrowser"/>
+          <Keyword text="whatsound"/>
+          <Keyword text="whichdb"/>
+          <Keyword text="whrandom"/>
+          <Keyword text="xdrlib"/>
+          <Keyword text="xml"/>
+          <Keyword text="xmlpackage"/>
+          <Keyword text="zmod"/>
+        </Keywords>
+      </Style>
+      <Style name="Constants" image="7" bold="1" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="None"/>
+          <Keyword text="False"/>
+          <Keyword text="True"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="def_text" name="Default Text" inherit="def" abstract="true" inherit_url="def_spec.xml"/>
+</XMLConfigSettings>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangUser"/>
+  <SYNTAX id="pascal">
+    <CodeTemplates>
+      <Template key="begin" descr="begin $ end;">begin\n%|%%SelectedText%\nend;</Template>
+      <Template key="(*" descr="(*...*)">(* %SelectedText% *)</Template>
+    </CodeTemplates>
+  </SYNTAX>
+</XMLConfigSettings>

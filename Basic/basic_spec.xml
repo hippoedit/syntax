@@ -1,0 +1,997 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="basic" name="Basic" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.bas;*.frm;*.cls"/>
+      <OpenClose>()[]{}""</OpenClose>
+      <Operators>?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]</Operators>
+      <Delimiters>&quot;'@#{}</Delimiters>
+      <Words>0-9A-Za-z_</Words>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <FormatWords>
+        <FormatWord word="Then" next_line="true"/>
+      </FormatWords>
+    </FORMAT>
+    <SCOPES>
+      <Scope open="Class" close="End Class" has_name="true" separator="true"/>
+      <Scope open="Sub" close="End Sub" has_name="true" separator="true"/>
+      <Scope open="Function" close="End Function" has_name="true" separator="true"/>
+      <Scope open="Begin" close="End" has_name="true" separator="true"/>
+      <Scope open="For" middle="To"  close="Next"/>
+      <Scope open="For Each" middle="In"  close="Next"/>
+      <Scope open="With" close="End With"/>
+      <Scope open="While" middle="Exit While"  close="Wend">
+        <Close text="End While"/>
+      </Scope>
+      <Scope open="Select Case" middle="Case" close="End Select" has_name="true">
+        <Middle text="Case Else"/>
+      </Scope>
+      <Scope open="Do While" close="Loop"/>
+      <Scope open="Do" close="Loop Until">
+        <Close text="Loop While"/>
+        <Close text="Loop"/>
+      </Scope>
+      <Scope open="If" middle="Else" close="End If" strict="false">
+        <Middle text="Then"/>
+        <Middle text="ElseIf"/>
+      </Scope>
+      <Scope open="Exit Sub" strict="false"/>
+      <Scope open="Exit While" strict="false"/>
+      <Scope open="Exit For" strict="false"/>
+      <Scope open="Exit Function" strict="false"/>
+      <Scope open="Exit Do" strict="false"/>
+      <Scope open="Continue While" strict="false"/>
+      <Scope open="Continue For" strict="false"/>
+      <Scope open="Continue Do" strict="false"/>
+      <Scope open="Declare Function" strict="false"/>
+      <Scope open="resume next" strict="false"/>
+    </SCOPES>
+    <LABELS>
+      <Label group="Subroutine" match="^\s*(public|private)?\s*(sub)\s+(\w+)(?:\s*(\([^)]*\)))?" name="\3" descr="\2 \3 \4" image="9" scope="1">
+        <SubImage if="\1" equal="public" value="2"/>
+        <SubImage if="\1" equal="private" value="4"/>
+      </Label>
+      <Label group="Function" match="^\s*(public|private)?\s*(function)\s+(\w+)(?:\s*(\([^)]*\)))" name="\3" descr="\2 \3 \4" image="6" scope="1">
+        <SubImage if="\1" equal="public" value="2"/>
+        <SubImage if="\1" equal="private" value="4"/>
+      </Label>
+    </LABELS>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="REM" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="And"/>
+          <Keyword text="Or"/>
+          <Keyword text="Not"/>
+          <Keyword text="Mod"/>
+          <Keyword text="Xor"/>
+        </Keywords>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ADDHANDLER"/>
+          <Keyword text="Add"/>
+          <Keyword text="ASSEMBLY"/>
+          <Keyword text="AUTO"/>
+          <Keyword text="As"/>
+          <Keyword text="BEGINEPILOGUE"/>
+          <Keyword text="Binary"/>
+          <Keyword text="ByRef"/>
+          <Keyword text="ByVal"/>
+          <Keyword text="Continue"/>
+          <Keyword text="ENDPROLOGUE"/>
+          <Keyword text="ENVIRON"/>
+          <Keyword text="EXTERNALSOURCE"/>
+          <Keyword text="Each"/>
+          <Keyword text="Else"/>
+          <Keyword text="Empty"/>
+          <Keyword text="Error"/>
+          <Keyword text="For"/>
+          <Keyword text="Friend"/>
+          <Keyword text="GET"/>
+          <Keyword text="HANDLES"/>
+          <Keyword text="In"/>
+          <Keyword text="Input"/>
+          <Keyword text="Is"/>
+          <Keyword text="Len"/>
+          <Keyword text="MUSTINHERIT"/>
+          <Keyword text="MYBASE"/>
+          <Keyword text="MYCLASS"/>
+          <Keyword text="Me"/>
+          <Keyword text="Mid"/>
+          <Keyword text="NOTINHERITABLE"/>
+          <Keyword text="NOTOVERRIDABLE"/>
+          <Keyword text="New"/>
+          <Keyword text="Next"/>
+          <Keyword text="Nothing"/>
+          <Keyword text="Null"/>
+          <Keyword text="OFF"/>
+          <Keyword text="OVERRIDABLE"/>
+          <Keyword text="On"/>
+          <Keyword text="Option"/>
+          <Keyword text="Optional"/>
+          <Keyword text="ParamArray"/>
+          <Keyword text="Print"/>
+          <Keyword text="Private"/>
+          <Keyword text="Property"/>
+          <Keyword text="Public"/>
+          <Keyword text="Replace"/>
+          <Keyword text="Resume"/>
+          <Keyword text="SENDKEYS"/>
+          <Keyword text="SET"/>
+          <Keyword text="SHELL"/>
+          <Keyword text="Seek"/>
+          <Keyword text="Select"/>
+          <Keyword text="Static"/>
+          <Keyword text="Step"/>
+          <Keyword text="String"/>
+          <Keyword text="THROW"/>
+          <Keyword text="Then"/>
+          <Keyword text="Time"/>
+          <Keyword text="To"/>
+          <Keyword text="Until"/>
+          <Keyword text="WithEvents"/>
+        </Keywords>
+      </Style>
+      <Style id="objects" name="Objects" image="12" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="COLLECTION"/>
+          <Keyword text="DEBUG"/>
+          <Keyword text="DICTIONARY"/>
+          <Keyword text="DRIVE"/>
+          <Keyword text="DRIVES"/>
+          <Keyword text="ERR"/>
+          <Keyword text="FILE"/>
+          <Keyword text="FILES"/>
+          <Keyword text="FILESYSTEMOBJECT"/>
+          <Keyword text="FOLDER"/>
+          <Keyword text="FOLDERS"/>
+          <Keyword text="TEXTSTREAM"/>
+        </Keywords>
+      </Style>
+      <Style id="data_types" name="Data Types" image="10" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="BOOLEAN"/>
+          <Keyword text="BYTE"/>
+          <Keyword text="DATE"/>
+          <Keyword text="DECIMIAL"/>
+          <Keyword text="DOUBLE"/>
+          <Keyword text="INTEGER"/>
+          <Keyword text="LONG"/>
+          <Keyword text="OBJECT"/>
+          <Keyword text="SINGLE"/>
+          <Keyword text="STRING"/>
+        </Keywords>
+      </Style>
+      <Style id="function_parameters" name="Function Parameters" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="prompt" descr="text (in quotes) to prompt the user"/>
+          <Keyword text="buttons" descr="vbOKOnly              0 Display OK button only.\n vbOKCancel            1 Display OK and Cancel buttons.\nvbAbortRetryIgnore    2 Display Abort, Retry, and Ignore buttons.\nvbYesNoCancel         3 Display Yes, No, and Cancel buttons.\nvbYesNo               4 Display Yes and No buttons.\nvbRetryCancel         5 Display Retry and Cancel buttons.\nvbCritical           16 Display Critical Message icon.\nvbQuestion           32 Display Warning Query icon.\nvbExclamation        48 Display Warning Message icon.\nvbInformation        64 Display Information Message icon.\n\nvbDefaultButton1      0 First button is default.\nvbDefaultButton2    256 Second button is default.\nvbDefaultButton3    512 Third button is default.\nvbDefaultButton4    768 Fourth button is default.\n\nvbApplicationModal    0 Application modal;\nvbSystemModal      4096 System modal; \n\nReturn Values:\nvbOK    1 ok\nvbCancel  2 Cancel\n\cvbAbort   3 Abort\nvbRetry   4 Retry\n\bvbIgnore\b0  5 \iIgnore\i0\n\lvbYes\r6 Yes\nvbNo      7 No"/>
+        </Keywords>
+      </Style>
+      <Style id="functions" name="Functions" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords pattern="%CurrentWord%(%|%)">
+          <Keyword text="Abs"/>
+          <Keyword text="Array" descr="MyArray(0) or MyArray(element_1, element_2, ...)"/>
+          <Keyword text="Asc"/>
+          <Keyword text="AscB"/>
+          <Keyword text="AscW"/>
+          <Keyword text="Atn"/>
+          <Keyword text="Avg"/>
+          <Keyword text="CBool" descr="CBool(expression) - converted to Boolean. 'If expression is zero, False is returned; otherwise, True is returned"/>
+          <Keyword text="CByte" descr="CByte(expression) - converted to Byte"/>
+          <Keyword text="CCur" descr="CCur(expression) - converted to Currency"/>
+          <Keyword text="CDate" descr="CDate(expression) - Converts a valid date and time expression to the variant of subtype Date"/>
+          <Keyword text="CDbl" descr="CDbl(expression) - converted to Double"/>
+          <Keyword text="CInt"/>
+          <Keyword text="CLng"/>
+          <Keyword text="CSng"/>
+          <Keyword text="CStr" descr="CStr(expression) - Converts an expression to a variant of subtype String"/>
+          <Keyword text="CVDate"/>
+          <Keyword text="CVErr"/>
+          <Keyword text="CVar"/>
+          <Keyword text="Cdec"/>
+          <Keyword text="Choose"/>
+          <Keyword text="Chr"/>
+          <Keyword text="ChrB"/>
+          <Keyword text="ChrW"/>
+          <Keyword text="Command"/>
+          <Keyword text="Cos"/>
+          <Keyword text="Count" descr="Returns the number of items in a collection or Dictionary object. Read-only"/>
+          <Keyword text="CurDir"/>
+          <Keyword text="DDB"/>
+          <Keyword text="Date" descr="A String containing a date in the short-date format of your system"/>
+          <Keyword text="DateAdd"/>
+          <Keyword text="DateDiff"/>
+          <Keyword text="DatePart"/>
+          <Keyword text="DateSerial"/>
+          <Keyword text="DateValue"/>
+          <Keyword text="Day"/>
+          <Keyword text="Dir"/>
+          <Keyword text="DoEvents"/>
+          <Keyword text="EOF" descr="End Of Line"/>
+          <Keyword text="Environ"/>
+          <Keyword text="Error"/>
+          <Keyword text="Exp"/>
+          <Keyword text="FV"/>
+          <Keyword text="FileAttr"/>
+          <Keyword text="FileDateTime"/>
+          <Keyword text="FileLen"/>
+          <Keyword text="Fix"/>
+          <Keyword text="Format"/>
+          <Keyword text="FreeFile"/>
+          <Keyword text="GB"/>
+          <Keyword text="GetAllStrings"/>
+          <Keyword text="GetAttr"/>
+          <Keyword text="GetAutoServerSettings"/>
+          <Keyword text="GetObject"/>
+          <Keyword text="GetSetting"/>
+          <Keyword text="Hex"/>
+          <Keyword text="Hour"/>
+          <Keyword text="IIf"/>
+          <Keyword text="IMEStatus"/>
+          <Keyword text="IPmt"/>
+          <Keyword text="InStr"/>
+          <Keyword text="Input"/>
+          <Keyword text="InputB"/>
+          <Keyword text="InputBox" descr="InputBox(prompt[, title][, default][, xpos][, ypos][, helpfile, context])"/>
+          <Keyword text="InstrB"/>
+          <Keyword text="Int"/>
+          <Keyword text="IsArray" descr="IsArray(variable) - Returns &quot;True=&quot;&quot;&quot; if the specified variable is an array"/>
+          <Keyword text="IsDate" descr="IsDate(expression) - Returns a Boolean value indicating whether an expression can be converted to a date"/>
+          <Keyword text="IsEmpty" descr="IsEmpty(expression) - Returns a Boolean value indicating whether a variable has been initialized"/>
+          <Keyword text="IsError"/>
+          <Keyword text="IsMissing"/>
+          <Keyword text="IsNull" descr="IsNull(expression) - Returns a Boolean value that indicates whether an expression contains no valid data"/>
+          <Keyword text="IsNumeric" descr="IsNumeric(expression) - Returns a Boolean value indicating whether an expression can be evaluated as a number"/>
+          <Keyword text="IsObject" descr="IsObject(expression) - Returns a Boolean value indicating whether an expression references a valid Automation object"/>
+          <Keyword text="LBound" descr="LBound(array) - Returns the lower bound of the specified array"/>
+          <Keyword text="LCase" descr="LCase(string) - Returns a string that has been converted to lowercase"/>
+          <Keyword text="LOF"/>
+          <Keyword text="LTrim" descr="LTrim(string) - Returns a copy of a string without leading spaces"/>
+          <Keyword text="Left"/>
+          <Keyword text="LeftB"/>
+          <Keyword text="Len" descr="Len(expression) - Returns the number of characters in a string"/>
+          <Keyword text="LenB"/>
+          <Keyword text="LoadPicture"/>
+          <Keyword text="Loc"/>
+          <Keyword text="Log"/>
+          <Keyword text="MIRR"/>
+          <Keyword text="Max"/>
+          <Keyword text="Mid"/>
+          <Keyword text="MidB"/>
+          <Keyword text="Min"/>
+          <Keyword text="Minute"/>
+          <Keyword text="Month"/>
+          <Keyword text="MsgBox" descr="MsgBox [(] prompt[, buttons][, title][, helpfile, context] [)]"/>
+          <Keyword text="NPV"/>
+          <Keyword text="NPer"/>
+          <Keyword text="Now"/>
+          <Keyword text="Oct"/>
+          <Keyword text="PPmt"/>
+          <Keyword text="PV"/>
+          <Keyword text="Partition"/>
+          <Keyword text="Pmt"/>
+          <Keyword text="QBColor"/>
+          <Keyword text="RTrim" descr="RTrim(string) - Returns a copy of a string without trailing spaces"/>
+          <Keyword text="Rate"/>
+          <Keyword text="Right"/>
+          <Keyword text="RightB"/>
+          <Keyword text="Rnd"/>
+          <Keyword text="SLN"/>
+          <Keyword text="SYD"/>
+          <Keyword text="Second"/>
+          <Keyword text="Seek"/>
+          <Keyword text="Sgn"/>
+          <Keyword text="Shell"/>
+          <Keyword text="Sin"/>
+          <Keyword text="Space"/>
+          <Keyword text="Spc"/>
+          <Keyword text="Sqr"/>
+          <Keyword text="StDev"/>
+          <Keyword text="StDevP"/>
+          <Keyword text="Str"/>
+          <Keyword text="StrComp"/>
+          <Keyword text="StrConv"/>
+          <Keyword text="String"/>
+          <Keyword text="Sum"/>
+          <Keyword text="Switch"/>
+          <Keyword text="Tab"/>
+          <Keyword text="Tan"/>
+          <Keyword text="Time"/>
+          <Keyword text="TimeSerial"/>
+          <Keyword text="TimeValue"/>
+          <Keyword text="Timer"/>
+          <Keyword text="Trim" descr="Trim(string) - Returns a copy of a string without leading and trailing spaces"/>
+          <Keyword text="TypeName"/>
+          <Keyword text="UBound" descr="UBound(array) - Returns the upper bound of the specified array"/>
+          <Keyword text="UCase" descr="UCase(string) - Returns a string that has been converted to uppercase"/>
+          <Keyword text="Val"/>
+          <Keyword text="Var"/>
+          <Keyword text="VarP"/>
+          <Keyword text="VarType" descr="VarType(varname) - Returns a value indicating the subtype of a variable\nThe VarType function returns the following values:\n\nConstant 	Value 	Description\nvbEmpty 	 0 	Empty (uninitialized)\nvbNull 	     1 	Null (no valid data)\nvbInteger 	 2 	Integer\nvbLong 	     3 	Long integer\nvbSingle 	 4 	Single-precision floating-point number\nvbDouble 	 5 	Double-precision floating-point number\nvbCurrency 	 6 	Currency\nvbDate 	     7 	Date\nvbString 	 8 	String\nvbObject 	 9 	Automation object\nvbError 	 10 	Error\nvbBoolean 	 11 	Boolean\nvbVariant 	 12 	Variant (used only with arrays of Variants)\nvbDataObject 13 	A data-access object\nvbByte 	     17 	Byte\nvbArray 	 8192 	Array\n"/>
+          <Keyword text="Weekday"/>
+          <Keyword text="Year"/>
+        </Keywords>
+      </Style>
+      <Style id="methods" name="Methods" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Accept"/>
+          <Keyword text="Activate"/>
+          <Keyword text="Add"/>
+          <Keyword text="AddCustom"/>
+          <Keyword text="AddFile"/>
+          <Keyword text="AddFromFile"/>
+          <Keyword text="AddFromTemplate"/>
+          <Keyword text="AddItem"/>
+          <Keyword text="AddNew"/>
+          <Keyword text="AddToAddInToolbar"/>
+          <Keyword text="AddToolboxProgID"/>
+          <Keyword text="Append"/>
+          <Keyword text="AppendChunk"/>
+          <Keyword text="Arrange"/>
+          <Keyword text="Assert"/>
+          <Keyword text="AsyncRead"/>
+          <Keyword text="BatchUpdate"/>
+          <Keyword text="BeginTrans"/>
+          <Keyword text="Bind"/>
+          <Keyword text="CanPropertyChange"/>
+          <Keyword text="Cancel"/>
+          <Keyword text="CancelAsyncRead"/>
+          <Keyword text="CancelBatch"/>
+          <Keyword text="CancelUpdate"/>
+          <Keyword text="CaptureImage"/>
+          <Keyword text="CellText"/>
+          <Keyword text="CellValue"/>
+          <Keyword text="Circle"/>
+          <Keyword text="Clear" descr="Clears all property settings of the Err object"/>
+          <Keyword text="ClearFields"/>
+          <Keyword text="ClearSel"/>
+          <Keyword text="ClearSelCols"/>
+          <Keyword text="Clone"/>
+          <Keyword text="Close"/>
+          <Keyword text="Cls"/>
+          <Keyword text="ColContaining"/>
+          <Keyword text="ColumnSize"/>
+          <Keyword text="CommitTrans"/>
+          <Keyword text="CompactDatabase"/>
+          <Keyword text="Compose"/>
+          <Keyword text="Connect"/>
+          <Keyword text="Copy"/>
+          <Keyword text="CopyQueryDef"/>
+          <Keyword text="CreateDatabase"/>
+          <Keyword text="CreateDragImage"/>
+          <Keyword text="CreateEmbed"/>
+          <Keyword text="CreateField"/>
+          <Keyword text="CreateGroup"/>
+          <Keyword text="CreateIndex"/>
+          <Keyword text="CreateLink"/>
+          <Keyword text="CreatePreparedStatement"/>
+          <Keyword text="CreatePropery"/>
+          <Keyword text="CreateQuery"/>
+          <Keyword text="CreateQueryDef"/>
+          <Keyword text="CreateRelation"/>
+          <Keyword text="CreateTableDef"/>
+          <Keyword text="CreateUser"/>
+          <Keyword text="CreateWorkspace"/>
+          <Keyword text="Customize"/>
+          <Keyword text="Delete"/>
+          <Keyword text="DeleteColumnLabels"/>
+          <Keyword text="DeleteColumns"/>
+          <Keyword text="DeleteRowLabels"/>
+          <Keyword text="DeleteRows"/>
+          <Keyword text="DoVerb"/>
+          <Keyword text="Drag"/>
+          <Keyword text="Draw"/>
+          <Keyword text="Edit"/>
+          <Keyword text="EditCopy"/>
+          <Keyword text="EditPaste"/>
+          <Keyword text="EndDoc"/>
+          <Keyword text="EnsureVisible"/>
+          <Keyword text="EstablishConnection"/>
+          <Keyword text="Execute"/>
+          <Keyword text="ExtractIcon"/>
+          <Keyword text="Fetch"/>
+          <Keyword text="FetchVerbs"/>
+          <Keyword text="Files"/>
+          <Keyword text="FillCache"/>
+          <Keyword text="Find"/>
+          <Keyword text="FindFirst"/>
+          <Keyword text="FindItem"/>
+          <Keyword text="FindLast"/>
+          <Keyword text="FindNext"/>
+          <Keyword text="FindPrevious"/>
+          <Keyword text="Forward"/>
+          <Keyword text="GetBookmark"/>
+          <Keyword text="GetChunk"/>
+          <Keyword text="GetClipString"/>
+          <Keyword text="GetData"/>
+          <Keyword text="GetFirstVisible"/>
+          <Keyword text="GetFormat"/>
+          <Keyword text="GetHeader"/>
+          <Keyword text="GetLineFromChar"/>
+          <Keyword text="GetNumTicks"/>
+          <Keyword text="GetRows"/>
+          <Keyword text="GetSelectedPart"/>
+          <Keyword text="GetText"/>
+          <Keyword text="GetVisibleCount"/>
+          <Keyword text="GoBack"/>
+          <Keyword text="GoForward"/>
+          <Keyword text="Hide"/>
+          <Keyword text="HitTest"/>
+          <Keyword text="HoldFields"/>
+          <Keyword text="Idle"/>
+          <Keyword text="InitializeLabels"/>
+          <Keyword text="InsertColumnLabels"/>
+          <Keyword text="InsertColumns"/>
+          <Keyword text="InsertObjDlg"/>
+          <Keyword text="InsertRowLabels"/>
+          <Keyword text="InsertRows"/>
+          <Keyword text="Item"/>
+          <Keyword text="KillDoc"/>
+          <Keyword text="Layout"/>
+          <Keyword text="Line"/>
+          <Keyword text="LinkExecute"/>
+          <Keyword text="LinkPoke"/>
+          <Keyword text="LinkRequest"/>
+          <Keyword text="LinkSend"/>
+          <Keyword text="Listen"/>
+          <Keyword text="LoadFile"/>
+          <Keyword text="LoadResData"/>
+          <Keyword text="LoadResPicture"/>
+          <Keyword text="LoadResString"/>
+          <Keyword text="LogEvent"/>
+          <Keyword text="MakeCompileFile"/>
+          <Keyword text="MakeReplica"/>
+          <Keyword text="MoreResults"/>
+          <Keyword text="Move"/>
+          <Keyword text="MoveData"/>
+          <Keyword text="MoveFirst"/>
+          <Keyword text="MoveLast"/>
+          <Keyword text="MoveNext"/>
+          <Keyword text="MovePrevious"/>
+          <Keyword text="NavigateTo"/>
+          <Keyword text="NewPage"/>
+          <Keyword text="NewPassword"/>
+          <Keyword text="NextRecordset"/>
+          <Keyword text="OLEDrag"/>
+          <Keyword text="OnAddinsUpdate"/>
+          <Keyword text="OnConnection"/>
+          <Keyword text="OnDisconnection"/>
+          <Keyword text="OnStartupComplete"/>
+          <Keyword text="Open"/>
+          <Keyword text="OpenConnection"/>
+          <Keyword text="OpenDatabase"/>
+          <Keyword text="OpenQueryDef"/>
+          <Keyword text="OpenRecordset"/>
+          <Keyword text="OpenResultset"/>
+          <Keyword text="OpenURL"/>
+          <Keyword text="Overlay"/>
+          <Keyword text="PSet"/>
+          <Keyword text="PaintPicture"/>
+          <Keyword text="PastSpecialDlg"/>
+          <Keyword text="Paste"/>
+          <Keyword text="PeekData"/>
+          <Keyword text="Play"/>
+          <Keyword text="Point"/>
+          <Keyword text="PopulatePartial"/>
+          <Keyword text="PopupMenu"/>
+          <Keyword text="Print"/>
+          <Keyword text="PrintForm"/>
+          <Keyword text="PropertyChanged"/>
+          <Keyword text="Quit"/>
+          <Keyword text="Raise"/>
+          <Keyword text="RandomDataFill"/>
+          <Keyword text="RandomFillColumns"/>
+          <Keyword text="RandomFillRows"/>
+          <Keyword text="RdoCreateEnvironment"/>
+          <Keyword text="RdoRegisterDataSource"/>
+          <Keyword text="ReFill"/>
+          <Keyword text="ReadFromFile"/>
+          <Keyword text="ReadProperty"/>
+          <Keyword text="Rebind"/>
+          <Keyword text="Refresh"/>
+          <Keyword text="RefreshLink"/>
+          <Keyword text="RegisterDatabase"/>
+          <Keyword text="Reload"/>
+          <Keyword text="Remove"/>
+          <Keyword text="RemoveAddInFromToolbar"/>
+          <Keyword text="RemoveItem"/>
+          <Keyword text="Render"/>
+          <Keyword text="RepairDatabase"/>
+          <Keyword text="Reply"/>
+          <Keyword text="ReplyAll"/>
+          <Keyword text="Requery"/>
+          <Keyword text="ResetCustom"/>
+          <Keyword text="ResetCustomLabel"/>
+          <Keyword text="ResolveName"/>
+          <Keyword text="RestoreToolbar"/>
+          <Keyword text="Resync"/>
+          <Keyword text="Rollback"/>
+          <Keyword text="RollbackTrans"/>
+          <Keyword text="RowBookmark"/>
+          <Keyword text="RowContaining"/>
+          <Keyword text="RowTop"/>
+          <Keyword text="Save"/>
+          <Keyword text="SaveAs"/>
+          <Keyword text="SaveFile"/>
+          <Keyword text="SaveToFile"/>
+          <Keyword text="SaveToOle1File"/>
+          <Keyword text="SaveToolbar"/>
+          <Keyword text="Scale"/>
+          <Keyword text="ScaleX"/>
+          <Keyword text="ScaleY"/>
+          <Keyword text="Scroll"/>
+          <Keyword text="SelPrint"/>
+          <Keyword text="SelectAll"/>
+          <Keyword text="SelectPart"/>
+          <Keyword text="Send"/>
+          <Keyword text="SendData"/>
+          <Keyword text="SetAutoServerSettings"/>
+          <Keyword text="SetData"/>
+          <Keyword text="SetFocus"/>
+          <Keyword text="SetOption"/>
+          <Keyword text="SetSize"/>
+          <Keyword text="SetText"/>
+          <Keyword text="SetViewport"/>
+          <Keyword text="Show"/>
+          <Keyword text="ShowColor"/>
+          <Keyword text="ShowFont"/>
+          <Keyword text="ShowHelp"/>
+          <Keyword text="ShowOpen"/>
+          <Keyword text="ShowPrinter"/>
+          <Keyword text="ShowSave"/>
+          <Keyword text="ShowWhatsThis"/>
+          <Keyword text="SignOff"/>
+          <Keyword text="SignOn"/>
+          <Keyword text="Size"/>
+          <Keyword text="Span"/>
+          <Keyword text="SplitContaining"/>
+          <Keyword text="StartLabelEdit"/>
+          <Keyword text="StartLogging"/>
+          <Keyword text="Stop"/>
+          <Keyword text="Synchronize"/>
+          <Keyword text="TextHeight"/>
+          <Keyword text="TextWidth"/>
+          <Keyword text="ToDefaults"/>
+          <Keyword text="TwipsToChartPart"/>
+          <Keyword text="TypeByChartType"/>
+          <Keyword text="Update"/>
+          <Keyword text="UpdateControls"/>
+          <Keyword text="UpdateRecord"/>
+          <Keyword text="UpdateRow"/>
+          <Keyword text="Upto"/>
+          <Keyword text="WhatsThisMode"/>
+          <Keyword text="WriteProperty"/>
+          <Keyword text="ZOrder"/>
+        </Keywords>
+      </Style>
+      <Style id="events" name="Events" image="20" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="AccessKeyPress"/>
+          <Keyword text="AfterAddFile"/>
+          <Keyword text="AfterChangeFileName"/>
+          <Keyword text="AfterCloseFile"/>
+          <Keyword text="AfterColEdit"/>
+          <Keyword text="AfterColUpdate"/>
+          <Keyword text="AfterDelete"/>
+          <Keyword text="AfterInsert"/>
+          <Keyword text="AfterLabelEdit"/>
+          <Keyword text="AfterRemoveFile"/>
+          <Keyword text="AfterUpdate"/>
+          <Keyword text="AfterWriteFile"/>
+          <Keyword text="AmbienChanged"/>
+          <Keyword text="ApplyChanges"/>
+          <Keyword text="Associate"/>
+          <Keyword text="AsyncReadComplete"/>
+          <Keyword text="AxisActivated"/>
+          <Keyword text="AxisLabelActivated"/>
+          <Keyword text="AxisLabelSelected"/>
+          <Keyword text="AxisLabelUpdated"/>
+          <Keyword text="AxisSelected"/>
+          <Keyword text="AxisTitleActivated"/>
+          <Keyword text="AxisTitleSelected"/>
+          <Keyword text="AxisTitleUpdated"/>
+          <Keyword text="AxisUpdated"/>
+          <Keyword text="BeforeClick"/>
+          <Keyword text="BeforeColEdit"/>
+          <Keyword text="BeforeColUpdate"/>
+          <Keyword text="BeforeConnect"/>
+          <Keyword text="BeforeDelete"/>
+          <Keyword text="BeforeInsert"/>
+          <Keyword text="BeforeLabelEdit"/>
+          <Keyword text="BeforeLoadFile"/>
+          <Keyword text="BeforeUpdate"/>
+          <Keyword text="ButtonClick"/>
+          <Keyword text="ButtonCompleted"/>
+          <Keyword text="ButtonGotFocus"/>
+          <Keyword text="ButtonLostFocus"/>
+          <Keyword text="Change"/>
+          <Keyword text="ChartActivated"/>
+          <Keyword text="ChartSelected"/>
+          <Keyword text="ChartUpdated"/>
+          <Keyword text="Click"/>
+          <Keyword text="ColEdit"/>
+          <Keyword text="ColResize"/>
+          <Keyword text="Collapse"/>
+          <Keyword text="ColumnClick"/>
+          <Keyword text="Compare"/>
+          <Keyword text="ConfigChageCancelled"/>
+          <Keyword text="ConfigChanged"/>
+          <Keyword text="ConnectionRequest"/>
+          <Keyword text="DataArrival"/>
+          <Keyword text="DataChanged"/>
+          <Keyword text="DataUpdated"/>
+          <Keyword text="DblClick"/>
+          <Keyword text="Deactivate"/>
+          <Keyword text="DevModeChange"/>
+          <Keyword text="DeviceArrival"/>
+          <Keyword text="DeviceOtherEvent"/>
+          <Keyword text="DeviceQueryRemove"/>
+          <Keyword text="DeviceQueryRemoveFailed"/>
+          <Keyword text="DeviceRemoveComplete"/>
+          <Keyword text="DeviceRemovePending"/>
+          <Keyword text="Disconnect"/>
+          <Keyword text="DisplayChanged"/>
+          <Keyword text="Dissociate"/>
+          <Keyword text="DoGetNewFileName"/>
+          <Keyword text="Done"/>
+          <Keyword text="DonePainting"/>
+          <Keyword text="DownClick"/>
+          <Keyword text="DragDrop"/>
+          <Keyword text="DragOver"/>
+          <Keyword text="DropDown"/>
+          <Keyword text="EditProperty"/>
+          <Keyword text="EnterCell"/>
+          <Keyword text="EnterFocus"/>
+          <Keyword text="Event"/>
+          <Keyword text="ExitFocus"/>
+          <Keyword text="Expand"/>
+          <Keyword text="FootnoteActivated"/>
+          <Keyword text="FootnoteSelected"/>
+          <Keyword text="FootnoteUpdated"/>
+          <Keyword text="GotFocus"/>
+          <Keyword text="HeadClick"/>
+          <Keyword text="InfoMessage"/>
+          <Keyword text="IniProperties"/>
+          <Keyword text="Initialize"/>
+          <Keyword text="ItemActivated"/>
+          <Keyword text="ItemAdded"/>
+          <Keyword text="ItemCheck"/>
+          <Keyword text="ItemClick"/>
+          <Keyword text="ItemReloaded"/>
+          <Keyword text="ItemRemoved"/>
+          <Keyword text="ItemRenamed"/>
+          <Keyword text="ItemSeletected"/>
+          <Keyword text="KeyDown"/>
+          <Keyword text="KeyPress"/>
+          <Keyword text="KeyUp"/>
+          <Keyword text="LeaveCell"/>
+          <Keyword text="LegendActivated"/>
+          <Keyword text="LegendSelected"/>
+          <Keyword text="LegendUpdated"/>
+          <Keyword text="LinkClose"/>
+          <Keyword text="LinkError"/>
+          <Keyword text="LinkNotify"/>
+          <Keyword text="LinkOpen"/>
+          <Keyword text="Load"/>
+          <Keyword text="LostFocus"/>
+          <Keyword text="MouseDown"/>
+          <Keyword text="MouseMove"/>
+          <Keyword text="MouseUp"/>
+          <Keyword text="NodeClick"/>
+          <Keyword text="OLECompleteDrag"/>
+          <Keyword text="OLEDragDrop"/>
+          <Keyword text="OLEDragOver"/>
+          <Keyword text="OLEGiveFeedback"/>
+          <Keyword text="OLESetData"/>
+          <Keyword text="OLEStartDrag"/>
+          <Keyword text="ObjectMove"/>
+          <Keyword text="OnAddNew"/>
+          <Keyword text="OnComm"/>
+          <Keyword text="Paint"/>
+          <Keyword text="PanelClick"/>
+          <Keyword text="PanelDblClick"/>
+          <Keyword text="PathChange"/>
+          <Keyword text="PatternChange"/>
+          <Keyword text="PlotActivated"/>
+          <Keyword text="PlotSelected"/>
+          <Keyword text="PlotUpdated"/>
+          <Keyword text="PointActivated"/>
+          <Keyword text="PointLabelActivated"/>
+          <Keyword text="PointLabelSelected"/>
+          <Keyword text="PointLabelUpdated"/>
+          <Keyword text="PointSelected"/>
+          <Keyword text="PointUpdated"/>
+          <Keyword text="PowerQuerySuspend"/>
+          <Keyword text="PowerResume"/>
+          <Keyword text="PowerStatusChanged"/>
+          <Keyword text="PowerSuspend"/>
+          <Keyword text="QueryChangeConfig"/>
+          <Keyword text="QueryComplete"/>
+          <Keyword text="QueryCompleted"/>
+          <Keyword text="QueryTimeout"/>
+          <Keyword text="QueryUnload"/>
+          <Keyword text="ReadProperties"/>
+          <Keyword text="Reposition"/>
+          <Keyword text="RequestChangeFileName"/>
+          <Keyword text="RequestWriteFile"/>
+          <Keyword text="Resize"/>
+          <Keyword text="ResultsChanged"/>
+          <Keyword text="RowColChange"/>
+          <Keyword text="RowCurrencyChange"/>
+          <Keyword text="RowResize"/>
+          <Keyword text="RowStatusChanged"/>
+          <Keyword text="SelChange"/>
+          <Keyword text="SelectionChanged"/>
+          <Keyword text="SendComplete"/>
+          <Keyword text="SendProgress"/>
+          <Keyword text="SeriesActivated"/>
+          <Keyword text="SeriesSelected"/>
+          <Keyword text="SeriesUpdated"/>
+          <Keyword text="SettingChanged"/>
+          <Keyword text="SplitChange"/>
+          <Keyword text="StateChanged"/>
+          <Keyword text="StatusUpdate"/>
+          <Keyword text="SysColorsChanged"/>
+          <Keyword text="Terminate"/>
+          <Keyword text="TimeChanged"/>
+          <Keyword text="TitleActivated"/>
+          <Keyword text="TitleActivated"/>
+          <Keyword text="TitleSelected"/>
+          <Keyword text="UnboundAddData"/>
+          <Keyword text="UnboundDeleteRow"/>
+          <Keyword text="UnboundGetRelativeBookmark"/>
+          <Keyword text="UnboundReadData"/>
+          <Keyword text="UnboundWriteData"/>
+          <Keyword text="Unload"/>
+          <Keyword text="UpClick"/>
+          <Keyword text="Updated"/>
+          <Keyword text="Validate"/>
+          <Keyword text="ValidationError"/>
+          <Keyword text="WillAssociate"/>
+          <Keyword text="WillChangeData"/>
+          <Keyword text="WillDissociate"/>
+          <Keyword text="WillExecute"/>
+          <Keyword text="WillUpdateRows"/>
+          <Keyword text="WithEvents"/>
+          <Keyword text="WriteProperties"/>
+        </Keywords>
+      </Style>
+      <Style id="statements" name="Statements" image="7" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="AppActivate"/>
+          <Keyword text="Base"/>
+          <Keyword text="Beep"/>
+          <Keyword text="Begin"/>
+          <Keyword text="Call"/>
+          <Keyword text="Case"/>
+          <Keyword text="ChDir"/>
+          <Keyword text="ChDrive"/>
+          <Keyword text="Class"/>
+          <Keyword text="Const"/>
+          <Keyword text="Declare"/>
+          <Keyword text="DefBool"/>
+          <Keyword text="DefByte"/>
+          <Keyword text="DefCur"/>
+          <Keyword text="DefDate"/>
+          <Keyword text="DefDbl"/>
+          <Keyword text="DefDec"/>
+          <Keyword text="DefInt"/>
+          <Keyword text="DefLng"/>
+          <Keyword text="DefObj"/>
+          <Keyword text="DefSng"/>
+          <Keyword text="DefStr"/>
+          <Keyword text="DefVar"/>
+          <Keyword text="Deftype"/>
+          <Keyword text="DeleteSetting"/>
+          <Keyword text="Dim"/>
+          <Keyword text="Do"/>
+          <Keyword text="Else"/>
+          <Keyword text="ElseIf"/>
+          <Keyword text="End"/>
+          <Keyword text="End If"/>
+          <Keyword text="End Function"/>
+          <Keyword text="End Select"/>
+          <Keyword text="End Sub"/>
+          <Keyword text="Enum"/>
+          <Keyword text="Erase"/>
+          <Keyword text="Event"/>
+          <Keyword text="Exit"/>
+          <Keyword text="Explicit"/>
+          <Keyword text="False"/>
+          <Keyword text="FileCopy"/>
+          <Keyword text="For"/>
+          <Keyword text="ForEach"/>
+          <Keyword text="Friend"/>
+          <Keyword text="Function"/>
+          <Keyword text="Get"/>
+          <Keyword text="GoSub"/>
+          <Keyword text="GoTo"/>
+          <Keyword text="If"/>
+          <Keyword text="Implements"/>
+          <Keyword text="Kill"/>
+          <Keyword text="LSet"/>
+          <Keyword text="Let"/>
+          <Keyword text="LineInput"/>
+          <Keyword text="Loop"/>
+          <Keyword text="MkDir"/>
+          <Keyword text="Name"/>
+          <Keyword text="Next"/>
+          <Keyword text="On"/>
+          <Keyword text="OnError"/>
+          <Keyword text="Option"/>
+          <Keyword text="Private"/>
+          <Keyword text="Property"/>
+          <Keyword text="Protected"/>
+          <Keyword text="Public"/>
+          <Keyword text="Put"/>
+          <Keyword text="RaiseEvent"/>
+          <Keyword text="Randomize"/>
+          <Keyword text="ReDim"/>
+          <Keyword text="Rem"/>
+          <Keyword text="Reset"/>
+          <Keyword text="Resume"/>
+          <Keyword text="Return"/>
+          <Keyword text="RmDir"/>
+          <Keyword text="SavePicture"/>
+          <Keyword text="SaveSetting"/>
+          <Keyword text="SendKeys"/>
+          <Keyword text="Set"/>
+          <Keyword text="SetAttr"/>
+          <Keyword text="Static"/>
+          <Keyword text="Sub"/>
+          <Keyword text="Then"/>
+          <Keyword text="True"/>
+          <Keyword text="Type"/>
+          <Keyword text="Wend"/>
+          <Keyword text="While"/>
+          <Keyword text="Width"/>
+          <Keyword text="With"/>
+        </Keywords>
+      </Style>
+      <Style id="constants" name="Constants" image="7" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="3DDKSHADOW"/>
+          <Keyword text="3DHIGHLIGHT"/>
+          <Keyword text="3DLIGHT"/>
+          <Keyword text="ABORT"/>
+          <Keyword text="ABORTRETRYIGNORE"/>
+          <Keyword text="ACTIVEBORDER"/>
+          <Keyword text="ACTIVETITLEBAR"/>
+          <Keyword text="ALIAS"/>
+          <Keyword text="APPLICATIONMODAL"/>
+          <Keyword text="APPLICATIONWORKSPACE"/>
+          <Keyword text="ARCHIVE"/>
+          <Keyword text="BACK"/>
+          <Keyword text="BINARYCOMPARE"/>
+          <Keyword text="BLACK"/>
+          <Keyword text="BLUE"/>
+          <Keyword text="BUTTONFACE"/>
+          <Keyword text="BUTTONSHADOW"/>
+          <Keyword text="BUTTONTEXT"/>
+          <Keyword text="CANCEL"/>
+          <Keyword text="CDROM"/>
+          <Keyword text="CR"/>
+          <Keyword text="CRITICAL"/>
+          <Keyword text="CRLF"/>
+          <Keyword text="CYAN"/>
+          <Keyword text="DEFAULT"/>
+          <Keyword text="DEFAULTBUTTON1"/>
+          <Keyword text="DEFAULTBUTTON2"/>
+          <Keyword text="DEFAULTBUTTON3"/>
+          <Keyword text="DESKTOP"/>
+          <Keyword text="DIRECTORY"/>
+          <Keyword text="EXCLAMATION"/>
+          <Keyword text="FALSE"/>
+          <Keyword text="FIXED"/>
+          <Keyword text="FORAPPENDING"/>
+          <Keyword text="FORMFEED"/>
+          <Keyword text="FORREADING"/>
+          <Keyword text="FORWRITING"/>
+          <Keyword text="FROMUNICODE"/>
+          <Keyword text="GRAYTEXT"/>
+          <Keyword text="GREEN"/>
+          <Keyword text="HIDDEN"/>
+          <Keyword text="HIDE"/>
+          <Keyword text="HIGHLIGHT"/>
+          <Keyword text="HIGHLIGHTTEXT"/>
+          <Keyword text="HIRAGANA"/>
+          <Keyword text="IGNORE"/>
+          <Keyword text="INACTIVEBORDER"/>
+          <Keyword text="INACTIVECAPTIONTEXT"/>
+          <Keyword text="INACTIVETITLEBAR"/>
+          <Keyword text="INFOBACKGROUND"/>
+          <Keyword text="INFORMATION"/>
+          <Keyword text="INFOTEXT"/>
+          <Keyword text="KATAKANA"/>
+          <Keyword text="LF"/>
+          <Keyword text="LOWERCASE"/>
+          <Keyword text="MAGENTA"/>
+          <Keyword text="MAXIMIZEDFOCUS"/>
+          <Keyword text="MENUBAR"/>
+          <Keyword text="MENUTEXT"/>
+          <Keyword text="METHOD"/>
+          <Keyword text="MINIMIZEDFOCUS"/>
+          <Keyword text="MINIMIZEDNOFOCUS"/>
+          <Keyword text="MSGBOXRIGHT"/>
+          <Keyword text="MSGBOXRTLREADING"/>
+          <Keyword text="MSGBOXSETFOREGROUND"/>
+          <Keyword text="NARROW"/>
+          <Keyword text="NEWLINE"/>
+          <Keyword text="NO"/>
+          <Keyword text="NORMAL"/>
+          <Keyword text="NORMALFOCUS"/>
+          <Keyword text="NORMALNOFOCUS"/>
+          <Keyword text="NULLSTRING"/>
+          <Keyword text="OBJECTERROR"/>
+          <Keyword text="OK"/>
+          <Keyword text="OKCANCEL"/>
+          <Keyword text="OKONLY"/>
+          <Keyword text="PROPERCASE"/>
+          <Keyword text="QUESTION"/>
+          <Keyword text="RAMDISK"/>
+          <Keyword text="READONLY"/>
+          <Keyword text="RED"/>
+          <Keyword text="REMOTE"/>
+          <Keyword text="REMOVABLE"/>
+          <Keyword text="RETRY"/>
+          <Keyword text="RETRYCANCEL"/>
+          <Keyword text="SCROLLBARS"/>
+          <Keyword text="SYSTEMFOLDER"/>
+          <Keyword text="SYSTEMMODAL"/>
+          <Keyword text="TAB"/>
+          <Keyword text="TEMPORARYFOLDER"/>
+          <Keyword text="TEXTCOMPARE"/>
+          <Keyword text="TITLEBARTEXT"/>
+          <Keyword text="TRUE"/>
+          <Keyword text="UNICODE"/>
+          <Keyword text="UNKNOWN"/>
+          <Keyword text="UPPERCASE"/>
+          <Keyword text="VERTICALTAB"/>
+          <Keyword text="VOLUME"/>
+          <Keyword text="WHITE"/>
+          <Keyword text="WIDE"/>
+          <Keyword text="WIN16"/>
+          <Keyword text="WIN32"/>
+          <Keyword text="WINDOWBACKGROUND"/>
+          <Keyword text="WINDOWFRAME"/>
+          <Keyword text="WINDOWSFOLDER"/>
+          <Keyword text="WINDOWTEXT"/>
+          <Keyword text="YELLOW"/>
+          <Keyword text="YES"/>
+          <Keyword text="YESNO"/>
+          <Keyword text="YESNOCANCEL"/>
+        </Keywords>
+      </Style>
+      <Style id="todo" name="TODOs" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

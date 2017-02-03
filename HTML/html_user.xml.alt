@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+	<FILEINFO author="HippoEDIT.com" type="LangUser"/>
+	<SYNTAX id="html" inherit="xml" inherit_url="xml_user.xml">
+		<CodeTemplates>
+			<Template key="&lt;form" descr="&lt;form">&lt;form method=post action=&quot;&quot;&gt;\n%|%\n&lt;/form&gt;</Template>
+			<Template key="&lt;isindex" descr="&lt;isindex">&lt;isindex&gt;</Template>
+			<Template key="&lt;del" descr="&lt;del">&lt;del&gt;%|%&lt;/del&gt;</Template>
+			<Template key="&lt;thead" descr="&lt;thead">&lt;thead&gt;%|%&lt;/thead&gt;</Template>
+			<Template key="&lt;applet" descr="&lt;applet">&lt;applet code=&quot;%|%&quot; width=&quot;&quot; height=&quot;&quot;&gt;\n&lt;/applet&gt;</Template>
+			<Template key="&lt;table" descr="&lt;table">&lt;table&gt;\n&lt;tr&gt;\n\t&lt;td&gt;%|%\n\t&lt;td&gt;\n&lt;/table&gt;</Template>
+			<Template key="&lt;option" descr="&lt;option">&lt;option&gt;%|%&lt;/option&gt;</Template>
+			<Template key="&lt;hr" descr="&lt;hr">&lt;hr&gt;</Template>
+			<Template key="&lt;ol" descr="&lt;ol">&lt;ol&gt;\n\t&lt;li&gt;%|%\n\t&lt;li&gt;\n&lt;/ol&gt;</Template>
+			<Template key="&lt;kbd" descr="&lt;kbd">&lt;kbd&gt;%|%&lt;/kbd&gt;</Template>
+			<Template key="&lt;param" descr="&lt;param">&lt;param name=&quot;%|%&quot; value=&quot;&quot;&gt;</Template>
+			<Template key="&lt;tbody" descr="&lt;tbody">&lt;tbody&gt;%|%&lt;/tbody&gt;</Template>
+			<Template key="&lt;em" descr="&lt;em">&lt;em&gt;%|%&lt;/em&gt;</Template>
+			<Template key="&lt;iframe" descr="&lt;iframe">&lt;iframe name=&quot;&quot; src=&quot;&quot; width=&quot;&quot; height=&quot;&quot;&gt;%|%&lt;/iframe&gt;</Template>
+			<Template key="&lt;li" descr="&lt;li">&lt;li&gt;</Template>
+			<Template key="&lt;small" descr="&lt;small">&lt;small&gt;%|%&lt;/small&gt;</Template>
+			<Template key="&lt;blockquote" descr="&lt;blockquote">&lt;blockquote&gt;%|%&lt;/blockquote&gt;</Template>
+			<Template key="&lt;colgroup" descr="&lt;colgroup">&lt;colgroup&gt;%|%&lt;/colgroup&gt;</Template>
+			<Template key="&lt;code" descr="&lt;code">&lt;code&gt;%|%&lt;/code&gt;</Template>
+			<Template key="&lt;frame" descr="&lt;frame">&lt;frame src=&quot;%|%&quot; name=&quot;&quot;&gt;</Template>
+			<Template key="&lt;button" descr="button">&lt;button&gt;%|%&lt;/button&gt;</Template>
+			<Template key="&lt;strong" descr="&lt;strong">&lt;strong&gt;%|%&lt;/strong&gt;</Template>
+			<Template key="&lt;col" descr="&lt;col">&lt;col&gt;</Template>
+			<Template key="&lt;dir" descr="&lt;dir">&lt;dir&gt;%|%&lt;/dir&gt;</Template>
+			<Template key="&lt;fieldset" descr="&lt;fieldset">&lt;fieldset&gt;\n\t&lt;legend&gt;%|%&lt;/legend&gt;\n&lt;/fieldset&gt;</Template>
+			<Template key="&lt;noscript" descr="&lt;noscript">&lt;noscript&gt;\n%|%\n&lt;/noscript&gt;</Template>
+			<Template key="&lt;div" descr="&lt;div">&lt;div align=&quot;&quot;&gt;%|%&lt;/div&gt;</Template>
+			<Template key="&lt;br" descr="line break">&lt;br&gt;</Template>
+			<Template key="&lt;bdo" descr="&lt;bdo">&lt;bdo dir=&quot;&quot;&gt;%|%&lt;/bdo&gt;</Template>
+			<Template key="&lt;meta" descr="&lt;meta">&lt;meta name=&quot;%|%&quot; content=&quot;&quot;&gt;</Template>
+			<Template key="&lt;frameset" descr="&lt;frameset">&lt;frameset rows=&quot;%|%,&quot; cols=&quot;,&quot;&gt;\n\t&lt;frame src=&quot;&quot; name=&quot;&quot;&gt;\n\t&lt;frame src=&quot;&quot; name=&quot;&quot;&gt;\n&lt;/frameset&gt;</Template>
+			<Template key="&lt;dfn" descr="&lt;dfn">&lt;dfn&gt;%|%&lt;/dfn&gt;</Template>
+			<Template key="&lt;ins" descr="&lt;ins">&lt;ins&gt;%|%&lt;/ins&gt;</Template>
+			<Template key="&lt;map" descr="&lt;map">&lt;map name=&quot;%|%&quot;&gt;\n&lt;/map&gt;</Template>
+			<Template key="&lt;label" descr="&lt;label">&lt;label&gt;%|%&lt;/label&gt;</Template>
+			<Template key="&lt;head" descr="&lt;head">&lt;head&gt;\n%|%\n&lt;/head&gt;</Template>
+			<Template key="&lt;pre" descr="&lt;pre">&lt;pre&gt;%|%&lt;/pre&gt;</Template>
+			<Template key="&lt;td" descr="&lt;td">&lt;td&gt;%|%&lt;/td&gt;</Template>
+			<Template key="&lt;!doctype" descr="&lt;!doctype">&lt;!doctype html public &quot;-//w3c//dtd html 4.0 transitional//en&quot;&gt;</Template>
+			<Template key="&lt;acronym" descr="&lt;acronym">&lt;acronym&gt;%|%&lt;/acronym&gt;</Template>
+			<Template key="&lt;h1" descr="&lt;h1">&lt;h1&gt;%|%&lt;/h1&gt;</Template>
+			<Template key="&lt;h2" descr="&lt;h2">&lt;h2&gt;%|%&lt;/h2&gt;</Template>
+			<Template key="&lt;sub" descr="&lt;sub">&lt;sub&gt;%|%&lt;/sub&gt;</Template>
+			<Template key="&lt;!--" descr="&lt;!--">&lt;!-- %|% --&gt;</Template>
+			<Template key="&lt;h3" descr="&lt;h3">&lt;h3&gt;%|%&lt;/h3&gt;</Template>
+			<Template key="&lt;th" descr="&lt;th">&lt;th&gt;</Template>
+			<Template key="&lt;h4" descr="&lt;h4">&lt;h4&gt;%|%&lt;/h4&gt;</Template>
+			<Template key="&lt;h5" descr="&lt;h5">&lt;h5&gt;%|%&lt;/h5&gt;</Template>
+			<Template key="&lt;caption" descr="&lt;caption">&lt;caption&gt;%|%&lt;/caption&gt;</Template>
+			<Template key="&lt;h6" descr="&lt;h6">&lt;h6&gt;%|%&lt;/h6&gt;</Template>
+			<Template key="&lt;body" descr="&lt;body">&lt;body&gt;\n%|%\n&lt;/body&gt;</Template>
+			<Template key="&lt;a" descr="&lt;a">&lt;a href=&quot;%link%&quot;&gt;%link text%&lt;/a&gt;%|%</Template>
+			<Template key="&lt;style" descr="&lt;style">&lt;style type=&quot;text/css&quot; title=&quot;&quot;&gt;\n%|%\n&lt;/style&gt;</Template>
+			<Template key="&lt;basefont" descr="&lt;basefont">&lt;basefont size=&quot;%|%&quot;&gt;</Template>
+			<Template key="&lt;b" descr="bold">&lt;b&gt;%|%&lt;/b&gt;</Template>
+			<Template key="&lt;cite" descr="&lt;cite">&lt;cite&gt;%|%&lt;/cite&gt;</Template>
+			<Template key="&lt;tr" descr="&lt;tr">&lt;tr&gt;%|%&lt;/tr&gt;</Template>
+			<Template key="&lt;abbr" descr="&lt;abbr">&lt;abbr&gt;%|%&lt;/abbr&gt;</Template>
+			<Template key="&lt;sup" descr="&lt;sup">&lt;sup&gt;%|%&lt;/sup&gt;</Template>
+			<Template key="&lt;tt" descr="&lt;tt">&lt;tt&gt;%|%&lt;/tt&gt;</Template>
+			<Template key="&lt;i" descr="&lt;i">&lt;i&gt;%|%&lt;/i&gt;</Template>
+			<Template key="&lt;new item" descr="&lt;new item">&lt;area shape=&quot;%enter shape%&quot; href=&quot;%href%</Template>
+			<Template key="&lt;base" descr="&lt;base">&lt;base href=&quot;%|%&quot;&gt;</Template>
+			<Template key="&lt;link" descr="&lt;link">&lt;link rel=&quot;%|%&quot; href=&quot;&quot; type=&quot;&quot;&gt;</Template>
+			<Template key="&lt;legend" descr="&lt;legend">&lt;legend&gt;%|%&lt;/legend&gt;</Template>
+			<Template key="&lt;p" descr="&lt;p">&lt;p&gt;</Template>
+			<Template key="&lt;samp" descr="&lt;samp">&lt;samp&gt;%|%&lt;/samp&gt;</Template>
+			<Template key="&lt;q" descr="&lt;q">&lt;q&gt;%|%&lt;/q&gt;</Template>
+			<Template key="&lt;big" descr="&lt;big">&lt;big&gt;%|%&lt;/big&gt;</Template>
+			<Template key="&lt;s" descr="&lt;s">&lt;s&gt;%|%&lt;/s&gt;</Template>
+			<Template key="&lt;menu" descr="&lt;menu">&lt;menu&gt;%|%&lt;/menu&gt;</Template>
+			<Template key="&lt;u" descr="&lt;u">&lt;u&gt;%|%&lt;/u&gt;</Template>
+			<Template key="&lt;script" descr="&lt;script">&lt;script language=&quot;javascript&quot;&gt;\n&lt;!--\n%|%\n//--&gt;\n&lt;/script&gt;</Template>
+			<Template key="&lt;dd" descr="&lt;dd">&lt;dd&gt;</Template>
+			<Template key="&lt;tfoot" descr="&lt;tfoot">&lt;tfoot&gt;%|%&lt;/tfoot&gt;</Template>
+			<Template key="&lt;input" descr="&lt;input">&lt;input type=&quot;%|%&quot; name=&quot;&quot;&gt;</Template>
+			<Template key="&lt;dl" descr="&lt;dl">&lt;dl&gt;\n\t&lt;dt&gt;%|%\n\t&lt;dd&gt;\n&lt;/dl&gt;</Template>
+			<Template key="&lt;ul" descr="&lt;ul">&lt;ul&gt;\n\t&lt;li&gt;%|%\n\t&lt;li&gt;\n&lt;/ul&gt;</Template>
+			<Template key="&lt;html" descr="&lt;html">&lt;html&gt;\n%|%\n&lt;/html&gt;</Template>
+			<Template key="&lt;font" descr="font">&lt;font size=&quot;&quot;&gt;%|%&lt;/font&gt;</Template>
+			<Template key="&lt;object" descr="&lt;object">&lt;object id=&quot;&quot; width=&quot;&quot; height=&quot;&quot; classid=&quot;&quot;&gt;\n%|%\n&lt;/object&gt;</Template>
+			<Template key="&lt;dt" descr="&lt;dt">&lt;dt&gt;</Template>
+			<Template key="&lt;var" descr="&lt;var">&lt;var&gt;%|%&lt;/var&gt;</Template>
+			<Template key="&lt;area" descr="&lt;area">&lt;area shape=&quot;%enter shape%&quot; href=&quot;%href%&quot; coords=&quot;%coords%&quot; alt=&quot;%alt%&quot;&gt;%|%\n</Template>
+			<Template key="&lt;noframes" descr="&lt;noframes">&lt;noframes&gt;\n%|%\n&lt;/noframes&gt;</Template>
+			<Template key="&lt;img" descr="&lt;img">&lt;img src=&quot;%interactivefile%&quot; alt=&quot;&quot;/&gt;</Template>
+			<Template key="&lt;textarea" descr="&lt;textarea">&lt;textarea name=&quot;&quot; rows=&quot;&quot; cols=&quot;&quot;&gt;%|%&lt;/textarea&gt;</Template>
+			<Template key="&lt;optgroup" descr="&lt;optgroup">&lt;optgroup label=&quot;&quot;&gt;\n%|%\n&lt;/optgroup&gt;</Template>
+			<Template key="&lt;select" descr="&lt;select">&lt;select name=&quot;&quot;&gt;%|%&lt;/select&gt;</Template>
+			<Template key="&lt;center" descr="&lt;center">&lt;center&gt;%|%&lt;/center&gt;</Template>
+			<Template key="&lt;strike" descr="&lt;strike">&lt;strike&gt;%|%&lt;/strike&gt;</Template>
+			<Template key="&lt;title" descr="&lt;title">&lt;title&gt;%|%&lt;/title&gt;</Template>
+			<Template key="&lt;span" descr="&lt;span">&lt;span class=&quot;&quot;&gt;%|%&lt;/span&gt;</Template>
+		</CodeTemplates>
+		<HELP>
+			<Help name="W3 Schools" arguments="&amp;as_q=%CurrentWord%" key="112" virt="true" ctrl="true" url="http://www.google.com/search?sitesearch=www.w3schools.com"/>
+		</HELP>
+		<SPECIFICATION>
+			<Bars navigation="true" hierarchy="true"/>
+		</SPECIFICATION>
+	</SYNTAX>
+</XMLConfigSettings>

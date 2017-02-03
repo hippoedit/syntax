@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+	<FILEINFO author="HippoEDIT.com" type="LangUser"/>
+	<SYNTAX id="nsis">
+		<CodeTemplates>
+			<Template key="PageEx" descr="PageEx (§)">PageEx %Page name%\nPageExEnd ;%Page name%</Template>
+			<Template key="section" descr="Section (§)">Section "%Section Name%"\n%|%%SelectedText%\nSectionEnd ;%Section Name%</Template>
+			<Template key="function" descr="Function (§)">Function "%Function Name%"\n%|%%SelectedText%\nFunctionEnd ;%Function Name%</Template>
+		</CodeTemplates>
+		<HELP>
+			<Help name="NSIS Context Help" arguments="%CurrentWord%" key="112" url="%[HKEY_LOCAL_MACHINE\\SOFTWARE\\NSIS\\]%\\nsis.chm"/>
+		</HELP>
+		<TOOLS>
+			<Tool name="Compile Script" arguments="%FileName%" initial_dir="%FileDir%" icon_path="%[HKEY_LOCAL_MACHINE\\SOFTWARE\\NSIS\\]%\\makensisw.exe" capture_output="true" save="1" key="116" ctrl="true" out_file_n="1" out_line_n="2" out_def_pattern="false" out_pattern="^Error in script &quot;([^&quot;]+)&quot; on line ([0-9]+).*$" command="%[HKEY_LOCAL_MACHINE\\SOFTWARE\\NSIS\\]%\\makensis.exe"/>
+		</TOOLS>
+	</SYNTAX>
+</XMLConfigSettings>

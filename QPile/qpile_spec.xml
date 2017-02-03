@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="robolen" type="LangSpec"/>
+  <SYNTAX id="qpile" name="Script for Quik" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <Encoding default="0" force="true"/>
+      <FilePattern mask="*.qpl;*.qpl_lib"/>
+      <OpenClose>()''""</OpenClose>
+      <Operators>?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]</Operators>
+      <Delimiters>$</Delimiters>
+      <Words init="A-Za-z_">0-9A-Za-z_</Words>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <DefaultKeywordCase>4</DefaultKeywordCase>
+      <FormatWords>
+        <FormatWord word="else" next_line="true" range_sentence="true"/>
+      </FormatWords>
+    </FORMAT>
+    <SCOPES>
+      <Scope open="if"  middle="else" close="end if"/>
+      <Scope open="func" close="end func"/>
+      <Scope open="for" close="end for"/>
+    </SCOPES>
+    <LABELS>
+      <Label group="Subroutine" match="\&lt;func[\s\[]+(\w+)[\s\]]*(\([^)]*\))" name="\1" descr="func \1 \2" image="9" scope="1"/>
+    </LABELS>
+    <STYLES>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'" close="\n"/>
+          <Block open="//" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style name="Includes" text="1" bold="1" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="INCLUDE" close=";"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="8" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="and" descr="логическое И"/>
+          <Keyword text="break" descr="Окончание цикла"/>
+          <Keyword text="continue" descr="Передача управления на следующую итерацию оператора «FOR»"/>
+          <Keyword text="else"/>
+          <Keyword text="end if"/>
+          <Keyword text="end"/>
+          <Keyword text="for" descr="цикл"/>
+          <Keyword text="from"/>
+          <Keyword text="func" descr="Описание функции"/>
+          <Keyword text="if" descr="Условный оператор"/>
+          <Keyword text="in"/>
+          <Keyword text="or" descr="логическое ИЛИ"/>
+          <Keyword text="to"/>
+        </Keywords>
+      </Style>
+      <Style name="Reserved" image="13" bold="1" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords pattern="%CurrentWord%(%|%)">
+          <Keyword text="ACOS" descr="Арккосинус"/>
+          <Keyword text="ADD LABEL" descr="Добавить метку"/>
+          <Keyword text="ADD_ITEM" descr="Добавление новой строки в таблицу"/>
+          <Keyword text="APPLY_SCALE" descr="Округление с заданной точностью"/>
+          <Keyword text="ASIN" descr="Арксинус"/>
+          <Keyword text="ATAN" descr="Арктангенс"/>
+          <Keyword text="CEIL" descr="Округление вверх"/>
+          <Keyword text="COS" descr="Косинус"/>
+          <Keyword text="CREATE_COLLECTION" descr="Определение коллекции"/>
+          <Keyword text="CREATE_MAP" descr="Определение массива"/>
+          <Keyword text="DELETE ALL LABELS" descr="Удалить все метки"/>
+          <Keyword text="DELETE LABEL" descr="Удалить метку"/>
+          <Keyword text="DELETE_ALL_ITEMS" descr="Очистка всех значений таблицы"/>
+          <Keyword text="DELETE_ITEM" descr="Удаление указанной строки таблицы"/>
+          <Keyword text="DEPO_CURRENT_BALANCE" descr="Текущий остаток по бумагам"/>
+          <Keyword text="DEPO_CURRENT_LIMIT" descr="Текущий лимит по бумагам"/>
+          <Keyword text="DEPO_LIMIT_AVAILABLE" descr="Доступное количество ценных бумаг"/>
+          <Keyword text="DEPO_LIMIT_LOCKED" descr="Заблокированное Количество лотов ценных бумаг"/>
+          <Keyword text="DEPO_LIMIT_LOCKED_BUY" descr="Количество лотов ценных бумаг, заблокированных на покупку"/>
+          <Keyword text="DEPO_LIMIT_LOCKED_BUY_VALUE" descr="Стоимость ценных бумаг, заблокированных на покупку"/>
+          <Keyword text="DEPO_OPEN_BALANCE" descr="Входящий остаток по бумагам"/>
+          <Keyword text="DEPO_OPEN_LIMIT" descr="Входящий лимит по бумагам"/>
+          <Keyword text="EXP" descr="Экспонент"/>
+          <Keyword text="FIND" descr="Поиск в строке позиции подстроки"/>
+          <Keyword text="FLOOR" descr="Округление вниз"/>
+          <Keyword text="GET_CANDLE" descr="Значения цен и объемов (OHLCV) «свечи» на графике и ее индикаторов"/>
+          <Keyword text="GET_CANDLE_EX" descr="Значения цен и объемов на графике из нескольких линий"/>
+          <Keyword text="GET_CLASSES_LIST" descr="Список кодов классов, доступных в текущем сеансе связи"/>
+          <Keyword text="GET_CLASS_SECURITIES" descr="Список кодов бумаг для заданного списка классов"/>
+          <Keyword text="GET_CLIENT_MARGINAL_BUY_SELL_INFO" descr="Значение параметров таблицы «Купить/Продать»"/>
+          <Keyword text="GET_CLIENT_MARGINAL_PORTFOLIO_INFO" descr="Значения параметров таблицы «Клиентский портфель»"/>
+          <Keyword text="GET_COLLECTION_COUNT" descr="Количество элементов в коллекции"/>
+          <Keyword text="GET_COLLECTION_ITEM" descr="Чтение значения элемента коллекции"/>
+          <Keyword text="GET_DATETIME" descr="Текущие дата и время"/>
+          <Keyword text="GET_INFO_PARAM" descr="Позволяет получить параметры для информационного окна (Связь / Информационное окно)"/>
+          <Keyword text="GET_ITEM" descr="Строка с указанным номером из таблицы QUIK"/>
+          <Keyword text="GET_LABEL_PARAMS" descr="Получить параметры метки"/>
+          <Keyword text="GET_NUMBER_OF" descr="Количество записей в указанной таблице QUIK"/>
+          <Keyword text="GET_PARAM" descr="Получение значений из Таблицы текущих значений параметров"/>
+          <Keyword text="GET_PARAM_EX" descr="Получение всех значений из Таблицы текущих значений параметров"/>
+          <Keyword text="GET_QUOTES_II_LEVEL_DATA" descr="Получения значений Окна котировок инструментов"/>
+          <Keyword text="GET_SECURITY_INFO" descr="Информация по бумаге с определенным кодом из заданного класса"/>
+          <Keyword text="GET_TRADE_DATE" descr="Дата текущей торговой сессии"/>
+          <Keyword text="GET_VALUE" descr="Чтение значения элемента из массива"/>
+          <Keyword text="INSERT_COLLECTION_ITEM" descr="Вставка элемента коллекции"/>
+          <Keyword text="IS_CONNECTED" descr="Определить состояние подключения клиенткого места к серверу"/>
+          <Keyword text="LEN" descr="Количество символов в строке"/>
+          <Keyword text="LOG" descr="Логарифм"/>
+          <Keyword text="LONG_VALUE" descr="Стоимость всех длинных позиций"/>
+          <Keyword text="MESSAGE" descr="Вывод текста в Окне сообщений"/>
+          <Keyword text="MODIFY_ITEM" descr="Изменение указанной строки таблицы"/>
+          <Keyword text="MONEY_CURRENT_BALANCE" descr="Текущий остаток по денежным средствам"/>
+          <Keyword text="MONEY_CURRENT_LIMIT" descr="Текущий лимит по денежным средствам"/>
+          <Keyword text="MONEY_LIMIT_AVAILABLE" descr="Доступное количество денежных средств"/>
+          <Keyword text="MONEY_LIMIT_LOCKED" descr="Заблокированное в заявках на покупку количество денежных средств"/>
+          <Keyword text="MONEY_LIMIT_LOCKED_NONMARGINAL_VALUE" descr="Стоимость немаржинальных бумаг в заявках на покупку"/>
+          <Keyword text="MONEY_OPEN_BALANCE" descr="Входящий остаток по денежным средствам"/>
+          <Keyword text="MONEY_OPEN_LIMIT" descr="Входящий лимит по денежным средствам"/>
+          <Keyword text="NEW_GLOBAL" descr="Инициализация глобальной переменной"/>
+          <Keyword text="POW" descr="Возведение в степень"/>
+          <Keyword text="RAND" descr="Случайное число"/>
+          <Keyword text="REMOVE_COLLECTION_ITEM" descr="Удаление элемента коллекции"/>
+          <Keyword text="SEND_TRANSACTION" descr="Ввод новой заявки"/>
+          <Keyword text="SET_COLLECTION_ITEM" descr="Замена значения элемента коллекции"/>
+          <Keyword text="SET_LABEL_PARAMS" descr="Задать параметры метки"/>
+          <Keyword text="SET_ROW_COLOR" descr="Указание цвета подсветки для строки таблицы"/>
+          <Keyword text="SET_VALUE" descr="Добавление нового элемента в массив"/>
+          <Keyword text="SHORT_VALUE" descr="Стоимость всех коротких значений"/>
+          <Keyword text="SIN" descr="Синус"/>
+          <Keyword text="SQRT" descr="Квадратный корень числа"/>
+          <Keyword text="SUBSTR" descr="Подстрока"/>
+          <Keyword text="TAN" descr="Тангенс"/>
+          <Keyword text="TRIM" descr="Отсечение пробелов в конце строки"/>
+        </Keywords>
+      </Style>
+      <Style name="File Operations" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords pattern="%CurrentWord%(%|%)">
+          <Keyword text="CLEAR_FILE" descr="Очистить файл"/>
+          <Keyword text="WRITE" descr="Записать строку в конец файла"/>
+          <Keyword text="WRITELN" descr="Записать строку с переводом строки в конец файла"/>
+          <Keyword text="GET_FILE_LEN" descr="Количество строк в файле"/>
+          <Keyword text="READ_LINE" descr="Прочитать из файла строку с заданным номером"/>
+        </Keywords>
+      </Style>
+      <Style name="Program" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="BREAKPOINT" descr="Позволяет прервать выполнение программы и вызвать окно Отладка."/>
+          <Keyword text="CLIENTS_LIST"/>
+          <Keyword text="DESCRIPTION"/>
+          <Keyword text="END_PORTFOLIO_EX"/>
+          <Keyword text="END_PROGRAM"/>
+          <Keyword text="FIRMS_LIST"/>
+          <Keyword text="NUMERIC" descr="Тип число"/>
+          <Keyword text="PARAMETER"/>
+          <Keyword text="PARAMETER_DESCRIPTION"/>
+          <Keyword text="PARAMETER_TITLE"/>
+          <Keyword text="PARAMETER_TYPE"/>
+          <Keyword text="PORTFOLIO_EX"/>
+          <Keyword text="PROGRAM"/>
+          <Keyword text="RETURN"/>
+          <Keyword text="STRING" descr="Тип строка"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

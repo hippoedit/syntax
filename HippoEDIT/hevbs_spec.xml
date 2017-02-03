@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="hevbs" name="HE VB Script" inherit="vbs" inherit_url="vbs_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.hevbs"/>
+    </SPECIFICATION>
+    <STYLES>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style name="Objects" extend="true">
+        <Keywords>
+          <Keyword text="Application"/>
+        </Keywords>
+      </Style>
+      <Style name="Methods" extend="true">
+        <Keywords pattern="%CurrentWord% %|%">
+          <Keyword text="sleep"/>
+          <Keyword text="status"/>
+          <Keyword text="progress"/>
+          <Keyword text="Item"/>
+          <Keyword text="NewFile"/>
+          <Keyword text="Close"/>
+        </Keywords>
+      </Style>
+      <Style name="Properties" extend="true">
+        <Keywords>
+          <Keyword text="Output"/>
+          <Keyword text="Documents"/>
+        </Keywords>
+      </Style>
+      <Style name="Events" extend="true">
+        <Keywords>
+          <Keyword text="onTest"/>
+        </Keywords>
+      </Style>
+      <Style name="Constants" extend="true">
+        <Keywords>
+          <Keyword text="eStorageTypeWorkspace"/>
+          <Keyword text="eAccessTypeReadWrite"/>
+          <Keyword text="eFindSilent"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

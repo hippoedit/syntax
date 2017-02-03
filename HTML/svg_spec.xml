@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="svg" name="SVG" inherit="xml" inherit_url="xml_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.svg" />
+      <OpenClose>()[]''</OpenClose>
+      <Operators>?--+/*=&lt;&gt;</Operators>
+      <Delimiters>@${}</Delimiters>
+      <Words>0-9A-Za-z_--</Words>
+      <SyntaxBlocks>
+        <Block open="xmlns=&quot;http://www.w3.org/2000/svg"/>
+        <Block open="xmlns='http://www.w3.org/2000/svg"/>
+      </SyntaxBlocks>
+    </SPECIFICATION>
+    <SCOPES open_container="xml_open_tag" close_container="xml_close_tag">
+      <Scope open="a" close="a"/>
+      <Scope open="altGlyph" close="altGlyph"/>
+      <Scope open="altGlyphDef" close="altGlyphDef"/>
+      <Scope open="filter" close="filter" strict="false"/>
+      <Scope open="defs" close="defs"/>
+      <Scope open="g" close="g"/>
+      <Scope open="text" close="text"/>
+      <Scope open="linearGradient" close="linearGradient" strict="false"/>
+      <Scope open="feSpecularLighting" close="feSpecularLighting"/>
+      <Scope open="feMerge" close="feMerge"/>
+      <Scope open="radialGradient" close="radialGradient"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="scope" name="Text Highlights" bold="1" italic="2" underline="2" clr="#FFFFFFFF" bkclr="#FFFFFFFF"/>
+      <Style id="scope_error" name="Text Highlights Error" bold="1" italic="0" underline="0" clr="Error" bkclr="#FFFFFFFF" overview="1"/>
+      <Style id="nesting_level" name="Nesting Level" dstyle="true" clr="#FFFFFFFF" bkclr="#888888F0" overview="3"/>
+      <Style id="number" name="Numbers" dbkclr="false" bold="0" italic="0" underline="0" clr="Number" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+        </Containers>
+      </Style>
+      <Style id="string" extend="true">
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style id="elements" name="Elements" image="9" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF" text="">
+        <Containers>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_close_tag"/>
+        </Containers>
+        <Keywords lead="/?&lt;">
+          <Keyword text="a"/>
+          <Keyword text="altGlyph"/>
+          <Keyword text="altGlyphDef"/>
+          <Keyword text="altGlyphItem"/>
+          <Keyword text="animate"/>
+          <Keyword text="animateColor"/>
+          <Keyword text="animateColoranimateMotion"/>
+          <Keyword text="animateMotion"/>
+          <Keyword text="animateTransform"/>
+          <Keyword text="circle"/>
+          <Keyword text="clipPath"/>
+          <Keyword text="color-Profile"/>
+          <Keyword text="cursor"/>
+          <Keyword text="definition-src"/>
+          <Keyword text="defs"/>
+          <Keyword text="desc"/>
+          <Keyword text="ellipse"/>
+          <Keyword text="feBlend"/>
+          <Keyword text="feColorMatrix"/>
+          <Keyword text="feComponentTransfer"/>
+          <Keyword text="feComposite"/>
+          <Keyword text="feConvolveMatrix"/>
+          <Keyword text="feDiffuseLighting"/>
+          <Keyword text="feDisplacementMap"/>
+          <Keyword text="feDistantLight"/>
+          <Keyword text="feFlood"/>
+          <Keyword text="feFuncA"/>
+          <Keyword text="feFuncB"/>
+          <Keyword text="feFuncG"/>
+          <Keyword text="feFuncR"/>
+          <Keyword text="feGaussianBlur"/>
+          <Keyword text="feImage"/>
+          <Keyword text="feMerge"/>
+          <Keyword text="feMergeNode"/>
+          <Keyword text="feMorphology"/>
+          <Keyword text="feOffset"/>
+          <Keyword text="fePointLight"/>
+          <Keyword text="feSpecularLighting"/>
+          <Keyword text="feSpotlight"/>
+          <Keyword text="feTile"/>
+          <Keyword text="feTurbulence"/>
+          <Keyword text="filter"/>
+          <Keyword text="font"/>
+          <Keyword text="font-face"/>
+          <Keyword text="font-face-format"/>
+          <Keyword text="font-face-name"/>
+          <Keyword text="font-face-src"/>
+          <Keyword text="font-face-uri"/>
+          <Keyword text="foreignObject"/>
+          <Keyword text="g"/>
+          <Keyword text="glyph"/>
+          <Keyword text="glyphRef"/>
+          <Keyword text="hkern"/>
+          <Keyword text="image"/>
+          <Keyword text="line"/>
+          <Keyword text="linearGradient"/>
+          <Keyword text="marker"/>
+          <Keyword text="mask"/>
+          <Keyword text="metadata"/>
+          <Keyword text="missing-glyph"/>
+          <Keyword text="mpath"/>
+          <Keyword text="path"/>
+          <Keyword text="pattern"/>
+          <Keyword text="polygon"/>
+          <Keyword text="polyline"/>
+          <Keyword text="radialGradient"/>
+          <Keyword text="rect"/>
+          <Keyword text="script"/>
+          <Keyword text="set"/>
+          <Keyword text="stop"/>
+          <Keyword text="style"/>
+          <Keyword text="svg"/>
+          <Keyword text="switch"/>
+          <Keyword text="symbol"/>
+          <Keyword text="text"/>
+          <Keyword text="textPath"/>
+          <Keyword text="title"/>
+          <Keyword text="tref"/>
+          <Keyword text="tspan"/>
+          <Keyword text="use"/>
+          <Keyword text="view"/>
+          <Keyword text="vkern"/>
+        </Keywords>
+      </Style>
+      <Style name="Attributes" image="11" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Keywords trail="=">
+          <Keyword text="accent-height"/>
+          <Keyword text="accumulate"/>
+          <Keyword text="alignment-baseline"/>
+          <Keyword text="alphabetic"/>
+          <Keyword text="amplitude"/>
+          <Keyword text="animate"/>
+          <Keyword text="arabic-form"/>
+          <Keyword text="ascent"/>
+          <Keyword text="attributeType"/>
+          <Keyword text="azimuth"/>
+          <Keyword text="baseFrequency"/>
+          <Keyword text="baseProfile"/>
+          <Keyword text="baseline-shift"/>
+          <Keyword text="bbox"/>
+          <Keyword text="bias"/>
+          <Keyword text="by"/>
+          <Keyword text="calcMode"/>
+          <Keyword text="cap-height"/>
+          <Keyword text="class"/>
+          <Keyword text="clip"/>
+          <Keyword text="clip-path"/>
+          <Keyword text="clip-rule"/>
+          <Keyword text="clipPathUnits"/>
+          <Keyword text="color"/>
+          <Keyword text="color-interpolation"/>
+          <Keyword text="color-interpolation-filters"/>
+          <Keyword text="color-profile"/>
+          <Keyword text="color-rendering"/>
+          <Keyword text="contentScriptType"/>
+          <Keyword text="contentStyleType"/>
+          <Keyword text="cursor"/>
+          <Keyword text="cx"/>
+          <Keyword text="cy"/>
+          <Keyword text="d"/>
+          <Keyword text="descent"/>
+          <Keyword text="diffuseConstant"/>
+          <Keyword text="direction"/>
+          <Keyword text="display"/>
+          <Keyword text="divisor"/>
+          <Keyword text="dominant-baseline"/>
+          <Keyword text="dur"/>
+          <Keyword text="dx"/>
+          <Keyword text="dy"/>
+          <Keyword text="edgeMode"/>
+          <Keyword text="elevation"/>
+          <Keyword text="enable-background"/>
+          <Keyword text="end"/>
+          <Keyword text="exponent"/>
+          <Keyword text="externalResourcesRequired"/>
+          <Keyword text="feColorMatrix"/>
+          <Keyword text="feComposite"/>
+          <Keyword text="feGaussianBlur"/>
+          <Keyword text="feMorphology"/>
+          <Keyword text="feTile"/>
+          <Keyword text="fill"/>
+          <Keyword text="fill-opacity"/>
+          <Keyword text="fill-rule"/>
+          <Keyword text="filter"/>
+          <Keyword text="filterRes"/>
+          <Keyword text="filterUnits"/>
+          <Keyword text="flood-color"/>
+          <Keyword text="flood-opacity"/>
+          <Keyword text="font-family"/>
+          <Keyword text="font-size"/>
+          <Keyword text="font-size-adjust"/>
+          <Keyword text="font-stretch"/>
+          <Keyword text="font-style"/>
+          <Keyword text="font-variant"/>
+          <Keyword text="font-weight"/>
+          <Keyword text="format"/>
+          <Keyword text="from"/>
+          <Keyword text="fx"/>
+          <Keyword text="fy"/>
+          <Keyword text="g1"/>
+          <Keyword text="g2"/>
+          <Keyword text="glyph-name"/>
+          <Keyword text="glyph-orientation-horizontal"/>
+          <Keyword text="glyph-orientation-vertical"/>
+          <Keyword text="glyphRef"/>
+          <Keyword text="gradientTransform"/>
+          <Keyword text="gradientUnits"/>
+          <Keyword text="hanging"/>
+          <Keyword text="height"/>
+          <Keyword text="horiz-adv-x"/>
+          <Keyword text="horiz-origin-x"/>
+          <Keyword text="horiz-origin-y"/>
+          <Keyword text="ideographic"/>
+          <Keyword text="image-rendering"/>
+          <Keyword text="in"/>
+          <Keyword text="in2"/>
+          <Keyword text="intercept"/>
+          <Keyword text="k"/>
+          <Keyword text="k1"/>
+          <Keyword text="k2"/>
+          <Keyword text="k3"/>
+          <Keyword text="k4"/>
+          <Keyword text="kernelMatrix"/>
+          <Keyword text="kernelUnitLength"/>
+          <Keyword text="kerning"/>
+          <Keyword text="keyPoints"/>
+          <Keyword text="keySplines"/>
+          <Keyword text="keyTimes"/>
+          <Keyword text="lang"/>
+          <Keyword text="lengthAdjust"/>
+          <Keyword text="letter-spacing"/>
+          <Keyword text="lighting-color"/>
+          <Keyword text="limitingConeAngle"/>
+          <Keyword text="local"/>
+          <Keyword text="marker-end"/>
+          <Keyword text="marker-mid"/>
+          <Keyword text="marker-star"/>
+          <Keyword text="markerHeight"/>
+          <Keyword text="markerUnits"/>
+          <Keyword text="markerWidth"/>
+          <Keyword text="mask"/>
+          <Keyword text="maskContentUnits"/>
+          <Keyword text="maskUnits"/>
+          <Keyword text="mathematical"/>
+          <Keyword text="max"/>
+          <Keyword text="media"/>
+          <Keyword text="method"/>
+          <Keyword text="min"/>
+          <Keyword text="mode"/>
+          <Keyword text="name"/>
+          <Keyword text="numOctaves"/>
+          <Keyword text="offset"/>
+          <Keyword text="onabort"/>
+          <Keyword text="onactivate"/>
+          <Keyword text="onbegin"/>
+          <Keyword text="onclick"/>
+          <Keyword text="onend"/>
+          <Keyword text="onerror"/>
+          <Keyword text="onfocusin"/>
+          <Keyword text="onfocusout"/>
+          <Keyword text="onload"/>
+          <Keyword text="onmousedown"/>
+          <Keyword text="onmousemove"/>
+          <Keyword text="onmouseout"/>
+          <Keyword text="onmouseover"/>
+          <Keyword text="onmouseup"/>
+          <Keyword text="onrepeat"/>
+          <Keyword text="onresize"/>
+          <Keyword text="onscroll"/>
+          <Keyword text="onunload"/>
+          <Keyword text="onzoom"/>
+          <Keyword text="opacity"/>
+          <Keyword text="operator"/>
+          <Keyword text="order"/>
+          <Keyword text="orient"/>
+          <Keyword text="orientation"/>
+          <Keyword text="origin"/>
+          <Keyword text="overflow"/>
+          <Keyword text="overline-position"/>
+          <Keyword text="overline-thickness"/>
+          <Keyword text="panose-1"/>
+          <Keyword text="path"/>
+          <Keyword text="pathLength"/>
+          <Keyword text="patternContentUnits"/>
+          <Keyword text="patternTransform"/>
+          <Keyword text="patternUnits"/>
+          <Keyword text="pointer-events"/>
+          <Keyword text="points"/>
+          <Keyword text="pointsAtX"/>
+          <Keyword text="pointsAtY"/>
+          <Keyword text="pointsAtZ"/>
+          <Keyword text="preserveAlpha"/>
+          <Keyword text="preserveAspectRatio"/>
+          <Keyword text="primitiveUnits"/>
+          <Keyword text="r"/>
+          <Keyword text="radius"/>
+          <Keyword text="refX"/>
+          <Keyword text="refY"/>
+          <Keyword text="rendering-intent"/>
+          <Keyword text="repeatCount"/>
+          <Keyword text="repeatDur"/>
+          <Keyword text="requiredExtensions"/>
+          <Keyword text="restart"/>
+          <Keyword text="result"/>
+          <Keyword text="rotate"/>
+          <Keyword text="rx"/>
+          <Keyword text="ry"/>
+          <Keyword text="scale"/>
+          <Keyword text="seed"/>
+          <Keyword text="shape-rendering"/>
+          <Keyword text="slope"/>
+          <Keyword text="spacing"/>
+          <Keyword text="specularConstant"/>
+          <Keyword text="specularExponent"/>
+          <Keyword text="spreadMethod"/>
+          <Keyword text="startOffset"/>
+          <Keyword text="stdDeviation"/>
+          <Keyword text="stemh"/>
+          <Keyword text="stemv"/>
+          <Keyword text="stitchTiles"/>
+          <Keyword text="stop-color"/>
+          <Keyword text="stop-opacity"/>
+          <Keyword text="strikethrough-position"/>
+          <Keyword text="strikethrough-thickness"/>
+          <Keyword text="stroke"/>
+          <Keyword text="stroke-dasharray"/>
+          <Keyword text="stroke-dashoffset"/>
+          <Keyword text="stroke-linecap"/>
+          <Keyword text="stroke-linejoin"/>
+          <Keyword text="stroke-miterlimit"/>
+          <Keyword text="stroke-opacity"/>
+          <Keyword text="stroke-width"/>
+          <Keyword text="style"/>
+          <Keyword text="surfaceScale"/>
+          <Keyword text="systemLanguage"/>
+          <Keyword text="tableValues"/>
+          <Keyword text="target"/>
+          <Keyword text="targetX"/>
+          <Keyword text="targetY"/>
+          <Keyword text="text-anchor"/>
+          <Keyword text="text-decoration"/>
+          <Keyword text="text-rendering"/>
+          <Keyword text="textLength"/>
+          <Keyword text="title"/>
+          <Keyword text="to"/>
+          <Keyword text="transform"/>
+          <Keyword text="type"/>
+          <Keyword text="u1"/>
+          <Keyword text="u2"/>
+          <Keyword text="underline-position"/>
+          <Keyword text="underline-thickness"/>
+          <Keyword text="unicode"/>
+          <Keyword text="unicode-bidi"/>
+          <Keyword text="unicode-range"/>
+          <Keyword text="units-per-em"/>
+          <Keyword text="v-alphabetic"/>
+          <Keyword text="v-hanging"/>
+          <Keyword text="v-ideographic"/>
+          <Keyword text="v-mathematical"/>
+          <Keyword text="values"/>
+          <Keyword text="version"/>
+          <Keyword text="vert-adv-y"/>
+          <Keyword text="vert-origin-x"/>
+          <Keyword text="vert-origin-y"/>
+          <Keyword text="viewBox"/>
+          <Keyword text="viewTarget"/>
+          <Keyword text="visibility"/>
+          <Keyword text="width"/>
+          <Keyword text="widths"/>
+          <Keyword text="word-spacing"/>
+          <Keyword text="writing-mode"/>
+          <Keyword text="x"/>
+          <Keyword text="x-height"/>
+          <Keyword text="x1"/>
+          <Keyword text="x2"/>
+          <Keyword text="xChannelSelector"/>
+          <Keyword text="xlink:actuate"/>
+          <Keyword text="xlink:arcrole"/>
+          <Keyword text="xlink:href"/>
+          <Keyword text="xlink:role"/>
+          <Keyword text="xlink:show"/>
+          <Keyword text="xlink:title"/>
+          <Keyword text="xlink:type"/>
+          <Keyword text="xml:base"/>
+          <Keyword text="xml:space"/>
+          <Keyword text="xmlns"/>
+          <Keyword text="xmlns:xlink"/>
+          <Keyword text="y"/>
+          <Keyword text="y1"/>
+          <Keyword text="y2"/>
+          <Keyword text="yChannelSelector"/>
+          <Keyword text="z"/>
+          <Keyword text="zoomAndPan"/>
+        </Keywords>
+      </Style>
+      <Style id="inline_style" name="Inline CSS" include="css:attributes" bold="0" italic="0" underline="0" clr="#66666600" bkclr="Embedded Language 2 Back">
+        <Containers>
+          <Open id="xml_open_tag"/>
+          <Close id="css:attributes"/>
+          <Close id="css:comment"/>
+          <Close id="css:values"/>
+          <Close id="css:values_outer"/>
+        </Containers>
+        <Blocks>
+          <Block open="style=&quot;" close="&quot;"/>
+          <Block open="style=&apos;" close="&apos;"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

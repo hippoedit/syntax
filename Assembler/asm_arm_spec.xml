@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <!-- for ARM GNU Assemler syntax -->
+  <FILEINFO author="Andrey Zhiltsov, aka AZh" type="LangSpec"/>
+  <SYNTAX id="gnuarmasm" name="ASM (GNU ARM)" inherit="asm_base" inherit_url="asm_base_spec.xml" version="1.2">
+    <SPECIFICATION>
+      <Words>0-9A-Za-z_.</Words>
+      <FilePattern mask="*.s;*.inc;*.aasm;"/>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="Label" match="^((\w+):)" name="\1" image="9" style="label">
+        <Containers open="label"/>
+        <Highlight in="\2" style="label_usage" global="true"/>
+      </Label>
+      <Label group="Label" match="^\.(L(\w*):)" name="\1" image="9" style="label">
+        <Containers open="label"/>
+        <Highlight in="\2" style="label_usage" global="true"/>
+      </Label>
+      <Label group="Macro" match="^\s*\.macro ([\.\w]+)" name="\1" image="" style="macro" highlight="\1"/>
+    </LABELS>
+    <SCOPES>
+      <Scope open="[" close="]"/>
+      <Scope open=".ifndef" middle=".else" close=".endif" sent_start="true"/>
+      <Scope open=".ifdef" middle=".else" close=".endif" sent_start="true"/>
+      <Scope open=".if" middle=".else" close=".endif" strict="false" sent_start="true"/>
+      <Scope open=".macro" close=".endm" sent_start="true" scope="1" has_name="true"/>
+    </SCOPES>
+    <STYLES>
+      <!-- preprocessor -->
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Keywords lead="\s*$">
+          <Keyword text=".else"/>
+          <Keyword text=".elseif"/>
+          <Keyword text=".endif"/>
+          <Keyword text=".error"/>
+          <Keyword text=".if"/>
+          <Keyword text=".ifb"/>
+          <Keyword text=".ifc"/>
+          <Keyword text=".ifeq"/>
+          <Keyword text=".ifeqs"/>
+          <Keyword text=".ifge"/>
+          <Keyword text=".ifgt"/>
+          <Keyword text=".ifle"/>
+          <Keyword text=".iflt"/>
+          <Keyword text=".ifnb"/>
+          <Keyword text=".ifnc"/>
+          <Keyword text=".ifdef"/>
+          <Keyword text=".ifndef"/>
+          <Keyword text=".ifnotdef"/>
+          <Keyword text=".ifne"/>
+          <Keyword text=".ifnes"/>
+          <Keyword text=".ifnb"/>
+        </Keywords>
+      </Style>
+      <Style id="label" name="Label" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Regexp text="^[\w]+:"/>
+          <Regexp text="^\.L[\w]*:"/>
+        </Blocks>
+      </Style>
+      <Style id="label_usage" name="Label Usage" underline="1" hotspot="1" clr="#FFFFFFFF" bkclr="#FFFFFFFF"/>
+      <Style id="number" extend="true">
+        <Blocks>
+          <!--  0xFFFF -->
+          <Regexp text="0x[0-9A-Fa-f]+\&gt;" lead="[^\w]"/>
+          <!-- Binary: 0b1010 -->
+          <Regexp text="0b[01]+\&gt;" lead="[^\w]"/>
+          <!-- Octal: 01234567 -->
+          <Regexp text="0[0-7]\&gt;" lead="[^\w]"/>
+          <!-- Decimal  are built-in -->
+        </Blocks>
+      </Style>
+      <!-- Comments  -->
+      <Style id="comment" extend="true">
+        <Blocks>
+          <Block open="@" close="\n"/>
+          <Block open="/*" close="*/"/>
+        </Blocks>
+      </Style>
+      <Style id="string" extend="true">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" extend="true">
+        <Keywords>
+          <Keyword text="&gt;&gt;" descr="Logical shift right."/>
+          <Keyword text="&lt;&lt;" descr="Logical shift left."/>
+          <Keyword text="&amp;&amp;" descr="Logical AND."/>
+          <Keyword text="||" descr="Logical OR."/>
+          <Keyword text="XOR" descr="Logical exclusive OR."/>
+          <Keyword text="==" descr="Equal."/>
+          <Keyword text="&lt;&gt;" descr="Not equal."/>
+          <Keyword text="!=" descr="Not equal."/>
+          <Keyword text="UGT" descr="Unsigned greater than."/>
+          <Keyword text="ULT" descr="Unsigned less than."/>
+          <Keyword text="&gt;=" descr="Greater than or equal."/>
+          <Keyword text="&lt;=" descr="Less than or equal."/>
+        </Keywords>
+      </Style>
+      <Style id="macro" name="Macro" image="13" bold="1" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF"/>
+      <Style name="Command Not Branched" image="13" bold="1" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <!-- Cortex-M0 instructions -->
+          <Keyword text="ADCS"/>
+          <Keyword text="ADD"/>
+          <Keyword text="ADDS"/>
+          <Keyword text="ADR"/>
+          <Keyword text="ANDS"/>
+          <Keyword text="ASRS"/>
+          <Keyword text="BICS"/>
+          <Keyword text="BKPT"/>
+          <Keyword text="CMN"/>
+          <Keyword text="CMP"/>
+          <Keyword text="CPSID"/>
+          <Keyword text="CPSIE"/>
+          <Keyword text="DMB"/>
+          <Keyword text="DSB"/>
+          <Keyword text="EORS"/>
+          <Keyword text="ISB"/>
+          <Keyword text="LDM"/>
+          <Keyword text="LSLS"/>
+          <Keyword text="LSRS"/>
+          <Keyword text="MRS"/>
+          <Keyword text="MSR"/>
+          <Keyword text="MULS"/>
+          <Keyword text="MVNS"/>
+          <Keyword text="NOP"/>
+          <Keyword text="ORRS"/>
+          <Keyword text="POP"/>
+          <Keyword text="PUSH"/>
+          <Keyword text="REV"/>
+          <Keyword text="REV16"/>
+          <Keyword text="REVSH"/>
+          <Keyword text="RORS"/>
+          <Keyword text="RSBS"/>
+          <Keyword text="SBCS"/>
+          <Keyword text="SEV"/>
+          <Keyword text="STM"/>
+          <Keyword text="SUB"/>
+          <Keyword text="SUBS"/>
+          <Keyword text="SVC"/>
+          <Keyword text="SXTB"/>
+          <Keyword text="SXTH"/>
+          <Keyword text="UXTB"/>
+          <Keyword text="UXTH"/>
+          <Keyword text="WFE"/>
+          <Keyword text="WFI"/>
+          <!-- Cortex-M1+ instructions -->
+          <Keyword text="ADC"/>
+          <Keyword text="AND"/>
+          <Keyword text="ADDW"/>
+          <Keyword text="AND"/>
+          <Keyword text="ASR"/>
+          <Keyword text="BIC"/>
+          <Keyword text="BFC"/>
+          <Keyword text="BFI"/>
+          <Keyword text="CLREX"/>
+          <Keyword text="CLZ"/>
+          <Keyword text="CBZ"/>
+          <Keyword text="EOR"/>
+          <Keyword text="LDREX"/>
+          <Keyword text="LDREXB"/>
+          <Keyword text="LDREXH"/>
+          <Keyword text="LSL"/>
+          <Keyword text="LSR"/>
+          <Keyword text="ORR"/>
+          <Keyword text="ORN"/>
+          <Keyword text="ROR"/>
+          <Keyword text="STREX"/>
+          <Keyword text="STREXB"/>
+          <Keyword text="STREXH"/>
+          <!-- Psevdo instructions -->
+          <Keyword text="MOV32"/>
+        </Keywords>
+        <Blocks>
+          <Regexp text="\s(LDR|STR)(B|SB|H|SH|BT|SBT|HT|SHT|D)?(EQ|NE|CS|HS|CC|LO|MI|PL|VS|VC|HI|LS|GE|LT|GT|LE|AL)?(\.N|\.W)?\&gt;"/>
+          <Regexp text="\&lt;(MOV|MOVW|MOVS|MOVWS|MVN|MVNS|MOVT)(EQ|NE|CS|HS|CC|LO|MI|PL|VS|VC|HI|LS|GE|LT|GT|LE|AL)?\&gt;"/>
+          <Regexp text="\s(TST|TEQ)(EQ|NE|CS|HS|CC|LO|MI|PL|VS|VC|HI|LS|GE|LT|GT|LE|AL)?\&gt;"/>
+          <Regexp text="\s(MUL|MULS|MLA|MLS)(EQ|NE|CS|HS|CC|LO|MI|PL|VS|VC|HI|LS|GE|LT|GT|LE|AL)?\&gt;"/>
+        </Blocks>
+      </Style>
+      <Style name="Command Branched" image="13" bold="1" italic="0" underline="0" clr="Highlight 5" bkclr="#FFFFFFFF">
+        <Keywords>
+          <!-- Cortex-M0 branch instructions -->
+          <Keyword text="B"/>
+          <Keyword text="BEQ"/>
+          <Keyword text="BNE"/>
+          <Keyword text="BCS"/>
+          <Keyword text="BHS"/>
+          <Keyword text="BCC"/>
+          <Keyword text="BLO"/>
+          <Keyword text="BMI"/>
+          <Keyword text="BPL"/>
+          <Keyword text="BVS"/>
+          <Keyword text="BVC"/>
+          <Keyword text="BHI"/>
+          <Keyword text="BLS"/>
+          <Keyword text="BGE"/>
+          <Keyword text="BLT"/>
+          <Keyword text="BGT"/>
+          <Keyword text="BLE"/>
+          <Keyword text="BAL"/>
+          <Keyword text="BL"/>
+          <Keyword text="BX"/>
+          <Keyword text="BLX"/>
+          <!-- Cortex-M1+ branch instructions -->
+          <Keyword text="CBNZ"/>
+          <Keyword text="CBZ"/>
+        </Keywords>
+      </Style>
+      <Style name="Registers" image="13" bold="1" italic="0" underline="0" clr="Highlight 4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="R0"/>
+          <Keyword text="R1"/>
+          <Keyword text="R2"/>
+          <Keyword text="R3"/>
+          <Keyword text="R4"/>
+          <Keyword text="R5"/>
+          <Keyword text="R6"/>
+          <Keyword text="R7"/>
+          <Keyword text="R8"/>
+          <Keyword text="R9"/>
+          <Keyword text="R10"/>
+          <Keyword text="R11"/>
+          <Keyword text="R12"/>
+          <Keyword text="R13"/>
+          <Keyword text="R14"/>
+          <Keyword text="R15"/>
+          <Keyword text="MSP"/>
+          <Keyword text="PSP"/>
+          <Keyword text="LR"/>
+          <Keyword text="PC"/>
+          <Keyword text="PSR"/>
+          <Keyword text="IPSR"/>
+          <Keyword text="EPSR"/>
+          <Keyword text="PRIMASK"/>
+          <Keyword text="CONTROL"/>
+          <Keyword text="APSR_NZCVQ"/>
+        </Keywords>
+      </Style>
+      <!-- Symbol control directives -->
+      <Style id="symbctr" name="Symbol control directives" text="1" bold="0" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text=".extern"/>
+          <Keyword text=".global"/>
+          <Keyword text=".def"/>
+          <Keyword text=".endef"/>
+          <Keyword text=".val"/>
+          <Keyword text=".type"/>
+          <Keyword text=".dim"/>
+          <Keyword text=".line"/>
+          <Keyword text=".scl"/>
+          <Keyword text=".size"/>
+          <Keyword text=".tag"/>
+          <Keyword text=".weak"/>
+          <Keyword text=".macro"/>
+          <Keyword text=".endm"/>
+        </Keywords>
+      </Style>
+      <!-- Mode control directives -->
+      <Style id="modectr" name="Mode control directives" text="1" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text=".arm"/>
+          <Keyword text=".thumb"/>
+          <Keyword text=".thumb_func"/>
+          <Keyword text=".thumb_set"/>
+          <Keyword text=".stt_func"/>
+          <Keyword text=".stt_gnu_ifunc"/>
+          <Keyword text=".stt_tls"/>
+          <Keyword text=".stt_common"/>
+          <Keyword text=".stt_notype"/>
+        </Keywords>
+      </Style>
+      <!-- Assembler control directives -->
+      <Style id="assmctr" name="Assembler control directives" text="1" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text=".abort"/>
+          <Keyword text=".align"/>
+          <Keyword text=".altmacro"/>
+          <Keyword text=".cpu"/>
+          <Keyword text=".fail"/>
+          <Keyword text=".fpu"/>
+          <Keyword text=".syntax"/>
+          <Keyword text=".eject"/>
+          <Keyword text=".err"/>
+          <Keyword text=".error"/>
+          <Keyword text=".list"/>
+          <Keyword text=".nolist"/>
+          <Keyword text=".psize"/>
+          <Keyword text=".title"/>
+          <Keyword text=".include"/>
+        </Keywords>
+      </Style>
+      <Style id="value_assigment" name="Value assignment directives" image="6" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <!-- Value assignment directives -->
+        <Keywords>
+          <Keyword text=".eqv"/>
+          <Keyword text=".equ"/>
+          <Keyword text=".equiv"/>
+          <Keyword text=".set"/>
+          <Keyword text=".comm"/>
+          <Keyword text=".desc"/>
+        </Keywords>
+      </Style>
+      <Style id="ddefalloc_control" name="Data definition or allocation directives" image="6" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <!-- Data definition or allocation directives -->
+        <Keywords>
+          <Keyword text=".ascii"/>
+          <Keyword text=".asciz"/>
+          <Keyword text=".byte"/>
+          <Keyword text=".balign"/>
+          <Keyword text=".balignw"/>
+          <Keyword text=".balignl"/>
+          <Keyword text=".fill"/>
+          <Keyword text=".float"/>
+          <Keyword text=".hword"/>
+          <Keyword text=".word"/>
+          <Keyword text=".space"/>
+          <Keyword text=".skip"/>
+          <Keyword text=".string"/>
+          <Keyword text=".string8"/>
+          <Keyword text=".string16"/>
+          <Keyword text=".string32"/>
+          <Keyword text=".string64"/>
+        </Keywords>
+      </Style>
+      <!-- Sections e.t.c. -->
+      <Style id="sections" name="Section control directives" text="1" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text=".section"/>
+          <Keyword text=".subsection"/>
+          <Keyword text=".cfi_sections"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

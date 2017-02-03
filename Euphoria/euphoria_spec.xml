@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Igor Kachan, Jeremy Cowgar" type="LangSpec"/>
+  <SYNTAX id="eu" name="Euphoria" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.e;*.ex;*.ew;*.exw;*.eu;*.exu;ex.err;*.pro"/>
+      <CaseSensitive>true</CaseSensitive>
+      <OpenClose>()[]{}''""</OpenClose>
+      <EscapeChar>\</EscapeChar>
+      <Operators>?*-+/&amp;*=&lt;&gt;!{}()[].</Operators>
+      <Words>0-9A-Za-z_</Words>
+      <Encoding default="866"/>
+      <HierarchySeparator>
+        <Separator text=":"/>
+      </HierarchySeparator>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <DefaultIndent>4</DefaultIndent>
+    </FORMAT>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+      <Scope open="(" close=")"/>
+      <Scope open="[" close="]"/>
+      <Scope open="for" close="end for"/>
+      <Scope open="while" close="end while"/>
+      <Scope open="function" close="end function" has_name="true" separator="true"/>
+      <Scope open="procedure" close="end procedure" has_name="true" separator="true"/>
+      <Scope open="type" close="end type" has_name="true" separator="true"/>
+      <Scope open="if" middle="else" close="end if">
+        <Middle text="elsif"/>
+        <Middle text="then"/>
+      </Scope>
+      <Scope open="от" close="стоп от"/>
+      <Scope open="пока" close="стоп пока"/>
+      <Scope open="функция" close="стоп функция" has_name="true" separator="true"/>
+      <Scope open="процедура" close="стоп процедура" has_name="true" separator="true"/>
+      <Scope open="тип" close="стоп тип" has_name="true" separator="true"/>
+      <Scope open="если" middle="иначе" close="стоп если">
+        <Middle text="а_если"/>
+        <Middle text="то"/>
+      </Scope>
+    </SCOPES>
+    <LABELS>
+      <Label group="Include" match="\sinclude\s+([\w.\/]+)\s?" name="\1" image="15" navigation="false"/>
+      <Label group="Function" match="(?&lt;!end)(?:\s|^)(function|procedure|type)\s+(\w+)\s*(\([^)]*\))" name="\2" descr="\1 \2 \3" scope="1" image="9"/>
+      <Label group="Function" match="(?&lt;!стоп)(?:\s|^)(функция|процедура|тип)\s+(\w+)\s*(\([^)]*\))" name="\2" descr="\1 \2 \3" scope="1" image="9"/>      
+    </LABELS>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="char"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="#FF0000" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="--" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="#009900" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="#009900" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style id="keywords" name="Keywords" image="13" bold="1" italic="0" underline="0" clr="#0000AA" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="if"/>
+          <Keyword text="если"/>
+          <Keyword text="elsif"/>
+          <Keyword text="а_если"/>
+          <Keyword text="then"/>
+          <Keyword text="то"/>
+          <Keyword text="else"/>
+          <Keyword text="иначе"/>
+          <Keyword text="procedure"/>
+          <Keyword text="процедура"/>
+          <Keyword text="function"/>
+          <Keyword text="функция"/>
+          <Keyword text="type"/>
+          <Keyword text="тип"/>
+          <Keyword text="return"/>
+          <Keyword text="выдать"/>
+          <Keyword text="while"/>
+          <Keyword text="пока"/>
+          <Keyword text="for"/>
+          <Keyword text="от"/>
+          <Keyword text="to"/>
+          <Keyword text="до"/>
+          <Keyword text="by"/>
+          <Keyword text="по"/>
+          <Keyword text="do"/>
+          <Keyword text="цикл"/>
+          <Keyword text="exit"/>
+          <Keyword text="выйти"/>
+          <Keyword text="end"/>
+          <Keyword text="стоп"/>
+          <Keyword text="global"/>
+          <Keyword text="везде"/>
+          <Keyword text="constant"/>
+          <Keyword text="всегда"/>
+          <Keyword text="and"/>
+          <Keyword text="и"/>
+          <Keyword text="or"/>
+          <Keyword text="или"/>
+          <Keyword text="not"/>
+          <Keyword text="не"/>
+          <Keyword text="xor"/>
+          <Keyword text="но"/>
+          <Keyword text="include"/>
+          <Keyword text="учесть"/>
+          <Keyword text="as"/>
+          <Keyword text="как"/>
+          <Keyword text="with"/>
+          <Keyword text="с"/>
+          <Keyword text="without"/>
+          <Keyword text="без"/>
+        </Keywords>
+      </Style>
+      <Style  name="Builtin Routines" image="12" bold="1" italic="0" underline="0" clr="#CC00CC" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="length"/>
+          <Keyword text="длина"/>
+          <Keyword text="puts"/>
+          <Keyword text="вывести"/>
+          <Keyword text="integer"/>
+          <Keyword text="целое"/>
+          <Keyword text="sequence"/>
+          <Keyword text="ряд"/>
+          <Keyword text="position"/>
+          <Keyword text="знакоместо"/>
+          <Keyword text="object"/>
+          <Keyword text="объект"/>
+          <Keyword text="append"/>
+          <Keyword text="добавить"/>
+          <Keyword text="prepend"/>
+          <Keyword text="прибавить"/>
+          <Keyword text="print"/>
+          <Keyword text="печатать"/>
+          <Keyword text="printf"/>
+          <Keyword text="печатать_в_формате"/>
+          <Keyword text="clear_screen"/>
+          <Keyword text="очистить_экран"/>
+          <Keyword text="floor"/>
+          <Keyword text="целая_часть"/>
+          <Keyword text="getc"/>
+          <Keyword text="получить_байт"/>
+          <Keyword text="gets"/>
+          <Keyword text="получить_строку"/>
+          <Keyword text="get_key"/>
+          <Keyword text="получить_клавишу"/>
+          <Keyword text="rand"/>
+          <Keyword text="случайные_числа"/>
+          <Keyword text="repeat"/>
+          <Keyword text="повторить"/>
+          <Keyword text="atom"/>
+          <Keyword text="число"/>
+          <Keyword text="compare"/>
+          <Keyword text="сравнить"/>
+          <Keyword text="find"/>
+          <Keyword text="найти"/>
+          <Keyword text="match"/>
+          <Keyword text="сопоставить"/>
+          <Keyword text="time"/>
+          <Keyword text="время"/>
+          <Keyword text="command_line"/>
+          <Keyword text="командная_строка"/>
+          <Keyword text="open"/>
+          <Keyword text="открыть"/>
+          <Keyword text="close"/>
+          <Keyword text="закрыть"/>
+          <Keyword text="trace"/>
+          <Keyword text="трасса"/>
+          <Keyword text="getenv"/>
+          <Keyword text="получить_окружение"/>
+          <Keyword text="sqrt"/>
+          <Keyword text="корень"/>
+          <Keyword text="sin"/>
+          <Keyword text="синус"/>
+          <Keyword text="cos"/>
+          <Keyword text="косинус"/>
+          <Keyword text="tan"/>
+          <Keyword text="тангенс"/>
+          <Keyword text="log"/>
+          <Keyword text="логарифм"/>
+          <Keyword text="system"/>
+          <Keyword text="команда_ОС"/>
+          <Keyword text="date"/>
+          <Keyword text="дата"/>
+          <Keyword text="remainder"/>
+          <Keyword text="остаток"/>
+          <Keyword text="power"/>
+          <Keyword text="степень"/>
+          <Keyword text="machine_func"/>
+          <Keyword text="машинная_функция"/>
+          <Keyword text="mf"/>
+          <Keyword text="мф"/>
+          <Keyword text="machine_proc"/>
+          <Keyword text="машинная_процедура"/>
+          <Keyword text="mp"/>
+          <Keyword text="мп"/>
+          <Keyword text="abort"/>
+          <Keyword text="прервать"/>
+          <Keyword text="peek"/>
+          <Keyword text="читать_из_памяти"/>
+          <Keyword text="poke"/>
+          <Keyword text="записать_в_память"/>
+          <Keyword text="call"/>
+          <Keyword text="вызвать"/>
+          <Keyword text="sprintf"/>
+          <Keyword text="печатать_в_ряд_в_формате"/>
+          <Keyword text="arctan"/>
+          <Keyword text="арктангенс"/>
+          <Keyword text="and_bits"/>
+          <Keyword text="И_побитно"/>
+          <Keyword text="or_bits"/>
+          <Keyword text="ИЛИ_побитно"/>
+          <Keyword text="xor_bits"/>
+          <Keyword text="НО_побитно"/>
+          <Keyword text="not_bits"/>
+          <Keyword text="НЕ_побитно"/>
+          <Keyword text="pixel"/>
+          <Keyword text="точки"/>
+          <Keyword text="get_pixel"/>
+          <Keyword text="цвет_точек"/>
+          <Keyword text="mem_copy"/>
+          <Keyword text="копировать_память"/>
+          <Keyword text="mem_set"/>
+          <Keyword text="заполнить_память"/>
+          <Keyword text="c_proc"/>
+          <Keyword text="процедура_Си"/>
+          <Keyword text="c_func"/>
+          <Keyword text="функция_Си"/>
+          <Keyword text="routine_id"/>
+          <Keyword text="подпрограмма_номер"/>
+          <Keyword text="call_proc"/>
+          <Keyword text="вызвать_процедуру"/>
+          <Keyword text="call_func"/>
+          <Keyword text="вызвать_функцию"/>
+          <Keyword text="poke4"/>
+          <Keyword text="записать_в_память_4_байта"/>
+          <Keyword text="peek4s"/>
+          <Keyword text="читать_из_памяти_4_байта_и_знак"/>
+          <Keyword text="peek4u"/>
+          <Keyword text="читать_из_памяти_4_байта_без_знака"/>
+          <Keyword text="equal"/>
+          <Keyword text="равно"/>
+          <Keyword text="system_exec"/>
+          <Keyword text="внешняя_программа"/>
+          <Keyword text="platform"/>
+          <Keyword text="платформа"/>
+          <Keyword text="type_check"/>
+          <Keyword text="тип_про"/>
+          <Keyword text="profile_time"/>
+          <Keyword text="проф_вр"/>
+          <Keyword text="profile"/>
+          <Keyword text="проф_оп"/>
+          <Keyword text="warning"/>
+          <Keyword text="предупр"/>
+          <Keyword text="trace"/>
+          <Keyword text="трассир"/>
+        </Keywords>
+      </Style>
+
+      <Style  name="Library Routines"  image="10" bold="1" italic="0" underline="0" clr="#0099EE" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="all_palette"/>
+          <Keyword text="вся_палитра"/>
+          <Keyword text="allocate"/>
+          <Keyword text="выделить_память"/>
+          <Keyword text="allocate_low"/>
+          <Keyword text="выделить_память_внизу"/>
+          <Keyword text="allocate_string"/>
+          <Keyword text="поместить_строку_в_память"/>
+          <Keyword text="allow_break"/>
+          <Keyword text="разрешить_стоп"/>
+          <Keyword text="arccos"/>
+          <Keyword text="арккосинус"/>
+          <Keyword text="arcsin"/>
+          <Keyword text="арксинус"/>
+          <Keyword text="atom_to_float32"/>
+          <Keyword text="атом_в_плавающее_32_бит"/>
+          <Keyword text="atom_to_float64"/>
+          <Keyword text="атом_в_плавающее_64_бит"/>
+          <Keyword text="bits_to_int"/>
+          <Keyword text="целое_из_битов"/>
+          <Keyword text="bk_color"/>
+          <Keyword text="цвет_фона"/>
+          <Keyword text="bytes_to_int"/>
+          <Keyword text="целое_из_байтов"/>
+          <Keyword text="call_back"/>
+          <Keyword text="обратный_вызов"/>
+          <Keyword text="case_la"/>
+          <Keyword text="латинский_регистр"/>
+          <Keyword text="case_ru"/>
+          <Keyword text="русский_регистр"/>
+          <Keyword text="chdir"/>
+          <Keyword text="изменить_каталог"/>
+          <Keyword text="check_break"/>
+          <Keyword text="проверить_стоп"/>
+          <Keyword text="check_all_blocks"/>
+          <Keyword text="проверить_все_блоки"/>
+          <Keyword text="crash_file"/>
+          <Keyword text="файл_отчета_об_авосте"/>
+          <Keyword text="crash_message"/>
+          <Keyword text="сообщение_об_авосте"/>
+          <Keyword text="crash_routine"/>
+          <Keyword text="перед_авостом"/>
+          <Keyword text="current_dir"/>
+          <Keyword text="текущий_каталог"/>
+          <Keyword text="cursor"/>
+          <Keyword text="курсор"/>
+          <Keyword text="custom_sort"/>
+          <Keyword text="заказная_сортировка"/>
+          <Keyword text="define_c_func"/>
+          <Keyword text="определить_функцию_Си"/>
+          <Keyword text="define_c_proc"/>
+          <Keyword text="определить_процедуру_Си"/>
+          <Keyword text="define_c_var"/>
+          <Keyword text="определить_переменную_Си"/>
+          <Keyword text="dir"/>
+          <Keyword text="каталог"/>
+          <Keyword text="display_image"/>
+          <Keyword text="вывести_изображение"/>
+          <Keyword text="display_text_image"/>
+          <Keyword text="вывести_образ_текста"/>
+          <Keyword text="dos_interrupt"/>
+          <Keyword text="прерывание_dos"/>
+          <Keyword text="draw_line"/>
+          <Keyword text="линия"/>
+          <Keyword text="ellipse"/>
+          <Keyword text="эллипс"/>
+          <Keyword text="float32_to_atom"/>
+          <Keyword text="плавающее_32_бит_в_атом"/>
+          <Keyword text="float64_to_atom"/>
+          <Keyword text="плавающее_64_бит_в_атом"/>
+          <Keyword text="flush"/>
+          <Keyword text="вытолкнуть_буфер_в_"/>
+          <Keyword text="free"/>
+          <Keyword text="освободить_память"/>
+          <Keyword text="free_console"/>
+          <Keyword text="освободить_консоль"/>
+          <Keyword text="free_low"/>
+          <Keyword text="освободить_память_внизу"/>
+          <Keyword text="get"/>
+          <Keyword text="получить"/>
+          <Keyword text="get_active_page"/>
+          <Keyword text="получить_активную_страницу"/>
+          <Keyword text="get_all_palette"/>
+          <Keyword text="получить_всю_палитру"/>
+          <Keyword text="get_bytes"/>
+          <Keyword text="получить_байты"/>
+          <Keyword text="get_display_page"/>
+          <Keyword text="получить_отображаемую_страницу"/>
+          <Keyword text="get_mouse"/>
+          <Keyword text="что_с_мышью"/>
+          <Keyword text="get_position"/>
+          <Keyword text="выдать_позицию"/>
+          <Keyword text="get_screen_char"/>
+          <Keyword text="получить_символ_с_экрана"/>
+          <Keyword text="get_vector"/>
+          <Keyword text="получить_адрес_вектора"/>
+          <Keyword text="graphics_mode"/>
+          <Keyword text="режим_экрана"/>
+          <Keyword text="instance"/>
+          <Keyword text="экземпляр"/>
+          <Keyword text="int_to_bits"/>
+          <Keyword text="биты_из_целого"/>
+          <Keyword text="int_to_bytes"/>
+          <Keyword text="байты_из_целого"/>
+          <Keyword text="lock_file"/>
+          <Keyword text="запереть_файл"/>
+          <Keyword text="lock_memory"/>
+          <Keyword text="запереть_память"/>
+          <Keyword text="lower"/>
+          <Keyword text="латинский_нижний_регистр"/>
+          <Keyword text="message_box"/>
+          <Keyword text="табличка_сообщения"/>
+          <Keyword text="mouse_events"/>
+          <Keyword text="отслеживать_мышь_по_"/>
+          <Keyword text="mouse_pointer"/>
+          <Keyword text="указатель_мыши"/>
+          <Keyword text="open_dll"/>
+          <Keyword text="открыть_dll"/>
+          <Keyword text="palette"/>
+          <Keyword text="палитра"/>
+          <Keyword text="PI"/>
+          <Keyword text="Пи"/>
+          <Keyword text="polygon"/>
+          <Keyword text="многоугольник"/>
+          <Keyword text="put_screen_char"/>
+          <Keyword text="поместить_символ_на_экран"/>
+          <Keyword text="read_bitmap"/>
+          <Keyword text="читать_биткарту"/>
+          <Keyword text="register_block"/>
+          <Keyword text="учесть_блок"/>
+          <Keyword text="reverse"/>
+          <Keyword text="повернуть"/>
+          <Keyword text="save_bitmap"/>
+          <Keyword text="сохранить_ряд_как_биткарту"/>
+          <Keyword text="save_image"/>
+          <Keyword text="сохранить_изображение_в_ряде"/>
+          <Keyword text="save_screen"/>
+          <Keyword text="сохранить_экран_в_файле"/>
+          <Keyword text="save_text_image"/>
+          <Keyword text="сохранить_образ_текста_в_ряде"/>
+          <Keyword text="scroll"/>
+          <Keyword text="прокрутка"/>
+          <Keyword text="seek"/>
+          <Keyword text="перейти"/>
+          <Keyword text="set_active_page"/>
+          <Keyword text="установить_активную_страницу"/>
+          <Keyword text="set_display_page"/>
+          <Keyword text="установить_отображаемую_страницу"/>
+          <Keyword text="set_rand"/>
+          <Keyword text="установить_датчик_случайных_чисел"/>
+          <Keyword text="set_vector"/>
+          <Keyword text="установить_адрес_вектора"/>
+          <Keyword text="sleep"/>
+          <Keyword text="спать"/>
+          <Keyword text="sort"/>
+          <Keyword text="сортировка"/>
+          <Keyword text="sound"/>
+          <Keyword text="звук"/>
+          <Keyword text="sprint"/>
+          <Keyword text="печатать_в_строковый_ряд"/>
+          <Keyword text="text_color"/>
+          <Keyword text="цвет_текста"/>
+          <Keyword text="text_rows"/>
+          <Keyword text="число_строк"/>
+          <Keyword text="tick_rate"/>
+          <Keyword text="частота_часов"/>
+          <Keyword text="unlock_file"/>
+          <Keyword text="отпереть_файл"/>
+          <Keyword text="unregister_block"/>
+          <Keyword text="вычеркнуть_блок"/>
+          <Keyword text="upper"/>
+          <Keyword text="латинский_верхний_регистр"/>
+          <Keyword text="use_vesa"/>
+          <Keyword text="использовать_vesa"/>
+          <Keyword text="value"/>
+          <Keyword text="величина"/>
+          <Keyword text="video_config"/>
+          <Keyword text="видео_конфигурация"/>
+          <Keyword text="wait_key"/>
+          <Keyword text="ждать_клавишу"/>
+          <Keyword text="where"/>
+          <Keyword text="где"/>
+          <Keyword text="wildcard_file"/>
+          <Keyword text="искать_имя_файла_с_догадками"/>
+          <Keyword text="wildcard_match"/>
+          <Keyword text="искать_в_строке_с_догадками"/>
+          <Keyword text="wrap"/>
+          <Keyword text="перенос"/>
+          <Keyword text="prompt_string"/>
+          <Keyword text="ввести_строку"/>
+          <Keyword text="prompt_number"/>
+          <Keyword text="ввести_число"/>
+          <Keyword text="walk_dir"/>
+          <Keyword text="пройти_каталог"/>
+          <Keyword text="allow_break"/>
+          <Keyword text="разрешить_стоп"/>
+          <Keyword text="check_break"/>
+          <Keyword text="проверить_стоп"/>
+          <Keyword text="check_free_list"/>
+          <Keyword text="проверить_список_свободных_мест"/>
+          <Keyword text="db_close"/>
+          <Keyword text="бд_закрыть"/>
+          <Keyword text="db_compress"/>
+          <Keyword text="бд_сжать"/>
+          <Keyword text="db_create"/>
+          <Keyword text="бд_создать"/>
+          <Keyword text="db_create_table"/>
+          <Keyword text="бд_создать_таблицу"/>
+          <Keyword text="db_delete_record"/>
+          <Keyword text="бд_удалить_запись"/>
+          <Keyword text="db_delete_table"/>
+          <Keyword text="бд_удалить_таблицу"/>
+          <Keyword text="db_dump"/>
+          <Keyword text="бд_распечатать_в_файл"/>
+          <Keyword text="db_find_key"/>
+          <Keyword text="бд_найти_ключ"/>
+          <Keyword text="db_insert"/>
+          <Keyword text="бд_вставить"/>
+          <Keyword text="db_open"/>
+          <Keyword text="бд_открыть"/>
+          <Keyword text="db_record_data"/>
+          <Keyword text="бд_данные_записи"/>
+          <Keyword text="db_record_key"/>
+          <Keyword text="бд_данные_ключа"/>
+          <Keyword text="db_replace_data"/>
+          <Keyword text="бд_заменить_данные"/>
+          <Keyword text="db_rename_table"/>
+          <Keyword text="бд_переименовать_таблицу"/>
+          <Keyword text="db_select"/>
+          <Keyword text="бд_выбрать"/>
+          <Keyword text="db_select_table"/>
+          <Keyword text="бд_выбрать_таблицу"/>
+          <Keyword text="db_table_list"/>
+          <Keyword text="бд_список_таблиц"/>
+          <Keyword text="db_table_size"/>
+          <Keyword text="бд_размер_таблицы"/>
+          <Keyword text="recode"/>
+          <Keyword text="перекодировать"/>
+          <Keyword text="e"/>
+          <Keyword text="database"/>
+          <Keyword text="databasr"/>
+          <Keyword text="dll"/>
+          <Keyword text="dll____r"/>
+          <Keyword text="file"/>
+          <Keyword text="file___r"/>
+          <Keyword text="get"/>
+          <Keyword text="get____r"/>
+          <Keyword text="graphics"/>
+          <Keyword text="graphicr"/>
+          <Keyword text="image"/>
+          <Keyword text="image__r"/>
+          <Keyword text="machine"/>
+          <Keyword text="machiner"/>
+          <Keyword text="misc"/>
+          <Keyword text="misc___r"/>
+          <Keyword text="mouse"/>
+          <Keyword text="mouse__r"/>
+          <Keyword text="msgbox"/>
+          <Keyword text="msgbox_r"/>
+          <Keyword text="safe"/>
+          <Keyword text="safe___r"/>
+          <Keyword text="sort"/>
+          <Keyword text="sort___r"/>
+          <Keyword text="wildcard"/>
+          <Keyword text="wildcarr"/>
+          <Keyword text="ports"/>
+          <Keyword text="ports__r"/>
+          <Keyword text="dma"/>
+          <Keyword text="dma____r"/>
+          <Keyword text="rus_add"/>
+          <Keyword text="rus_addr"/>
+        </Keywords>
+      </Style>
+      <Style name="Constants" image="7" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+          <Block open="todo" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

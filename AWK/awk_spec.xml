@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="awk" name="Awk" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.awk"/>
+      <OpenClose>()[]{}''""</OpenClose>
+      <EscapeChar>\</EscapeChar>
+      <Operators>?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]{}$</Operators>
+      <Delimiters>@</Delimiters>      
+      <Words init="A-Za-z_">0-9A-Za-z_</Words>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="Function" match="function\s+(\w+)\s*(\([^.;)]*\))\s*\{" name="\1" descr="function \1 \2" image="6" scope="1"/>
+    </LABELS>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="char"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Blocks>
+          <Block open="0x">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="BEGIN"/>
+          <Keyword text="END"/>
+          <Keyword text="break"/>
+          <Keyword text="continue"/>
+          <Keyword text="do"/>
+          <Keyword text="else"/>
+          <Keyword text="exit"/>
+          <Keyword text="for"/>
+          <Keyword text="func"/>
+          <Keyword text="function"/>
+          <Keyword text="if"/>
+          <Keyword text="in"/>
+          <Keyword text="next"/>
+          <Keyword text="nextfile"/>
+          <Keyword text="return"/>
+          <Keyword text="while"/>
+        </Keywords>
+      </Style>
+      <Style name="Functions" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="and"/>
+          <Keyword text="asort"/>
+          <Keyword text="asorti"/>
+          <Keyword text="atan2"/>
+          <Keyword text="bindtextdomain"/>
+          <Keyword text="close"/>
+          <Keyword text="compl"/>
+          <Keyword text="cos"/>
+          <Keyword text="dcgettext"/>
+          <Keyword text="dcngettext"/>
+          <Keyword text="delete"/>
+          <Keyword text="exp"/>
+          <Keyword text="extension"/>
+          <Keyword text="fflush"/>
+          <Keyword text="gensub"/>
+          <Keyword text="getline"/>
+          <Keyword text="gsub"/>
+          <Keyword text="index"/>
+          <Keyword text="int"/>
+          <Keyword text="length"/>
+          <Keyword text="log"/>
+          <Keyword text="lshift"/>
+          <Keyword text="match"/>
+          <Keyword text="mktime"/>
+          <Keyword text="or"/>
+          <Keyword text="print"/>
+          <Keyword text="printf"/>
+          <Keyword text="rand"/>
+          <Keyword text="rshift"/>
+          <Keyword text="sin"/>
+          <Keyword text="split"/>
+          <Keyword text="sprintf"/>
+          <Keyword text="sqrt"/>
+          <Keyword text="srand"/>
+          <Keyword text="strftime"/>
+          <Keyword text="strtonum"/>
+          <Keyword text="sub"/>
+          <Keyword text="substr"/>
+          <Keyword text="system"/>
+          <Keyword text="systime"/>
+          <Keyword text="tolower"/>
+          <Keyword text="toupper"/>
+          <Keyword text="xor"/>
+        </Keywords>
+      </Style>
+      <Style name="Constants" image="7" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ARGC"/>
+          <Keyword text="ARGIND"/>
+          <Keyword text="ARGV"/>
+          <Keyword text="BINMODE"/>
+          <Keyword text="CONVFMT"/>
+          <Keyword text="ENVIRON"/>
+          <Keyword text="ERRNO"/>
+          <Keyword text="FIELDWIDTHS"/>
+          <Keyword text="FILENAME"/>
+          <Keyword text="FNR"/>
+          <Keyword text="FS"/>
+          <Keyword text="IGNORECASE"/>
+          <Keyword text="LINT"/>
+          <Keyword text="NF"/>
+          <Keyword text="NR"/>
+          <Keyword text="OFMT"/>
+          <Keyword text="OFS"/>
+          <Keyword text="ORS"/>
+          <Keyword text="PROCINFO"/>
+          <Keyword text="RLENGTH"/>
+          <Keyword text="RS"/>
+          <Keyword text="RSTART"/>
+          <Keyword text="RT"/>
+          <Keyword text="SUBSEP"/>
+          <Keyword text="TEXTDOMAIN"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

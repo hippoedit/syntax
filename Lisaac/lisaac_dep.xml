@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="Dependency"/>
+  <SYNTAX id="lisaac">	
+	<Description>&lt;h3&gt;Concept&lt;/h3&gt;Small prototype-based programming language.The ideas in Lisaac are mostly inspired by Smalltalk (all values are objects), Self (prototype-based) and Eiffel (design by contract).&lt;/br&gt;
+&lt;h3&gt;Platforms&lt;/h3&gt;All platforms (host/target specific for GCC) 
+&lt;h3&gt;Features&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Pure object language&lt;/li&gt;
+&lt;li&gt;very fast (like C code)&lt;/li&gt;
+&lt;li&gt;dynamic and multiple inheritance&lt;/li&gt;
+&lt;li&gt;dynamic definition slot&lt;/li&gt;
+&lt;li&gt;static typing (invariant)&lt;/li&gt; 
+&lt;li&gt;genericity type&lt;/li&gt;
+&lt;li&gt;auto-cast type system&lt;/li&gt;
+&lt;li&gt;programming by contract&lt;/li&gt;
+&lt;li&gt;interrupt manager&lt;/li&gt;
+&lt;li&gt;include C code facilities&lt;/ul&gt;</Description>
+	<Link url="http://isaacproject.u-strasbg.fr/li.html" name="Isaac project" descr="Lisaac: The power of simplicity at work for operating systems"/>
+	<Forum url="http://forum.hippoedit.com/index.php/topic,490.0.html"/>
+  </SYNTAX>
+</XMLConfigSettings>

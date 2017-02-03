@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="ascii" name="ASCII" inherit="def_text" inherit_url="deftext_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.nfo;*.diz;*.ion;"/>
+      <Encoding default="437" force="true"/> 
+      <WordWrap mode="0"/>
+      <Formatting tab_size="4" tab_mode="2"/>
+      <Display outlining="false" line_numbers="false" indicator_margin="false" current_line="true" white_space="false" trailing_white_space="false" scope_separator="true" scope_nesting="false" alternating="false" guides="false" changed_lines="true" ruler="false" virtual_spaces="false" inactive_code="false" page_break="true"/>
+    </SPECIFICATION>
+    <FONTS>
+      <Font only_monospaced="true"/>
+    </FONTS>
+    <STYLES>
+      <Style name="Alt Graphics" bold="0" italic="0" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Regexp text="[[:unicode:]]+"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

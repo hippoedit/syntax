@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="fortran" name="Fortran" version="1.2" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.ftn;*.fpp;*.f03;*.f08;*.f90;*.f95"/>
+      <OpenClose>()[]{}''""</OpenClose>
+      <Operators>?%--+/&amp;*=&lt;&gt;|!~^,;:()[]</Operators>
+      <Numbers>0-9._DPEde</Numbers>
+      <Words init="A-Za-z.">0-9A-Za-z_.</Words>
+      <Bars navigation="true"/>
+      <WordWrap page_width="132" show_page_width="true"/>
+      <!--<MaxLineLength>72</MaxLineLength>-->
+    </SPECIFICATION>
+    <FORMAT>
+      <DefaultKeywordCase>4</DefaultKeywordCase>
+      <FormatWords>
+        <FormatWord word="case" next_line="true" range_sentence="true"/>
+        <FormatWord word="do" next_line="true" range_sentence="true"/>
+        <FormatWord word="else" next_line="true" range_sentence="true"/>
+        <FormatWord word="then" next_line="true" range_sentence="true"/>
+      </FormatWords>
+    </FORMAT>
+    <SCOPES>
+      <Scope open="do" middle="while" close="end do" strict="false">
+        <Close text="continuе"/>
+        <Close text="enddo"/>
+      </Scope>
+      <Scope open="select case" middle="case" close="end select"/>
+      <Scope open="where" middle="elsewhere" close="end where"/>
+      <Scope open="if" middle="then" close="end if" strict="false">
+        <Close text="endif"/>
+        <Middle text="else"/>
+        <Middle text="else if"/>
+        <Middle text="elseif"/>
+      </Scope>
+      <Scope open="function" close="end">
+        <Close text="end function" />
+      </Scope>
+      <Scope open="subroutine" close="end">
+        <Close text="end subroutine"/>
+      </Scope>
+      <Scope open="module" close="end">
+        <Close text="end module"/>
+      </Scope>
+      <Scope open="program" close="end">
+        <Close text="end program"/>
+      </Scope>
+      <Scope open="block data" close="end">
+        <Close text="end block data"/>
+      </Scope>
+      <Scope open="enum" close="end enum"/>
+      <Scope open="associate" close="end associate"/>
+      <Scope open="forall" close="end forall"/>
+      <Scope open="interface" close="end interface"/>
+      <Scope open="select" close="end select"/>
+      <Scope open="type" close="end type" strict="false"/>
+    </SCOPES>
+    <LABELS>
+      <Label group="Exits" match="\&lt;(continue)\&gt;" name="\1" descr="\1" navigation="false" marker="19" context="exit_scope"/>
+      <Label group="Exits" match="\&lt;(goto)\s+(\d+)" name="\1" descr="\1 \2" navigation="false" marker="20" context="exit_all"/>
+      <Label group="Exits" match="\&lt;(stop|return)\&gt;" name="\1" descr="\1" navigation="false" marker="20" context="exit_all"/>
+      <Label group="Module" match="^[ \t]+\module\s+(\w+)" name="\1" descr="\1" image="15" scope="1"/>
+      <Label group="Subroutine" match="^[ \t]+subroutine\s+(\w+)\s*(\([^)]*\))?" name="\1" descr="\1 \2" image="9" scope="1" style="functions" highlight="\1"/>
+      <Label group="Function" match="([\w()]+[ \t]+)?\&lt;function\s+(\w+)\s*(\([^)]*\))" name="\2" descr="\1\2 \3" image="6" scope="1" style="functions" highlight="\2"/>
+    </LABELS>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="char"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Blocks>
+          <Block open="0x">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="!" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="??" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="label" name="Label" bold="1" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Regexp text="^[\d]{1,5}"/>
+          <Regexp text="^\s{1}[\d]{1,4}"/>
+          <Regexp text="^\s{2}[\d]{1,3}"/>
+          <Regexp text="^\s{3}[\d]{1,2}"/>
+          <Regexp text="^\s{4}\d"/>
+        </Blocks>
+      </Style>
+      <Style name="Reserved Words" descr="Fortran 95 reserved words (logical operators, specifiers,...)" image="7" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text=".ge."/>
+          <Keyword text=".gt."/>
+          <Keyword text=".le."/>
+          <Keyword text=".lt."/>
+          <Keyword text=".ne."/>
+          <Keyword text=".eq."/>
+          <Keyword text=".or."/>
+          <Keyword text=".and."/>
+          <Keyword text=".not."/>
+          <Keyword text=".false."/>
+          <Keyword text=".true."/>
+        </Keywords>
+      </Style>
+      <Style name="Statements and Keywords" descr="Fortran 95/2003 statements and keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="abstract"/>
+          <Keyword text="access"/>
+          <Keyword text="action"/>
+          <Keyword text="advance"/>
+          <Keyword text="allocatable"/>
+          <Keyword text="allocate"/>
+          <Keyword text="apostrophe"/>
+          <Keyword text="assign"/>
+          <Keyword text="assignment"/>
+          <Keyword text="associate"/>
+          <Keyword text="associate"/>
+          <Keyword text="asynchronous"/>
+          <Keyword text="backspace"/>
+          <Keyword text="bind"/>
+          <Keyword text="blank"/>
+          <Keyword text="blockdata"/>
+          <Keyword text="call"/>
+          <Keyword text="case"/>
+          <Keyword text="character"/>
+          <Keyword text="class"/>
+          <Keyword text="close"/>
+          <Keyword text="comma"/>
+          <Keyword text="common"/>
+          <Keyword text="compatible"/>
+          <Keyword text="complex"/>
+          <Keyword text="contains"/>
+          <Keyword text="continue"/>
+          <Keyword text="cycle"/>
+          <Keyword text="data"/>
+          <Keyword text="dc"/>
+          <Keyword text="deallocate"/>
+          <Keyword text="decimal"/>
+          <Keyword text="default"/>
+          <Keyword text="deferred"/>
+          <Keyword text="delim"/>
+          <Keyword text="dimension"/>
+          <Keyword text="direct"/>
+          <Keyword text="do"/>
+          <Keyword text="double"/>
+          <Keyword text="doubleprecision"/>
+          <Keyword text="dowhile"/>
+          <Keyword text="down"/>
+          <Keyword text="dp"/>
+          <Keyword text="dt"/>
+          <Keyword text="elemental"/>
+          <Keyword text="else"/>
+          <Keyword text="elseif"/>
+          <Keyword text="elsewhere"/>
+          <Keyword text="encoding"/>
+          <Keyword text="end associate"/>
+          <Keyword text="end block data"/>
+          <Keyword text="end do"/>
+          <Keyword text="end forall"/>
+          <Keyword text="end function"/>
+          <Keyword text="end if"/>
+          <Keyword text="end interface"/>
+          <Keyword text="end module"/>
+          <Keyword text="end program"/>
+          <Keyword text="end select"/>
+          <Keyword text="end subroutine"/>
+          <Keyword text="end type"/>
+          <Keyword text="end where"/>
+          <Keyword text="end"/>
+          <Keyword text="enddo"/>
+          <Keyword text="endif"/>
+          <Keyword text="endassociate"/>
+          <Keyword text="endenum"/>
+          <Keyword text="endfile"/>
+          <Keyword text="entry"/>
+          <Keyword text="enum"/>
+          <Keyword text="enumerator"/>
+          <Keyword text="eor"/>
+          <Keyword text="equivalence"/>
+          <Keyword text="err"/>
+          <Keyword text="errmsg"/>
+          <Keyword text="exist"/>
+          <Keyword text="exit"/>
+          <Keyword text="extends"/>
+          <Keyword text="extensible"/>
+          <Keyword text="external"/>
+          <Keyword text="file"/>
+          <Keyword text="final"/>
+          <Keyword text="flush"/>
+          <Keyword text="fmt"/>
+          <Keyword text="forall"/>
+          <Keyword text="form"/>
+          <Keyword text="format"/>
+          <Keyword text="formatted"/>
+          <Keyword text="function"/>
+          <Keyword text="generic"/>
+          <Keyword text="go"/>
+          <Keyword text="goto"/>
+          <Keyword text="id"/>
+          <Keyword text="id"/>
+          <Keyword text="if"/>
+          <Keyword text="implicit"/>
+          <Keyword text="import"/>
+          <Keyword text="in"/>
+          <Keyword text="include"/>
+          <Keyword text="inout"/>
+          <Keyword text="inquire"/>
+          <Keyword text="integer"/>
+          <Keyword text="intent"/>
+          <Keyword text="interface"/>
+          <Keyword text="intrinsic"/>
+          <Keyword text="iolength"/>
+          <Keyword text="iomsg"/>
+          <Keyword text="iostat"/>
+          <Keyword text="is"/>
+          <Keyword text="kind"/>
+          <Keyword text="len"/>
+          <Keyword text="listdirected"/>
+          <Keyword text="logical"/>
+          <Keyword text="module"/>
+          <Keyword text="name"/>
+          <Keyword text="named"/>
+          <Keyword text="namelist"/>
+          <Keyword text="nextrec"/>
+          <Keyword text="nml"/>
+          <Keyword text="no"/>
+          <Keyword text="non_intrinsic"/>
+          <Keyword text="non_overridable"/>
+          <Keyword text="none"/>
+          <Keyword text="nopass"/>
+          <Keyword text="nullify"/>
+          <Keyword text="number"/>
+          <Keyword text="only"/>
+          <Keyword text="open"/>
+          <Keyword text="opened"/>
+          <Keyword text="operator"/>
+          <Keyword text="optional"/>
+          <Keyword text="out"/>
+          <Keyword text="pad"/>
+          <Keyword text="parameter"/>
+          <Keyword text="pass"/>
+          <Keyword text="pause"/>
+          <Keyword text="pending"/>
+          <Keyword text="point"/>
+          <Keyword text="pointer"/>
+          <Keyword text="pos"/>
+          <Keyword text="position"/>
+          <Keyword text="precision"/>
+          <Keyword text="print"/>
+          <Keyword text="private"/>
+          <Keyword text="procedure"/>
+          <Keyword text="processor_defined"/>
+          <Keyword text="program"/>
+          <Keyword text="protected"/>
+          <Keyword text="public"/>
+          <Keyword text="pure"/>
+          <Keyword text="quote"/>
+          <Keyword text="rc"/>
+          <Keyword text="rd"/>
+          <Keyword text="read"/>
+          <Keyword text="readwrite"/>
+          <Keyword text="real"/>
+          <Keyword text="rec"/>
+          <Keyword text="recl"/>
+          <Keyword text="recursive"/>
+          <Keyword text="result"/>
+          <Keyword text="return"/>
+          <Keyword text="rewind"/>
+          <Keyword text="rn"/>
+          <Keyword text="round"/>
+          <Keyword text="ru"/>
+          <Keyword text="rz"/>
+          <Keyword text="save"/>
+          <Keyword text="select"/>
+          <Keyword text="selectcase"/>
+          <Keyword text="selecttype"/>
+          <Keyword text="sequence"/>
+          <Keyword text="sequential"/>
+          <Keyword text="sign"/>
+          <Keyword text="size"/>
+          <Keyword text="source"/>
+          <Keyword text="stat"/>
+          <Keyword text="status"/>
+          <Keyword text="stop"/>
+          <Keyword text="stream"/>
+          <Keyword text="submodule"/>
+          <Keyword text="subroutine"/>
+          <Keyword text="target"/>
+          <Keyword text="then"/>
+          <Keyword text="to"/>
+          <Keyword text="type"/>
+          <Keyword text="unformatted"/>
+          <Keyword text="unit"/>
+          <Keyword text="up"/>
+          <Keyword text="use"/>
+          <Keyword text="value"/>
+          <Keyword text="value"/>
+          <Keyword text="volatile"/>
+          <Keyword text="wait"/>
+          <Keyword text="where"/>
+          <Keyword text="while"/>
+          <Keyword text="write"/>
+          <Keyword text="yes"/>
+        </Keywords>
+      </Style>
+      <Style name="Intrinsic Procedures" descr="Fortran 95/2003 intrinsic procedures" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="abs"/>
+          <Keyword text="achar"/>
+          <Keyword text="acos"/>
+          <Keyword text="acosd"/>
+          <Keyword text="adjustl"/>
+          <Keyword text="adjustr"/>
+          <Keyword text="aimag"/>
+          <Keyword text="aimax0"/>
+          <Keyword text="aimin0"/>
+          <Keyword text="aint"/>
+          <Keyword text="ajmax0"/>
+          <Keyword text="ajmin0"/>
+          <Keyword text="akmax0"/>
+          <Keyword text="akmin0"/>
+          <Keyword text="all"/>
+          <Keyword text="allocated"/>
+          <Keyword text="alog"/>
+          <Keyword text="alog10"/>
+          <Keyword text="amax0"/>
+          <Keyword text="amax1"/>
+          <Keyword text="amin0"/>
+          <Keyword text="amin1"/>
+          <Keyword text="amod"/>
+          <Keyword text="anint"/>
+          <Keyword text="any"/>
+          <Keyword text="asin"/>
+          <Keyword text="asind"/>
+          <Keyword text="associated"/>
+          <Keyword text="atan"/>
+          <Keyword text="atan2"/>
+          <Keyword text="atan2d"/>
+          <Keyword text="atand"/>
+          <Keyword text="bit_size"/>
+          <Keyword text="bitest"/>
+          <Keyword text="bitl"/>
+          <Keyword text="bitlr"/>
+          <Keyword text="bitrl"/>
+          <Keyword text="bjtest"/>
+          <Keyword text="bktest"/>
+          <Keyword text="break"/>
+          <Keyword text="btest"/>
+          <Keyword text="cabs"/>
+          <Keyword text="ccos"/>
+          <Keyword text="cdabs"/>
+          <Keyword text="cdcos"/>
+          <Keyword text="cdexp"/>
+          <Keyword text="cdlog"/>
+          <Keyword text="cdsin"/>
+          <Keyword text="cdsqrt"/>
+          <Keyword text="ceiling"/>
+          <Keyword text="cexp"/>
+          <Keyword text="char"/>
+          <Keyword text="clog"/>
+          <Keyword text="cmplx"/>
+          <Keyword text="command_argument_count"/>
+          <Keyword text="conjg"/>
+          <Keyword text="cos"/>
+          <Keyword text="cosd"/>
+          <Keyword text="cosh"/>
+          <Keyword text="count"/>
+          <Keyword text="cpu_time"/>
+          <Keyword text="cshift"/>
+          <Keyword text="csin"/>
+          <Keyword text="csqrt"/>
+          <Keyword text="dabs"/>
+          <Keyword text="dacos"/>
+          <Keyword text="dacosd"/>
+          <Keyword text="dasin"/>
+          <Keyword text="dasind"/>
+          <Keyword text="datan"/>
+          <Keyword text="datan2"/>
+          <Keyword text="datan2d"/>
+          <Keyword text="datand"/>
+          <Keyword text="date"/>
+          <Keyword text="date_and_time"/>
+          <Keyword text="dble"/>
+          <Keyword text="dcmplx"/>
+          <Keyword text="dconjg"/>
+          <Keyword text="dcos"/>
+          <Keyword text="dcosd"/>
+          <Keyword text="dcosh"/>
+          <Keyword text="dcotan"/>
+          <Keyword text="ddim"/>
+          <Keyword text="dexp"/>
+          <Keyword text="dfloat"/>
+          <Keyword text="dfloti"/>
+          <Keyword text="dflotj"/>
+          <Keyword text="dflotk"/>
+          <Keyword text="digits"/>
+          <Keyword text="dim"/>
+          <Keyword text="dimag"/>
+          <Keyword text="dint"/>
+          <Keyword text="dlog"/>
+          <Keyword text="dlog10"/>
+          <Keyword text="dmax1"/>
+          <Keyword text="dmin1"/>
+          <Keyword text="dmod"/>
+          <Keyword text="dnint"/>
+          <Keyword text="dot_product"/>
+          <Keyword text="dprod"/>
+          <Keyword text="dreal"/>
+          <Keyword text="dsign"/>
+          <Keyword text="dsin"/>
+          <Keyword text="dsind"/>
+          <Keyword text="dsinh"/>
+          <Keyword text="dsqrt"/>
+          <Keyword text="dtan"/>
+          <Keyword text="dtand"/>
+          <Keyword text="dtanh"/>
+          <Keyword text="eoshift"/>
+          <Keyword text="epsilon"/>
+          <Keyword text="errsns"/>
+          <Keyword text="exp"/>
+          <Keyword text="exponent"/>
+          <Keyword text="extends_type_of"/>
+          <Keyword text="float"/>
+          <Keyword text="floati"/>
+          <Keyword text="floatj"/>
+          <Keyword text="floatk"/>
+          <Keyword text="floor"/>
+          <Keyword text="fraction"/>
+          <Keyword text="free"/>
+          <Keyword text="get_command"/>
+          <Keyword text="get_command_argument"/>
+          <Keyword text="get_environment_variable"/>
+          <Keyword text="huge"/>
+          <Keyword text="iabs"/>
+          <Keyword text="iachar"/>
+          <Keyword text="iand"/>
+          <Keyword text="ibclr"/>
+          <Keyword text="ibits"/>
+          <Keyword text="ibset"/>
+          <Keyword text="ichar"/>
+          <Keyword text="idate"/>
+          <Keyword text="idim"/>
+          <Keyword text="idint"/>
+          <Keyword text="idnint"/>
+          <Keyword text="ieor"/>
+          <Keyword text="ifix"/>
+          <Keyword text="iiabs"/>
+          <Keyword text="iiand"/>
+          <Keyword text="iibclr"/>
+          <Keyword text="iibits"/>
+          <Keyword text="iibset"/>
+          <Keyword text="iidim"/>
+          <Keyword text="iidint"/>
+          <Keyword text="iidnnt"/>
+          <Keyword text="iieor"/>
+          <Keyword text="iifix"/>
+          <Keyword text="iint"/>
+          <Keyword text="iior"/>
+          <Keyword text="iiqint"/>
+          <Keyword text="iiqnnt"/>
+          <Keyword text="iishft"/>
+          <Keyword text="iishftc"/>
+          <Keyword text="iisign"/>
+          <Keyword text="ilen"/>
+          <Keyword text="imax0"/>
+          <Keyword text="imax1"/>
+          <Keyword text="imin0"/>
+          <Keyword text="imin1"/>
+          <Keyword text="imod"/>
+          <Keyword text="index"/>
+          <Keyword text="inint"/>
+          <Keyword text="inot"/>
+          <Keyword text="int"/>
+          <Keyword text="int1"/>
+          <Keyword text="int2"/>
+          <Keyword text="int4"/>
+          <Keyword text="int8"/>
+          <Keyword text="ior"/>
+          <Keyword text="iqint"/>
+          <Keyword text="iqnint"/>
+          <Keyword text="is_iostat_end"/>
+          <Keyword text="is_iostat_eor"/>
+          <Keyword text="ishft"/>
+          <Keyword text="ishftc"/>
+          <Keyword text="isign"/>
+          <Keyword text="isnan"/>
+          <Keyword text="izext"/>
+          <Keyword text="jiand"/>
+          <Keyword text="jibclr"/>
+          <Keyword text="jibits"/>
+          <Keyword text="jibset"/>
+          <Keyword text="jidim"/>
+          <Keyword text="jidint"/>
+          <Keyword text="jidnnt"/>
+          <Keyword text="jieor"/>
+          <Keyword text="jifix"/>
+          <Keyword text="jint"/>
+          <Keyword text="jior"/>
+          <Keyword text="jiqint"/>
+          <Keyword text="jiqnnt"/>
+          <Keyword text="jishft"/>
+          <Keyword text="jishftc"/>
+          <Keyword text="jisign"/>
+          <Keyword text="jmax0"/>
+          <Keyword text="jmax1"/>
+          <Keyword text="jmin0"/>
+          <Keyword text="jmin1"/>
+          <Keyword text="jmod"/>
+          <Keyword text="jnint"/>
+          <Keyword text="jnot"/>
+          <Keyword text="jzext"/>
+          <Keyword text="kiabs"/>
+          <Keyword text="kiand"/>
+          <Keyword text="kibclr"/>
+          <Keyword text="kibits"/>
+          <Keyword text="kibset"/>
+          <Keyword text="kidim"/>
+          <Keyword text="kidint"/>
+          <Keyword text="kidnnt"/>
+          <Keyword text="kieor"/>
+          <Keyword text="kifix"/>
+          <Keyword text="kind"/>
+          <Keyword text="kint"/>
+          <Keyword text="kior"/>
+          <Keyword text="kishft"/>
+          <Keyword text="kishftc"/>
+          <Keyword text="kisign"/>
+          <Keyword text="kmax0"/>
+          <Keyword text="kmax1"/>
+          <Keyword text="kmin0"/>
+          <Keyword text="kmin1"/>
+          <Keyword text="kmod"/>
+          <Keyword text="knint"/>
+          <Keyword text="knot"/>
+          <Keyword text="kzext"/>
+          <Keyword text="lbound"/>
+          <Keyword text="leadz"/>
+          <Keyword text="len"/>
+          <Keyword text="len_trim"/>
+          <Keyword text="lenlge"/>
+          <Keyword text="lge"/>
+          <Keyword text="lgt"/>
+          <Keyword text="lle"/>
+          <Keyword text="llt"/>
+          <Keyword text="log"/>
+          <Keyword text="log10"/>
+          <Keyword text="lshift"/>
+          <Keyword text="malloc"/>
+          <Keyword text="matmul"/>
+          <Keyword text="max"/>
+          <Keyword text="max0"/>
+          <Keyword text="max1"/>
+          <Keyword text="maxexponent"/>
+          <Keyword text="maxloc"/>
+          <Keyword text="maxval"/>
+          <Keyword text="merge"/>
+          <Keyword text="min"/>
+          <Keyword text="min0"/>
+          <Keyword text="min1"/>
+          <Keyword text="minexponent"/>
+          <Keyword text="minloc"/>
+          <Keyword text="minval"/>
+          <Keyword text="mod"/>
+          <Keyword text="modulo"/>
+          <Keyword text="move_alloc"/>
+          <Keyword text="mvbits"/>
+          <Keyword text="nearest"/>
+          <Keyword text="new_line"/>
+          <Keyword text="nint"/>
+          <Keyword text="not"/>
+          <Keyword text="number_of_processors"/>
+          <Keyword text="nworkers"/>
+          <Keyword text="pack"/>
+          <Keyword text="popcnt"/>
+          <Keyword text="poppar"/>
+          <Keyword text="present"/>
+          <Keyword text="product"/>
+          <Keyword text="radix"/>
+          <Keyword text="random"/>
+          <Keyword text="random_number"/>
+          <Keyword text="random_seed"/>
+          <Keyword text="range"/>
+          <Keyword text="repeat"/>
+          <Keyword text="reshape"/>
+          <Keyword text="rrspacing"/>
+          <Keyword text="rshift"/>
+          <Keyword text="same_type_as"/>
+          <Keyword text="scale"/>
+          <Keyword text="scan"/>
+          <Keyword text="secnds"/>
+          <Keyword text="selected_char_kind"/>
+          <Keyword text="selected_int_kind"/>
+          <Keyword text="selected_real_kind"/>
+          <Keyword text="set_exponent"/>
+          <Keyword text="shape"/>
+          <Keyword text="sign"/>
+          <Keyword text="sin"/>
+          <Keyword text="sind"/>
+          <Keyword text="sinh"/>
+          <Keyword text="size"/>
+          <Keyword text="sizeof"/>
+          <Keyword text="sngl"/>
+          <Keyword text="snglq"/>
+          <Keyword text="spacing"/>
+          <Keyword text="spread"/>
+          <Keyword text="sqrt"/>
+          <Keyword text="sum"/>
+          <Keyword text="system_clock"/>
+          <Keyword text="tan"/>
+          <Keyword text="tand"/>
+          <Keyword text="tanh"/>
+          <Keyword text="tiny"/>
+          <Keyword text="transfer"/>
+          <Keyword text="transpose"/>
+          <Keyword text="trim"/>
+          <Keyword text="ubound"/>
+          <Keyword text="unpack"/>
+          <Keyword text="verify"/>
+        </Keywords>
+      </Style>
+      <Style id="functions" name="User Functions" image="9" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="cdabs"/>
+          <Keyword text="cdcos"/>
+          <Keyword text="cdexp"/>
+          <Keyword text="cdlog"/>
+          <Keyword text="cdsin"/>
+          <Keyword text="cdsqrt"/>
+          <Keyword text="cotan"/>
+          <Keyword text="cotand"/>
+          <Keyword text="dcmplx"/>
+          <Keyword text="dconjg"/>
+          <Keyword text="dcotan"/>
+          <Keyword text="dcotand"/>
+          <Keyword text="decode"/>
+          <Keyword text="dimag"/>
+          <Keyword text="dll_export"/>
+          <Keyword text="dll_import"/>
+          <Keyword text="doublecomplex"/>
+          <Keyword text="dreal"/>
+          <Keyword text="dvchk"/>
+          <Keyword text="encode"/>
+          <Keyword text="find"/>
+          <Keyword text="flen"/>
+          <Keyword text="getarg"/>
+          <Keyword text="getcharqq"/>
+          <Keyword text="getcl"/>
+          <Keyword text="getdat"/>
+          <Keyword text="getenv"/>
+          <Keyword text="gettim"/>
+          <Keyword text="hfix"/>
+          <Keyword text="ibchng"/>
+          <Keyword text="identifier"/>
+          <Keyword text="imag"/>
+          <Keyword text="int1"/>
+          <Keyword text="int2"/>
+          <Keyword text="int4"/>
+          <Keyword text="intc"/>
+          <Keyword text="intrup"/>
+          <Keyword text="invalop"/>
+          <Keyword text="iostat_msg"/>
+          <Keyword text="isha"/>
+          <Keyword text="ishc"/>
+          <Keyword text="ishl"/>
+          <Keyword text="jfix"/>
+          <Keyword text="lacfar"/>
+          <Keyword text="locking"/>
+          <Keyword text="locnear"/>
+          <Keyword text="map"/>
+          <Keyword text="nargs"/>
+          <Keyword text="nbreak"/>
+          <Keyword text="ndperr"/>
+          <Keyword text="ndpexc"/>
+          <Keyword text="offset"/>
+          <Keyword text="ovefl"/>
+          <Keyword text="peekcharqq"/>
+          <Keyword text="precfill"/>
+          <Keyword text="prompt"/>
+          <Keyword text="qabs"/>
+          <Keyword text="qacos"/>
+          <Keyword text="qacosd"/>
+          <Keyword text="qasin"/>
+          <Keyword text="qasind"/>
+          <Keyword text="qatan"/>
+          <Keyword text="qatand"/>
+          <Keyword text="qatan2"/>
+          <Keyword text="qcmplx"/>
+          <Keyword text="qconjg"/>
+          <Keyword text="qcos"/>
+          <Keyword text="qcosd"/>
+          <Keyword text="qcosh"/>
+          <Keyword text="qdim"/>
+          <Keyword text="qexp"/>
+          <Keyword text="qext"/>
+          <Keyword text="qextd"/>
+          <Keyword text="qfloat"/>
+          <Keyword text="qimag"/>
+          <Keyword text="qlog"/>
+          <Keyword text="qlog10"/>
+          <Keyword text="qmax1"/>
+          <Keyword text="qmin1"/>
+          <Keyword text="qmod"/>
+          <Keyword text="qreal"/>
+          <Keyword text="qsign"/>
+          <Keyword text="qsin"/>
+          <Keyword text="qsind"/>
+          <Keyword text="qsinh"/>
+          <Keyword text="qsqrt"/>
+          <Keyword text="qtan"/>
+          <Keyword text="qtand"/>
+          <Keyword text="qtanh"/>
+          <Keyword text="ran"/>
+          <Keyword text="rand"/>
+          <Keyword text="randu"/>
+          <Keyword text="rewrite"/>
+          <Keyword text="segment"/>
+          <Keyword text="setdat"/>
+          <Keyword text="settim"/>
+          <Keyword text="system"/>
+          <Keyword text="timer"/>
+          <Keyword text="undfl"/>
+          <Keyword text="unlock"/>
+          <Keyword text="union"/>
+          <Keyword text="val"/>
+          <Keyword text="virtual"/>
+          <Keyword text="zabs"/>
+          <Keyword text="zcos"/>
+          <Keyword text="zexp"/>
+          <Keyword text="zlog"/>
+          <Keyword text="zsin"/>
+          <Keyword text="zsqrt"/>
+        </Keywords>
+      </Style>
+      <Style name="Fortran 2003 specific" descr="Fortran 2003 intrinsic module names, constants, and procedures.\nThis section also includes the names and procedures\ndefined in Part 2, ISO/IEC 1539-2:2000, ISO_VARYING_STRING" image="12" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="c_alert"/>
+          <Keyword text="c_associated"/>
+          <Keyword text="c_backspace"/>
+          <Keyword text="c_bool"/>
+          <Keyword text="c_carriage_return"/>
+          <Keyword text="c_char"/>
+          <Keyword text="c_double"/>
+          <Keyword text="c_double_complex"/>
+          <Keyword text="c_f_pointer"/>
+          <Keyword text="c_f_procpointer"/>
+          <Keyword text="c_float"/>
+          <Keyword text="c_float_complex"/>
+          <Keyword text="c_form_feed"/>
+          <Keyword text="c_funloc"/>
+          <Keyword text="c_funptr"/>
+          <Keyword text="c_horizontal_tab"/>
+          <Keyword text="c_int"/>
+          <Keyword text="c_int16_t"/>
+          <Keyword text="c_int32_t"/>
+          <Keyword text="c_int64_t"/>
+          <Keyword text="c_int8_t"/>
+          <Keyword text="c_int_fast16_t"/>
+          <Keyword text="c_int_fast32_t"/>
+          <Keyword text="c_int_fast64_t"/>
+          <Keyword text="c_int_fast8_t"/>
+          <Keyword text="c_int_least16_t"/>
+          <Keyword text="c_int_least32_t"/>
+          <Keyword text="c_int_least64_t"/>
+          <Keyword text="c_int_least8_t"/>
+          <Keyword text="c_intmax_t"/>
+          <Keyword text="c_intptr_t"/>
+          <Keyword text="c_loc"/>
+          <Keyword text="c_long"/>
+          <Keyword text="c_long_double"/>
+          <Keyword text="c_long_double_complex"/>
+          <Keyword text="c_long_long"/>
+          <Keyword text="c_new_line"/>
+          <Keyword text="c_null_char"/>
+          <Keyword text="c_null_funptr"/>
+          <Keyword text="c_null_ptr"/>
+          <Keyword text="c_ptr"/>
+          <Keyword text="c_short"/>
+          <Keyword text="c_size_t"/>
+          <Keyword text="c_vertical_tab"/>
+          <Keyword text="character_storage_size"/>
+          <Keyword text="error_unit"/>
+          <Keyword text="extract"/>
+          <Keyword text="file_storage_size"/>
+          <Keyword text="get"/>
+          <Keyword text="ieee_arithmetic"/>
+          <Keyword text="ieee_class"/>
+          <Keyword text="ieee_class_type"/>
+          <Keyword text="ieee_copy_sign"/>
+          <Keyword text="ieee_datatype"/>
+          <Keyword text="ieee_denormal"/>
+          <Keyword text="ieee_divide"/>
+          <Keyword text="ieee_divide_by_zero"/>
+          <Keyword text="ieee_down"/>
+          <Keyword text="ieee_exceptions"/>
+          <Keyword text="ieee_features"/>
+          <Keyword text="ieee_features_type"/>
+          <Keyword text="ieee_flag_type"/>
+          <Keyword text="ieee_get_flag"/>
+          <Keyword text="ieee_get_halting_mode"/>
+          <Keyword text="ieee_get_rounding_mode"/>
+          <Keyword text="ieee_get_status"/>
+          <Keyword text="ieee_get_underflow_mode"/>
+          <Keyword text="ieee_halting"/>
+          <Keyword text="ieee_inexact"/>
+          <Keyword text="ieee_inexact_flag"/>
+          <Keyword text="ieee_inf"/>
+          <Keyword text="ieee_invalid"/>
+          <Keyword text="ieee_invalid_flag"/>
+          <Keyword text="ieee_is_finite"/>
+          <Keyword text="ieee_is_nan"/>
+          <Keyword text="ieee_is_negative"/>
+          <Keyword text="ieee_is_normal"/>
+          <Keyword text="ieee_logb"/>
+          <Keyword text="ieee_nan"/>
+          <Keyword text="ieee_nearest"/>
+          <Keyword text="ieee_negative_denormal"/>
+          <Keyword text="ieee_negative_inf"/>
+          <Keyword text="ieee_negative_normal"/>
+          <Keyword text="ieee_negative_zero"/>
+          <Keyword text="ieee_next_after"/>
+          <Keyword text="ieee_other"/>
+          <Keyword text="ieee_other_value"/>
+          <Keyword text="ieee_overflow"/>
+          <Keyword text="ieee_positive_denormal"/>
+          <Keyword text="ieee_positive_inf"/>
+          <Keyword text="ieee_positive_normal"/>
+          <Keyword text="ieee_positive_zero"/>
+          <Keyword text="ieee_quiet_nan"/>
+          <Keyword text="ieee_rem"/>
+          <Keyword text="ieee_rint"/>
+          <Keyword text="ieee_round_type"/>
+          <Keyword text="ieee_rounding"/>
+          <Keyword text="ieee_scalb"/>
+          <Keyword text="ieee_selected_real_kind"/>
+          <Keyword text="ieee_set_flag"/>
+          <Keyword text="ieee_set_halting_mode"/>
+          <Keyword text="ieee_set_rounding_mode"/>
+          <Keyword text="ieee_set_status"/>
+          <Keyword text="ieee_set_underflow_mode"/>
+          <Keyword text="ieee_signaling_nan"/>
+          <Keyword text="ieee_sqrt"/>
+          <Keyword text="ieee_status_type"/>
+          <Keyword text="ieee_support_datatype"/>
+          <Keyword text="ieee_support_denormal"/>
+          <Keyword text="ieee_support_divide"/>
+          <Keyword text="ieee_support_flag"/>
+          <Keyword text="ieee_support_halting"/>
+          <Keyword text="ieee_support_inf"/>
+          <Keyword text="ieee_support_io"/>
+          <Keyword text="ieee_support_nan"/>
+          <Keyword text="ieee_support_rounding"/>
+          <Keyword text="ieee_support_sqrt"/>
+          <Keyword text="ieee_support_standard"/>
+          <Keyword text="ieee_support_underflow_control"/>
+          <Keyword text="ieee_to_zero"/>
+          <Keyword text="ieee_underflow"/>
+          <Keyword text="ieee_underflow_flag"/>
+          <Keyword text="ieee_unordered"/>
+          <Keyword text="ieee_up"/>
+          <Keyword text="ieee_value"/>
+          <Keyword text="input_unit"/>
+          <Keyword text="insert"/>
+          <Keyword text="iostat_end"/>
+          <Keyword text="iostat_eor"/>
+          <Keyword text="iso_c_binding"/>
+          <Keyword text="iso_fortran_env"/>
+          <Keyword text="iso_varying_string"/>
+          <Keyword text="numeric_storage_size"/>
+          <Keyword text="output_unit"/>
+          <Keyword text="put"/>
+          <Keyword text="put_line"/>
+          <Keyword text="remove"/>
+          <Keyword text="replace"/>
+          <Keyword text="split"/>
+          <Keyword text="var_str"/>
+          <Keyword text="varying_string"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

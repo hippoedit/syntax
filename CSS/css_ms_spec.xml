@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="css_ms" name="CSS (Microsoft Extension)" inherit="css" inherit_url="css_spec.xml">
+    <SPECIFICATION>
+      <StyleBitmap>images\vs_styles.bmp</StyleBitmap>
+    </SPECIFICATION>
+    <STYLES>
+      <Style id="elements" extend="true">
+        <Keywords>
+          <Keyword text="active"/>
+          <Keyword text="hover"/>
+          <Keyword text="visited"/>
+        </Keywords>
+      </Style>
+      <Style name="Attributes" extend="true">
+        <Keywords>
+          <Keyword text="background-position-x" descr="Defines the x-coordinate of the background-position property (IE4)"/>
+          <Keyword text="background-position-y" descr="Defines the y-coordinate of the background-position property (IE4)"/>
+          <Keyword text="behavior" descr="Used to define the URL for a script providing DHTML behavior (IE5)"/>
+          <Keyword text="filter" descr="Used to apply filter effects to associated HTML elements (IE4)"/>
+          <Keyword text="ime-mode" descr="Used to set the state of an Input Method Editor (IME); for use with Chinese, Japanese, and Korean character sets (IE5)"/>
+          <Keyword text="layout-grid" descr="Defines a grid to be used in laying out Japanese or Chinese characters in a Web document.\nThis is a shorthand property for the layout grid properties discussed next (IE5)"/>
+          <Keyword text="layout-grid-char" descr="Defines the size of the character grid used for laying out Japanese or Chinese characters in a Web document (IE5)"/>
+          <Keyword text="layout-grid-line" descr="Defines the gridline value used for laying out Japanese or Chinese characters in a Web document (IE5)"/>
+          <Keyword text="layout-grid-mode" descr="Defines if the text layout grid uses one or two dimensions (IE5)"/>
+          <Keyword text="layout-grid-type" descr="Defines the type of grid to be used for laying out Japanese or Chinese characters in a Web document (IE5)"/>
+          <Keyword text="line-break" descr="Defines line-breaking rules for Japanese text (IE5)"/>
+          <Keyword text="overflow-x" descr="Defines how content should behave when it exceeds the width of its enclosing element (IE4)"/>
+          <Keyword text="overflow-y" descr="Defines how content should behave when it exceeds the height of its enclosing element (IE4)"/>
+          <Keyword text="ruby-align" descr="Defines the alignment of ruby text as defined by the &lt;rt&gt; element, in relation to base text defined by the &lt;ruby&gt; tag (IE5)"/>
+          <Keyword text="ruby-overhang" descr="Defines the overhang of ruby text as defined by the &lt;rt&gt; tag, in relation to base text defined by the &lt;ruby&gt; tag (IE5)"/>
+          <Keyword text="ruby-position" descr="Defines the position of ruby text as defined by the &lt;rt&gt; tag, in relation to base text defined by the &lt;ruby&gt; tag (IE5)"/>
+          <Keyword text="scrollbar-3dlight-color" descr="Defines a color for the top and left edges of the scroll box in a scrollbar; this and the related scrollbar\nproperties can be applied to the browser window scrollbar when used with the body element, or \nto other elements when used in conjunction with clipping properties (IE5.5)"/>
+          <Keyword text="scrollbar-arrow-color" descr="Defines a color for the arrows in a scrollbar (IE5.5)"/>
+          <Keyword text="scrollbar-base-color" descr="Defines the base color for a scrollbar (IE5.5)"/>
+          <Keyword text="scrollbar-darkshadow-color" descr="Defines a shadow color for the right and bottom edges of a scrollbar (IE5.5)"/>
+          <Keyword text="scrollbar-face-color" descr="Defines a color for the face of a scrollbar (IE5.5)"/>
+          <Keyword text="scrollbar-highlight-color" descr="Defines a color for the top and left edges of a scrollbar (IE5.5)"/>
+          <Keyword text="scrollbar-shadow-color" descr="Defines a color for the right and bottom edges of a scrollbar (IE5.5)"/>
+          <Keyword text="scrollbar-track-color" descr="Defines a color for the right and bottom edges of a scrollbar (IE5.5)"/>
+          <Keyword text="text-autospace" descr="Defines spacing values for text; used when combining different types of characters,\nsuch as regular text, ideographic text, and numeric characters (IE5)"/>
+          <Keyword text="text-justify" descr="Property provides greater control over how justified text should be aligned and spaced (IE5)"/>
+          <Keyword text="text-kashida-space" descr="Defines the ratio between kashida expansion and white space expansion in justified text\n(kashida is a typographic effect used with Arabic writing systems) (IE5.5)"/>
+          <Keyword text="text-underline-position" descr="Defines the position of underlining set with the text-decoration property (IE5)"/>
+          <Keyword text="word-break" descr="Used to allow line breaks within words, primarily for use with Asian languages (IE5)"/>
+          <Keyword text="word-wrap" descr="Can be set to allow line breaks within words when content exceeds the limits of its containing element (IE5.5)"/>
+          <Keyword text="writing-mode" descr="Can be used to set text flow appropriate for European alphabets or East Asian alphabets\nValues are lr-tb (left-to-right, top-to-bottom) and tb-rl (top-to-bottom, right-to-left) (IE5.5)"/>
+          <Keyword text="zoom" descr="Can be used to define a magnification scale for an element. Can be used with scripting to create rollover effects (IE5)"/>
+        </Keywords>
+      </Style>
+      <Style name="Values" extend="true">
+        <Keywords>
+          <Keyword text="break-word"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

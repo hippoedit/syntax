@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="robolen" type="LangUser"/>
+  <SYNTAX id="qpile">
+    <CodeTemplates>
+      <Template key="MONEY_OPEN_BALANCE" descr="MONEY_OPEN_BALANCE - Входящий остаток по денежным средствам">MONEY_OPEN_BALANCE (client_code, firmid, tag, curr_code)</Template>
+      <Template key="MONEY_LIMIT_LOCKED_NONMARGINAL_VALUE" descr="MONEY_LIMIT_LOCKED_NONMARGINAL_VALUE - Стоимость немаржинальных бумаг в заявках на покупку">MONEY_LIMIT_LOCKED_NONMARGINAL_VALUE (client_code, firmid, tag, curr_code)</Template>
+      <Template key="MONEY_CURRENT_LIMIT" descr="MONEY_CURRENT_LIMIT - Текущий лимит по денежным средствам">MONEY_CURRENT_LIMIT (client_code, firmid, tag, curr_code)</Template>
+      <Template key="REMOVE_COLLECTION_ITEM" descr="REMOVE_COLLECTION_ITEM - Удаление элемента коллекции">REMOVE_COLLECTION_ITEM (COL_, nIndex)</Template>
+      <Template key="DEPO_LIMIT_LOCKED_BUY_VALUE" descr="DEPO_LIMIT_LOCKED_BUY_VALUE - Стоимость ценных бумаг, заблокированных на покупку">DEPO_LIMIT_LOCKED_BUY_VALUE(client_code, firmid, seccode, account)</Template>
+      <Template key="GET_COLLECTION_ITEM" descr="GET_COLLECTION_ITEM - Чтение значения элемента коллекции">GET_COLLECTION_ITEM (coll_,nIndex)\n</Template>
+      <Template key="SET_COLLECTION_ITEM" descr="SET_COLLECTION_ITEM - Замена значения элемента коллекции">SET_LABEL_PARAMS(tag, id, MAP_label) </Template>
+      <Template key="GET_CLIENT_MARGINAL_BUY_SELL_INFO" descr="GET_CLIENT_MARGINAL_BUY_SELL_INFO - Значение параметров таблицы &lt;Купить/Продать&gt;">GET_CLIENT_MARGINAL_BUY_SELL_INFO (firmid, client_code, class_code, sec_code, nPrice)</Template>
+      <Template key="PARAMETER" descr="PARAMETER - столбец портфеля">PARAMETER Название переменной;\nPARAMETER_TITLE Название столбца;\nPARAMETER_DESCRIPTION Описание;\nPARAMETER_TYPE NUMERIC()|STRING();\nEND</Template>
+      <Template key="DEPO_LIMIT_LOCKED" descr="DEPO_LIMIT_LOCKED - Заблокированное Количество лотов ценных бумаг">DEPO_LIMIT_LOCKED(clientcode, firmid, seccode, account)</Template>
+      <Template key="DELETE_ALL_LABELS" descr="DELETE_ALL_LABELS - Удалить все метки">DELETE_ALL_LABELS()</Template>
+      <Template key="STRING" descr="STRING - строка">STRING(&lt;длина_строки&gt;) </Template>
+      <Template key="DEPO_OPEN_LIMIT" descr="DEPO_OPEN_LIMIT - Входящий лимит по бумагам">DEPO_OPEN_LIMIT(client_code, firmid, seccode, account)</Template>
+      <Template key="MONEY_LIMIT_LOCKED" descr="MONEY_LIMIT_LOCKED - Заблокированное  в заявках на покупку количество денежных средств">MONEY_LIMIT_LOCKED (client_code, firmid, tag, curr_code)</Template>
+      <Template key="MONEY_LIMIT_AVAILABLE" descr="MONEY_LIMIT_AVAILABLE - Доступное  количество денежных средств">MONEY_LIMIT_AVAILABLE (client_code, firmid, tag, curr_code)</Template>
+      <Template key="SHORT_VALUE" descr="SHORT_VALUE - Стоимость всех коротких значений">SHORT_VALUE (client_code, firmid, seccode  class_code, account, &quot;CLOSE&quot;)</Template>
+      <Template key="GET_SECURITY_INFO" descr="GET_SECURITY_INFO - Информация по бумаге с определенным кодом из заданного класса">GET_SECURITY_INFO (class_code, sec_code)</Template>
+      <Template key="SET_VALUE" descr="SET_VALUE - Добавление нового элемента в массив">SET_VALUE(MAP_, &quot;Key&quot;, 0)</Template>
+      <Template key="GET_CANDLE" descr="GET_CANDLE - Значения цен и объемов (OHLCV) &lt;свечи&gt; на графике и ее индикаторов">GET_CANDLE (class_code, sec_code, parameter_name, sInterval, sGraph_type, nDate, nTime)</Template>
+      <Template key="BREAKPOINT" descr="BREAKPOINT - Позволяет прервать выполнение программы и вызвать окно Отладка.">BREAKPOINT()</Template>
+      <Template key="SEND_TRANSACTION" descr="SEND_TRANSACTION - Ввод новой заявки">SEND_TRANSACTION (10, trans_params)</Template>
+      <Template key="DEPO_CURRENT_LIMIT" descr="DEPO_CURRENT_LIMIT - Текущий лимит по бумагам">DEPO_CURRENT_LIMIT (clientcode, firmid, seccode, account)</Template>
+      <Template key="GET_VALUE" descr="GET_VALUE - Чтение значения элемента из массива">GET_VALUE(map_, KeyName)</Template>
+      <Template key="MESSAGE" descr="MESSAGE - Вывод текста в Окне сообщений">MESSAGE (&quot;Сообщение&quot;,1)</Template>
+      <Template key="SUBSTR" descr="SUBSTR - Подстрока">SUBSTR(S, 0,1) </Template>
+      <Template key="GET_LABEL_PARAMS" descr="GET_LABEL_PARAMS - Получить параметры метки">GET_LABEL_PARAMS(tag_, nId) </Template>
+      <Template key="DEPO_LIMIT_AVAILABLE" descr="DEPO_LIMIT_AVAILABLE - Доступное количество ценных бумаг">DEPO_LIMIT_AVAILABLE (clientcode, firmid, seccode, account)</Template>
+      <Template key="FIND" descr="FIND - Поиск в строке позиции подстроки">FIND (s_, 0, &lt;что искать&gt;)</Template>
+      <Template key="FUNC" descr="FUNC">FUNC \n\t\nEND FUNC</Template>
+      <Template key="ADD_ITEM" descr="ADD_ITEM - Добавление новой строки в таблицу">ADD_ITEM (nIndex, MAP_)</Template>
+      <Template key="GET_PARAM_EX" descr="GET_PARAM_EX - Получение всех значений из Таблицы текущих значений параметров">GET_PARAM_EX (classcode, seccode, param_name)</Template>
+      <Template key="MODIFY_ITEM" descr="MODIFY_ITEM - Изменение указанной строки таблицы">MODIFY_ITEM (nIndex,map_)</Template>
+      <Template key="GET_NUMBER_OF" descr="GET_NUMBER_OF - Количество записей в указанной таблице QUIK">GET_NUMBER_OF(TableName)</Template>
+      <Template key="DEPO_LIMIT_LOCKED_BUY" descr="DEPO_LIMIT_LOCKED_BUY - Количество лотов ценных бумаг, заблокированных на покупку">DEPO_LIMIT_LOCKED_BUY(clientcode, firmid, seccode, account)</Template>
+      <Template key="DEPO_CURRENT_BALANCE" descr="DEPO_CURRENT_BALANCE - Текущий остаток по бумагам">DEPO_CURRENT_BALANCE (clientcode, firmid, seccode, account)</Template>
+      <Template key="GET_ITEM" descr="GET_ITEM - Строка с указанным номером из таблицы QUIK">GET_ITEM(TableName,nIndex)</Template>
+      <Template key="NEW_GLOBAL" descr="NEW_GLOBAL - Инициализация глобальной переменной">NEW_GLOBAL (&lt;имя&gt;, &lt;нач. знач.&gt;)</Template>
+      <Template key="NUMERIC" descr="NUMERIC - число">NUMERIC(&lt;размер_числа_в_символах&gt;, &lt;кол_во_знаков_после_запятой&gt;)</Template>
+      <Template key="GET_QUOTES_II_LEVEL_DATA" descr="GET_QUOTES_II_LEVEL_DATA - Получения значений Окна котировок инструментов">GET_QUOTES_II_LEVEL_DATA (ClassCode, SecCode)</Template>
+      <Template key="DELETE_ITEM" descr="DELETE_ITEM - Удаление указанной строки таблицы">DELETE_ITEM(nIndex)</Template>
+      <Template key="FOR IN" descr="for in">FOR переменная IN список значений\n                последовательность инструкций\nEND FOR </Template>
+      <Template key="GET_FILE_LEN" descr="GET_FILE_LEN - Количество строк в файле">GET_FILE_LEN (FileName)</Template>
+      <Template key="SET_LABEL_PARAMS" descr="SET LABEL PARAMS - Задать параметры метки">SET_LABEL_PARAMS(tag, id, MAP_label) </Template>
+      <Template key="GET_INFO_PARAM" descr="GET_INFO_PARAM - Позволяет получить параметры для информационного окна (Связь / Информационное окно)">GET_INFO_PARAM (sParam_name)</Template>
+      <Template key="GET_CLIENT_MARGINAL_PORTFOLIO_INFO" descr="GET_CLIENT_MARGINAL_PORTFOLIO_INFO - Значения параметров таблицы &lt;Клиентский портфель&gt;">GET_CLIENT_MARGINAL_PORTFOLIO_INFO (firmid, client_code)</Template>
+      <Template key="FOR" descr="FOR FROM TO">FOR i FROM 0 TO nEnd\n               \nEND FOR</Template>
+      <Template key="CLEAR_FILE" descr="CLEAR_FILE - Очистить файл">CLEAR_FILE (FileName)</Template>
+      <Template key="INSERT_COLLECTION_ITEM" descr="INSERT_COLLECTION_ITEM - Вставка элемента коллекции">INSERT_COLLECTION_ITEM (coll_,nIndex,Value)</Template>
+      <Template key="PORTFOLIO_EX" descr="PORTFOLIO_EX - Новый портфель">PORTFOLIO_EX &lt;&gt;;\nDESCRIPTION &lt;&gt;;\nCLIENTS_LIST ALL_CLIENTS;\nFIRMS_LIST ALL_FIRMS;\n\nPROGRAM          \n\n&apos;================= !!!!! НАЧАЛО ПРОГРАММЫ !!!!! =================\nclientcode=&quot;&quot;\nfirmid=&quot;&quot;\naccount=&quot;&quot;\nseccode=&quot;&quot; \nsTime = GET_INFO_PARAM(&quot;SERVERTIME&quot;)\n\nDELETE_ALL_ITEMS()\noutput=CREATE_MAP()\noutput=SET_VALUE(output,&quot;Time&quot;,sTime)\nADD_ITEM(1,output)\n\n&apos;================= !!!!! КОНЕЦ ПРОГРАММЫ !!!!! =================\t\nEND_PROGRAM\n\nPARAMETER time;\nPARAMETER_TITLE Время;\nPARAMETER_DESCRIPTION Время;\nPARAMETER_TYPE STRING(100);\nEND \n\nEND_PORTFOLIO_EX</Template>
+      <Template key="WRITELN" descr="WRITELN - Записать строку с переводом строки в конец файла">WRITELN(FileName, &quot;&quot;)</Template>
+      <Template key="MONEY_OPEN_LIMIT" descr="MONEY_OPEN_LIMIT - Входящий лимит по денежным средствам">MONEY_OPEN_LIMIT (client_code, firmid, tag, curr_code)</Template>
+      <Template key="DEPO_OPEN_BALANCE" descr="DEPO_OPEN_BALANCE - Входящий остаток по бумагам">DEPO_OPEN_BALANCE (client_code, firmid, seccode, account)</Template>
+      <Template key="SET_ROW_COLOR" descr="SET_ROW_COLOR - Указание цвета подсветки для строки таблицы">SET_ROW_COLOR (client_code, &quot;RGB(0,255,0)&quot;, &quot;DEFAULT_COLOR&quot;)</Template>
+      <Template key="WRITE" descr="WRITE - Записать строку в конец файла">WRITE (FileName, &quot;&quot;)</Template>
+      <Template key="IF" descr="IF $ END IF">IF\n    %SelectedText%%|%\nEND IF</Template>
+      <Template key="GET_COLLECTION_COUNT" descr="GET_COLLECTION_COUNT - Количество элементов в коллекции">GET_COLLECTION_COUNT (coll_)</Template>
+      <Template key="GET_PARAM" descr="GET_PARAM* - Получение значений из Таблицы текущих значений параметров">GET_PARAM (classcode, seccode, param_name)</Template>
+    </CodeTemplates>
+    <HELP>
+      <Help name="info" external_browser="true" arguments="%CurrentWord%" key="112" ctrl="true" url="C:\\QUIK_VTB24\\info.chm"/>
+    </HELP>
+  </SYNTAX>
+</XMLConfigSettings>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="res_bundle" name="Resource Bundle" inherit="def_text" inherit_url="deftext_spec.xml">
+    <!--https://en.wikipedia.org/wiki/.properties-->
+    <SPECIFICATION>
+      <FilePattern mask="*.properties"/>
+      <OpenClose>()[]{}''""</OpenClose>
+      <Numbers>0-9.</Numbers>
+      <Words>0-9A-Za-z_--+?%&amp;$</Words>
+      <Operators>=</Operators>
+      <EscapeChar>\</EscapeChar>
+      <Encoding default="utf-8" bom="false"/>
+    </SPECIFICATION>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n" first_pos="true"/>
+          <Block open="!" close="\n" first_pos="true"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF"/>
+      <Style id="number" name="Numbers" dbkclr="false" bold="0" italic="0" underline="0" clr="Number" bkclr="#FFFFFFFF" overview="3"/>
+      <Style name="Name" bold="1" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Words>
+          <Word trail="\s*[=:]"/>
+        </Words>
+      </Style>
+      <Style name="Value" bold="2" italic="2" underline="2" clr="Strings" bkclr="#FFFFFFFF">
+          <Blocks>
+            <Block open="=" close="\n"/>
+            <Block open=":" close="\n"/>
+          </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

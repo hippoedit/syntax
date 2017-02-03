@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="csv" name="CSV (Comma Separated Values)" inherit="def_text" inherit_url="deftext_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.csv"/>
+      <OpenClose>()[]{}''&quot;&quot;</OpenClose>
+      <Operators>?--+/*=&lt;&gt;</Operators>
+      <Delimiters>"'&lt;&gt;@,;.?:&amp;/+--%\*=|!~^#(){}[]</Delimiters>
+      <LineEnd>.</LineEnd>
+      <Words>0-9A-Za-z_</Words>
+      <Display outlining="false" line_numbers="true" guides="true" indicator_margin="false" current_line="true" alternating="true" changed_lines="true" ruler="true"/>
+      <Formatting tab_size="8" tab_mode="1"/>
+    </SPECIFICATION>
+    <STYLES>
+      <Style id="url" bold="0" italic="0" underline="1" clr="Keyword" bkclr="#FFFFFFFF" hotspot="1"/>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

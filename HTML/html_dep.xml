@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="Dependency"/>
+  <SYNTAX id="html">
+	<File local="./download/syntax/html_user.xml.alt" dest="data/syntax/html_user.xml.alt" descr="Alternative, lower case version of code templates"/>
+	<Forum url="http://forum.hippoedit.com/index.php/topic,615.0.html"/>
+  </SYNTAX>
+</XMLConfigSettings>

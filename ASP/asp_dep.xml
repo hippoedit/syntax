@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="Dependency"/>
+  <SYNTAX id="asp">
+	<Forum url="http://forum.hippoedit.com/index.php/topic,733.0.html"/>
+	<File local="./download/syntax/asp/html_asp_spec.xml" dest="data/syntax/asp/html_asp_spec.xml" descr="HTML (ASP)"/>
+	<File local="./download/syntax/asp/html_asp_user.xml" dest="data/syntax/asp/html_asp_user.xml" descr="HTML (ASP)"/>
+	<File local="./download/syntax/asp/scripts/browser_preview_firefox.vbs" dest="data/syntax/asp/scripts/browser_preview_firefox.vbs" descr="FireFox preview script"/>
+	<File local="./download/syntax/asp/scripts/browser_preview_ie.vbs" dest="data/syntax/asp/scripts/browser_preview_ie.vbs" descr="Internet Explorer preview script"/>
+  </SYNTAX>
+</XMLConfigSettings>

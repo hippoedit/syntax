@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="bash" name="Bash" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.sh;*.csh;*.bsh;*.bash"/>
+      <CaseSensitive>true</CaseSensitive>
+      <OpenClose>()[]{}''""</OpenClose>
+      <EscapeChar>\</EscapeChar>
+      <Operators>?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]{}</Operators>
+      <Words>0-9A-Za-z_</Words>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="Function" match="\&lt;function\s+(\w+)\s*\(\s*\)[^{]*" name="\1" descr="function \1 ()" image="6" scope="1"/>
+    </LABELS>
+    <SCOPES>
+      <Scope open="if" middle="then" close="fi">
+        <Middle text="else"/>
+      </Scope>
+      <Scope open="for" middle="do" close="done">
+        <Middle text="in"/>
+      </Scope>
+      <Scope open="while" middle="do" close="done"/>
+      <Scope open="case" middle="in" close="esac"/>
+      <Scope open="{" close="}"/>      
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="char"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Containers>
+          <Open id="arithmetic"/>
+          <Open id="parameter"/>          
+        </Containers>
+      </Style>
+      <Style id="operator" extend="true">
+        <Containers>
+          <Open id="arithmetic"/>
+          <Open id="parameter"/>          
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="command"/>
+          <Open id="parameter"/>          
+        </Containers>
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="command"/>
+          <Open id="parameter"/>
+        </Containers>
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style id="scalar" name="Scalar" image="6" bold="0" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="string"/>
+          <Open id="parameter"/>
+          <Open id="command"/>
+          <Open id="arithmetic"/>          
+        </Containers>
+        <Blocks>
+          <Block open="$">
+            <Close noneof="0-9A-Za-z--#@_"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="parameter" name="Parameters" descr="Parameters substitution" image="6" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="string"/>
+        </Containers>
+        <Blocks>
+          <Block open="${" close="}"/>
+        </Blocks>
+      </Style>
+      <Style id="command" name="Commands" descr="Command substitution" text="1" bold="0" italic="0" underline="0" clr="Window Back" bkclr="Keyword5">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="string"/>
+        </Containers>
+        <Blocks>
+          <Block open="$(" close=")"/>
+          <Block open="`" close="`"/>
+        </Blocks>
+      </Style>
+      <Style id="arithmetic" name="Arithmetic" descr="Arithmetic substitution" text="1" bold="0" italic="0" underline="0" clr="Keyword5" bkclr="Embedded Language 2 Back">
+        <Blocks>
+          <Block open="$((" close="))"/>
+        </Blocks>
+      </Style>
+      <Style name="Include" text="1" bold="0" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#!" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="alias"/>
+          <Keyword text="break"/>
+          <Keyword text="case"/>
+          <Keyword text="continue"/>
+          <Keyword text="do"/>
+          <Keyword text="done"/>
+          <Keyword text="elif"/>
+          <Keyword text="else"/>
+          <Keyword text="esac"/>
+          <Keyword text="exit"/>
+          <Keyword text="export"/>
+          <Keyword text="fi"/>
+          <Keyword text="for"/>
+          <Keyword text="function"/>
+          <Keyword text="if"/>
+          <Keyword text="in"/>
+          <Keyword text="return"/>
+          <Keyword text="set"/>
+          <Keyword text="then"/>
+          <Keyword text="unalias"/>
+          <Keyword text="unset"/>
+          <Keyword text="while"/>
+        </Keywords>
+      </Style>
+      <Style name="Reserved" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ar"/>
+          <Keyword text="asa"/>
+          <Keyword text="awk"/>
+          <Keyword text="banner"/>
+          <Keyword text="basename"/>
+          <Keyword text="bash"/>
+          <Keyword text="bc"/>
+          <Keyword text="bdiff"/>
+          <Keyword text="bunzip2"/>
+          <Keyword text="bzip2"/>
+          <Keyword text="cal"/>
+          <Keyword text="calendar"/>
+          <Keyword text="cat"/>
+          <Keyword text="cc"/>
+          <Keyword text="cd"/>
+          <Keyword text="chmod"/>
+          <Keyword text="cksum"/>
+          <Keyword text="clear"/>
+          <Keyword text="cmp"/>
+          <Keyword text="col"/>
+          <Keyword text="comm"/>
+          <Keyword text="compress"/>
+          <Keyword text="cp"/>
+          <Keyword text="cpio"/>
+          <Keyword text="crypt"/>
+          <Keyword text="csplit"/>
+          <Keyword text="ctags"/>
+          <Keyword text="cut"/>
+          <Keyword text="date"/>
+          <Keyword text="dc"/>
+          <Keyword text="dd"/>
+          <Keyword text="declare"/>
+          <Keyword text="deroff"/>
+          <Keyword text="dev"/>
+          <Keyword text="df"/>
+          <Keyword text="diff"/>
+          <Keyword text="diff3"/>
+          <Keyword text="dircmp"/>
+          <Keyword text="dirname"/>
+          <Keyword text="du"/>
+          <Keyword text="echo"/>
+          <Keyword text="ed"/>
+          <Keyword text="egrep"/>
+          <Keyword text="env"/>
+          <Keyword text="eval"/>
+          <Keyword text="ex"/>
+          <Keyword text="exec"/>
+          <Keyword text="expand"/>
+          <Keyword text="expr"/>
+          <Keyword text="false"/>
+          <Keyword text="fc"/>
+          <Keyword text="fgrep"/>
+          <Keyword text="file"/>
+          <Keyword text="find"/>
+          <Keyword text="fmt"/>
+          <Keyword text="fold"/>
+          <Keyword text="functions"/>
+          <Keyword text="gawk"/>
+          <Keyword text="getconf"/>
+          <Keyword text="getopt"/>
+          <Keyword text="getopts"/>
+          <Keyword text="grep"/>
+          <Keyword text="gres"/>
+          <Keyword text="gzip"/>
+          <Keyword text="halt"/>
+          <Keyword text="hash"/>
+          <Keyword text="head"/>
+          <Keyword text="help"/>
+          <Keyword text="history"/>
+          <Keyword text="iconv"/>
+          <Keyword text="id"/>
+          <Keyword text="ifconfig"/>
+          <Keyword text="init"/>
+          <Keyword text="initlog"/>
+          <Keyword text="insmod"/>
+          <Keyword text="integer"/>
+          <Keyword text="jobs"/>
+          <Keyword text="join"/>
+          <Keyword text="kill"/>
+          <Keyword text="killall"/>
+          <Keyword text="lc"/>
+          <Keyword text="less"/>
+          <Keyword text="let"/>
+          <Keyword text="line"/>
+          <Keyword text="linuxconf"/>
+          <Keyword text="ln"/>
+          <Keyword text="local"/>
+          <Keyword text="logname"/>
+          <Keyword text="look"/>
+          <Keyword text="ls"/>
+          <Keyword text="lsmod"/>
+          <Keyword text="m4"/>
+          <Keyword text="mail"/>
+          <Keyword text="mailx"/>
+          <Keyword text="make"/>
+          <Keyword text="man"/>
+          <Keyword text="md"/>
+          <Keyword text="mkdir"/>
+          <Keyword text="modprobe"/>
+          <Keyword text="more"/>
+          <Keyword text="mt"/>
+          <Keyword text="mv"/>
+          <Keyword text="newgrp"/>
+          <Keyword text="nice"/>
+          <Keyword text="nl"/>
+          <Keyword text="nm"/>
+          <Keyword text="nohup"/>
+          <Keyword text="ntps"/>
+          <Keyword text="od"/>
+          <Keyword text="pack"/>
+          <Keyword text="paste"/>
+          <Keyword text="patch"/>
+          <Keyword text="pathchk"/>
+          <Keyword text="pax"/>
+          <Keyword text="pcat"/>
+          <Keyword text="perl"/>
+          <Keyword text="pg"/>
+          <Keyword text="pidof"/>
+          <Keyword text="pr"/>
+          <Keyword text="print"/>
+          <Keyword text="printf"/>
+          <Keyword text="ps"/>
+          <Keyword text="pwd"/>
+          <Keyword text="rd"/>
+          <Keyword text="read"/>
+          <Keyword text="readonly"/>
+          <Keyword text="reboot"/>
+          <Keyword text="red"/>
+          <Keyword text="rev"/>
+          <Keyword text="rm"/>
+          <Keyword text="rmdir"/>
+          <Keyword text="rmmod"/>
+          <Keyword text="route"/>
+          <Keyword text="sed"/>
+          <Keyword text="select"/>
+          <Keyword text="sh"/>
+          <Keyword text="shift"/>
+          <Keyword text="shutdown"/>
+          <Keyword text="size"/>
+          <Keyword text="sleep"/>
+          <Keyword text="sort"/>
+          <Keyword text="spell"/>
+          <Keyword text="split"/>
+          <Keyword text="start"/>
+          <Keyword text="stop"/>
+          <Keyword text="strings"/>
+          <Keyword text="strip"/>
+          <Keyword text="stty"/>
+          <Keyword text="sum"/>
+          <Keyword text="suspend"/>
+          <Keyword text="sync"/>
+          <Keyword text="tail"/>
+          <Keyword text="tar"/>
+          <Keyword text="tee"/>
+          <Keyword text="test"/>
+          <Keyword text="time"/>
+          <Keyword text="times"/>
+          <Keyword text="touch"/>
+          <Keyword text="tr"/>
+          <Keyword text="traceroute"/>
+          <Keyword text="trap"/>
+          <Keyword text="true"/>
+          <Keyword text="tsort"/>
+          <Keyword text="tty"/>
+          <Keyword text="type"/>
+          <Keyword text="typeset"/>
+          <Keyword text="ulimit"/>
+          <Keyword text="umask"/>
+          <Keyword text="uname"/>
+          <Keyword text="uncompress"/>
+          <Keyword text="unexpand"/>
+          <Keyword text="uniq"/>
+          <Keyword text="unpack"/>
+          <Keyword text="until"/>
+          <Keyword text="usleep"/>
+          <Keyword text="uudecode"/>
+          <Keyword text="uuencode"/>
+          <Keyword text="vi"/>
+          <Keyword text="vim"/>
+          <Keyword text="vpax"/>
+          <Keyword text="wait"/>
+          <Keyword text="wc"/>
+          <Keyword text="whence"/>
+          <Keyword text="which"/>
+          <Keyword text="who"/>
+          <Keyword text="wpaste"/>
+          <Keyword text="wstart"/>
+          <Keyword text="xargs"/>
+          <Keyword text="zcat"/>
+          <Keyword text="zless"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangUser"/>
+  <SYNTAX id="sql">
+    <CodeTemplates>
+      <Template key="---" descr="------....">-----------------------------------------------------------------------------</Template>
+      <Template key="begin" descr="BEGIN - END">BEGIN\n%|%\nEND</Template>
+      <Template key="case" descr="CASE-WHEN-END">CASE %|%\nWHEN\nWHEN\nWHEN\nEND</Template>
+    </CodeTemplates>
+  </SYNTAX>
+</XMLConfigSettings>

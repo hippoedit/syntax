@@ -1,0 +1,83 @@
+BODY
+{
+	font-family: Tahoma, Monospace;
+}
+TABLE
+{
+	border-right: gray 1px solid;
+	table-layout: auto;
+	border-top: gray 1px solid;
+	border-left: gray 1px solid;
+	border-bottom: gray 1px solid;
+	border-collapse: collapse;
+}
+.TR-HEADER
+{
+	font-weight: bold;
+	text-transform: uppercase;
+	color: white;
+	background-color: #3366cc;
+	font-variant: small-caps;
+}
+.TR-NORMAL
+{
+	font-size: smaller;
+}
+TD
+{
+	border-right: gray 1px solid;
+	padding-right: 3px;
+	border-top: gray 1px solid;
+	padding-left: 3px;
+	border-left: gray 1px solid;
+	border-bottom: gray 1px solid;
+}
+.TD-KEY
+{
+	background-color: gainsboro;
+}
+.TABLE-NESTED
+{	
+	font-size: smaller;
+}
+.sortable TABLE
+{
+	border-right: gray 1px solid;
+	table-layout: auto;
+	border-top: gray 1px solid;
+	border-left: gray 1px solid;
+	border-bottom: gray 1px solid;
+	border-collapse: collapse;	
+}
+.sortable TH.descend
+{
+	font-weight: bold;
+	text-transform: uppercase;
+	color: white;
+	background-color: #3366cc;
+	font-variant: small-caps;
+	cursor:pointer;
+}
+.sortable TH.ascend
+{
+	font-weight: bold;
+	text-transform: uppercase;
+	color: white;
+	background-color: #3366cc;
+	font-variant: small-caps;
+	cursor:pointer;
+}
+.sortable TH
+{
+	font-weight: bold;
+	text-transform: uppercase;
+	color: white;
+	background-color: #3366cc;
+	font-variant: small-caps;
+	cursor:pointer;
+}
+
+.sortable TD.key
+{
+	background-color: gainsboro;
+}

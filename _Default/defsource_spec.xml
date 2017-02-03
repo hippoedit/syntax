@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="def_source" name="Default Source" inherit="def" abstract="true" inherit_url="def_spec.xml">
+    <SPECIFICATION>
+      <Numbers>0-9.</Numbers>
+    </SPECIFICATION>
+    <STYLES>
+      <Style id="scope" name="Text Highlights" box_style="1" box_clr="Outlining" clr="#FFFFFFFF" bkclr="#FFFFFFFF"/>
+      <Style id="scope_error" name="Text Highlights Error" underline_style="3" underline_clr="Error" clr="#FFFFFFFF" bkclr="#FFFFFFFF" overview="1"/>
+      <Style id="matching_brace" name="Matching Brace" box_style="1" box_clr="Outlining" clr="#FFFFFFFF" bkclr="#FFFFFFFF"/>
+      <Style id="indent" name="Indentation Guides" dstyle="true" clr="Indentation Guides" dbkclr="true" bkclr="Indentation Guides" overview="3"/>
+      <Style id="indent_highlight" name="Indentation Guides (Highlighted)" dstyle="true" clr="Indentation Guides (Highlighted)" dbkclr="true" bkclr="Indentation Guides (Highlighted)" overview="3"/>
+      <Style id="nesting_level" name="Nesting Level" dstyle="true" clr="#FFFFFFFF" bkclr="Nesting Levels" overview="3"/>      
+      <Style id="number" name="Numbers" dbkclr="false" bold="0" italic="0" underline="0" clr="Number" bkclr="#FFFFFFFF" overview="3"/>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF" overview="3"/>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

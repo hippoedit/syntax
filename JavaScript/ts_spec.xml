@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="ts" name="TypeScript" inherit="js" inherit_url="js_spec.xml" version="1.1">
+    <SPECIFICATION>
+      <FilePattern mask="*.ts"/>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="Module" match="\b(module)\s*(\s*[a-zA-Z0-9_?.$][\w?.$]*)\s*\{" name="module \2" image="15" scope="1"/>
+      <Label group="Class" match="\b(class|interface)\s*(\s*[a-zA-Z0-9_?.$][\w?.$]*)\s*\{" name="\1 \2" scope="1" image="5" style="data_types" highlight="\2"/>
+      <Label group="Function" match="(private|public|protected)\s+([\w.]+)\s*(\([^.;)]*\))\s*\{" name="\2" descr="\2 \3" scope="1" image="18" style="methods" highlight="\2"/>
+      <Label group="Region" match="region\s+(\w+)" name="\1" scope="1" image="12">
+        <Containers open="format_tag"/>
+      </Label>
+    </LABELS>
+    <SCOPES>
+      <Scope open="region" close="endregion" has_name="true" decoration="true" collapsed="true">
+        <Containers open="format_tag"/>
+      </Scope>
+    </SCOPES>
+    <STYLES>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style id="comment" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style id="format_tag" name="Format tags" bold="0" italic="0" underline="0" clr="Format tag" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="//$" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" extend="true">
+        <Keywords>
+          <Keyword text="AS"/>
+          <Keyword text="as"/>
+          <Keyword text="get"/>
+          <Keyword text="constructor"/>
+          <Keyword text="declare"/>
+          <Keyword text="interface"/>
+          <Keyword text="module"/>
+        </Keywords>
+      </Style>
+      <Style id="data_types" name="Data Types" image="10" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="any"/>
+          <Keyword text="bool"/>
+          <Keyword text="number"/>
+          <Keyword text="string"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

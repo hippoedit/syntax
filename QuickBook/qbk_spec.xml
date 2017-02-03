@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="VoidEx" type="LangSpec"/>
+  <SYNTAX id="qbk" name="QuickBook" inherit="def_text" inherit_url="deftext_spec.xml">
+	<SPECIFICATION>
+	  <FilePattern mask="*.qbk"/>
+	  <Delimiters>,;.?:&amp;/+%\*=|!~^#&lt;&gt;</Delimiters>
+	  <OpenClose>()[]''&quot;&quot;</OpenClose>
+	  <Words>0-9A-Za-z_--</Words>
+	  <Operators>=</Operators>
+	  <Bars navigation="true"/>
+	</SPECIFICATION>
+	<LABELS>
+	  <Label group="Section" match="\[section:(\w+)\s+([\w\s]*)\]" name="\1" descr="\2" scope="1" image="6"/>
+    <Label group="Sections" match="\[section\s+([\w\s]*)\]" name="\1" descr="\1" scope="1" image="6"/>
+	  <Label group="Heading" match="\[h\d\s+([\w\s]*)\]" name="\1" descr="\1" scope="1" image="6"/>
+	  <Label group="Headings" match="\[heading\s+([\w\s]*)\]" name="\1" descr="\1" scope="1" image="6"/>
+	</LABELS>
+	<STYLES>
+	  <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+		<Blocks>
+		  <Block open="[/" close="]"/>
+		</Blocks>
+	  </Style>
+	  <Style id="italic-style" name="Italic" text="1" bold="0" italic="1" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+	    <Blocks>
+	      <Block open="['" close="]"/>
+		</Blocks>
+	  </Style>
+	  <Style id="bold-style" name="Bold" text="1" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+	    <Blocks>
+		  <Block open="[*" close="]"/>
+		</Blocks>
+	  </Style>
+	  <Style id="underline-style" name="Underline" text="1" bold="0" italic="0" underline="1" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+	    <Blocks>
+		  <Block open="[_" close="]"/>
+		</Blocks>
+	  </Style>
+	  <Style id="code" name="Code" text="1" bold="0" italic="0" underline="0" clr="#FFFFFFFF" bkclr="Embedded Language 1 Back">
+	    <Blocks>
+		  <Block open="``" close="``"/>
+		  <Block open="`" close="`"/>
+		</Blocks>
+	  </Style>
+	  <Style id="url" name="URL" text="1" bold="0" italic="0" underline="1" clr="Keyword" bkclr="#FFFFFFFF">
+	    <Blocks>
+		  <Block open="[@" close="]"/>
+		  <Block open="[link " close="]"/>
+		  <Block open="[funcref " close="]"/>
+		  <Block open="[classref " close="]"/>
+		  <Block open="[memberref " close="]"/>
+		  <Block open="[enumref " close="]"/>
+		  <Block open="[macroref " close="]"/>
+		  <Block open="[conceptref " close="]"/>
+		  <Block open="[headerref " close="]"/>
+		  <Block open="[globalref " close="]"/>
+		  <Block open="[$" close="]"/>
+		  <Block open="[footnote " close="]"/>
+		</Blocks>
+	  </Style>
+	  <Style id="sections" name="Sections" text="1" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+	    <Blocks>
+		  <Block open="[section " close="]"/>
+		  <Block open="[section:" close="]"/>
+		  <Block open="[xinclude " close="]"/>
+		  <Block open="[include " close="]"/>
+		  <Block open="[import " close="]"/>
+		</Blocks>
+	  </Style>
+	  <Style id="endsect" name="End section" text="1" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+		<Keywords>
+		  <Keyword text="endsect"/>
+		</Keywords>
+	  </Style>
+	  <Style id="macros" name="Macros" text="1" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+	    <Blocks>
+		  <Block open="[def " close="]"/>
+		</Blocks>
+	  </Style>
+	  <Style id="admonitions" name="Admonitions" text="1" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+	    <Blocks>
+		  <Block open="[note " close="]"/>
+		  <Block open="[tip " close="]"/>
+		  <Block open="[important " close="]"/>
+		  <Block open="[caution " close="]"/>
+		  <Block open="[warning " close="]"/>
+		</Blocks>
+	  </Style>
+	  <Style id="headings" name="Headings" text="1" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+  	    <Blocks>
+		  <Block open="[h1 " close="]"/>
+		  <Block open="[h2 " close="]"/>
+		  <Block open="[h3 " close="]"/>
+		  <Block open="[h4 " close="]"/>
+		  <Block open="[h5 " close="]"/>
+		  <Block open="[h6 " close="]"/>
+		  <Block open="[heading " close="]"/>
+		</Blocks>
+	  </Style>
+	  <Style id="document" name="Document" text="1" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+	    <Blocks>
+		  <Block open="[book " close="]"/>
+		  <Block open="[article " close="]"/>
+		  <Block open="[library " close="]"/>
+		  <Block open="[chapter " close="]"/>
+		  <Block open="[part " close="]"/>
+		  <Block open="[appendix " close="]"/>
+		  <Block open="[preface " close="]"/>
+		  <Block open="[qandadiv " close="]"/>
+		  <Block open="[qandaset " close="]"/>
+		  <Block open="[referenve " close="]"/>
+		  <Block open="[set " close="]"/>
+
+		  <Block open="[quickbook " close="]"/>
+		  <Block open="[version " close="]"/>
+		  <Block open="[id " close="]"/>
+		  <Block open="[dirname " close="]"/>
+		  <Block open="[copyright " close="]"/>
+		  <Block open="[purpose " close="]"/>
+		  <Block open="[category " close="]"/>
+		  <Block open="[authors " close="]"/>
+		  <Block open="[license " close="]"/>
+		  <Block open="[source-mode " close="]"/>
+		</Blocks>
+	  </Style>
+	</STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

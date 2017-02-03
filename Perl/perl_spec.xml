@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="perl" name="Perl" inherit="def_source" inherit_url="defsource_spec.xml" version="1.1">
+    <SPECIFICATION>
+      <FilePattern mask="*.cgi;*.pl;*.pm;*.plx"/>
+      <CaseSensitive>true</CaseSensitive>
+      <OpenClose>()[]{}''""</OpenClose>
+      <LineEnd>;</LineEnd>
+      <EscapeChar>\</EscapeChar>
+      <Operators>@?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]{}</Operators>
+      <Words init="A-Za-z_">0-9A-Za-z_$</Words>
+      <HierarchySeparator>
+        <Separator text="-&gt;"/>
+      </HierarchySeparator>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <FormatWords>
+        <FormatWord word="if" next_line="true" range_sentence="true"/>
+        <FormatWord word="else" next_line="true" range_sentence="true"/>
+        <FormatWord word="while" next_line="true" range_sentence="true"/>
+        <FormatWord word="case" next_line="true" range_till_next="true"/>
+        <FormatWord word="for" next_line="true" range_sentence="true"/>
+      </FormatWords>
+    </FORMAT>
+    <LABELS>
+      <Label group="Sub" match="sub\s+(\w+)\s+(:\s*[^{]+)?\{" name="\1" descr="sub \1 \2" image="6" scope="1" style="system" highlight="\1"/>
+      <Label group="Exits" match="\&lt;(return)\&gt;\s*(.*?);" name="\1" descr="\1 \2;" navigation="false" marker="20" context="exit_all"/>
+      <Label group="Exits" match="\&lt;(next)\&gt;\s*(.*?);" name="\1" descr="\1 \2;" navigation="false" marker="19" context="exit_scope" visible="false"/>
+    </LABELS>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="normal" extend="true" escaping="false"/>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="char"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Blocks>
+          <Block open="0x">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+          <Regexp text="\\d+e\\d+"/>
+        </Blocks>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+          <Block open="qq|" close="|"/>
+          <Block open="qq{" close="}"/>
+          <Block open="qq/" close="/"/>
+          <Block open="qq[" close="]"/>
+          <Block open="qq(" close=")"/>
+          <Block open="qw(" close=")"/>
+          <Block open="qq~" close="~"/>
+          <Block open="qq&lt;" close="&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="stringUnquoted" name="Unquoted Strings" text="1" bold="0" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" include="string">
+        <Blocks>
+          <Regexp open="&lt;&lt;\s*&quot;?([^&quot;;]+)&quot;?.+?$" close="^\1$"/>
+        </Blocks>
+      </Style>
+      <Style name="Array" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="qw(" close=")"/>
+          <Regexp text="[[:alpha:]_]+" lead="\s*\{" trail="\s*\}"/>
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'" close="'"/>
+          <Block open="q|" close="|"/>
+          <Block open="q{" close="}"/>
+          <Block open="q/" close="/"/>
+          <Block open="q[" close="]"/>
+          <Block open="q(" close=")"/>
+          <Block open="q~" close="~"/>
+          <Block open="q^" close="^"/>
+          <Block open="q&lt;" close="&gt;"/>
+        </Blocks>
+      </Style>
+      <Style name="Command Output" bold="0" italic="0" underline="0" clr="Window Back" bkclr="Keyword3">
+        <Blocks>
+          <Block open="`" close="`"/>
+          <Block open="qx/" close="/"/>
+        </Blocks>
+      </Style>
+      <Style id="regexp" name="Regular Expression" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF" include="perl_regexp:normal">
+        <Blocks>
+          <Regexp open="/" open_lead="\s*(?:[=(:,~]|$|&amp;&amp;|\|\||!)" open_trail="[^/*+{}?]" close="/\w*"/>
+          <Regexp text="\b(?:s|tr|y)/(?:.*?)/(?:.*?)/\w*"/>
+        </Blocks>
+      </Style>
+      <Style id="list" name="List" bold="2" italic="1" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="qw/" close="/"/>
+        </Blocks>
+      </Style>
+      <Style name="Include" text="1" bold="0" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#!" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Escape Sequence" text="1" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+          <Open id="char"/>
+        </Containers>
+        <Blocks>
+          <Block text="\\n"/>
+          <Block text="\\r"/>
+          <Block text="\\t"/>
+          <Block text="\\f"/>
+          <Block text="\\a"/>
+          <Block text="\\e"/>
+          <Block text="\\Q"/>
+          <Block text="\\E"/>
+          <Block text="\\l"/>
+          <Block text="\\L"/>
+          <Block text="\\u"/>
+          <Block text="\\U"/>
+          <Block text="\\\\"/>
+          <Block text="\\'"/>
+          <Block text="\\&quot;"/>
+          <Regexp text="\\\\0[0-7]+"/>
+          <Regexp text="\\\\x[0-9A-Fa-f]+"/>
+          <Regexp text="\\\\c\w"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="__DATA__"/>
+          <Keyword text="__END__"/>
+          <Keyword text="__FILE__"/>
+          <Keyword text="__LINE__"/>
+          <Keyword text="continue"/>
+          <Keyword text="do"/>
+          <Keyword text="else"/>
+          <Keyword text="elsif"/>
+          <Keyword text="for"/>
+          <Keyword text="foreach"/>
+          <Keyword text="goto"/>
+          <Keyword text="if"/>
+          <Keyword text="last"/>
+          <Keyword text="local"/>
+          <Keyword text="my"/>
+          <Keyword text="next"/>
+          <Keyword text="no"/>
+          <Keyword text="our"/>
+          <Keyword text="package"/>
+          <Keyword text="redo"/>
+          <Keyword text="return"/>
+          <Keyword text="require"/>
+          <Keyword text="sub"/>
+          <Keyword text="until"/>
+          <Keyword text="unless"/>
+          <Keyword text="use"/>
+          <Keyword text="while"/>
+        </Keywords>
+      </Style>
+      <Style id="variables" name="Variables" image="12" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+          <Open id="char"/>
+          <Open id="normal"/>
+        </Containers>
+        <Blocks>
+          <Block open="@" close=""/>
+		  <Block open="$">
+		    <Close noneof="0-9A-Za-z_$&amp;'`"/>
+		  </Block>
+          <Regexp open="**" open_trail="\w" close=""/>
+          <Regexp open="%" open_trail="\w" close=""/>
+        </Blocks>
+      </Style>
+      <Style id="system" name="System" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="accept"/>
+          <Keyword text="alarm"/>
+          <Keyword text="atan2"/>
+          <Keyword text="binmode"/>
+          <Keyword text="bless"/>
+          <Keyword text="caller"/>
+          <Keyword text="chdir"/>
+          <Keyword text="chmod"/>
+          <Keyword text="chomp"/>
+          <Keyword text="chop"/>
+          <Keyword text="chown"/>
+          <Keyword text="chr"/>
+          <Keyword text="chroot"/>
+          <Keyword text="close"/>
+          <Keyword text="closedir"/>
+          <Keyword text="connect"/>
+          <Keyword text="cos"/>
+          <Keyword text="crypt"/>
+          <Keyword text="dbmclose"/>
+          <Keyword text="dbmopen"/>
+          <Keyword text="defined"/>
+          <Keyword text="delete"/>
+          <Keyword text="die"/>
+          <Keyword text="dump"/>
+          <Keyword text="each"/>
+          <Keyword text="endgrent"/>
+          <Keyword text="endhostent"/>
+          <Keyword text="endnetent"/>
+          <Keyword text="endprotoent"/>
+          <Keyword text="endpwent"/>
+          <Keyword text="endservent"/>
+          <Keyword text="eof"/>
+          <Keyword text="eval"/>
+          <Keyword text="exec"/>
+          <Keyword text="exit"/>
+          <Keyword text="exp"/>
+          <Keyword text="exists"/>
+          <Keyword text="fcntl"/>
+          <Keyword text="fileno"/>
+          <Keyword text="flock"/>
+          <Keyword text="fork"/>
+          <Keyword text="formline"/>
+          <Keyword text="format"/>
+          <Keyword text="getc"/>
+          <Keyword text="getgrent"/>
+          <Keyword text="getgrgid"/>
+          <Keyword text="getgrname"/>
+          <Keyword text="gethostbyaddr"/>
+          <Keyword text="gethostbyname"/>
+          <Keyword text="gethostent"/>
+          <Keyword text="getlogin"/>
+          <Keyword text="getnetbyaddr"/>
+          <Keyword text="getnetbyname"/>
+          <Keyword text="getnetent"/>
+          <Keyword text="getpeername"/>
+          <Keyword text="getpgrp"/>
+          <Keyword text="getppid"/>
+          <Keyword text="getpriority"/>
+          <Keyword text="getprotobyname"/>
+          <Keyword text="getprotobynumber"/>
+          <Keyword text="getprotoent"/>
+          <Keyword text="getpwent"/>
+          <Keyword text="getpwnam"/>
+          <Keyword text="getpwuid"/>
+          <Keyword text="getservbyname"/>
+          <Keyword text="getservbyport"/>
+          <Keyword text="getservent"/>
+          <Keyword text="getsockname"/>
+          <Keyword text="getsockopt"/>
+          <Keyword text="glob"/>
+          <Keyword text="gmtime"/>
+          <Keyword text="grep"/>
+          <Keyword text="hex"/>
+          <Keyword text="index"/>
+          <Keyword text="int"/>
+          <Keyword text="ioctl"/>
+          <Keyword text="join"/>
+          <Keyword text="keys"/>
+          <Keyword text="kill"/>
+          <Keyword text="lc"/>
+          <Keyword text="lcfirst"/>
+          <Keyword text="length"/>
+          <Keyword text="link"/>
+          <Keyword text="listen"/>
+          <Keyword text="localtime"/>
+          <Keyword text="log"/>
+          <Keyword text="lstat"/>
+          <Keyword text="map"/>
+          <Keyword text="mkdir"/>
+          <Keyword text="msgctl"/>
+          <Keyword text="msgget"/>
+          <Keyword text="msgrcv"/>
+          <Keyword text="msgsnd"/>
+          <Keyword text="new"/>
+          <Keyword text="oct"/>
+          <Keyword text="open"/>
+          <Keyword text="opendir"/>
+          <Keyword text="ord"/>
+          <Keyword text="pack"/>
+          <Keyword text="pipe"/>
+          <Keyword text="pop"/>
+          <Keyword text="pos"/>
+          <Keyword text="print"/>
+          <Keyword text="printf"/>
+          <Keyword text="push"/>
+          <Keyword text="quotemeta"/>
+          <Keyword text="rand"/>
+          <Keyword text="read"/>
+          <Keyword text="readdir"/>
+          <Keyword text="readline"/>
+          <Keyword text="readlink"/>
+          <Keyword text="recv"/>
+          <Keyword text="ref"/>
+          <Keyword text="rename"/>
+          <Keyword text="reset"/>
+          <Keyword text="reverse"/>
+          <Keyword text="rewinddir"/>
+          <Keyword text="rindex"/>
+          <Keyword text="rmdir"/>
+          <Keyword text="scalar"/>
+          <Keyword text="seek"/>
+          <Keyword text="seekdir"/>
+          <Keyword text="select"/>
+          <Keyword text="semctl"/>
+          <Keyword text="semgett"/>
+          <Keyword text="semop"/>
+          <Keyword text="send"/>
+          <Keyword text="setgrent"/>
+          <Keyword text="sethostent"/>
+          <Keyword text="setnetent"/>
+          <Keyword text="setpgrp"/>
+          <Keyword text="setpriority"/>
+          <Keyword text="setprotoent"/>
+          <Keyword text="setpwent"/>
+          <Keyword text="setservent"/>
+          <Keyword text="setsockopt"/>
+          <Keyword text="shift"/>
+          <Keyword text="shmctl"/>
+          <Keyword text="shmget"/>
+          <Keyword text="shmread"/>
+          <Keyword text="shmwrite"/>
+          <Keyword text="shutdown"/>
+          <Keyword text="sin"/>
+          <Keyword text="sleep"/>
+          <Keyword text="socket"/>
+          <Keyword text="socketpair"/>
+          <Keyword text="sort"/>
+          <Keyword text="splice"/>
+          <Keyword text="split"/>
+          <Keyword text="sprintf"/>
+          <Keyword text="sqrt"/>
+          <Keyword text="srand"/>
+          <Keyword text="stat"/>
+          <Keyword text="study"/>
+          <Keyword text="substr"/>
+          <Keyword text="symlink"/>
+          <Keyword text="syscall"/>
+          <Keyword text="sysopen"/>
+          <Keyword text="sysread"/>
+          <Keyword text="system"/>
+          <Keyword text="syswrite"/>
+          <Keyword text="tell"/>
+          <Keyword text="telldir"/>
+          <Keyword text="tie"/>
+          <Keyword text="tied"/>
+          <Keyword text="time"/>
+          <Keyword text="times"/>
+          <Keyword text="truncate"/>
+          <Keyword text="uc"/>
+          <Keyword text="ucfirst"/>
+          <Keyword text="umask"/>
+          <Keyword text="undef"/>
+          <Keyword text="unlink"/>
+          <Keyword text="unpack"/>
+          <Keyword text="unshift"/>
+          <Keyword text="utime"/>
+          <Keyword text="untie"/>
+          <Keyword text="values"/>
+          <Keyword text="vec"/>
+          <Keyword text="wait"/>
+          <Keyword text="waitpid"/>
+          <Keyword text="wantarray"/>
+          <Keyword text="warn"/>
+          <Keyword text="write"/>
+        </Keywords>
+      </Style>
+      <Style id="operator" extend="true" >
+        <Keywords>
+          <Keyword text="and"/>
+          <Keyword text="eq"/>
+          <Keyword text="ge"/>
+          <Keyword text="gt"/>
+          <Keyword text="le"/>
+          <Keyword text="lt"/>
+          <Keyword text="ne"/>
+          <Keyword text="not"/>
+          <Keyword text="or"/>
+          <Keyword text="xor"/>
+        </Keywords>
+      </Style>
+      <Style name="Operators" image="10" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="AUTOLOAD"/>
+          <Keyword text="BEGIN"/>
+          <Keyword text="CORE"/>
+          <Keyword text="cmp"/>
+          <Keyword text="DESTROY"/>
+          <Keyword text="END"/>
+          <Keyword text="m"/>
+          <Keyword text="q"/>
+          <Keyword text="qq"/>
+          <Keyword text="qw"/>
+          <Keyword text="qx"/>
+          <Keyword text="SUPER"/>
+          <Keyword text="s"/>
+          <Keyword text="tr"/>
+          <Keyword text="UNIVERSAL"/>
+          <Keyword text="x"/>
+          <Keyword text="y"/>
+        </Keywords>
+      </Style>
+      <Style name="Tk Methods" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Button"/>
+          <Keyword text="bell"/>
+          <Keyword text="bind"/>
+          <Keyword text="bindtags"/>
+          <Keyword text="bitmap"/>
+          <Keyword text="button"/>
+          <Keyword text="Checkbutton"/>
+          <Keyword text="canvas"/>
+          <Keyword text="checkbutton"/>
+          <Keyword text="clipboard"/>
+          <Keyword text="configure"/>
+          <Keyword text="destroy"/>
+          <Keyword text="Entry"/>
+          <Keyword text="entry"/>
+          <Keyword text="event"/>
+          <Keyword text="focus"/>
+          <Keyword text="frame"/>
+          <Keyword text="Frame"/>
+          <Keyword text="grab"/>
+          <Keyword text="grid"/>
+          <Keyword text="ridColumnconfigure"/>
+          <Keyword text="gridRowconfigure"/>
+          <Keyword text="gridForget"/>
+          <Keyword text="gridInfo"/>
+          <Keyword text="gridPropagate"/>
+          <Keyword text="gridSize"/>
+          <Keyword text="gridSlaves"/>
+          <Keyword text="image"/>
+          <Keyword text="label"/>
+          <Keyword text="listbox"/>
+          <Keyword text="lower"/>
+          <Keyword text="Label"/>
+          <Keyword text="Listbox"/>
+          <Keyword text="menu"/>
+          <Keyword text="menubutton"/>
+          <Keyword text="message"/>
+          <Keyword text="Menu"/>
+          <Keyword text="Menubutton"/>
+          <Keyword text="MainWindow"/>
+          <Keyword text="option"/>
+          <Keyword text="pack"/>
+          <Keyword text="photo"/>
+          <Keyword text="place"/>
+          <Keyword text="packForget"/>
+          <Keyword text="packInfo"/>
+          <Keyword text="packPropagate"/>
+          <Keyword text="packSlaves"/>
+          <Keyword text="placeForget"/>
+          <Keyword text="placeInfo"/>
+          <Keyword text="placeSlaves"/>
+          <Keyword text="radiobutton"/>
+          <Keyword text="raise"/>
+          <Keyword text="Radiobutton"/>
+          <Keyword text="scale"/>
+          <Keyword text="scrollbar"/>
+          <Keyword text="selection"/>
+          <Keyword text="send"/>
+          <Keyword text="Scale"/>
+          <Keyword text="Scrollbar"/>
+          <Keyword text="Scrolled"/>
+          <Keyword text="text"/>
+          <Keyword text="tk"/>
+          <Keyword text="tk_bindForTraversal"/>
+          <Keyword text="tk_bisque"/>
+          <Keyword text="tk_chooseColor"/>
+          <Keyword text="tk_dialog"/>
+          <Keyword text="tk_focusFollowsMouse"/>
+          <Keyword text="tk_focusNext"/>
+          <Keyword text="tk_focusPrev"/>
+          <Keyword text="tk_getOpenFile"/>
+          <Keyword text="tk_getSaveFile"/>
+          <Keyword text="tk_menuBar"/>
+          <Keyword text="tk_messageBox"/>
+          <Keyword text="tk_optionMenu"/>
+          <Keyword text="tk_popup"/>
+          <Keyword text="tk_setPalette"/>
+          <Keyword text="tkerror"/>
+          <Keyword text="tkvars"/>
+          <Keyword text="tkwait"/>
+          <Keyword text="toplevel"/>
+          <Keyword text="Title"/>
+          <Keyword text="Text"/>
+          <Keyword text="Tk"/>
+          <Keyword text="Title"/>
+          <Keyword text="Winfo"/>
+          <Keyword text="Wm"/>
+        </Keywords>
+      </Style>
+      <Style name="Tk Options" image="11" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="activebackground"/>
+          <Keyword text="activeforeground"/>
+          <Keyword text="activeimage"/>
+          <Keyword text="anchor"/>
+          <Keyword text="activeborderwidth"/>
+          <Keyword text="after"/>
+          <Keyword text="background"/>
+          <Keyword text="bd"/>
+          <Keyword text="bg"/>
+          <Keyword text="bitmap"/>
+          <Keyword text="borderwidth"/>
+          <Keyword text="bigincrement"/>
+          <Keyword text="before"/>
+          <Keyword text="bordermode"/>
+          <Keyword text="command"/>
+          <Keyword text="cursor"/>
+          <Keyword text="closeenought"/>
+          <Keyword text="confine"/>
+          <Keyword text="class"/>
+          <Keyword text="colormap"/>
+          <Keyword text="container"/>
+          <Keyword text="column"/>
+          <Keyword text="columnspan"/>
+          <Keyword text="default"/>
+          <Keyword text="disabledforeground"/>
+          <Keyword text="digits"/>
+          <Keyword text="exportselection"/>
+          <Keyword text="elementborderwidth"/>
+          <Keyword text="expand"/>
+          <Keyword text="fg"/>
+          <Keyword text="font"/>
+          <Keyword text="foreground"/>
+          <Keyword text="from"/>
+          <Keyword text="fill"/>
+          <Keyword text="highlightbackground"/>
+          <Keyword text="highlightcolor"/>
+          <Keyword text="highlightthickness"/>
+          <Keyword text="height"/>
+          <Keyword text="image"/>
+          <Keyword text="insertbackground"/>
+          <Keyword text="insertborderwidth"/>
+          <Keyword text="insertofftime"/>
+          <Keyword text="insertontime"/>
+          <Keyword text="insertwidth"/>
+          <Keyword text="indicatoron"/>
+          <Keyword text="in"/>
+          <Keyword text="ipadx"/>
+          <Keyword text="ipady"/>
+          <Keyword text="justify"/>
+          <Keyword text="jump"/>
+          <Keyword text="label"/>
+          <Keyword text="labelPack"/>
+          <Keyword text="labelVariable"/>
+          <Keyword text="length"/>
+          <Keyword text="menu"/>
+          <Keyword text="minsize"/>
+          <Keyword text="maxsize"/>
+          <Keyword text="name"/>
+          <Keyword text="offvalue"/>
+          <Keyword text="onvalue"/>
+          <Keyword text="overanchor"/>
+          <Keyword text="orient"/>
+          <Keyword text="padx"/>
+          <Keyword text="pady"/>
+          <Keyword text="popanchor"/>
+          <Keyword text="popover"/>
+          <Keyword text="postcommand"/>
+          <Keyword text="pad"/>
+          <Keyword text="relief"/>
+          <Keyword text="repeatdelay"/>
+          <Keyword text="repeatinterval"/>
+          <Keyword text="resolution"/>
+          <Keyword text="row"/>
+          <Keyword text="rowspan"/>
+          <Keyword text="relheight"/>
+          <Keyword text="relwidth"/>
+          <Keyword text="relx"/>
+          <Keyword text="rely"/>
+          <Keyword text="state"/>
+          <Keyword text="scrollregion"/>
+          <Keyword text="selectcolor"/>
+          <Keyword text="selectimage"/>
+          <Keyword text="selectbackground"/>
+          <Keyword text="selectborderwidth"/>
+          <Keyword text="selectforeground"/>
+          <Keyword text="show"/>
+          <Keyword text="selectmode"/>
+          <Keyword text="setgrid"/>
+          <Keyword text="showvalue"/>
+          <Keyword text="sliderlength"/>
+          <Keyword text="sliderrelief"/>
+          <Keyword text="spacing1"/>
+          <Keyword text="spacing2"/>
+          <Keyword text="spacing3"/>
+          <Keyword text="screen"/>
+          <Keyword text="side"/>
+          <Keyword text="sticky"/>
+          <Keyword text="takefocus"/>
+          <Keyword text="text"/>
+          <Keyword text="title"/>
+          <Keyword text="textvariable"/>
+          <Keyword text="tearoff"/>
+          <Keyword text="tearoffcommand"/>
+          <Keyword text="type"/>
+          <Keyword text="tickinterval"/>
+          <Keyword text="to"/>
+          <Keyword text="troughcolor"/>
+          <Keyword text="tabs"/>
+          <Keyword text="underline"/>
+          <Keyword text="value"/>
+          <Keyword text="variable"/>
+          <Keyword text="visual"/>
+          <Keyword text="width"/>
+          <Keyword text="wraplength"/>
+          <Keyword text="wrap"/>
+          <Keyword text="weight"/>
+          <Keyword text="xscrollcommand"/>
+          <Keyword text="xscrollincrement"/>
+          <Keyword text="yscrollcommand"/>
+          <Keyword text="yscrollincrement"/>
+        </Keywords>
+      </Style>
+      <Style name="Constants" image="7" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="false"/>
+          <Keyword text="true"/>
+          <Keyword text="O_RDWR"/>
+          <Keyword text="O_RDONLY"/>
+          <Keyword text="O_WRONLY"/>
+          <Keyword text="O_CREAT"/>
+          <Keyword text="O_APPEND"/>
+          <Keyword text="O_TRUNC"/>
+          <Keyword text="O_EXCL"/>
+          <Keyword text="O_NONBLOCK"/>
+          <Keyword text="HTML"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

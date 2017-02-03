@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="lisp" name="LISP" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.lsp;*.lisp;*.el"/>
+      <OpenClose>()[]{}""</OpenClose>
+      <Delimiters>~!@%^&amp;|{}[];</Delimiters>
+      <Words>A-Za-z0-9$--+*:%~#&lt;&gt;=/</Words>
+      <Numbers>-+0-9.E</Numbers>
+      <EscapeChar>\</EscapeChar>
+      <Operators>()</Operators>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="(" close=")"/>
+    </SCOPES>
+    <LABELS>
+      <Label group="Defun" match="\(\s*defun\s*([\w\-:]+)" name="\1" scope="1" image="18"/>
+    </LABELS>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open=";" close="\n"/>
+          <Block open="#|" close="|#"/>
+        </Blocks>
+        <Containers>
+          <Close id="normal"/>
+          <Close id="todo"/>
+        </Containers>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="="/>
+          <Keyword text="/"/>
+          <Keyword text="//"/>
+          <Keyword text="/="/>
+          <Keyword text="&gt;"/>
+          <Keyword text="&gt;="/>
+          <Keyword text="&lt;"/>
+          <Keyword text="&lt;="/>
+          <Keyword text="+"/>
+          <Keyword text="-"/>
+          <Keyword text="*"/>
+          <Keyword text="1+"/>
+          <Keyword text="1-"/>
+          <Keyword text="evenp"/>
+          <Keyword text="minusp"/>
+          <Keyword text="oddp"/>
+          <Keyword text="plusp"/>
+          <Keyword text="zerop"/>
+        </Keywords>
+      </Style>
+      <Style id="options" name="Options" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open=":" close=""/>
+        </Blocks>
+      </Style>
+      <Style name="Symbols" bold="1" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'" close=""/>
+        </Blocks>
+      </Style>
+      <Style name="Special" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="*" close=""/>
+        </Blocks>
+      </Style>
+      <Style name="Escape Sequence" text="1" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+        </Containers>
+        <Blocks>
+          <Block text="\\n"/>
+          <Block text="\\r"/>
+          <Block text="\\t"/>
+          <Block text="\\\\"/>
+          <Block text="\\'"/>
+          <Block text="\\&quot;"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="abs"/>
+          <Keyword text="acons"/>
+          <Keyword text="acos"/>
+          <Keyword text="alpha-char-p"/>
+          <Keyword text="alphanumericp"/>
+          <Keyword text="and"/>
+          <Keyword text="append"/>
+          <Keyword text="apply"/>
+          <Keyword text="apropos"/>
+          <Keyword text="aref"/>
+          <Keyword text="array-dimensions"/>
+          <Keyword text="array-rank"/>
+          <Keyword text="arrayp"/>
+          <Keyword text="asin"/>
+          <Keyword text="assoc"/>
+          <Keyword text="atan"/>
+          <Keyword text="atom"/>
+          <Keyword text="block"/>
+          <Keyword text="boundp"/>
+          <Keyword text="break"/>
+          <Keyword text="by"/>
+          <Keyword text="bye"/>
+          <Keyword text="cal" descr="invokes geometry calculator"/>
+          <Keyword text="case"/>
+          <Keyword text="catch"/>
+          <Keyword text="cdr" descr="returns list minus first element"/>
+          <Keyword text="ceiling"/>
+          <Keyword text="char"/>
+          <Keyword text="char"/>
+          <Keyword text="char-code"/>
+          <Keyword text="char-downcase"/>
+          <Keyword text="char-upcase"/>
+          <Keyword text="char-acterp"/>
+          <Keyword text="close"/>
+          <Keyword text="code-char"/>
+          <Keyword text="compile"/>
+          <Keyword text="compile-file"/>
+          <Keyword text="compiler-let"/>
+          <Keyword text="complexp"/>
+          <Keyword text="concatenate"/>
+          <Keyword text="cond"/>
+          <Keyword text="cons"/>
+          <Keyword text="consp"/>
+          <Keyword text="copy-seq"/>
+          <Keyword text="cos"/>
+          <Keyword text="decf"/>
+          <Keyword text="declare"/>
+          <Keyword text="defconstant"/>
+          <Keyword text="defmacro"/>
+          <Keyword text="defparameter"/>
+          <Keyword text="defstruct"/>
+          <Keyword text="defun"/>
+          <Keyword text="defvar"/>
+          <Keyword text="delete"/>
+          <Keyword text="delete-file"/>
+          <Keyword text="delete-if"/>
+          <Keyword text="delete-if-not"/>
+          <Keyword text="describe"/>
+          <Keyword text="digit-char-p"/>
+          <Keyword text="do"/>
+          <Keyword text="do*"/>
+          <Keyword text="do-all-symbols"/>
+          <Keyword text="do-external-symbols"/>
+          <Keyword text="do-symbols"/>
+          <Keyword text="documentation"/>
+          <Keyword text="dolist"/>
+          <Keyword text="dotimes"/>
+          <Keyword text="ed"/>
+          <Keyword text="eighth"/>
+          <Keyword text="eq"/>
+          <Keyword text="eql"/>
+          <Keyword text="equal"/>
+          <Keyword text="error"/>
+          <Keyword text="eval"/>
+          <Keyword text="eval-when"/>
+          <Keyword text="exp"/>
+          <Keyword text="export"/>
+          <Keyword text="expt"/>
+          <Keyword text="fifth"/>
+          <Keyword text="find-package"/>
+          <Keyword text="find-symbol"/>
+          <Keyword text="finish-output"/>
+          <Keyword text="first"/>
+          <Keyword text="flet"/>
+          <Keyword text="floatp"/>
+          <Keyword text="floor"/>
+          <Keyword text="format"/>
+          <Keyword text="fourth"/>
+          <Keyword text="fresh-line"/>
+          <Keyword text="funcall"/>
+          <Keyword text="function"/>
+          <Keyword text="gcd"/>
+          <Keyword text="gensym"/>
+          <Keyword text="gentemp"/>
+          <Keyword text="get"/>
+          <Keyword text="getf"/>
+          <Keyword text="get-macro-character"/>
+          <Keyword text="get-properties"/>
+          <Keyword text="go"/>
+          <Keyword text="if"/>
+          <Keyword text="import"/>
+          <Keyword text="in-package"/>
+          <Keyword text="incf"/>
+          <Keyword text="inspect"/>
+          <Keyword text="integerp"/>
+          <Keyword text="intern"/>
+          <Keyword text="isqrt"/>
+          <Keyword text="labels"/>
+          <Keyword text="lambda"/>
+          <Keyword text="last"/>
+          <Keyword text="lcm"/>
+          <Keyword text="length"/>
+          <Keyword text="let"/>
+          <Keyword text="let*"/>
+          <Keyword text="list"/>
+          <Keyword text="list*"/>
+          <Keyword text="list-all-packages"/>
+          <Keyword text="listp"/>
+          <Keyword text="load"/>
+          <Keyword text="log"/>
+          <Keyword text="loop"/>
+          <Keyword text="lower-case-p"/>
+          <Keyword text="macroexpand"/>
+          <Keyword text="macro-function"/>
+          <Keyword text="macrolet"/>
+          <Keyword text="make-array"/>
+          <Keyword text="make-list"/>
+          <Keyword text="make-string"/>
+          <Keyword text="makunbound"/>
+          <Keyword text="mapc"/>
+          <Keyword text="mapcan"/>
+          <Keyword text="mapcar"/>
+          <Keyword text="mapcon"/>
+          <Keyword text="mapl"/>
+          <Keyword text="maplist"/>
+          <Keyword text="max"/>
+          <Keyword text="member"/>
+          <Keyword text="member-if"/>
+          <Keyword text="member-if-not"/>
+          <Keyword text="min"/>
+          <Keyword text="mod"/>
+          <Keyword text="multiple-value-bind"/>
+          <Keyword text="multiple-value-call"/>
+          <Keyword text="multiple-value-list"/>
+          <Keyword text="multiple-value-prog1"/>
+          <Keyword text="multiple-value-setq"/>
+          <Keyword text="nconc"/>
+          <Keyword text="nil"/>
+          <Keyword text="ninth"/>
+          <Keyword text="not"/>
+          <Keyword text="nreverse"/>
+          <Keyword text="nstring-downcase"/>
+          <Keyword text="nstring-upcase"/>
+          <Keyword text="nth"/>
+          <Keyword text="nthcdr"/>
+          <Keyword text="null"/>
+          <Keyword text="numberp"/>
+          <Keyword text="open"/>
+          <Keyword text="or"/>
+          <Keyword text="otherwise"/>
+          <Keyword text="peek-char"/>
+          <Keyword text="pi"/>
+          <Keyword text="pop"/>
+          <Keyword text="pprint"/>
+          <Keyword text="prin1"/>
+          <Keyword text="princ"/>
+          <Keyword text="print"/>
+          <Keyword text="probe-file"/>
+          <Keyword text="proclaim"/>
+          <Keyword text="prog"/>
+          <Keyword text="prog*"/>
+          <Keyword text="prog1"/>
+          <Keyword text="progn"/>
+          <Keyword text="progv"/>
+          <Keyword text="provide"/>
+          <Keyword text="psetf"/>
+          <Keyword text="psetq"/>
+          <Keyword text="push"/>
+          <Keyword text="quote"/>
+          <Keyword text="random"/>
+          <Keyword text="rationalp"/>
+          <Keyword text="read"/>
+          <Keyword text="read-char"/>
+          <Keyword text="read-preserving-whitespace"/>
+          <Keyword text="rem"/>
+          <Keyword text="remf"/>
+          <Keyword text="remove"/>
+          <Keyword text="remove-if"/>
+          <Keyword text="remove-if-not"/>
+          <Keyword text="remprop"/>
+          <Keyword text="rename-file"/>
+          <Keyword text="require"/>
+          <Keyword text="rest"/>
+          <Keyword text="return"/>
+          <Keyword text="return-from"/>
+          <Keyword text="reverse"/>
+          <Keyword text="round"/>
+          <Keyword text="rplace"/>
+          <Keyword text="rplacd"/>
+          <Keyword text="second"/>
+          <Keyword text="set"/>
+          <Keyword text="set-macro-character"/>
+          <Keyword text="setf"/>
+          <Keyword text="setq"/>
+          <Keyword text="seventh"/>
+          <Keyword text="shadow"/>
+          <Keyword text="sin"/>
+          <Keyword text="sixth"/>
+          <Keyword text="special"/>
+          <Keyword text="special-form-p"/>
+          <Keyword text="sqrt"/>
+          <Keyword text="step"/>
+          <Keyword text="string"/>
+          <Keyword text="string-char"/>
+          <Keyword text="string-downcase"/>
+          <Keyword text="string-upcase"/>
+          <Keyword text="stringp"/>
+          <Keyword text="subseq"/>
+          <Keyword text="symbol-name"/>
+          <Keyword text="symbol-package"/>
+          <Keyword text="symbol-values"/>
+          <Keyword text="t"/>
+          <Keyword text="tagbody"/>
+          <Keyword text="tan"/>
+          <Keyword text="tenth"/>
+          <Keyword text="terpri"/>
+          <Keyword text="the"/>
+          <Keyword text="third"/>
+          <Keyword text="throw"/>
+          <Keyword text="time"/>
+          <Keyword text="trace"/>
+          <Keyword text="truncate"/>
+          <Keyword text="typep"/>
+          <Keyword text="unless"/>
+          <Keyword text="unread-char"/>
+          <Keyword text="untrace"/>
+          <Keyword text="unwind-protect"/>
+          <Keyword text="upper-case-p"/>
+          <Keyword text="use-package"/>
+          <Keyword text="values"/>
+          <Keyword text="values-list"/>
+          <Keyword text="variable"/>
+          <Keyword text="vector"/>
+          <Keyword text="vectorp"/>
+          <Keyword text="when"/>
+          <Keyword text="with-input-from-string"/>
+          <Keyword text="with-open-file"/>
+          <Keyword text="with-output-to-string"/>
+          <Keyword text="write"/>
+          <Keyword text="write-char"/>
+          <Keyword text="write-to-string"/>
+        </Keywords>
+      </Style>
+      <Style name="Option Properties" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="options"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="allow-other-keys"/>
+          <Keyword text="append"/>
+          <Keyword text="array"/>
+          <Keyword text="base"/>
+          <Keyword text="capitalize"/>
+          <Keyword text="case"/>
+          <Keyword text="circle"/>
+          <Keyword text="count"/>
+          <Keyword text="direction"/>
+          <Keyword text="downcase"/>
+          <Keyword text="element-type"/>
+          <Keyword text="escape"/>
+          <Keyword text="external"/>
+          <Keyword text="from-end"/>
+          <Keyword text="gensym"/>
+          <Keyword text="if-exists"/>
+          <Keyword text="inherited"/>
+          <Keyword text="initial-element"/>
+          <Keyword text="input"/>
+          <Keyword text="internal"/>
+          <Keyword text="key"/>
+          <Keyword text="length"/>
+          <Keyword text="level"/>
+          <Keyword text="output"/>
+          <Keyword text="output-file"/>
+          <Keyword text="pretty"/>
+          <Keyword text="print"/>
+          <Keyword text="radix"/>
+          <Keyword text="stream"/>
+          <Keyword text="test"/>
+          <Keyword text="test-not"/>
+          <Keyword text="upcase"/>
+          <Keyword text="verbose"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

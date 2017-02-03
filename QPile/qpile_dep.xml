@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="Dependency"/>
+  <SYNTAX id="qpile">
+	<Link url="http://robolen.narod.ru/pages/EditQpile/hippo.htm" name="Configure HippoEDIT For QPile" descr="More info about QPile script editing in HippoEDIT"/>
+  </SYNTAX>
+</XMLConfigSettings>

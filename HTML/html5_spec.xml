@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="html5" name="HTML5" inherit="xml" inherit_url="xml_spec.xml" version="1.1">
+    <SPECIFICATION>
+      <FilePattern mask="*.html;*.htm"/>
+      <OpenClose>()[]''</OpenClose>
+      <Operators>?--+/*=&lt;&gt;</Operators>
+      <Words>0-9A-Za-z_--</Words>
+      <Encoding bom="false">
+        <Block open="charset="/>
+      </Encoding>
+      <SyntaxBlocks>
+        <Block open="&lt;!DOCTYPE html"/>
+        <Block open="&lt;html"/>
+        <Block open="&lt; html"/>
+      </SyntaxBlocks>
+      <Bars navigation="true" hierarchy="true"/>
+    </SPECIFICATION>
+    <SCOPES open_container="xml_open_tag" close_container="xml_close_tag">
+      <Scope open="a" close="a"/>
+      <Scope open="abbr" close="abbr"/>
+      <Scope open="address" close="address"/>
+      <Scope open="article" close="article"/>
+      <Scope open="aside" close="aside"/>
+      <Scope open="audio" close="audio"/>
+      <Scope open="b" close="b"/>
+      <Scope open="bdi" close="bdi"/>
+      <Scope open="bdo" close="bdo"/>
+      <Scope open="blockquote" close="blockquote"/>
+      <Scope open="body" close="body"/>
+      <Scope open="button" close="button"/>
+      <Scope open="canvas" close="canvas"/>
+      <Scope open="caption" close="caption"/>
+      <Scope open="cite" close="cite"/>
+      <Scope open="code" close="code"/>
+      <Scope open="colgroup" close="colgroup"/>
+      <Scope open="command" close="command"/>
+      <Scope open="datalist" close="datalist"/>
+      <Scope open="dd" close="dd"/>
+      <Scope open="del" close="del"/>
+      <Scope open="details" close="details"/>
+      <Scope open="dfn" close="dfn"/>
+      <Scope open="div" close="div"/>
+      <Scope open="dl" close="dl"/>
+      <Scope open="dd" close="dd"/>
+      <Scope open="dt" close="dt"/>
+      <Scope open="em" close="em"/>
+      <Scope open="fieldset" close="fieldset"/>
+      <Scope open="figcaption" close="figcaption"/>
+      <Scope open="figure" close="figure"/>
+      <Scope open="footer" close="footer"/>
+      <Scope open="form" close="form"/>
+      <Scope open="h1" close="h1"/>
+      <Scope open="h2" close="h2"/>
+      <Scope open="h3" close="h3"/>
+      <Scope open="h4" close="h4"/>
+      <Scope open="h5" close="h5"/>
+      <Scope open="h6" close="h6"/>
+      <Scope open="head" close="head"/>
+      <Scope open="header" close="header"/>
+      <Scope open="html" close="html"/>
+      <Scope open="hgroup" close="hgroup"/>
+      <Scope open="i" close="i"/>
+      <Scope open="iframe" close="iframe"/>
+      <Scope open="ins" close="ins"/>
+      <Scope open="kbd" close="kbd"/>
+      <Scope open="label" close="label"/>
+      <Scope open="legend" close="legend"/>
+      <Scope open="li" close="li"/>
+      <Scope open="map" close="map"/>
+      <Scope open="mark" close="mark"/>
+      <Scope open="menu" close="menu"/>
+      <Scope open="meter" close="meter"/>
+      <Scope open="nav" close="nav"/>
+      <Scope open="noscript" close="noscript"/>
+      <Scope open="object" close="object"/>
+      <Scope open="ol" close="ol"/>
+      <Scope open="optgroup" close="optgroup"/>
+      <Scope open="option" close="option"/>
+      <Scope open="output" close="output"/>
+      <Scope open="p" close="p"/>
+      <Scope open="pre" close="pre"/>
+      <Scope open="progress" close="progress"/>
+      <Scope open="q" close="q"/>
+      <Scope open="rp" close="rp"/>
+      <Scope open="rt" close="rt"/>
+      <Scope open="ruby" close="ruby"/>
+      <Scope open="select" close="select"/>
+      <Scope open="small" close="small"/>
+      <Scope open="script" close="script"/>
+      <Scope open="section" close="section"/>
+      <Scope open="span" close="span" open_lead="&lt;"/>
+      <Scope open="strong" close="strong"/>
+      <Scope open="style" close="style" open_lead="&lt;"/>
+      <Scope open="sub" close="sub"/>
+      <Scope open="summary" close="summary"/>
+      <Scope open="sup" close="sup"/>
+      <Scope open="table" close="table"/>
+      <Scope open="tbody" close="tbody"/>
+      <Scope open="td" close="td"/>
+      <Scope open="textarea" close="textarea"/>
+      <Scope open="tfoot" close="tfoot"/>
+      <Scope open="th" close="th"/>
+      <Scope open="thead" close="thead"/>
+      <Scope open="time" close="time" />
+      <Scope open="title" close="title" open_lead="&lt;"/>
+      <Scope open="tr" close="tr"/>
+      <Scope open="ul" close="ul"/>
+      <Scope open="var" close="var"/>
+      <Scope open="video" close="video"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="scope" name="Text Highlights" bold="1" italic="2" underline="2" clr="#FFFFFFFF" bkclr="#FFFFFFFF"/>
+      <Style id="scope_error" name="Text Highlights Error" bold="1" italic="0" underline="0" clr="Error" bkclr="#FFFFFFFF" overview="1"/>
+      <Style id="nesting_level" name="Nesting Level" dstyle="true" clr="#FFFFFFFF" bkclr="#888888F0" overview="3"/>
+      <Style id="number" name="Numbers" dbkclr="false" bold="0" italic="0" underline="0" clr="Number" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+        </Containers>
+      </Style>
+      <Style id="string" extend="true">
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style id="entity" extend="true">
+        <Containers>
+          <Open id="string" exclude="true"/>
+        </Containers>
+      </Style>
+      <Style name="Entities Values" extend="true">
+        <Keywords>
+          <Keyword text="forall" descr="∀ - for all"/>
+          <Keyword text="part" descr="∂ - part"/>
+          <Keyword text="exist" descr="∃ - exists"/>
+          <Keyword text="empty" descr="∅ - empty"/>
+          <Keyword text="nabla" descr="∇ - nabla"/>
+          <Keyword text="isin" descr="∈ - isin"/>
+          <Keyword text="notin" descr="∉ - notin"/>
+          <Keyword text="ni" descr="∋ - ni"/>
+          <Keyword text="prod" descr="∏ - prod"/>
+          <Keyword text="sum" descr="∑ - sum"/>
+          <Keyword text="minus" descr="− - minus"/>
+          <Keyword text="lowast" descr="∗ - lowast"/>
+          <Keyword text="radic" descr="√ - square root"/>
+          <Keyword text="prop" descr="∝ - proportional to"/>
+          <Keyword text="infin" descr="∞ - infinity"/>
+          <Keyword text="ang" descr="∠ - angle"/>
+          <Keyword text="and" descr="∧ - and"/>
+          <Keyword text="or" descr="∨ - or"/>
+          <Keyword text="cap" descr="∩ - cap"/>
+          <Keyword text="cup" descr="∪ - cup"/>
+          <Keyword text="int" descr="∫ - integral"/>
+          <Keyword text="there4" descr="∴ - therefore"/>
+          <Keyword text="sim" descr="∼ - similar to"/>
+          <Keyword text="cong" descr="≅ - congruent to"/>
+          <Keyword text="asymp" descr="≈ - almost equal"/>
+          <Keyword text="ne" descr="≠ - not equal"/>
+          <Keyword text="equiv" descr="≡ - equivalent"/>
+          <Keyword text="le" descr="≤ - less or equal"/>
+          <Keyword text="ge" descr="≥ - greater or equal"/>
+          <Keyword text="sub" descr="⊂ - subset of"/>
+          <Keyword text="sup" descr="⊃ - superset of"/>
+          <Keyword text="nsub" descr="⊄ - not subset of"/>
+          <Keyword text="sube" descr="⊆ - subset or equal"/>
+          <Keyword text="supe" descr="⊇ - superset or equal"/>
+          <Keyword text="oplus" descr="⊕ - circled plus"/>
+          <Keyword text="otimes" descr="⊗ - circled times"/>
+          <Keyword text="perp" descr="⊥ - perpendicular"/>
+          <Keyword text="sdot" descr="⋅ - dot operator"/>
+          <Keyword text="Alpha" descr="Α - Alpha"/>
+          <Keyword text="Beta" descr="Β - Beta"/>
+          <Keyword text="Gamma" descr="Γ - Gamma"/>
+          <Keyword text="Delta" descr="Δ - Delta"/>
+          <Keyword text="Epsilon" descr="Ε - Epsilon"/>
+          <Keyword text="Zeta" descr="Ζ - Zeta"/>
+          <Keyword text="Eta" descr="Η - Eta"/>
+          <Keyword text="Theta" descr="Θ - Theta"/>
+          <Keyword text="Iota" descr="Ι - Iota"/>
+          <Keyword text="Kappa" descr="Κ - Kappa"/>
+          <Keyword text="Lambda" descr="Λ - Lambda"/>
+          <Keyword text="Mu" descr="Μ - Mu"/>
+          <Keyword text="Nu" descr="Ν - Nu"/>
+          <Keyword text="Xi" descr="Ξ - Xi"/>
+          <Keyword text="Omicron" descr="Ο - Omicron"/>
+          <Keyword text="Pi" descr="Π - Pi"/>
+          <Keyword text="Rho" descr="Ρ - Rho"/>
+          <Keyword text="Sigma" descr="Σ - Sigma"/>
+          <Keyword text="Tau" descr="Τ - Tau"/>
+          <Keyword text="Upsilon" descr="Υ - Upsilon"/>
+          <Keyword text="Phi" descr="Φ - Phi"/>
+          <Keyword text="Chi" descr="Χ - Chi"/>
+          <Keyword text="Psi" descr="Ψ - Psi"/>
+          <Keyword text="Omega" descr="Ω - Omega"/>
+          <Keyword text="alpha" descr="α - alpha"/>
+          <Keyword text="beta" descr="β - beta"/>
+          <Keyword text="gamma" descr="γ - gamma"/>
+          <Keyword text="delta" descr="δ - delta"/>
+          <Keyword text="epsilon" descr="ε - epsilon"/>
+          <Keyword text="zeta" descr="ζ - zeta"/>
+          <Keyword text="eta" descr="η - eta"/>
+          <Keyword text="theta" descr="θ - theta"/>
+          <Keyword text="iota" descr="ι - iota"/>
+          <Keyword text="kappa" descr="κ - kappa"/>
+          <Keyword text="lambda" descr="λ - lambda"/>
+          <Keyword text="mu" descr="μ - mu"/>
+          <Keyword text="nu" descr="ν - nu"/>
+          <Keyword text="xi" descr="ξ - xi"/>
+          <Keyword text="omicron" descr="ο - omicron"/>
+          <Keyword text="pi" descr="π - pi"/>
+          <Keyword text="rho" descr="ρ - rho"/>
+          <Keyword text="sigmaf" descr="ς - sigmaf"/>
+          <Keyword text="sigma" descr="σ - sigma"/>
+          <Keyword text="tau" descr="τ - tau"/>
+          <Keyword text="upsilon" descr="υ - upsilon"/>
+          <Keyword text="phi" descr="φ - phi"/>
+          <Keyword text="chi" descr="χ - chi"/>
+          <Keyword text="psi" descr="ψ - psi"/>
+          <Keyword text="omega" descr="ω - omega"/>
+          <Keyword text="thetasym" descr="ϑ - theta symbol"/>
+          <Keyword text="upsih" descr="ϒ - upsilon symbol"/>
+          <Keyword text="piv" descr="ϖ - pi symbol"/>
+          <Keyword text="OElig" descr="Œ - capital ligature OE"/>
+          <Keyword text="oelig" descr="œ - small ligature oe"/>
+          <Keyword text="Scaron" descr="Š - capital S with caron"/>
+          <Keyword text="scaron" descr="š - small S with caron"/>
+          <Keyword text="Yuml" descr="Ÿ - capital Y with diaeres"/>
+          <Keyword text="fnof" descr="ƒ - f with hook"/>
+          <Keyword text="circ" descr="ˆ - modifier letter circumflex accent"/>
+          <Keyword text="tilde" descr="˜ - small tilde"/>
+          <Keyword text="ensp" descr="  - en space"/>
+          <Keyword text="emsp" descr="  - em space"/>
+          <Keyword text="thinsp" descr="  - thin space"/>
+          <Keyword text="zwnj" descr="‌ - zero width non-joiner"/>
+          <Keyword text="zwj" descr="‍ - zero width joiner"/>
+          <Keyword text="lrm" descr="‎ - left-to-right mark"/>
+          <Keyword text="rlm" descr="‏ - right-to-left mark"/>
+          <Keyword text="ndash" descr="– - en dash"/>
+          <Keyword text="mdash" descr="— - em dash"/>
+          <Keyword text="lsquo" descr="‘ - left single quotation mark"/>
+          <Keyword text="rsquo" descr="’ - right single quotation mark"/>
+          <Keyword text="sbquo" descr="‚ - single low-9 quotation mark"/>
+          <Keyword text="ldquo" descr="“ - left double quotation mark"/>
+          <Keyword text="rdquo" descr="” - right double quotation mark"/>
+          <Keyword text="bdquo" descr="„ - double low-9 quotation mark"/>
+          <Keyword text="dagger" descr="† - dagger"/>
+          <Keyword text="Dagger" descr="‡ - double dagger"/>
+          <Keyword text="bull" descr="• - bullet"/>
+          <Keyword text="hellip" descr="… - horizontal ellipsis"/>
+          <Keyword text="permil" descr="‰ - per mille"/>
+          <Keyword text="prime" descr="′ - minutes"/>
+          <Keyword text="Prime" descr="″ - seconds"/>
+          <Keyword text="lsaquo" descr="‹ - single left angle quotation"/>
+          <Keyword text="rsaquo" descr="› - single right angle quotation"/>
+          <Keyword text="oline" descr="‾ - overline"/>
+          <Keyword text="euro" descr="€ - euro"/>
+          <Keyword text="trade" descr="™ - trademark"/>
+          <Keyword text="larr" descr="← - left arrow"/>
+          <Keyword text="uarr" descr="↑ - up arrow"/>
+          <Keyword text="rarr" descr="→ - right arrow"/>
+          <Keyword text="darr" descr="↓ - down arrow"/>
+          <Keyword text="harr" descr="↔ - left right arrow"/>
+          <Keyword text="crarr" descr="↵ - carriage return arrow"/>
+          <Keyword text="lceil" descr="⌈ - left ceiling"/>
+          <Keyword text="rceil" descr="⌉ - right ceiling"/>
+          <Keyword text="lfloor" descr="⌊ - left floor"/>
+          <Keyword text="rfloor" descr="⌋ - right floor"/>
+          <Keyword text="loz" descr="◊ - lozenge"/>
+          <Keyword text="spades" descr="♠ - spade"/>
+          <Keyword text="clubs" descr="♣ - club"/>
+          <Keyword text="hearts" descr="♥ - heart"/>
+          <Keyword text="diams" descr="♦ - diamond"/>
+        </Keywords>
+      </Style>
+      <Style id="elements" name="Elements" image="9" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF" text="">
+        <Containers>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_close_tag"/>
+        </Containers>
+        <Keywords lead="/?&lt;">
+          <Keyword text="a" descr="Defines a hyperlink"/>
+          <Keyword text="abbr" descr="Defines an abbreviation"/>
+          <Keyword text="address" descr="Defines contact information for the author/owner of a document/article"/>
+          <Keyword text="area" descr="Defines an area inside an image-map"/>
+          <Keyword text="article" descr="Defines an article"/>
+          <Keyword text="aside" descr="Defines content aside from the page content"/>
+          <Keyword text="audio" descr="Defines sound content"/>
+          <Keyword text="base" descr="Specifies the base URL/target for all relative URLs in a document"/>
+          <Keyword text="b" descr="Defines bold text"/>
+          <Keyword text="bdi" descr="Isolates a part of text that might be formatted in a different direction from other text outside it"/>
+          <Keyword text="bdo" descr="Overrides the current text direction"/>
+          <Keyword text="blockquote" descr="Defines a section that is quoted from another source"/>
+          <Keyword text="body" descr="Defines the document's body"/>
+          <Keyword text="br" descr="Defines a single line break"/>
+          <Keyword text="button" descr="Defines a clickable button"/>
+          <Keyword text="canvas" descr="Used to draw graphics, on the fly, via scripting"/>
+          <Keyword text="caption" descr="Defines a table caption"/>
+          <Keyword text="cite" descr="Defines the title of a work"/>
+          <Keyword text="code" descr="Defines a piece of computer code"/>
+          <Keyword text="col" descr="Specifies column properties for each column within a &lt;colgroup&gt; element"/>
+          <Keyword text="colgroup" descr="Specifies a group of one or more columns in a table for formatting"/>
+          <Keyword text="datalist" descr="Specifies a list of pre-defined options for input controls"/>
+          <Keyword text="dd" descr="Defines a description of an item in a definition list"/>
+          <Keyword text="del" descr="Defines a text that has been deleted from a document"/>
+          <Keyword text="dfn" descr="Defines a definition term"/>
+          <Keyword text="div" descr="Defines a section in a document"/>
+          <Keyword text="dl" descr="Defines a definition list"/>
+          <Keyword text="dt" descr="Defines a term (an item) in a definition list"/>
+          <Keyword text="em" descr="Defines emphasized text "/>
+          <Keyword text="embed" descr="Defines a container for an external application or interactive content (a plug-in)"/>
+          <Keyword text="fieldset" descr="Groups related elements in a form"/>
+          <Keyword text="figcaption" descr="Defines a caption for a &lt;figure&gt; element"/>
+          <Keyword text="figure" descr="Specifies self-contained content"/>
+          <Keyword text="footer" descr="Defines a footer for a document or section"/>
+          <Keyword text="form" descr="Defines an HTML form for user input"/>
+          <Keyword text="h1" descr="Defines HTML headings"/>
+          <Keyword text="h2" descr="Defines HTML headings"/>
+          <Keyword text="h3" descr="Defines HTML headings"/>
+          <Keyword text="h4" descr="Defines HTML headings"/>
+          <Keyword text="h5" descr="Defines HTML headings"/>
+          <Keyword text="h6" descr="Defines HTML headings"/>
+          <Keyword text="head" descr="Defines information about the document"/>
+          <Keyword text="header" descr="Specifies an introduction, or a group of navigation elements for a document"/>
+          <Keyword text="hgroup" descr="Groups a set of &lt;h1&gt; to &lt;h6&gt; elements when a heading has multiple levels"/>
+          <Keyword text="hr" descr="Defines a thematic change in the content"/>
+          <Keyword text="html" descr="Defines the root of an HTML document"/>
+          <Keyword text="i" descr="Defines a part of text in an alternate voice or mood"/>
+          <Keyword text="iframe" descr="Defines an inline frame"/>
+          <Keyword text="img" descr="Defines an image"/>
+          <Keyword text="input" descr="Defines an input control"/>
+          <Keyword text="ins" descr="Defines a text that has been inserted into a document"/>
+          <Keyword text="kbd" descr="Defines a key-pair generator field (for forms)"/>
+          <Keyword text="keygen" descr="Defines keyboard input"/>
+          <Keyword text="label" descr="Defines a label for an input element"/>
+          <Keyword text="legend" descr="Defines a caption for a &lt;fieldset&gt;, &lt;figure&gt;, or &lt;details&gt; element"/>
+          <Keyword text="li" descr="Defines a list item"/>
+          <Keyword text="link" descr="Defines the relationship between a document and an external resource (most used to link to style sheets)"/>
+          <Keyword text="map" descr="Defines a client-side image-map "/>
+          <Keyword text="menu" descr="Defines a list/menu of commands"/>
+          <Keyword text="meta" descr="Defines metadata about an HTML document"/>
+          <Keyword text="meter" descr="Defines a scalar measurement within a known range (a gauge)"/>
+          <Keyword text="nav" descr="Defines navigation links"/>
+          <Keyword text="noscript" descr="Defines an alternate content for users that do not support client-side scripts"/>
+          <Keyword text="object" descr="Defines an embedded object"/>
+          <Keyword text="ol" descr="Defines an ordered list"/>
+          <Keyword text="optgroup" descr="Defines a group of related options in a drop-down list"/>
+          <Keyword text="option" descr="Defines an option in a drop-down list"/>
+          <Keyword text="output" descr="Defines the result of a calculation"/>
+          <Keyword text="p" descr="Defines a paragraph"/>
+          <Keyword text="param" descr="Defines a parameter for an object"/>
+          <Keyword text="pre" descr="Defines preformatted text"/>
+          <Keyword text="progress" descr="Represents the progress of a task"/>
+          <Keyword text="q" descr="Defines a short quotation"/>
+          <Keyword text="rp" descr="Defines what to show in browsers that do not support ruby annotations"/>
+          <Keyword text="rt" descr="Defines an explanation/pronunciation of characters (for East Asian typography)"/>
+          <Keyword text="ruby" descr="Defines a ruby annotation (for East Asian typography)"/>
+          <Keyword text="s" descr="Defines text that is no longer correct"/>
+          <Keyword text="samp" descr="Defines sample output from a computer program"/>
+          <Keyword text="script" descr="Defines a client-side script"/>
+          <Keyword text="section" descr="Defines a thematic section in a document"/>
+          <Keyword text="select" descr="Defines a drop-down list"/>
+          <Keyword text="small" descr="Defines smaller text"/>
+          <Keyword text="source" descr="Defines multiple media resources for media elements (&lt;video&gt; and &lt;audio&gt;)"/>
+          <Keyword text="span" descr="Defines a section in a document"/>
+          <Keyword text="strong" descr="Defines important text"/>
+          <Keyword text="style" descr="Defines style information for a document"/>
+          <Keyword text="sub" descr="Defines subscripted text"/>
+          <Keyword text="summary" descr="Defines a visible heading for a &lt;details&gt; element"/>
+          <Keyword text="sup" descr="Defines superscripted text"/>
+          <Keyword text="table" descr="Defines a table"/>
+          <Keyword text="tbody" descr="Groups the body content in a table"/>
+          <Keyword text="td" descr="Defines a cell in a table"/>
+          <Keyword text="textarea" descr="Defines a multiline input control (text area)"/>
+          <Keyword text="tfoot" descr="Groups the footer content in a table"/>
+          <Keyword text="th" descr="Defines a header cell in a table"/>
+          <Keyword text="thead" descr="Groups the header content in a table"/>
+          <Keyword text="time" descr="Defines a human-readable date/time."/>
+          <Keyword text="title" descr="Defines a title for the document"/>
+          <Keyword text="tr" descr="Defines a row in a table"/>
+          <Keyword text="track" descr="Defines text tracks for media elements (&lt;video&gt; and &lt;audio&gt;)"/>
+          <Keyword text="ul" descr="Defines an unordered list"/>
+          <Keyword text="var" descr="Defines a variable"/>
+          <Keyword text="video" descr="Defines a video or movie"/>
+          <Keyword text="wbr" descr="Defines a possible line-break"/>
+          <Keyword text="xml" />
+          <Keyword text="xmlns" descr="The xmlns attribute specifies the xml namespace for a document"/>
+        </Keywords>
+      </Style>
+      <Style name="Attributes" image="11" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Keywords trail="=">
+          <Keyword text="_blank"/>
+          <Keyword text="_parent"/>
+          <Keyword text="_self"/>
+          <Keyword text="_top"/>
+          <Keyword text="accept-charset"/>
+          <Keyword text="accept"/>
+          <Keyword text="accesskey"/>
+          <Keyword text="action"/>
+          <Keyword text="allow-forms"/>
+          <Keyword text="allow-same-origin"/>
+          <Keyword text="allow-scripts"/>
+          <Keyword text="allow-top-navigation"/>
+          <Keyword text="alt"/>
+          <Keyword text="alternate"/>
+          <Keyword text="any"/>
+          <Keyword text="application/x-www-form-urlencoded"/>
+          <Keyword text="application-name"/>
+          <Keyword text="archives"/>
+          <Keyword text="async"/>
+          <Keyword text="author"/>
+          <Keyword text="autocomplete"/>
+          <Keyword text="autofocus"/>
+          <Keyword text="autoplay"/>
+          <Keyword text="bookmark"/>
+          <Keyword text="border"/>
+          <Keyword text="button"/>
+          <Keyword text="captions"/>
+          <Keyword text="challenge"/>
+          <Keyword text="chapters"/>
+          <Keyword text="charset"/>
+          <Keyword text="checked"/>
+          <Keyword text="checkbox"/>
+          <Keyword text="circle"/>
+          <Keyword text="cite"/>
+          <Keyword text="class"/>
+          <Keyword text="color"/>
+          <Keyword text="col"/>
+          <Keyword text="colgroup"/>
+          <Keyword text="cols"/>
+          <Keyword text="colspan"/>
+          <Keyword text="command"/>
+          <Keyword text="contenteditable"/>
+          <Keyword text="contextmenu"/>
+          <Keyword text="context"/>
+          <Keyword text="content"/>
+          <Keyword text="content-type"/>
+          <Keyword text="controls"/>
+          <Keyword text="coords"/>
+          <Keyword text="data"/>
+          <Keyword text="datapagesize"/>
+          <Keyword text="date"/>
+          <Keyword text="datetime-local"/>
+          <Keyword text="date"/>
+          <Keyword text="default"/>
+          <Keyword text="default-style"/>
+          <Keyword text="defer"/>
+          <Keyword text="description"/>
+          <Keyword text="descriptions"/>
+          <Keyword text="dir"/>
+          <Keyword text="disabled"/>
+          <Keyword text="dsa"/>
+          <Keyword text="draggable"/>
+          <Keyword text="dropzone"/>
+          <Keyword text="ec"/>
+          <Keyword text="email"/>
+          <Keyword text="enctype"/>
+          <Keyword text="external"/>
+          <Keyword text="face"/>
+          <Keyword text="file"/>
+          <Keyword text="first"/>
+          <Keyword text="for"/>
+          <Keyword text="form"/>
+          <Keyword text="formaction"/>
+          <Keyword text="formenctype"/>
+          <Keyword text="formmethod"/>
+          <Keyword text="formnovalidate"/>
+          <Keyword text="formtarget"/>
+          <Keyword text="generator"/>
+          <Keyword text="get"/>
+          <Keyword text="headers"/>
+          <Keyword text="height"/>
+          <Keyword text="help"/>
+          <Keyword text="hidden"/>
+          <Keyword text="high"/>
+          <Keyword text="href"/>
+          <Keyword text="hreflang"/>
+          <Keyword text="http-equiv"/>
+          <Keyword text="icon"/>
+          <Keyword text="id"/>
+          <Keyword text="image"/>
+          <Keyword text="ismap"/>
+          <Keyword text="keytype"/>
+          <Keyword text="keywords"/>
+          <Keyword text="kind"/>
+          <Keyword text="label"/>
+          <Keyword text="lang"/>
+          <Keyword text="last"/>
+          <Keyword text="language"/>
+          <Keyword text="leftmargin"/>
+          <Keyword text="license"/>
+          <Keyword text="list"/>
+          <Keyword text="loop"/>
+          <Keyword text="low"/>
+          <Keyword text="ltr"/>
+          <Keyword text="manifest"/>
+          <Keyword text="marginheight"/>
+          <Keyword text="max"/>
+          <Keyword text="maxlength"/>
+          <Keyword text="media"/>
+          <Keyword text="metadata"/>
+          <Keyword text="method"/>
+          <Keyword text="min"/>
+          <Keyword text="month"/>
+          <Keyword text="multipart/form-data"/>
+          <Keyword text="multiple"/>
+          <Keyword text="muted"/>
+          <Keyword text="name"/>
+          <Keyword text="next"/>
+          <Keyword text="number"/>
+          <Keyword text="nofollow"/>
+          <Keyword text="none"/>
+          <Keyword text="noreferrer"/>
+          <Keyword text="noresize"/>
+          <Keyword text="novalidate"/>
+          <Keyword text="off"/>
+          <Keyword text="on"/>
+          <Keyword text="onafterprint"/>
+          <Keyword text="onbeforeprint"/>
+          <Keyword text="onbeforeonload"/>
+          <Keyword text="onblur"/>
+          <Keyword text="onerror"/>
+          <Keyword text="onhaschange"/>
+          <Keyword text="onload"/>
+          <Keyword text="onmessage"/>
+          <Keyword text="onoffline"/>
+          <Keyword text="ononline"/>
+          <Keyword text="onpagehide"/>
+          <Keyword text="onpageshow"/>
+          <Keyword text="onpopstate"/>
+          <Keyword text="onredo"/>
+          <Keyword text="onresize"/>
+          <Keyword text="onstorage"/>
+          <Keyword text="onundo"/>
+          <Keyword text="onunload"/>
+          <Keyword text="onchange"/>
+          <Keyword text="oncontextmenu"/>
+          <Keyword text="onfocus"/>
+          <Keyword text="onformchange"/>
+          <Keyword text="onforinput"/>
+          <Keyword text="oninput"/>
+          <Keyword text="oninvalid"/>
+          <Keyword text="onselect"/>
+          <Keyword text="onsubmit"/>
+          <Keyword text="onkeydown"/>
+          <Keyword text="onkeypress"/>
+          <Keyword text="onkeyup"/>
+          <Keyword text="onclick"/>
+          <Keyword text="ondbclick"/>
+          <Keyword text="ondrag"/>
+          <Keyword text="ondragend"/>
+          <Keyword text="ondragenter"/>
+          <Keyword text="ondragleave"/>
+          <Keyword text="ondragover"/>
+          <Keyword text="ondragstart"/>
+          <Keyword text="ondrop"/>
+          <Keyword text="onmousedown"/>
+          <Keyword text="onmousemove"/>
+          <Keyword text="onmouseout"/>
+          <Keyword text="onmouseover"/>
+          <Keyword text="onmouseup"/>
+          <Keyword text="onmousewheel"/>
+          <Keyword text="onscroll"/>
+          <Keyword text="onabort"/>
+          <Keyword text="oncanplay"/>
+          <Keyword text="oncanplaythrough"/>
+          <Keyword text="ondurationchange"/>
+          <Keyword text="onemptied"/>
+          <Keyword text="onended"/>
+          <Keyword text="onloadeddata"/>
+          <Keyword text="onloadedmetadata"/>
+          <Keyword text="onloadstart"/>
+          <Keyword text="onpause"/>
+          <Keyword text="onplaying"/>
+          <Keyword text="onprogress"/>
+          <Keyword text="onratechange"/>
+          <Keyword text="onreadystatechange"/>
+          <Keyword text="onseeked"/>
+          <Keyword text="onseeking"/>
+          <Keyword text="onstalled"/>
+          <Keyword text="onsuspend"/>
+          <Keyword text="ontimeupdate"/>
+          <Keyword text="onvolumechange"/>
+          <Keyword text="onwaiting"/>
+          <Keyword text="open"/>
+          <Keyword text="optimum"/>
+          <Keyword text="password"/>
+          <Keyword text="pattern"/>
+          <Keyword text="pingback"/>
+          <Keyword text="placeholder"/>
+          <Keyword text="poly"/>
+          <Keyword text="post"/>
+          <Keyword text="poster"/>
+          <Keyword text="preload"/>
+          <Keyword text="prefetch"/>
+          <Keyword text="preload"/>
+          <Keyword text="prev"/>
+          <Keyword text="prompt"/>
+          <Keyword text="pubdate"/>
+          <Keyword text="radio"/>
+          <Keyword text="radiogroup"/>
+          <Keyword text="range"/>
+          <Keyword text="readonly"/>
+          <Keyword text="rect"/>
+          <Keyword text="refresh"/>
+          <Keyword text="rel"/>
+          <Keyword text="required"/>
+          <Keyword text="reset"/>
+          <Keyword text="reversed"/>
+          <Keyword text="rightmargin"/>
+          <Keyword text="row"/>
+          <Keyword text="rowgroup"/>
+          <Keyword text="rows"/>
+          <Keyword text="rowspan"/>
+          <Keyword text="rsa"/>
+          <Keyword text="rtl"/>
+          <Keyword text="sandbox"/>
+          <Keyword text="search"/>
+          <Keyword text="seamless"/>
+          <Keyword text="scheme"/>
+          <Keyword text="scope"/>
+          <Keyword text="scoped"/>
+          <Keyword text="search"/>
+          <Keyword text="selected"/>
+          <Keyword text="shape"/>
+          <Keyword text="sidebar"/>
+          <Keyword text="size"/>
+          <Keyword text="sizes"/>
+          <Keyword text="span"/>
+          <Keyword text="spellcheck"/>
+          <Keyword text="src"/>
+          <Keyword text="srcdoc"/>
+          <Keyword text="srclang"/>
+          <Keyword text="start"/>
+          <Keyword text="style"/>
+          <Keyword text="stylesheet"/>
+          <Keyword text="step"/>
+          <Keyword text="submit"/>
+          <Keyword text="subtitles"/>
+          <Keyword text="tabindex"/>
+          <Keyword text="tag"/>
+          <Keyword text="target"/>
+          <Keyword text="title"/>
+          <Keyword text="tel"/>
+          <Keyword text="text"/>
+          <Keyword text="text/plain"/>
+          <Keyword text="text/css"/>
+          <Keyword text="time"/>
+          <Keyword text="toolbar"/>
+          <Keyword text="topmargin"/>
+          <Keyword text="type"/>
+          <Keyword text="up"/>
+          <Keyword text="url"/>
+          <Keyword text="usemap"/>
+          <Keyword text="value"/>
+          <Keyword text="week"/>
+          <Keyword text="width"/>
+          <Keyword text="wrap"/>
+          <Keyword text="xmlns"/>
+        </Keywords>
+      </Style>
+      <Style id="script" name="Java Script" include="js:normal" bold="0" italic="0" underline="0" clr="#66666600" bkclr="Embedded Language 2 Back" overview="1">
+        <Containers>
+          <Close id="js:normal"/>
+          <Close id="js:comment"/>
+        </Containers>
+        <Blocks>
+          <Regexp open="&lt;script(:?\s+(:?type|language)=&quot;(:?text/)?javascript&quot;)?\s*?(:?nonce=&quot;[^&quot;]+&quot;\s*?)?&gt;" close="&lt;/script&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="vbscript" name="VBScript" include="vbs:normal" bold="0" italic="0" underline="0" clr="#66666600" bkclr="Embedded Language 2 Back" overview="1">
+        <Containers>
+          <Close id="vbs:normal"/>
+          <Close id="vbs:comment"/>
+        </Containers>
+        <Blocks>
+          <Regexp open="&lt;script\s+(:?type|language)=&quot;(:?text/)?vbscript&quot;\s*&gt;" close="&lt;/script&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="svg" name="SVG" include="svg:normal" bold="0" italic="0" underline="0" clr="#66666600" bkclr="Embedded Language 3 Back" overview="1">
+        <Blocks>
+          <Block open="&lt;svg" close="&lt;/svg&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="style" name="CSS" include="css:normal" bold="0" italic="0" underline="0" clr="#66666600" bkclr="Embedded Language 3 Back" overview="1">
+        <Containers>
+          <Close id="css:normal"/>
+          <Close id="css:comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="&lt;style" close="&lt;/style&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="inline_style" name="Inline CSS" include="css:attributes" bold="0" italic="0" underline="0" clr="#66666600" bkclr="Embedded Language 3 Back">
+        <Containers>
+          <Open id="xml_open_tag"/>
+          <Close id="css:attributes"/>
+          <Close id="css:comment"/>
+          <Close id="css:values"/>
+          <Close id="css:values_outer"/>
+        </Containers>
+        <Blocks>
+          <Regexp open="&quot;" open_lead="=elyts" close="&quot;"/>
+          <Regexp open="&apos;" open_lead="=elyts" close="&apos;"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

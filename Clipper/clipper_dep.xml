@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="Dependency"/>
+  <SYNTAX id="clipper">
+	<File local="./download/syntax/add/Cli_Hippo.ch" dest="data/syntax/include/Cli_Hippo.ch" descr="Clipper include file by Evi01"/>
+	<Link url="http://www.harbour-project.org/" name="xHarbour Project" descr="xHarbour Project - multiplatform Clipper language compiler"/>
+	<Forum url="http://forum.hippoedit.com/index.php/topic,280.0.html"/>
+  </SYNTAX>
+</XMLConfigSettings>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="vbs" name="Visual Basic Script" inherit="basic" inherit_url="basic_spec.xml" version="1.1">
+    <SPECIFICATION>
+      <Scripting id="VBScript"/>      
+      <FilePattern mask="*.vbs"/>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="Variable" match="^\s*(?:Dim|Set)\s+(\w+)" name="\1" descr="\1" image="6" navigation="false" context="variable" style="variable" highlight="\1" visible="false"/>
+      <Label group="Function" match="(\w+)\(" name="\1" descr="\1" navigation="false" context="function_call" style="functions" highlight="\1" visible="false"/>      
+    </LABELS>    
+    <STYLES>
+      <Style id="comment" extend="true">
+        <Blocks>
+          <Block open="'" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="objects" extend="true">
+        <Keywords>
+          <Keyword text="Application"/>
+          <Keyword text="ClientCertificate"/>
+          <Keyword text="Cookies"/>
+          <Keyword text="Form"/>
+          <Keyword text="ObjectContext"/>
+          <Keyword text="QueryString"/>
+          <Keyword text="Request"/>
+          <Keyword text="Response"/>
+          <Keyword text="Server"/>
+          <Keyword text="ServerVariables"/>
+          <Keyword text="Session"/>
+          <Keyword text="WScript"/>
+        </Keywords>
+      </Style>
+      <Style id="functions" extend="true">
+        <Keywords>
+          <Keyword text="Echo"/>
+        </Keywords>
+      </Style>
+      <Style id="constants" extend="true">
+        <Keywords>
+          <Keyword text="CDROM"/>
+          <Keyword text="False"/>
+          <Keyword text="Fixed"/>
+          <Keyword text="ForAppending"/>
+          <Keyword text="ForReading"/>
+          <Keyword text="ForWriting"/>
+          <Keyword text="RAMDisk"/>
+          <Keyword text="Remote"/>
+          <Keyword text="Removable"/>
+          <Keyword text="True"/>
+          <Keyword text="Unknown"/>
+          <Keyword text="vbArray"/>
+          <Keyword text="vbBinaryCompare"/>
+          <Keyword text="vbBlack"/>
+          <Keyword text="vbBlue"/>
+          <Keyword text="vbBoolean"/>
+          <Keyword text="vbByte"/>
+          <Keyword text="vbCr"/>
+          <Keyword text="vbCrLf"/>
+          <Keyword text="vbCurrency"/>
+          <Keyword text="vbCyan"/>
+          <Keyword text="vbDataObject"/>
+          <Keyword text="vbDate"/>
+          <Keyword text="vbDecimal"/>
+          <Keyword text="vbDouble"/>
+          <Keyword text="vbEmpty"/>
+          <Keyword text="vbError"/>
+          <Keyword text="vbFalse"/>
+          <Keyword text="vbFirstFourDays"/>
+          <Keyword text="vbFirstFullWeek"/>
+          <Keyword text="vbFirstJan1"/>
+          <Keyword text="vbFormFeed"/>
+          <Keyword text="vbFriday"/>
+          <Keyword text="vbGeneralDate"/>
+          <Keyword text="vbGreen"/>
+          <Keyword text="vbInteger"/>
+          <Keyword text="vbLf"/>
+          <Keyword text="vbLong"/>
+          <Keyword text="vbLongDate"/>
+          <Keyword text="vbLongTime"/>
+          <Keyword text="vbMagenta"/>
+          <Keyword text="vbMonday"/>
+          <Keyword text="vbNewLine"/>
+          <Keyword text="vbNull"/>
+          <Keyword text="vbNullChar"/>
+          <Keyword text="vbNullString"/>
+          <Keyword text="vbObject"/>
+          <Keyword text="vbObjectError"/>
+          <Keyword text="vbRed"/>
+          <Keyword text="vbSaturday"/>
+          <Keyword text="vbShortDate"/>
+          <Keyword text="vbShortTime"/>
+          <Keyword text="vbSingle"/>
+          <Keyword text="vbString"/>
+          <Keyword text="vbSunday"/>
+          <Keyword text="vbTab"/>
+          <Keyword text="vbTextCompare"/>
+          <Keyword text="vbThursday"/>
+          <Keyword text="vbTrue"/>
+          <Keyword text="vbTuesday"/>
+          <Keyword text="vbUseSystem"/>
+          <Keyword text="vbUseSystemDayOfWeek"/>
+          <Keyword text="vbVariant"/>
+          <Keyword text="vbVerticalTab"/>
+          <Keyword text="vbWednesday"/>
+          <Keyword text="vbWhite"/>
+          <Keyword text="vbYellow"/>
+        </Keywords>
+      </Style>
+      <Style name="Variables" id="variable" image="15" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF"/>      
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

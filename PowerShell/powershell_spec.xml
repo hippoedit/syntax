@@ -1,0 +1,880 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="power_shell" name="PowerShell" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.ps1"/>
+      <OpenClose>()[]{}''""</OpenClose>
+      <EscapeChar>`</EscapeChar>
+      <Operators>@?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]{}</Operators>
+      <Words init="A-Za-z_--">0-9A-Za-z_--</Words>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <FormatWords>
+        <FormatWord word="if" next_line="true" range_sentence="true"/>
+        <FormatWord word="else" next_line="true" range_sentence="true"/>
+        <FormatWord word="foreach" next_line="true" range_sentence="true"/>
+      </FormatWords>
+    </FORMAT>
+    <LABELS>
+      <Label group="Function" match="function\s+([\w_\-]+)(\s*\([^)]*\))*\s*\{" name="\1" descr="\1 \2" scope="1" image="9"/>
+      <Label group="" match="(if|switch|while|for)\s*\(((?:[^\(\)]|\\r|\\n|\((?-1)\))*+)\)\s*\{" name="\1" descr="\1 (\2)" scope="1" image="13" navigation="false"/>
+    </LABELS>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Blocks>
+          <Block open="0x">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+          <Block open="'" close="'" escaping="false"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF"/>
+      <Style id="variable" name="Variable" image="6" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="string"/>
+        </Containers>
+        <Blocks>
+          <Block open="$" close=""/>
+        </Blocks>
+      </Style>
+      <Style name="Built-In Variables" bold="0" image="6" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="variable"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="Args"/>
+          <Keyword text="DebugPreference"/>
+          <Keyword text="Error"/>
+          <Keyword text="ErrorActionPreference"/>
+          <Keyword text="HOME"/>
+          <Keyword text="HistorySize"/>
+          <Keyword text="Host"/>
+          <Keyword text="Input"/>
+          <Keyword text="LastExitCode"/>
+          <Keyword text="Match"/>
+          <Keyword text="MshHome"/>
+          <Keyword text="MyInvocation"/>
+          <Keyword text="OFS"/>
+          <Keyword text="PSCommandPath"/>
+          <Keyword text="ShellID"/>
+          <Keyword text="StackTrace"/>
+          <Keyword text="_"/>
+          <Keyword text="false"/>
+          <Keyword text="foreach"/>
+          <Keyword text="null"/>
+          <Keyword text="true"/>
+        </Keywords>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="-and"/>
+          <Keyword text="-as"/>
+          <Keyword text="-band"/>
+          <Keyword text="-bor"/>
+          <Keyword text="-bxor"/>
+          <Keyword text="-ccontains"/>
+          <Keyword text="-ceq"/>
+          <Keyword text="-cge"/>
+          <Keyword text="-cgt"/>
+          <Keyword text="-cle"/>
+          <Keyword text="-clike"/>
+          <Keyword text="-clt"/>
+          <Keyword text="-cmatch"/>
+          <Keyword text="-cne"/>
+          <Keyword text="-cnotcontains"/>
+          <Keyword text="-cnotlike"/>
+          <Keyword text="-cnotmatch"/>
+          <Keyword text="-contains"/>
+          <Keyword text="-creplace"/>
+          <Keyword text="-eq"/>
+          <Keyword text="-f"/>
+          <Keyword text="-ge"/>
+          <Keyword text="-gt"/>
+          <Keyword text="-icontains"/>
+          <Keyword text="-ieq"/>
+          <Keyword text="-ige"/>
+          <Keyword text="-igt"/>
+          <Keyword text="-ile"/>
+          <Keyword text="-ilike"/>
+          <Keyword text="-ilt"/>
+          <Keyword text="-imatch"/>
+          <Keyword text="-ine"/>
+          <Keyword text="-inotcontains"/>
+          <Keyword text="-inotlike"/>
+          <Keyword text="-inotmatch"/>
+          <Keyword text="-ireplace"/>
+          <Keyword text="-is"/>
+          <Keyword text="-isnot"/>
+          <Keyword text="-le"/>
+          <Keyword text="-like"/>
+          <Keyword text="-lt"/>
+          <Keyword text="-match"/>
+          <Keyword text="-ne"/>
+          <Keyword text="-not"/>
+          <Keyword text="-notcontains"/>
+          <Keyword text="-notlike"/>
+          <Keyword text="-notmatch"/>
+          <Keyword text="-or"/>
+          <Keyword text="-replace"/>
+          <Keyword text="-xor"/>
+        </Keywords>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="begin"/>
+          <Keyword text="break"/>
+          <Keyword text="continue"/>
+          <Keyword text="default"/>
+          <Keyword text="do"/>
+          <Keyword text="else"/>
+          <Keyword text="elseif"/>
+          <Keyword text="end"/>
+          <Keyword text="exit"/>
+          <Keyword text="finally"/>
+          <Keyword text="for"/>
+          <Keyword text="foreach"/>
+          <Keyword text="function"/>
+          <Keyword text="if"/>
+          <Keyword text="in"/>
+          <Keyword text="param"/>
+          <Keyword text="process"/>
+          <Keyword text="return"/>
+          <Keyword text="switch"/>
+          <Keyword text="throw"/>
+          <Keyword text="trap"/>
+          <Keyword text="until"/>
+          <Keyword text="while"/>
+        </Keywords>
+      </Style>
+      <Style name="Method" image="13" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Words>
+          <Word lead_with="." trail_with="(" lead="\." trail="\("/>
+          <Word lead_with="::" trail_with="(" lead="::" trail="\("/>
+        </Words>
+      </Style>
+      <Style name="Commands" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Add-Content"/>
+          <Keyword text="Add-History"/>
+          <Keyword text="Add-Member"/>
+          <Keyword text="Add-PSSnapin"/>
+          <Keyword text="Clear-Content"/>
+          <Keyword text="Clear-Item"/>
+          <Keyword text="Clear-ItemProperty"/>
+          <Keyword text="Clear-Variable"/>
+          <Keyword text="Compare-Object"/>
+          <Keyword text="Convert-Path"/>
+          <Keyword text="ConvertFrom-SecureString"/>
+          <Keyword text="ConvertTo-Html"/>
+          <Keyword text="ConvertTo-SecureString"/>
+          <Keyword text="Copy-Item"/>
+          <Keyword text="Copy-ItemProperty"/>
+          <Keyword text="Export-Alias"/>
+          <Keyword text="Export-Clixml"/>
+          <Keyword text="Export-Console"/>
+          <Keyword text="Export-Csv"/>
+          <Keyword text="ForEach-Object"/>
+          <Keyword text="Format-Custom"/>
+          <Keyword text="Format-List"/>
+          <Keyword text="Format-Table"/>
+          <Keyword text="Format-Wide"/>
+          <Keyword text="Get-Acl"/>
+          <Keyword text="Get-Alias"/>
+          <Keyword text="Get-AuthenticodeSignature"/>
+          <Keyword text="Get-ChildItem"/>
+          <Keyword text="Get-Command"/>
+          <Keyword text="Get-Content"/>
+          <Keyword text="Get-Credential"/>
+          <Keyword text="Get-Culture"/>
+          <Keyword text="Get-Date"/>
+          <Keyword text="Get-EventLog"/>
+          <Keyword text="Get-ExecutionPolicy"/>
+          <Keyword text="Get-Help"/>
+          <Keyword text="Get-History"/>
+          <Keyword text="Get-Host"/>
+          <Keyword text="Get-Item"/>
+          <Keyword text="Get-ItemProperty"/>
+          <Keyword text="Get-Location"/>
+          <Keyword text="Get-Member"/>
+          <Keyword text="Get-PSDrive"/>
+          <Keyword text="Get-PSProvider"/>
+          <Keyword text="Get-PSSnapin"/>
+          <Keyword text="Get-PfxCertificate"/>
+          <Keyword text="Get-Process"/>
+          <Keyword text="Get-Service"/>
+          <Keyword text="Get-TraceSource"/>
+          <Keyword text="Get-UICulture"/>
+          <Keyword text="Get-Unique"/>
+          <Keyword text="Get-Variable"/>
+          <Keyword text="Get-WmiObject"/>
+          <Keyword text="Group-Object"/>
+          <Keyword text="Import-Alias"/>
+          <Keyword text="Import-Clixml"/>
+          <Keyword text="Import-Csv"/>
+          <Keyword text="Invoke-Expression"/>
+          <Keyword text="Invoke-History"/>
+          <Keyword text="Invoke-Item"/>
+          <Keyword text="Join-Path"/>
+          <Keyword text="Measure-Command"/>
+          <Keyword text="Measure-Object"/>
+          <Keyword text="Move-Item"/>
+          <Keyword text="Move-ItemProperty"/>
+          <Keyword text="New-Alias"/>
+          <Keyword text="New-Item"/>
+          <Keyword text="New-ItemProperty"/>
+          <Keyword text="New-Object"/>
+          <Keyword text="New-PSDrive"/>
+          <Keyword text="New-Service"/>
+          <Keyword text="New-TimeSpan"/>
+          <Keyword text="New-Variable"/>
+          <Keyword text="Out-Default"/>
+          <Keyword text="Out-File"/>
+          <Keyword text="Out-Host"/>
+          <Keyword text="Out-Null"/>
+          <Keyword text="Out-Printer"/>
+          <Keyword text="Out-String"/>
+          <Keyword text="Pop-Location"/>
+          <Keyword text="Push-Location"/>
+          <Keyword text="Read-Host"/>
+          <Keyword text="Remove-Item"/>
+          <Keyword text="Remove-ItemProperty"/>
+          <Keyword text="Remove-PSDrive"/>
+          <Keyword text="Remove-PSSnapin"/>
+          <Keyword text="Remove-Variable"/>
+          <Keyword text="Rename-Item"/>
+          <Keyword text="Rename-ItemProperty"/>
+          <Keyword text="Resolve-Path"/>
+          <Keyword text="Restart-Service"/>
+          <Keyword text="Resume-Service"/>
+          <Keyword text="Select-Object"/>
+          <Keyword text="Select-String"/>
+          <Keyword text="Set-Acl"/>
+          <Keyword text="Set-Alias"/>
+          <Keyword text="Set-AuthenticodeSignature"/>
+          <Keyword text="Set-Content"/>
+          <Keyword text="Set-Date"/>
+          <Keyword text="Set-ExecutionPolicy"/>
+          <Keyword text="Set-Item"/>
+          <Keyword text="Set-ItemProperty"/>
+          <Keyword text="Set-Location"/>
+          <Keyword text="Set-PSDebug"/>
+          <Keyword text="Set-Service"/>
+          <Keyword text="Set-TraceSource"/>
+          <Keyword text="Set-Variable"/>
+          <Keyword text="Sort-Object"/>
+          <Keyword text="Split-Path"/>
+          <Keyword text="Start-Service"/>
+          <Keyword text="Start-Sleep"/>
+          <Keyword text="Start-Transcript"/>
+          <Keyword text="Stop-Process"/>
+          <Keyword text="Stop-Service"/>
+          <Keyword text="Stop-Transcript"/>
+          <Keyword text="Suspend-Service"/>
+          <Keyword text="Tee-Object"/>
+          <Keyword text="Test-Path"/>
+          <Keyword text="Trace-Command"/>
+          <Keyword text="Update-FormatData"/>
+          <Keyword text="Update-TypeData"/>
+          <Keyword text="Where-Object"/>
+          <Keyword text="Write-Debug"/>
+          <Keyword text="Write-Error"/>
+          <Keyword text="Write-Host"/>
+          <Keyword text="Write-Output"/>
+          <Keyword text="Write-Progress"/>
+          <Keyword text="Write-Verbose"/>
+          <Keyword text="Write-Warning"/>
+        </Keywords>
+      </Style>
+      <Style name="Aliases" image="9" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ac"/>
+          <Keyword text="asnp"/>
+          <Keyword text="clc"/>
+          <Keyword text="cli"/>
+          <Keyword text="clp"/>
+          <Keyword text="clv"/>
+          <Keyword text="cpi"/>
+          <Keyword text="cpp"/>
+          <Keyword text="cvpa"/>
+          <Keyword text="diff"/>
+          <Keyword text="epal"/>
+          <Keyword text="epcsv"/>
+          <Keyword text="fc"/>
+          <Keyword text="fl"/>
+          <Keyword text="ft"/>
+          <Keyword text="fw"/>
+          <Keyword text="gal"/>
+          <Keyword text="gc"/>
+          <Keyword text="gci"/>
+          <Keyword text="gcm"/>
+          <Keyword text="gdr"/>
+          <Keyword text="ghy"/>
+          <Keyword text="gi"/>
+          <Keyword text="gl"/>
+          <Keyword text="gm"/>
+          <Keyword text="gp"/>
+          <Keyword text="gps"/>
+          <Keyword text="group"/>
+          <Keyword text="gsv"/>
+          <Keyword text="gsnp"/>
+          <Keyword text="gu"/>
+          <Keyword text="gv"/>
+          <Keyword text="gwmi"/>
+          <Keyword text="iex"/>
+          <Keyword text="ihy"/>
+          <Keyword text="ii"/>
+          <Keyword text="ipal"/>
+          <Keyword text="ipcsv"/>
+          <Keyword text="mi"/>
+          <Keyword text="mp"/>
+          <Keyword text="nal"/>
+          <Keyword text="ndr"/>
+          <Keyword text="ni"/>
+          <Keyword text="nv"/>
+          <Keyword text="oh"/>
+          <Keyword text="rdr"/>
+          <Keyword text="ri"/>
+          <Keyword text="rni"/>
+          <Keyword text="rnp"/>
+          <Keyword text="rp"/>
+          <Keyword text="rsnp"/>
+          <Keyword text="rv"/>
+          <Keyword text="rvpa"/>
+          <Keyword text="sal"/>
+          <Keyword text="sasv"/>
+          <Keyword text="sc"/>
+          <Keyword text="select"/>
+          <Keyword text="si"/>
+          <Keyword text="sl"/>
+          <Keyword text="sleep"/>
+          <Keyword text="sort"/>
+          <Keyword text="sp"/>
+          <Keyword text="spps"/>
+          <Keyword text="spsv"/>
+          <Keyword text="sv"/>
+          <Keyword text="tee"/>
+          <Keyword text="where"/>
+          <Keyword text="write"/>
+          <Keyword text="cat"/>
+          <Keyword text="cd"/>
+          <Keyword text="clear"/>
+          <Keyword text="cp"/>
+          <Keyword text="h"/>
+          <Keyword text="history"/>
+          <Keyword text="kill"/>
+          <Keyword text="lp"/>
+          <Keyword text="ls"/>
+          <Keyword text="mount"/>
+          <Keyword text="mv"/>
+          <Keyword text="popd"/>
+          <Keyword text="ps"/>
+          <Keyword text="pushd"/>
+          <Keyword text="pwd"/>
+          <Keyword text="r"/>
+          <Keyword text="rm"/>
+          <Keyword text="rmdir"/>
+          <Keyword text="echo"/>
+          <Keyword text="cls"/>
+          <Keyword text="chdir"/>
+          <Keyword text="copy"/>
+          <Keyword text="del"/>
+          <Keyword text="dir"/>
+          <Keyword text="erase"/>
+          <Keyword text="move"/>
+          <Keyword text="rd"/>
+          <Keyword text="ren"/>
+          <Keyword text="set"/>
+          <Keyword text="type"/>
+        </Keywords>
+      </Style>
+      <Style name="WMI classes" image="11" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="CIM_DataFile"/>
+          <Keyword text="CIM_DirectoryContainsFile"/>
+          <Keyword text="CIM_ProcessExecutable"/>
+          <Keyword text="CIM_VideoControllerResolution"/>
+          <Keyword text="Msft_Providers"/>
+          <Keyword text="Msft_WmiProvider_Counters"/>
+          <Keyword text="NetDiagnostics"/>
+          <Keyword text="Win32_1394Controller"/>
+          <Keyword text="Win32_1394ControllerDevice"/>
+          <Keyword text="Win32_AccountSID"/>
+          <Keyword text="Win32_ActionCheck"/>
+          <Keyword text="Win32_ActiveRoute"/>
+          <Keyword text="Win32_AllocatedResource"/>
+          <Keyword text="Win32_ApplicationCommandLine"/>
+          <Keyword text="Win32_ApplicationService"/>
+          <Keyword text="Win32_AssociatedBattery"/>
+          <Keyword text="Win32_AssociatedProcessorMemory"/>
+          <Keyword text="Win32_AutochkSetting"/>
+          <Keyword text="Win32_BIOS"/>
+          <Keyword text="Win32_BaseBoard"/>
+          <Keyword text="Win32_Battery"/>
+          <Keyword text="Win32_Binary"/>
+          <Keyword text="Win32_BindImageAction"/>
+          <Keyword text="Win32_BootConfiguration"/>
+          <Keyword text="Win32_Bus"/>
+          <Keyword text="Win32_CDROMDrive"/>
+          <Keyword text="Win32_CIMLogicalDeviceCIMDataFile"/>
+          <Keyword text="Win32_COMApplicationSettings"/>
+          <Keyword text="Win32_CacheMemory"/>
+          <Keyword text="Win32_CheckCheck"/>
+          <Keyword text="Win32_ClassInfoAction"/>
+          <Keyword text="Win32_ClassicCOMApplicationClasses"/>
+          <Keyword text="Win32_ClassicCOMClass"/>
+          <Keyword text="Win32_ClassicCOMClassSetting"/>
+          <Keyword text="Win32_ClassicCOMClassSettings"/>
+          <Keyword text="Win32_ClientApplicationSetting"/>
+          <Keyword text="Win32_CodecFile"/>
+          <Keyword text="Win32_ComClassAutoEmulator"/>
+          <Keyword text="Win32_ComClassEmulator"/>
+          <Keyword text="Win32_CommandLineAccess"/>
+          <Keyword text="Win32_ComponentCategory"/>
+          <Keyword text="Win32_ComputerSystem"/>
+          <Keyword text="Win32_ComputerSystemProcessor"/>
+          <Keyword text="Win32_ComputerSystemProduct"/>
+          <Keyword text="Win32_ComputerSystemWindowsProductActivationSetting"/>
+          <Keyword text="Win32_Condition"/>
+          <Keyword text="Win32_ConnectionShare"/>
+          <Keyword text="Win32_ControllerHasHub"/>
+          <Keyword text="Win32_CreateFolderAction"/>
+          <Keyword text="Win32_CurrentProbe"/>
+          <Keyword text="Win32_DCOMApplication"/>
+          <Keyword text="Win32_DCOMApplicationAccessAllowedSetting"/>
+          <Keyword text="Win32_DCOMApplicationLaunchAllowedSetting"/>
+          <Keyword text="Win32_DCOMApplicationSetting"/>
+          <Keyword text="Win32_DMAChannel"/>
+          <Keyword text="Win32_DependentService"/>
+          <Keyword text="Win32_Desktop"/>
+          <Keyword text="Win32_DesktopMonitor"/>
+          <Keyword text="Win32_DeviceBus"/>
+          <Keyword text="Win32_DeviceMemoryAddress"/>
+          <Keyword text="Win32_DfsNode"/>
+          <Keyword text="Win32_DfsNodeTarget"/>
+          <Keyword text="Win32_DfsTarget"/>
+          <Keyword text="Win32_Directory"/>
+          <Keyword text="Win32_DirectorySpecification"/>
+          <Keyword text="Win32_DiskDrive"/>
+          <Keyword text="Win32_DiskDrivePhysicalMedia"/>
+          <Keyword text="Win32_DiskDriveToDiskPartition"/>
+          <Keyword text="Win32_DiskPartition"/>
+          <Keyword text="Win32_DiskQuota"/>
+          <Keyword text="Win32_DisplayConfiguration"/>
+          <Keyword text="Win32_DisplayControllerConfiguration"/>
+          <Keyword text="Win32_DriverForDevice"/>
+          <Keyword text="Win32_DriverVXD"/>
+          <Keyword text="Win32_DuplicateFileAction"/>
+          <Keyword text="Win32_Environment"/>
+          <Keyword text="Win32_EnvironmentSpecification"/>
+          <Keyword text="Win32_ExtensionInfoAction"/>
+          <Keyword text="Win32_Fan"/>
+          <Keyword text="Win32_FileSpecification"/>
+          <Keyword text="Win32_FloppyController"/>
+          <Keyword text="Win32_FloppyDrive"/>
+          <Keyword text="Win32_FontInfoAction"/>
+          <Keyword text="Win32_Group"/>
+          <Keyword text="Win32_GroupInDomain"/>
+          <Keyword text="Win32_GroupUser"/>
+          <Keyword text="Win32_HeatPipe"/>
+          <Keyword text="Win32_IDEController"/>
+          <Keyword text="Win32_IDEControllerDevice"/>
+          <Keyword text="Win32_IP4PersistedRouteTable"/>
+          <Keyword text="Win32_IP4RouteTable"/>
+          <Keyword text="Win32_IRQResource"/>
+          <Keyword text="Win32_ImplementedCategory"/>
+          <Keyword text="Win32_InfraredDevice"/>
+          <Keyword text="Win32_IniFileSpecification"/>
+          <Keyword text="Win32_InstalledSoftwareElement"/>
+          <Keyword text="Win32_Keyboard"/>
+          <Keyword text="Win32_LaunchCondition"/>
+          <Keyword text="Win32_LoadOrderGroup"/>
+          <Keyword text="Win32_LoadOrderGroupServiceDependencies"/>
+          <Keyword text="Win32_LoadOrderGroupServiceMembers"/>
+          <Keyword text="Win32_LocalTime"/>
+          <Keyword text="Win32_LoggedOnUser"/>
+          <Keyword text="Win32_LogicalDisk"/>
+          <Keyword text="Win32_LogicalDiskRootDirectory"/>
+          <Keyword text="Win32_LogicalDiskToPartition"/>
+          <Keyword text="Win32_LogicalFileAccess"/>
+          <Keyword text="Win32_LogicalFileAuditing"/>
+          <Keyword text="Win32_LogicalFileGroup"/>
+          <Keyword text="Win32_LogicalFileOwner"/>
+          <Keyword text="Win32_LogicalFileSecuritySetting"/>
+          <Keyword text="Win32_LogicalMemoryConfiguration"/>
+          <Keyword text="Win32_LogicalProgramGroup"/>
+          <Keyword text="Win32_LogicalProgramGroupDirectory"/>
+          <Keyword text="Win32_LogicalProgramGroupItem"/>
+          <Keyword text="Win32_LogicalProgramGroupItemDataFile"/>
+          <Keyword text="Win32_LogicalShareAccess"/>
+          <Keyword text="Win32_LogicalShareAuditing"/>
+          <Keyword text="Win32_LogicalShareSecuritySetting"/>
+          <Keyword text="Win32_LogonSession"/>
+          <Keyword text="Win32_LogonSessionMappedDisk"/>
+          <Keyword text="Win32_MIMEInfoAction"/>
+          <Keyword text="Win32_MappedLogicalDisk"/>
+          <Keyword text="Win32_MemoryArray"/>
+          <Keyword text="Win32_MemoryArrayLocation"/>
+          <Keyword text="Win32_MemoryDevice"/>
+          <Keyword text="Win32_MemoryDeviceArray"/>
+          <Keyword text="Win32_MemoryDeviceLocation"/>
+          <Keyword text="Win32_MotherboardDevice"/>
+          <Keyword text="Win32_MountPoint"/>
+          <Keyword text="Win32_MoveFileAction"/>
+          <Keyword text="Win32_NTDomain"/>
+          <Keyword text="Win32_NTEventlogFile"/>
+          <Keyword text="Win32_NTLogEvent"/>
+          <Keyword text="Win32_NTLogEventComputer"/>
+          <Keyword text="Win32_NTLogEventLog"/>
+          <Keyword text="Win32_NTLogEventUser"/>
+          <Keyword text="Win32_NamedJobObject"/>
+          <Keyword text="Win32_NamedJobObjectActgInfo"/>
+          <Keyword text="Win32_NamedJobObjectLimit"/>
+          <Keyword text="Win32_NamedJobObjectLimitSetting"/>
+          <Keyword text="Win32_NamedJobObjectProcess"/>
+          <Keyword text="Win32_NamedJobObjectSecLimit"/>
+          <Keyword text="Win32_NamedJobObjectSecLimitSetting"/>
+          <Keyword text="Win32_NamedJobObjectStatistics"/>
+          <Keyword text="Win32_NetworkAdapter"/>
+          <Keyword text="Win32_NetworkAdapterConfiguration"/>
+          <Keyword text="Win32_NetworkAdapterSetting"/>
+          <Keyword text="Win32_NetworkClient"/>
+          <Keyword text="Win32_NetworkConnection"/>
+          <Keyword text="Win32_NetworkLoginProfile"/>
+          <Keyword text="Win32_NetworkProtocol"/>
+          <Keyword text="Win32_ODBCAttribute"/>
+          <Keyword text="Win32_ODBCDataSourceAttribute"/>
+          <Keyword text="Win32_ODBCDataSourceSpecification"/>
+          <Keyword text="Win32_ODBCDriverAttribute"/>
+          <Keyword text="Win32_ODBCDriverSoftwareElement"/>
+          <Keyword text="Win32_ODBCDriverSpecification"/>
+          <Keyword text="Win32_ODBCSourceAttribute"/>
+          <Keyword text="Win32_ODBCTranslatorSpecification"/>
+          <Keyword text="Win32_OSRecoveryConfiguration"/>
+          <Keyword text="Win32_OnBoardDevice"/>
+          <Keyword text="Win32_OperatingSystem"/>
+          <Keyword text="Win32_OperatingSystemAutochkSetting"/>
+          <Keyword text="Win32_OperatingSystemQFE"/>
+          <Keyword text="Win32_PCMCIAController"/>
+          <Keyword text="Win32_PNPAllocatedResource"/>
+          <Keyword text="Win32_POTSModem"/>
+          <Keyword text="Win32_POTSModemToSerialPort"/>
+          <Keyword text="Win32_PageFile"/>
+          <Keyword text="Win32_PageFileElementSetting"/>
+          <Keyword text="Win32_PageFileSetting"/>
+          <Keyword text="Win32_PageFileUsage"/>
+          <Keyword text="Win32_ParallelPort"/>
+          <Keyword text="Win32_Patch"/>
+          <Keyword text="Win32_PatchFile"/>
+          <Keyword text="Win32_PatchPackage"/>
+          <Keyword text="Win32_PerfFormattedData_ContentFilter_IndexingServiceFilter"/>
+          <Keyword text="Win32_PerfFormattedData_ContentIndex_IndexingService"/>
+          <Keyword text="Win32_PerfFormattedData_Fax_FaxServices"/>
+          <Keyword text="Win32_PerfFormattedData_IPSec_IPSecv4Driver"/>
+          <Keyword text="Win32_PerfFormattedData_IPSec_IPSecv4IKE"/>
+          <Keyword text="Win32_PerfFormattedData_ISAPISearch_HttpIndexingService"/>
+          <Keyword text="Win32_PerfFormattedData_MSDTC_DistributedTransactionCoordinator"/>
+          <Keyword text="Win32_PerfFormattedData_NETFramework_NETCLRExceptions"/>
+          <Keyword text="Win32_PerfFormattedData_NETFramework_NETCLRInterop"/>
+          <Keyword text="Win32_PerfFormattedData_NETFramework_NETCLRJit"/>
+          <Keyword text="Win32_PerfFormattedData_NETFramework_NETCLRLoading"/>
+          <Keyword text="Win32_PerfFormattedData_NETFramework_NETCLRLocksAndThreads"/>
+          <Keyword text="Win32_PerfFormattedData_NETFramework_NETCLRMemory"/>
+          <Keyword text="Win32_PerfFormattedData_NETFramework_NETCLRRemoting"/>
+          <Keyword text="Win32_PerfFormattedData_NETFramework_NETCLRSecurity"/>
+          <Keyword text="Win32_PerfFormattedData_NTDS_NTDS"/>
+          <Keyword text="Win32_PerfFormattedData_PerfDisk_LogicalDisk"/>
+          <Keyword text="Win32_PerfFormattedData_PerfDisk_PhysicalDisk"/>
+          <Keyword text="Win32_PerfFormattedData_PerfNet_Browser"/>
+          <Keyword text="Win32_PerfFormattedData_PerfNet_Redirector"/>
+          <Keyword text="Win32_PerfFormattedData_PerfNet_Server"/>
+          <Keyword text="Win32_PerfFormattedData_PerfNet_ServerWorkQueues"/>
+          <Keyword text="Win32_PerfFormattedData_PerfOS_Cache"/>
+          <Keyword text="Win32_PerfFormattedData_PerfOS_Memory"/>
+          <Keyword text="Win32_PerfFormattedData_PerfOS_Objects"/>
+          <Keyword text="Win32_PerfFormattedData_PerfOS_PagingFile"/>
+          <Keyword text="Win32_PerfFormattedData_PerfOS_Processor"/>
+          <Keyword text="Win32_PerfFormattedData_PerfOS_System"/>
+          <Keyword text="Win32_PerfFormattedData_PerfProc_FullImage_Costly"/>
+          <Keyword text="Win32_PerfFormattedData_PerfProc_Image_Costly"/>
+          <Keyword text="Win32_PerfFormattedData_PerfProc_JobObject"/>
+          <Keyword text="Win32_PerfFormattedData_PerfProc_JobObjectDetails"/>
+          <Keyword text="Win32_PerfFormattedData_PerfProc_Process"/>
+          <Keyword text="Win32_PerfFormattedData_PerfProc_ProcessAddressSpace_Costly"/>
+          <Keyword text="Win32_PerfFormattedData_PerfProc_Thread"/>
+          <Keyword text="Win32_PerfFormattedData_PerfProc_ThreadDetails_Costly"/>
+          <Keyword text="Win32_PerfFormattedData_RSVP_ACSRSVPInterfaces"/>
+          <Keyword text="Win32_PerfFormattedData_RSVP_ACSRSVPService"/>
+          <Keyword text="Win32_PerfFormattedData_RemoteAccess_RASPort"/>
+          <Keyword text="Win32_PerfFormattedData_RemoteAccess_RASTotal"/>
+          <Keyword text="Win32_PerfFormattedData_Spooler_PrintQueue"/>
+          <Keyword text="Win32_PerfFormattedData_TapiSrv_Telephony"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_ICMP"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_ICMPv6"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_IP"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_IPv4"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_IPv6"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_NBTConnection"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_NetworkInterface"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_TCP"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_TCPv4"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_TCPv6"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_UDP"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_UDPv4"/>
+          <Keyword text="Win32_PerfFormattedData_Tcpip_UDPv6"/>
+          <Keyword text="Win32_PerfFormattedData_TermService_TerminalServices"/>
+          <Keyword text="Win32_PerfFormattedData_TermService_TerminalServicesSession"/>
+          <Keyword text="Win32_PerfRawData_ASP_ActiveServerPages"/>
+          <Keyword text="Win32_PerfRawData_ContentFilter_IndexingServiceFilter"/>
+          <Keyword text="Win32_PerfRawData_ContentIndex_IndexingService"/>
+          <Keyword text="Win32_PerfRawData_Fax_FaxServices"/>
+          <Keyword text="Win32_PerfRawData_FileReplicaConn_FileReplicaConn"/>
+          <Keyword text="Win32_PerfRawData_FileReplicaSet_FileReplicaSet"/>
+          <Keyword text="Win32_PerfRawData_IAS_IASAccountingClients"/>
+          <Keyword text="Win32_PerfRawData_IAS_IASAccountingServer"/>
+          <Keyword text="Win32_PerfRawData_IAS_IASAuthenticationClients"/>
+          <Keyword text="Win32_PerfRawData_IAS_IASAuthenticationServer"/>
+          <Keyword text="Win32_PerfRawData_IPSec_IPSecv4Driver"/>
+          <Keyword text="Win32_PerfRawData_IPSec_IPSecv4IKE"/>
+          <Keyword text="Win32_PerfRawData_ISAPISearch_HttpIndexingService"/>
+          <Keyword text="Win32_PerfRawData_InetInfo_InternetInformationServicesGlobal"/>
+          <Keyword text="Win32_PerfRawData_MSDTC_DistributedTransactionCoordinator"/>
+          <Keyword text="Win32_PerfRawData_NETFramework_NETCLRExceptions"/>
+          <Keyword text="Win32_PerfRawData_NETFramework_NETCLRInterop"/>
+          <Keyword text="Win32_PerfRawData_NETFramework_NETCLRJit"/>
+          <Keyword text="Win32_PerfRawData_NETFramework_NETCLRLoading"/>
+          <Keyword text="Win32_PerfRawData_NETFramework_NETCLRLocksAndThreads"/>
+          <Keyword text="Win32_PerfRawData_NETFramework_NETCLRMemory"/>
+          <Keyword text="Win32_PerfRawData_NETFramework_NETCLRRemoting"/>
+          <Keyword text="Win32_PerfRawData_NETFramework_NETCLRSecurity"/>
+          <Keyword text="Win32_PerfRawData_NTDS_NTDS"/>
+          <Keyword text="Win32_PerfRawData_NTFSDRV_SMTPNTFSStoreDriver"/>
+          <Keyword text="Win32_PerfRawData_PerfDisk_LogicalDisk"/>
+          <Keyword text="Win32_PerfRawData_PerfDisk_PhysicalDisk"/>
+          <Keyword text="Win32_PerfRawData_PerfNet_Browser"/>
+          <Keyword text="Win32_PerfRawData_PerfNet_Redirector"/>
+          <Keyword text="Win32_PerfRawData_PerfNet_Server"/>
+          <Keyword text="Win32_PerfRawData_PerfNet_ServerWorkQueues"/>
+          <Keyword text="Win32_PerfRawData_PerfOS_Cache"/>
+          <Keyword text="Win32_PerfRawData_PerfOS_Memory"/>
+          <Keyword text="Win32_PerfRawData_PerfOS_Objects"/>
+          <Keyword text="Win32_PerfRawData_PerfOS_PagingFile"/>
+          <Keyword text="Win32_PerfRawData_PerfOS_Processor"/>
+          <Keyword text="Win32_PerfRawData_PerfOS_System"/>
+          <Keyword text="Win32_PerfRawData_PerfProc_FullImage_Costly"/>
+          <Keyword text="Win32_PerfRawData_PerfProc_Image_Costly"/>
+          <Keyword text="Win32_PerfRawData_PerfProc_JobObject"/>
+          <Keyword text="Win32_PerfRawData_PerfProc_JobObjectDetails"/>
+          <Keyword text="Win32_PerfRawData_PerfProc_Process"/>
+          <Keyword text="Win32_PerfRawData_PerfProc_ProcessAddressSpace_Costly"/>
+          <Keyword text="Win32_PerfRawData_PerfProc_Thread"/>
+          <Keyword text="Win32_PerfRawData_PerfProc_ThreadDetails_Costly"/>
+          <Keyword text="Win32_PerfRawData_RSVP_ACSPerRSVPService"/>
+          <Keyword text="Win32_PerfRawData_RSVP_ACSRSVPInterfaces"/>
+          <Keyword text="Win32_PerfRawData_RSVP_ACSRSVPService"/>
+          <Keyword text="Win32_PerfRawData_RemoteAccess_RASPort"/>
+          <Keyword text="Win32_PerfRawData_RemoteAccess_RASTotal"/>
+          <Keyword text="Win32_PerfRawData_SMTPSVC_SMTPServer"/>
+          <Keyword text="Win32_PerfRawData_Spooler_PrintQueue"/>
+          <Keyword text="Win32_PerfRawData_TapiSrv_Telephony"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_ICMP"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_ICMPv6"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_IP"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_IPv4"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_IPv6"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_NBTConnection"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_NetworkInterface"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_TCP"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_TCPv4"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_TCPv6"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_UDP"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_UDPv4"/>
+          <Keyword text="Win32_PerfRawData_Tcpip_UDPv6"/>
+          <Keyword text="Win32_PerfRawData_TermService_TerminalServices"/>
+          <Keyword text="Win32_PerfRawData_TermService_TerminalServicesSession"/>
+          <Keyword text="Win32_PerfRawData_W3SVC_WebService"/>
+          <Keyword text="Win32_PhysicalMedia"/>
+          <Keyword text="Win32_PhysicalMemory"/>
+          <Keyword text="Win32_PhysicalMemoryArray"/>
+          <Keyword text="Win32_PhysicalMemoryLocation"/>
+          <Keyword text="Win32_PingStatus"/>
+          <Keyword text="Win32_PnPDevice"/>
+          <Keyword text="Win32_PnPEntity"/>
+          <Keyword text="Win32_PnPSignedDriver"/>
+          <Keyword text="Win32_PnPSignedDriverCIMDataFile"/>
+          <Keyword text="Win32_PointingDevice"/>
+          <Keyword text="Win32_PortConnector"/>
+          <Keyword text="Win32_PortResource"/>
+          <Keyword text="Win32_PortableBattery"/>
+          <Keyword text="Win32_PrintJob"/>
+          <Keyword text="Win32_Printer"/>
+          <Keyword text="Win32_PrinterConfiguration"/>
+          <Keyword text="Win32_PrinterController"/>
+          <Keyword text="Win32_PrinterDriver"/>
+          <Keyword text="Win32_PrinterDriverDll"/>
+          <Keyword text="Win32_PrinterSetting"/>
+          <Keyword text="Win32_PrinterShare"/>
+          <Keyword text="Win32_Process"/>
+          <Keyword text="Win32_Processor"/>
+          <Keyword text="Win32_ProductCheck"/>
+          <Keyword text="Win32_ProductOptional"/>
+          <Keyword text="Win32_ProductResource"/>
+          <Keyword text="Win32_ProductSoftwareFeatures"/>
+          <Keyword text="Win32_ProgIDSpecification"/>
+          <Keyword text="Win32_ProgramGroup"/>
+          <Keyword text="Win32_ProgramGroupContents"/>
+          <Keyword text="Win32_Property"/>
+          <Keyword text="Win32_ProtocolBinding"/>
+          <Keyword text="Win32_Proxy"/>
+          <Keyword text="Win32_PublishComponentAction"/>
+          <Keyword text="Win32_QuickFixEngineering"/>
+          <Keyword text="Win32_QuotaSetting"/>
+          <Keyword text="Win32_Refrigeration"/>
+          <Keyword text="Win32_Registry"/>
+          <Keyword text="Win32_RegistryAction"/>
+          <Keyword text="Win32_RemoveFileAction"/>
+          <Keyword text="Win32_RemoveIniAction"/>
+          <Keyword text="Win32_ReserveCost"/>
+          <Keyword text="Win32_SCSIController"/>
+          <Keyword text="Win32_SCSIControllerDevice"/>
+          <Keyword text="Win32_SID"/>
+          <Keyword text="Win32_ScheduledJob"/>
+          <Keyword text="Win32_SecuritySettingOfLogicalFile"/>
+          <Keyword text="Win32_SecuritySettingOfLogicalShare"/>
+          <Keyword text="Win32_SelfRegModuleAction"/>
+          <Keyword text="Win32_SerialPort"/>
+          <Keyword text="Win32_SerialPortConfiguration"/>
+          <Keyword text="Win32_SerialPortSetting"/>
+          <Keyword text="Win32_ServerConnection"/>
+          <Keyword text="Win32_ServerSession"/>
+          <Keyword text="Win32_Service"/>
+          <Keyword text="Win32_ServiceControl"/>
+          <Keyword text="Win32_ServiceSpecification"/>
+          <Keyword text="Win32_ServiceSpecificationService"/>
+          <Keyword text="Win32_SessionConnection"/>
+          <Keyword text="Win32_SessionProcess"/>
+          <Keyword text="Win32_ShadowBy"/>
+          <Keyword text="Win32_ShadowCopy"/>
+          <Keyword text="Win32_ShadowDiffVolumeSupport"/>
+          <Keyword text="Win32_ShadowFor"/>
+          <Keyword text="Win32_ShadowOn"/>
+          <Keyword text="Win32_ShadowProvider"/>
+          <Keyword text="Win32_ShadowStorage"/>
+          <Keyword text="Win32_ShadowVolumeSupport"/>
+          <Keyword text="Win32_Share"/>
+          <Keyword text="Win32_ShareToDirectory"/>
+          <Keyword text="Win32_ShortcutAction"/>
+          <Keyword text="Win32_ShortcutFile"/>
+          <Keyword text="Win32_ShortcutSAP"/>
+          <Keyword text="Win32_SoftwareElement"/>
+          <Keyword text="Win32_SoftwareElementAction"/>
+          <Keyword text="Win32_SoftwareElementCheck"/>
+          <Keyword text="Win32_SoftwareElementCondition"/>
+          <Keyword text="Win32_SoftwareElementResource"/>
+          <Keyword text="Win32_SoftwareFeature"/>
+          <Keyword text="Win32_SoftwareFeatureAction"/>
+          <Keyword text="Win32_SoftwareFeatureCheck"/>
+          <Keyword text="Win32_SoftwareFeatureParent"/>
+          <Keyword text="Win32_SoftwareFeatureSoftwareElements"/>
+          <Keyword text="Win32_SoundDevice"/>
+          <Keyword text="Win32_StartupCommand"/>
+          <Keyword text="Win32_SubDirectory"/>
+          <Keyword text="Win32_SystemAccount"/>
+          <Keyword text="Win32_SystemBIOS"/>
+          <Keyword text="Win32_SystemBootConfiguration"/>
+          <Keyword text="Win32_SystemDesktop"/>
+          <Keyword text="Win32_SystemDevices"/>
+          <Keyword text="Win32_SystemDriver"/>
+          <Keyword text="Win32_SystemDriverPNPEntity"/>
+          <Keyword text="Win32_SystemEnclosure"/>
+          <Keyword text="Win32_SystemLoadOrderGroups"/>
+          <Keyword text="Win32_SystemLogicalMemoryConfiguration"/>
+          <Keyword text="Win32_SystemNetworkConnections"/>
+          <Keyword text="Win32_SystemOperatingSystem"/>
+          <Keyword text="Win32_SystemPartitions"/>
+          <Keyword text="Win32_SystemProcesses"/>
+          <Keyword text="Win32_SystemProgramGroups"/>
+          <Keyword text="Win32_SystemResources"/>
+          <Keyword text="Win32_SystemServices"/>
+          <Keyword text="Win32_SystemSlot"/>
+          <Keyword text="Win32_SystemSystemDriver"/>
+          <Keyword text="Win32_SystemTimeZone"/>
+          <Keyword text="Win32_SystemUsers"/>
+          <Keyword text="Win32_TCPIPPrinterPort"/>
+          <Keyword text="Win32_TSAccount"/>
+          <Keyword text="Win32_TSClientSetting"/>
+          <Keyword text="Win32_TSEnvironmentSetting"/>
+          <Keyword text="Win32_TSGeneralSetting"/>
+          <Keyword text="Win32_TSLogonSetting"/>
+          <Keyword text="Win32_TSNetworkAdapterListSetting"/>
+          <Keyword text="Win32_TSNetworkAdapterSetting"/>
+          <Keyword text="Win32_TSPermissionsSetting"/>
+          <Keyword text="Win32_TSRemoteControlSetting"/>
+          <Keyword text="Win32_TSSessionDirectory"/>
+          <Keyword text="Win32_TSSessionDirectorySetting"/>
+          <Keyword text="Win32_TSSessionSetting"/>
+          <Keyword text="Win32_TapeDrive"/>
+          <Keyword text="Win32_TemperatureProbe"/>
+          <Keyword text="Win32_Terminal"/>
+          <Keyword text="Win32_TerminalService"/>
+          <Keyword text="Win32_TerminalServiceSetting"/>
+          <Keyword text="Win32_TerminalServiceToSetting"/>
+          <Keyword text="Win32_TerminalTerminalSetting"/>
+          <Keyword text="Win32_Thread"/>
+          <Keyword text="Win32_TimeZone"/>
+          <Keyword text="Win32_TypeLibraryAction"/>
+          <Keyword text="Win32_USBController"/>
+          <Keyword text="Win32_USBControllerDevice"/>
+          <Keyword text="Win32_USBHub"/>
+          <Keyword text="Win32_UTCTime"/>
+          <Keyword text="Win32_UninterruptiblePowerSupply"/>
+          <Keyword text="Win32_UserAccount"/>
+          <Keyword text="Win32_UserDesktop"/>
+          <Keyword text="Win32_UserInDomain"/>
+          <Keyword text="Win32_VideoConfiguration"/>
+          <Keyword text="Win32_VideoController"/>
+          <Keyword text="Win32_VideoSettings"/>
+          <Keyword text="Win32_VoltageProbe"/>
+          <Keyword text="Win32_Volume"/>
+          <Keyword text="Win32_VolumeQuota"/>
+          <Keyword text="Win32_VolumeQuotaSetting"/>
+          <Keyword text="Win32_VolumeUserQuota"/>
+          <Keyword text="Win32_WMIElementSetting"/>
+          <Keyword text="Win32_WMISetting"/>
+          <Keyword text="Win32_WindowsProductActivation"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

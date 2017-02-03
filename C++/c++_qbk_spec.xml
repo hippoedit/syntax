@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="VoidEx" type="LangSpec"/>
+  <SYNTAX id="cpp_qbk" name="C++ (QBK)" inherit="cpp" inherit_url="c++_spec.xml">
+    <STYLES>
+      <Style id="doc" name="Documentation" text="1" italic="1" clr="Documentation" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="//[ " close="\n"/>
+          <Block open="//` " close="\n"/>
+          <Block open="//]" close="\n"/>
+          <Block open="/*`" close="*/"/>
+          <Block open="/*&lt; " close=" &gt;*/"/>
+          <Block open="/*&lt;&lt; " close=" &gt;&gt;*/"/>
+          <Block open="//&lt;- " close="\n"/>
+          <Block open="//-&gt;" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="qbk_format" name="QuickBook formatting" text="1" italic="1" clr="Documentation" bkclr="Embedded Language 1 Back">
+        <Containers>
+          <Open id="doc"/>
+        </Containers>
+        <Blocks>
+          <Block open="['" close="]"/>
+          <Block open="[*" close="]"/>
+          <Block open="[_" close="]"/>
+          <Block open="[note " close="]"/>
+          <Block open="[tip " close="]"/>
+          <Block open="[important " close="]"/>
+          <Block open="[caution " close="]"/>
+          <Block open="[warning " close="]"/>
+        </Blocks>
+      </Style>
+      <Style id="qbk_url" name="QuickBook URLs" text="1" bold="0" italic="1" underline="1" clr="Documentation" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="doc"/>
+        </Containers>
+        <Blocks>
+          <Block open="[@" close="]"/>
+          <Block open="[link " close="]"/>
+          <Block open="[funcref " close="]"/>
+          <Block open="[classref " close="]"/>
+          <Block open="[memberref " close="]"/>
+          <Block open="[enumref " close="]"/>
+          <Block open="[macroref " close="]"/>
+          <Block open="[conceptref " close="]"/>
+          <Block open="[headerref " close="]"/>
+          <Block open="[globalref " close="]"/>
+          <Block open="[$" close="]"/>
+          <Block open="[footnote " close="]"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

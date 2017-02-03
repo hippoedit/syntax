@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Evi" type="LangUser"/>
+  <SYNTAX id="clipper" inherit="def_source" inherit_url="defsource_user.xml">
+    <CodeTemplates>
+      <Template key="000" descr="************">***********************************************************************************</Template>
+      <Template key="0000" descr="** ...**">***********************************************************************************\n** %|%\n***********************************************************************************\n</Template>
+      <Template key="whilenot" descr="WHILE ! XXX -&gt; (Eof())...">WHILE ! %Filename% -&gt; (Eof())\n\t%|%\n\t%Filename% -&gt; (dbSkip())\nENDDO\n</Template>
+      <Template key="íí" descr="=">=</Template>
+      <Template key="ifelse" descr="IF ELSE ENDIF">IF %|%\nELSE\nENDIF</Template>
+      <Template key="docase" descr="DO CASE... ENDCASE">DO CASE\nCASE %|%\nENDCASE\n</Template>
+      <Template key="fori" descr="FOR i := 1 to Len(Tomb)">FOR i := 1 to Len(Tomb)\n\t%|%\nNEXT i</Template>
+      <Template key="MyCh" descr="MyCh">#Include &apos;C:\\BORLAND\\XHARBOUR\\MYINCLUDE\\MyCh.ch&apos;</Template>
+      <Template key="fg" descr="[]">[%|%]</Template>
+      <Template key="stafu" descr="Static Function">Static FUNCTION %FunctionName%()\n\t%|%\nRETURN Nil // %FunctionName%</Template>
+      <Template key="Funci" descr="FUNCTION...RETURN">FUNCTION %FunctionName%()\n\t%|%\nRETURN Nil // %FunctionName%\n</Template>
+      <Template key="íííí" descr="+=">+=</Template>
+      <Template key="ííííí" descr="-=">-=</Template>
+      <Template key="Reg" descr="Region">Region %Name%\n\t%|%\nEndRegion // %Name%\n</Template>
+      <Template key="00" descr="**">**</Template>
+      <Template key="ííí" descr=":=">:=</Template>
+    </CodeTemplates>
+  </SYNTAX>
+</XMLConfigSettings>

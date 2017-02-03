@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="nsis" name="NSIS" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.nsi;*.nsh"/>
+      <OpenClose>()[]{}''""</OpenClose>
+      <Operators>\?%--+&amp;*=&lt;&gt;|~^,;.:()[]</Operators>
+      <Delimiters>$!</Delimiters>
+      <Words>0-9A-Za-z_/</Words>
+      <HierarchySeparator>
+        <Separator text="."/>
+      </HierarchySeparator>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <FormatWords>
+        <FormatWord word="StrCmp" next_line="1"/>
+        <FormatWord word="IntCmp" next_line="1"/>
+        <FormatWord word="IfFileExist" next_line="1" pos_sent_start="1"/>
+      </FormatWords>
+    </FORMAT>
+    <LABELS>
+      <Label group="Section" match="\s(SubSection|Section)\s*&quot;([\w ]+)&quot;" name="\2" descr="\1 \2" image="11" scope="1"/>
+      <Label group="Function" match="\sFunction\s+([\w.]+)" name="\1" descr="Function \1" image="18" scope="1"/>
+    </LABELS>
+    <SCOPES>
+      <Scope open="function" close="functionend" has_name="1" separator="1"/>
+      <Scope open="section" close="sectionend" has_name="1" separator="1"/>
+      <Scope open="subsection" close="subsectionend" has_name="1" separator="1"/>
+      <Scope open="pageex" close="pageexend" has_name="1" separator="1"/>
+      <Scope open="ifdef" middle="else" close="endif" has_name="1">
+        <Containers open="preprocessor"/>
+      </Scope>
+      <Scope open="ifndef" middle="else" close="endif" has_name="1">
+        <Containers open="preprocessor"/>
+      </Scope>
+      <Scope open="macro" close="macroend" has_name="1">
+        <Containers open="preprocessor"/>
+      </Scope>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open=";" close="\n"/>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="preprocessor"/>
+          <Open id="normal"/>
+        </Containers>
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style id="number" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="!" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="macro" name="Macro" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="string"/>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Blocks>
+          <Block open="${" close="}"/>
+          <Block open="$(" close=")"/>
+        </Blocks>
+      </Style>
+      <Style name="String Constants" text="1" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+        </Containers>
+        <Blocks>
+          <Block text="$$"/>
+          <Block text="$\\n"/>
+          <Block text="$\\r"/>
+          <Block text="$\\t"/>
+        </Blocks>
+      </Style>  
+      <Style name="Keywords" image="12" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Function" descr="function_name"/>
+          <Keyword text="FunctionEnd"/>
+          <Keyword text="Page" descr="((custom [creator_function] [leave_function] [caption]) | ((license|components|directory|instfiles|uninstConfirm) [pre_function] [show_function] [leave_function])) [/ENABLECANCEL]"/>
+          <Keyword text="PageEx" descr="[un.](custom|uninstConfirm|license|components|directory|instfiles)"/>
+          <Keyword text="PageExEnd"/>
+          <Keyword text="Section" descr="[/o] [-][un.][section_name] [section index output]"/>
+          <Keyword text="SectionEnd"/>
+          <Keyword text="SectionGroup" descr="[/e] [un.]section_group_name [section index output]"/>
+          <Keyword text="SectionGroupEnd"/>
+          <Keyword text="SectionIn" descr="InstTypeIdx [InstTypeIdx [...]]"/>
+          <Keyword text="SubSection" descr="deprecated - use SectionGroup"/>
+          <Keyword text="SubSectionEnd" descr="deprecated - use SectionGroupEnd"/>
+          <Keyword text="UninstPage" descr="((custom [creator_function] [leave_function] [caption]) | ((license|components|directory|instfiles|uninstConfirm) [pre_function] [show_function] [leave_function])) [/ENABLECANCEL]"/>
+        </Keywords>
+      </Style>
+      <Style name="Functions" image="9" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Abort" descr="[message]"/>
+          <Keyword text="AddBrandingImage" descr="(top|left|bottom|right) (height|width) [padding]"/>
+          <Keyword text="AddSize" descr="size_to_add_to_section_in_kb"/>
+          <Keyword text="AllowRootDirInstall" descr="(true|false)"/>
+          <Keyword text="AllowSkipFiles" descr="(off|on)"/>
+          <Keyword text="AutoCloseWindow" descr="(false|true)"/>
+          <Keyword text="BGFont" descr="[font_face [height [wieght] [/ITALIC] [/UNDERLINE] [/STRIKE]]]"/>
+          <Keyword text="BGGradient" descr="(off | [top_color [bottom_color [text_color]]])"/>
+          <Keyword text="BrandingText" descr="[/TRIM(LEFT|RIGHT|CENTER)] installer_text"/>
+          <Keyword text="BringToFront"/>
+          <Keyword text="CRCCheck" descr="(on|force|off)"/>
+          <Keyword text="Call" descr="function_name | [:label_name]"/>
+          <Keyword text="CallInstDLL" descr="dll_path_on_target.dll function"/>
+          <Keyword text="Caption" descr="installer_caption"/>
+          <Keyword text="ChangeUI" descr="(all|dlg_id) ui_file.exe"/>
+          <Keyword text="CheckBitmap" descr="local_bitmap.bmp"/>
+          <Keyword text="ClearErrors"/>
+          <Keyword text="CompletedText" descr="[completed text]"/>
+          <Keyword text="ComponentText" descr="[component_page_description] [component_subtext1] [component_subtext2]"/>
+          <Keyword text="CopyFiles" descr="[/SILENT] [/FILESONLY] source_path destination_path [total_size_in_kb]"/>
+          <Keyword text="CreateDirectory" descr="directory_name"/>
+          <Keyword text="CreateFont" descr="$(user_var: handle output) face_name [height wieght /ITALIC /UNDERLINE /STRIKE]"/>
+          <Keyword text="CreateShortCut" descr="shortcut_name.lnk shortcut_target [parameters [icon_file [icon index [showmode [hotkey [comment]]]]]]\nshowmode=(SW_SHOWNORMAL|SW_SHOWMAXIMIZED|SW_SHOWMINIMIZED)\nhotkey=(ALT|CONTROL|EXT|SHIFT)|(F1-F24|A-Z)"/>
+          <Keyword text="Delete" descr="[/REBOOTOK] filespec"/>
+          <Keyword text="DeleteINISec" descr="ini_file section_name"/>
+          <Keyword text="DeleteINIStr" descr="ini_file section_name entry_name"/>
+          <Keyword text="DeleteRegKey" descr="[/ifempty] root_key subkey\nroot_key=(HKCR|HKLM|HKCU|HKU|HKCC|HKDD|HKPD|SHCTX)"/>
+          <Keyword text="DeleteRegValue" descr="root_key subkey entry_name\nroot_key=(HKCR|HKLM|HKCU|HKU|HKCC|HKDD|HKPD|SHCTX)"/>
+          <Keyword text="DetailPrint" descr="message"/>
+          <Keyword text="DetailsButtonText" descr="[details button text]"/>
+          <Keyword text="DirShow" descr="doesn't currently work"/>
+          <Keyword text="DirText" descr="[directory_page_description] [directory_page_subtext] [browse_button_text] [browse_dlg_text]"/>
+          <Keyword text="DirVar" descr="$(user_var: dir in/out))"/>
+          <Keyword text="DirVerify" descr="auto|leave"/>
+          <Keyword text="EnableWindow" descr="hwnd (1|0)"/>
+          <Keyword text="EnumRegKey" descr="$(user_var: output) rootkey subkey index\nroot_key=(HKCR|HKLM|HKCU|HKU|HKCC|HKDD|HKPD|SHCTX)"/>
+          <Keyword text="EnumRegValue" descr="$(user_var: output) rootkey subkey index\nroot_key=(HKCR|HKLM|HKCU|HKU|HKCC|HKDD|HKPD|SHCTX)"/>
+          <Keyword text="Exch" descr="[$(user_var)] | [stack_item_index]"/>
+          <Keyword text="Exec" descr="command_line"/>
+          <Keyword text="ExecShell" descr="(open|print|etc) command_line [parameters [showmode]]\nshowmode=(SW_SHOWNORMAL|SW_SHOWMAXIMIZED|SW_SHOWMINIMIZED|SW_HIDE)"/>
+          <Keyword text="ExecWait" descr="command_line [$(user_var: return value)]"/>
+          <Keyword text="ExpandEnvStrings" descr="$(user_var: output) string"/>
+          <Keyword text="File" descr="[/nonfatal] [/a] ([/r] [/x filespec [...]] filespec [...] |\n/oname=outfile one_file_only)"/>
+          <Keyword text="FileBufSize" descr="buf_size_mb"/>
+          <Keyword text="FileClose" descr="$(user_var: handle input)"/>
+          <Keyword text="FileErrorText" descr="[text (can contain $0)] [text without ignore (can contain $0)]"/>
+          <Keyword text="FileOpen" descr="$(user_var: handle output) filename openmode\nopenmode=r|w|a"/>
+          <Keyword text="FileRead" descr="$(user_var: handle input) $(user_var: text output) [maxlen]"/>
+          <Keyword text="FileReadByte" descr="$(user_var: handle input) $(user_var: bytevalue output)"/>
+          <Keyword text="FileSeek" descr="$(user_var: handle input) offset [mode] [$(user_var: new position output)]\nmode=SET|CUR|END"/>
+          <Keyword text="FileWrite" descr="$(user_var: handle input) text"/>
+          <Keyword text="FileWriteByte" descr="$(user_var: handle input) bytevalue"/>
+          <Keyword text="FindClose" descr="$(user_var: handle input)"/>
+          <Keyword text="FindFirst" descr="$(user_var: handle output) $(user_var: filename output) filespec"/>
+          <Keyword text="FindNext" descr="$(user_var: handle input) $(user_var: filename output)"/>
+          <Keyword text="FindWindow" descr="$(user_var: handle output) WindowClass [WindowTitle] [Window_Parent] [Child_After]"/>
+          <Keyword text="FlushINI" descr="ini_file"/>
+          <Keyword text="GetCurInstType" descr="$(user_var: output inst_type_idx)"/>
+          <Keyword text="GetCurrentAddress" descr="output"/>
+          <Keyword text="GetDLLVersion" descr="filename $(user_var: high output) $(user_var: low output)"/>
+          <Keyword text="GetDLLVersionLocal" descr="localfilename $(user_var: high output) $(user_var: low output)"/>
+          <Keyword text="GetDlgItem" descr="$(user_var: handle output) dialog item_id"/>
+          <Keyword text="GetErrorLevel" descr="$(user_var: output)"/>
+          <Keyword text="GetFileTime" descr="file $(user_var: high output) $(user_var: low output)"/>
+          <Keyword text="GetFileTimeLocal" descr="localfile $(user_var: high output) $(user_var: low output)"/>
+          <Keyword text="GetFullPathName" descr="[/SHORT] $(user_var: result) path_or_file"/>
+          <Keyword text="GetFunctionAddress" descr="output function"/>
+          <Keyword text="GetInstDirError" descr="$(user_var: error output)"/>
+          <Keyword text="GetLabelAddress" descr="output label"/>
+          <Keyword text="GetTempFileName" descr="$(user_var: name output) [base_dir]"/>
+          <Keyword text="GetWindowText"/>
+          <Keyword text="Goto" descr="label"/>
+          <Keyword text="HideWindow"/>
+          <Keyword text="Icon" descr="local_icon.ico"/>
+          <Keyword text="IfAbort" descr="label_to_goto_if_abort [label_to_goto_if_no_abort]"/>
+          <Keyword text="IfErrors" descr="label_to_goto_if_errors [label_to_goto_if_no_errors]"/>
+          <Keyword text="IfFileExists" descr="filename label_to_goto_if_file_exists [label_to_goto_otherwise]"/>
+          <Keyword text="IfRebootFlag" descr="jump_if_set [jump_if_not_set]"/>
+          <Keyword text="IfSilent" descr="jump_if_silent [jump_if_not_silent]"/>
+          <Keyword text="InitPluginsDir"/>
+          <Keyword text="InstProgressFlags" descr="[flag [...]]\nflag={smooth|colored}"/>
+          <Keyword text="InstType" descr="[un.]install_type_name | /NOCUSTOM | /CUSTOMSTRING=str | /COMPONENTSONLYONCUSTOM"/>
+          <Keyword text="InstTypeGetText" descr="insttype_index $(user_var: output flags)"/>
+          <Keyword text="InstTypeSetText" descr="insttype_index flags"/>
+          <Keyword text="InstallButtonText" descr="[install button text]"/>
+          <Keyword text="InstallColors" descr="(/windows | (foreground_color background_color))"/>
+          <Keyword text="InstallDir" descr="default_install_directory"/>
+          <Keyword text="InstallDirRegKey" descr="root_key subkey entry_name\nroot_key=(HKCR|HKLM|HKCU|HKU|HKCC|HKDD|HKPD)"/>
+          <Keyword text="IntCmp" descr="val1 val2 jump_if_equal [jump_if_val1_less] [jump_if_val1_more]"/>
+          <Keyword text="IntCmpU" descr="val1 val2 jump_if_equal [jump_if_val1_less] [jump_if_val1_more]"/>
+          <Keyword text="IntFmt" descr="$(user_var: output) format_string input"/>
+          <Keyword text="IntOp" descr="$(user_var: result) val1 OP [val2]\nOP=(+ - * / % | &apos; ^ ~ ! || &apos;&apos; &lt;&lt; &gt;&gt;)"/>
+          <Keyword text="IsWindow" descr="hwnd jump_if_window [jump_if_not_window]"/>
+          <Keyword text="LangString" descr="[un.]name lang_id string"/>
+          <Keyword text="LangStringUP" descr="obsolete, use LangString."/>
+          <Keyword text="LicenseBkColor" descr="background_color"/>
+          <Keyword text="LicenseData" descr="local_file_that_has_license_text | license_lang_string"/>
+          <Keyword text="LicenseForceSelection" descr="(checkbox [accept_text] | radiobuttons [accept_text] [decline_text] | off)"/>
+          <Keyword text="LicenseLangString" descr="name lang_id license_path"/>
+          <Keyword text="LicenseText" descr="license_page_description [license_button_text]"/>
+          <Keyword text="LoadLanguageFile" descr="language.nlf"/>
+          <Keyword text="LockWindow" descr="(on|off)"/>
+          <Keyword text="LogSet" descr="on|off"/>
+          <Keyword text="LogText" descr="text"/>
+          <Keyword text="MessageBox" descr="mode messagebox_text [/SD return] [return_check label_to_goto_if_equal [return_check2 label2]]\nmode=modeflag[|modeflag[|modeflag[...]]]\nmodeflag=(MB_ABORTRETRYIGNORE|MB_OK|MB_OKCANCEL|MB_RETRYCANCEL|MB_YESNO|MB_YESNOCANCEL|MB_ICONEXCLAMATION|MB_ICONINFORMATION|MB_ICONQUESTION|MB_ICONSTOP|MB_USERICON|MB_TOPMOST|MB_SETFOREGROUND|MB_RIGHT"/>
+          <Keyword text="MiscButtonText" descr="[back button text] [next button text] [cancel button text] [close button text]"/>
+          <Keyword text="Name" descr="installer_name installer_name_doubled_ampersands"/>
+          <Keyword text="Nop"/>
+          <Keyword text="OutFile" descr="install_output.exe"/>
+          <Keyword text="PageCallbacks" descr="([creator_function] [leave_function]) | ([pre_function] [show_function] [leave_function])"/>
+          <Keyword text="Pop" descr="$(user_var: output)"/>
+          <Keyword text="Push" descr="string"/>
+          <Keyword text="Quit"/>
+          <Keyword text="RMDir" descr="[/r] [/REBOOTOK] directory_name"/>
+          <Keyword text="ReadEnvStr" descr="$(user_var: output) name"/>
+          <Keyword text="ReadINIStr" descr="$(user_var: output) ini_file section entry_name"/>
+          <Keyword text="ReadRegDWORD" descr="$(user_var: output) rootkey subkey entry\nroot_key=(HKCR|HKLM|HKCU|HKU|HKCC|HKDD|HKPD|SHCTX)"/>
+          <Keyword text="ReadRegStr" descr="$(user_var: output) rootkey subkey entry\nroot_key=(HKCR|HKLM|HKCU|HKU|HKCC|HKDD|HKPD|SHCTX)"/>
+          <Keyword text="Reboot"/>
+          <Keyword text="RegDLL" descr="dll_path_on_target.dll [entrypoint_symbol]"/>
+          <Keyword text="Rename" descr="[/REBOOTOK] source_file destination_file"/>
+          <Keyword text="RequestExecutionLevel" descr="none|user|highest|admin"/>
+          <Keyword text="ReserveFile" descr="[/nonfatal] [/r] [/x filespec [...]] file [file...]"/>
+          <Keyword text="Return"/>
+          <Keyword text="SearchPath" descr="$(user_var: result) filename"/>
+          <Keyword text="SectionGetFlags" descr="section_index $(user_var: output flags)"/>
+          <Keyword text="SectionGetInstTypes" descr="section_index $(user_var: output inst_types)"/>
+          <Keyword text="SectionGetSize" descr="section_index $(user_var: output size)"/>
+          <Keyword text="SectionGetText" descr="section_index $(user_var: output text)"/>
+          <Keyword text="SectionSetFlags" descr="section_index flags"/>
+          <Keyword text="SectionSetInstTypes" descr="section_index inst_types"/>
+          <Keyword text="SectionSetSize" descr="section_index new_size"/>
+          <Keyword text="SectionSetText" descr="section_index text_string"/>
+          <Keyword text="SendMessage" descr="hwnd message [wparam|STR:wParam] [lparam|STR:lParam] [$(user_var: return value)] [/TIMEOUT=X]"/>
+          <Keyword text="SetAutoClose" descr="(false|true)"/>
+          <Keyword text="SetBrandingImage" descr="[/IMGID=image_item_id_in_dialog] [/RESIZETOFIT] bitmap.bmp"/>
+          <Keyword text="SetCompress" descr="(off|auto|force)"/>
+          <Keyword text="SetCompressionLevel" descr="level_0-9"/>
+          <Keyword text="SetCompressor" descr="[/FINAL] [/SOLID] (zlib|bzip2|lzma)"/>
+          <Keyword text="SetCompressorDictSize" descr="dict_size_mb"/>
+          <Keyword text="SetCtlColors" descr="hwnd [/BRANDING] [text_color] [transparent|bg_color]"/>
+          <Keyword text="SetCurInstType" descr="inst_type_idx"/>
+          <Keyword text="SetDatablockOptimize" descr="(off|on)"/>
+          <Keyword text="SetDateSave" descr="(off|on)"/>
+          <Keyword text="SetDetailsPrint" descr="(none|listonly|textonly|both)"/>
+          <Keyword text="SetDetailsView" descr="(hide|show)"/>
+          <Keyword text="SetErrorLevel" descr="error_level"/>
+          <Keyword text="SetErrors"/>
+          <Keyword text="SetFileAttributes" descr="file attribute[|attribute[...]]\nattribute=(NORMAL|ARCHIVE|HIDDEN|OFFLINE|READONLY|SYSTEM|TEMPORARY|0)"/>
+          <Keyword text="SetFont" descr="[/LANG=lang_id] font_face_name font_size"/>
+          <Keyword text="SetOutPath" descr="output_path"/>
+          <Keyword text="SetOverwrite" descr="on|off|try|ifnewer|ifdiff"/>
+          <Keyword text="SetPluginUnload" descr="deprecated - plug-ins should handle this on their own"/>
+          <Keyword text="SetRebootFlag" descr="true|false"/>
+          <Keyword text="SetRegView" descr="32|64|lastused"/>
+          <Keyword text="SetShellVarContext" descr="all|current"/>
+          <Keyword text="SetSilent" descr="silent|normal"/>
+          <Keyword text="ShowInstDetails" descr="(hide|show|nevershow)"/>
+          <Keyword text="ShowUninstDetails" descr="(hide|show|nevershow)"/>
+          <Keyword text="ShowWindow" descr="hwnd show_state"/>
+          <Keyword text="SilentInstall" descr="(normal|silent|silentlog)"/>
+          <Keyword text="SilentUnInstall" descr="(normal|silent)"/>
+          <Keyword text="Sleep" descr="sleep_time_in_ms"/>
+          <Keyword text="SpaceTexts" descr="none | ([space required text] [space available text])"/>
+          <Keyword text="StrCmp" descr="str1 str2 label_to_goto_if_equal [label_to_goto_if_not]"/>
+          <Keyword text="StrCmpS" descr="str1 str2 label_to_goto_if_equal [label_to_goto_if_not]"/>
+          <Keyword text="StrCpy" descr="$(user_var: output) str [maxlen] [startoffset]"/>
+          <Keyword text="StrLen" descr="$(user_var: length output) str"/>
+          <Keyword text="SubCaption" descr="page_number(0-4) new_subcaption"/>
+          <Keyword text="UnRegDLL" descr="dll_path_on_target.dll"/>
+          <Keyword text="UninstallButtonText" descr="[uninstall button text]"/>
+          <Keyword text="UninstallCaption" descr="uninstaller_caption"/>
+          <Keyword text="UninstallExeName" descr="no longer supported, use WriteUninstaller from section."/>
+          <Keyword text="UninstallIcon" descr="icon_on_local_system.ico"/>
+          <Keyword text="UninstallSubCaption" descr="page_number(0-2) new_subcaption"/>
+          <Keyword text="UninstallText" descr="Text_to_go_on_uninstall_page [subtext]"/>
+          <Keyword text="VIAddVersionKey" descr="/LANG=lang_id keyname value"/>
+          <Keyword text="VIProductVersion" descr="[version_string_X.X.X.X]"/>
+          <Keyword text="Var" descr="[/GLOBAL] var_name"/>
+          <Keyword text="WindowIcon" descr="on|off"/>
+          <Keyword text="WriteINIStr" descr="ini_file section_name entry_name new_value"/>
+          <Keyword text="WriteRegBin" descr="rootkey subkey entry_name hex_string_like_12848412AB\nroot_key=(HKCR|HKLM|HKCU|HKU|HKCC|HKDD|HKPD|SHCTX)"/>
+          <Keyword text="WriteRegDWORD" descr="rootkey subkey entry_name new_value_dword\nroot_key=(HKCR|HKLM|HKCU|HKU|HKCC|HKDD|HKPD|SHCTX)"/>
+          <Keyword text="WriteRegExpandStr" descr="rootkey subkey entry_name new_value_string\nroot_key=(HKCR|HKLM|HKCU|HKU|HKCC|HKDD|HKPD|SHCTX)"/>
+          <Keyword text="WriteRegStr" descr="rootkey subkey entry_name new_value_string\nroot_key=(HKCR|HKLM|HKCU|HKU|HKCC|HKDD|HKPD|SHCTX)"/>
+          <Keyword text="WriteUninstaller" descr="uninstall_exe_name"/>
+          <Keyword text="XPStyle" descr="(on|off)"/>
+        </Keywords>
+      </Style>
+      <Style name="Preprocessor directives" image="13" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="AddIncludeDir" descr="dir"/>
+          <Keyword text="AddPluginDir" descr="new_plugin_directory"/>
+          <Keyword text="appendfile" descr="file appended_line"/>
+          <Keyword text="cd" descr="absolute_or_relative_new_directory"/>
+          <Keyword text="define" descr="([/date|/utcdate] symbol [value]) | (/file symbol filename) | (/math symbol val1 OP val2)\nOP=(+ - * / % &apos; | ^)"/>
+          <Keyword text="delfile" descr="[/nonfatal] file"/>
+          <Keyword text="echo" descr="message"/>
+          <Keyword text="else" descr="[if[macro][n][def] ...]"/>
+          <Keyword text="endif"/>
+          <Keyword text="error" descr="[error_message]"/>
+          <Keyword text="execute" descr="command"/>
+          <Keyword text="if" descr="[!] value [(==,!=,&lt;=,&lt;,&gt;,&gt;=,&apos;&apos;,||) value2] [...]"/>
+          <Keyword text="ifdef" descr="symbol [| symbol2 [&apos; symbol3 [...]]]"/>
+          <Keyword text="ifmacrodef" descr="macro [| macro2 [&apos; macro3 [...]]]"/>
+          <Keyword text="ifmacrondef" descr="macro [| macro2 [&apos; macro3 [...]]]"/>
+          <Keyword text="ifndef" descr="symbol [| symbol2 [&apos; symbol3 [...]]]"/>
+          <Keyword text="include" descr="[/NONFATAL] filename.nsh"/>
+          <Keyword text="insertmacro" descr="macroname [parms ...]"/>
+          <Keyword text="macro" descr="macroname [parms ...]"/>
+          <Keyword text="macroend"/>
+          <Keyword text="packhdr" descr="temp_file_name command_line_to_compress_that_temp_file"/>
+          <Keyword text="searchparse" descr="[/ignorecase] [/noerrors] [/file] source_string substring OUTPUTSYM1 [substring [OUTPUTSYM2 [substring ...]]]"/>
+          <Keyword text="searchreplace" descr="[/ignorecase] output_name source_string substring replacestring"/>
+          <Keyword text="system" descr="command [&lt;|&gt;|&lt;&gt;|=) retval]"/>
+          <Keyword text="tempfile" descr="symbol"/>
+          <Keyword text="undef" descr="symbol [value]"/>
+          <Keyword text="verbose" descr="verbose_level | push | pop"/>
+          <Keyword text="warning" descr="[warning_message]"/>
+        </Keywords>
+      </Style>
+      <Style name="Parameter" image="7" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="/lang"/>
+          <Keyword text="/TRIMLEFT"/>
+          <Keyword text="/TRIMRIGHT"/>
+          <Keyword text="/TRIMCENTER"/>
+          <Keyword text="/windows"/>
+          <Keyword text="/NOCUSTOM"/>
+          <Keyword text="/CUSTOMSTRING"/>
+          <Keyword text="/COMPONENTSONLYONCUSTOM"/>
+          <Keyword text="/e"/>
+          <Keyword text="/REBOOTOK"/>
+          <Keyword text="/nonfatal"/>
+          <Keyword text="/a"/>
+          <Keyword text="/r"/>
+          <Keyword text="/oname"/>
+          <Keyword text="/ifempty"/>
+          <Keyword text="/NOUNLOAD"/>
+          <Keyword text="/FILESONLY"/>
+          <Keyword text="/SHORT"/>
+          <Keyword text="/ITALIC"/>
+          <Keyword text="/UNDERLINE"/>
+          <Keyword text="/STRIKE"/>
+          <Keyword text="/TIMEOUT"/>
+          <Keyword text="/IMGID"/>
+          <Keyword text="/RESIZETOFIT"/>
+          <Keyword text="/components"/>
+          <Keyword text="/silent"/>
+          <Keyword text="/SD"/>
+          <Keyword text="/FINAL"/>
+          <Keyword text="/SOLID"/>
+          <Keyword text="custom"/>
+          <Keyword text="license"/>
+          <Keyword text="components"/>
+          <Keyword text="directory"/>
+          <Keyword text="instfiles"/>
+          <Keyword text="uninstConfirm"/>
+          <Keyword text="true"/>
+          <Keyword text="false"/>
+          <Keyword text="on"/>
+          <Keyword text="off"/>
+          <Keyword text="force"/>
+          <Keyword text="show"/>
+          <Keyword text="hide"/>
+          <Keyword text="nevershow"/>
+          <Keyword text="normal"/>
+          <Keyword text="silent"/>
+          <Keyword text="silentlog"/>
+          <Keyword text="auto"/>
+          <Keyword text="zlib"/>
+          <Keyword text="bzip2"/>
+          <Keyword text="lzma"/>
+          <Keyword text="try"/>
+          <Keyword text="ifnewer"/>
+          <Keyword text="manual"/>
+          <Keyword text="alwaysoff"/>
+          <Keyword text="RO"/>
+          <Keyword text="SW_SHOWNORMAL"/>
+          <Keyword text="SW_SHOWMAXIMIZED"/>
+          <Keyword text="SW_SHOWMINIMIZED"/>
+          <Keyword text="HKCR"/>
+          <Keyword text="HKEY_CLASSES_ROOT"/>
+          <Keyword text="HKLM"/>
+          <Keyword text="HKEY_LOCAL_MACHINE"/>
+          <Keyword text="HKCU"/>
+          <Keyword text="HKEY_CURRENT_USER"/>
+          <Keyword text="HKU"/>
+          <Keyword text="HKEY_USERS"/>
+          <Keyword text="HKCC"/>
+          <Keyword text="HKEY_CURRENT_CONFIG"/>
+          <Keyword text="HKDD"/>
+          <Keyword text="HKEY_DYN_DATA"/>
+          <Keyword text="HKPD"/>
+          <Keyword text="HKEY_PERFORMANCE_DATA"/>
+          <Keyword text="FILE_ATTRIBUTE_NORMAL"/>
+          <Keyword text="ARCHIVE"/>
+          <Keyword text="FILE_ATTRIBUTE_ARCHIVE"/>
+          <Keyword text="HIDDEN"/>
+          <Keyword text="FILE_ATTRIBUTE_HIDDEN"/>
+          <Keyword text="OFFLINE"/>
+          <Keyword text="FILE_ATTRIBUTE_OFFLINE"/>
+          <Keyword text="READONLY"/>
+          <Keyword text="FILE_ATTRIBUTE_READONLY"/>
+          <Keyword text="SYSTEM"/>
+          <Keyword text="FILE_ATTRIBUTE_SYSTEM"/>
+          <Keyword text="FILE_ATTRIBUTE_TEMPORARY"/>
+          <Keyword text="MB_OK"/>
+          <Keyword text="MB_OKCANCEL"/>
+          <Keyword text="MB_ABORTRETRYIGNORE"/>
+          <Keyword text="MB_RETRYCANCEL"/>
+          <Keyword text="MB_YESNO"/>
+          <Keyword text="MB_YESNOCANCEL"/>
+          <Keyword text="MB_ICONEXCLAMATION"/>
+          <Keyword text="MB_ICONINFORMATION"/>
+          <Keyword text="MB_ICONQUESTION"/>
+          <Keyword text="MB_ICONSTOP"/>
+          <Keyword text="MB_TOPMOST"/>
+          <Keyword text="MB_SETFOREGROUND"/>
+          <Keyword text="MB_RIGHT"/>
+          <Keyword text="MB_DEFBUTTON1"/>
+          <Keyword text="MB_DEFBUTTON2"/>
+          <Keyword text="MB_DEFBUTTON3"/>
+          <Keyword text="MB_DEFBUTTON4"/>
+          <Keyword text="IDABORT"/>
+          <Keyword text="IDCANCEL"/>
+          <Keyword text="IDIGNORE"/>
+          <Keyword text="IDNO"/>
+          <Keyword text="IDOK"/>
+          <Keyword text="IDRETRY"/>
+          <Keyword text="IDYES"/>
+          <Keyword text="SW_HIDE"/>
+          <Keyword text="current"/>
+          <Keyword text="all"/>
+          <Keyword text="none"/>
+          <Keyword text="listonly"/>
+          <Keyword text="textonly"/>
+          <Keyword text="both"/>
+          <Keyword text="lastused"/>
+          <Keyword text="checkbox"/>
+          <Keyword text="radiobuttons"/>
+          <Keyword text="ifdiff"/>
+          <Keyword text="leave"/>
+        </Keywords>
+      </Style>
+      <Style id="variable" name="Variable" image="6" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="string"/>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Blocks>
+          <Block open="$" close=""/>
+        </Blocks>
+      </Style>
+      <Style name="Known Variables" image="6" bold="0" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="variable"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="0"/>
+          <Keyword text="1"/>
+          <Keyword text="2"/>
+          <Keyword text="3"/>
+          <Keyword text="4"/>
+          <Keyword text="5"/>
+          <Keyword text="6"/>
+          <Keyword text="7"/>
+          <Keyword text="8"/>
+          <Keyword text="9"/>
+          <Keyword text="R0"/>
+          <Keyword text="R1"/>
+          <Keyword text="R2"/>
+          <Keyword text="R3"/>
+          <Keyword text="R4"/>
+          <Keyword text="R5"/>
+          <Keyword text="R6"/>
+          <Keyword text="R7"/>
+          <Keyword text="R8"/>
+          <Keyword text="R9"/>
+          <Keyword text="INSTDIR"/>
+          <Keyword text="OUTDIR"/>
+          <Keyword text="CMDLINE"/>
+          <Keyword text="PROGRAMFILES"/>
+          <Keyword text="DESKTOP"/>
+          <Keyword text="EXEDIR"/>
+          <Keyword text="WINDIR"/>
+          <Keyword text="SYSDIR"/>
+          <Keyword text="TEMP"/>
+          <Keyword text="STARTMENU"/>
+          <Keyword text="SMPROGRAMS"/>
+          <Keyword text="SMSTARTUP"/>
+          <Keyword text="QUICKLAUNCH"/>
+          <Keyword text="HWNDPARENT"/>
+          <Keyword text="LANGUAGE"/>
+          <Keyword text="PLUGINSDIR"/>
+          <Keyword text="COMMONFILES"/>
+          <Keyword text="DOCUMENTS"/>
+          <Keyword text="SENDTO"/>
+          <Keyword text="RECENT"/>
+          <Keyword text="FAVORITES"/>
+          <Keyword text="MUSIC"/>
+          <Keyword text="PICTURES"/>
+          <Keyword text="VIDEOS"/>
+          <Keyword text="NETHOOD"/>
+          <Keyword text="FONTS"/>
+          <Keyword text="TEMPLATES"/>
+          <Keyword text="APPDATA"/>
+          <Keyword text="PRINTHOOD"/>
+          <Keyword text="INTERNET_CACHE"/>
+          <Keyword text="ICONS_GROUP"/>
+          <Keyword text="COOKIES"/>
+          <Keyword text="HISTORY"/>
+          <Keyword text="PROFILE"/>
+          <Keyword text="ADMINTOOLS"/>
+          <Keyword text="RESOURCES"/>
+          <Keyword text="RESOURCES_LOCALIZED"/>
+          <Keyword text="CDBURN_AREA"/>
+        </Keywords>
+      </Style>
+      <Style name="CallBack Function" image="20" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text=".onGUIInit"/>
+          <Keyword text=".onInit"/>
+          <Keyword text=".onGUIEnd"/>
+          <Keyword text=".onInstFailed"/>
+          <Keyword text=".onInstSuccess"/>
+          <Keyword text=".onMouseOverSection"/>
+          <Keyword text=".onSelChange"/>
+          <Keyword text=".onUserAbort"/>
+          <Keyword text=".onVerifyInstDir"/>
+          <Keyword text="un.onGUIInit"/>
+          <Keyword text="un.onGUIEnd"/>
+          <Keyword text="un.onInit"/>
+          <Keyword text="un.onUninstFailed"/>
+          <Keyword text="un.onUninstSuccess"/>
+          <Keyword text="un.onUserAbort"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

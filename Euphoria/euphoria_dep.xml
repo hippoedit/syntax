@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="Dependency"/>
+  <SYNTAX id="eu">
+	<Description>Euphoria started its life in 1993 as a commercial language developed by Robert Craig of Rapid Deployment Software. With the 3.0.0 release in October of 2006, Euphoria started its second life as open source software and is now maintained by a group of developers with the help and input of its users. Euphoria is on the verge of its largest update ever, 4.0.&lt;/br&gt;Euphoria has spent most of it's life as a closed source commercial programming language however, with it recently being open sourced, many developers have been doing some very nice additions to it.</Description>
+	<Link url="http://openeuphoria.org/" name="OpenEuphoria: HomePage" descr="The Euphoria Programming Language"/>
+	<Forum url="http://forum.hippoedit.com/index.php/topic,489.0.html"/>
+  </SYNTAX>
+</XMLConfigSettings>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="Dependency"/>
+  <SYNTAX id="mmd">	
+	<Description>&lt;p&gt;Markdown is a text-to-HTML conversion tool for web writers. Markdown
+allows you to write using an easy-to-read, easy-to-write plain text
+format, then convert it to structurally valid XHTML (or HTML).&lt;/p&gt;
+
+&lt;p&gt;Thus, &#8220;Markdown&#8221; is two things: (1) a plain text formatting syntax;
+and (2) a software tool, written in Perl, that converts the plain text
+formatting to HTML.&lt;/p&gt;
+
+&lt;p&gt;The overriding design goal for Markdown&#8217;s formatting syntax is to make
+it as readable as possible. The idea is that a Markdown-formatted
+document should be publishable as-is, as plain text, without looking
+like it&#8217;s been marked up with tags or formatting instructions. While
+Markdown&#8217;s syntax has been influenced by several existing text-to-HTML
+filters, the single biggest source of inspiration for Markdown&#8217;s
+syntax is the format of plain text email.&lt;/p&gt; &lt;small&gt;Taken from daringfireball.net&lt;/small&gt;</Description>
+	<Link url="http://daringfireball.net/projects/markdown/" name="Markdown" descr="Daring Fireball: Markdown"/>
+	<Link url="http://fletcherpenney.net/multimarkdown/" name="MultiMarkdown" descr="MultiMarkdown"/>
+  </SYNTAX>
+</XMLConfigSettings>

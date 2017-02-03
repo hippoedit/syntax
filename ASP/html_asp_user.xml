@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Theno" type="LangUser"/>
+  <SYNTAX id="html_asp" inherit="html" inherit_url="html_user.xml">
+    <CodeTemplates>
+      <Template key="Asp Block with Definition" descr="Asp Block with Definition" keystroke="226" ctrl="true">&lt;%% &apos;&apos;Block: %|% -  /\n%SelectedText%\n%%&gt;</Template>
+      <Template key="Asp Block with TODO" descr="Asp Block with TODO" keystroke="226" alt="true">&lt;%% &apos;&apos;TODO: %|% -  /\n%SelectedText%\n%%&gt;</Template>
+    </CodeTemplates>
+    <TOOLS>
+      <Tool name="Firefox Browser Preview" arguments="&quot;%AppDataDir%\\ASP\\scripts\\browser_preview_firefox.vbs&quot; &quot;%FileName%&quot;" icon_path="%PROGRAMFILES%\\Mozilla Firefox\\firefox.exe" capture_output="true" context_menu="true" key="123" alt="true" command="cScript"/>
+      <Tool name="IE Browser Preview" arguments="&quot;%AppDataDir%\\ASP\\scripts\\browser_preview_ie.vbs&quot; &quot;%FileName%&quot;" icon_path="%PROGRAMFILES%\\Internet Explorer\\iexplore.exe" capture_output="true" context_menu="true" key="123" ctrl="true" command="cScript"/>
+    </TOOLS>
+  </SYNTAX>
+</XMLConfigSettings>

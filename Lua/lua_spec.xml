@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="lua" name="Lua" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.lua"/>
+      <CaseSensitive>true</CaseSensitive>
+      <OpenClose>()[]{}''""</OpenClose>
+      <EscapeChar>\</EscapeChar>
+      <Operators>?%*-/&amp;*=&lt;&gt;|!~^{}()[];:</Operators>
+      <Words>0-9A-Za-z_</Words>
+      <HierarchySeparator>
+        <Separator text=":"/>
+        <Separator text="."/>
+      </HierarchySeparator>
+      <Bars navigation="true"/>      
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+      <Scope open="for" close="end"/>
+      <Scope open="while" close="end"/>
+      <Scope open="repeat" close="until"/>
+      <Scope open="function" close="end" has_name="true" separator="true"/>
+      <Scope open="if" middle="else" close="end">
+        <Middle text="elseif"/>
+        <Middle text="then"/>
+      </Scope>
+    </SCOPES>
+    <LABELS>
+      <Label group="Functions" match="function\s+([\w:]*)\s*\(([^)]*)\)" name="\1" descr="function \1 (\2)" image="6" scope="1"/>
+      <Label group="if" match="\sif\s+([^\r\n]{1,25}?)\s+then" name="\1" descr="if \1 then" scope="1" image="13" navigation="false"/>
+      <Label group="for" match="\sfor\s+([^\r\n]{1,25}?)\s+do" name="\1" descr="for \1 do" scope="1" image="13" navigation="false"/>      
+    </LABELS>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="char"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="--" close="\n"/>
+          <Block open="--[[" close="]]"/>
+          <Block open="--[=[" close="]=]"/>
+          <Block open="--[==[" close="]==]"/>
+          <Block open="--[===[" close="]===]"/>
+          <Block open="--[====[" close="]====]"/>
+          <Block open="--[=====[" close="]=====]"/>
+        </Blocks>
+        <Containers>
+          <Close id="normal"/>
+          <Close id="todo"/>
+        </Containers>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+          <Block open="[[" close="]]"/>
+          <Block open="[=[" close="]=]"/>
+          <Block open="[==[" close="]==]"/>
+          <Block open="[===[" close="]===]"/>
+          <Block open="[====[" close="]====]"/>
+          <Block open="[=====[" close="]=====]"/>
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style name="Escape Sequence" text="1" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+          <Open id="char"/>
+        </Containers>
+        <Blocks>
+          <Block text="\\a"/>
+          <Block text="\\b"/>
+          <Block text="\\f"/>
+          <Block text="\\n"/>
+          <Block text="\\r"/>
+          <Block text="\\t"/>
+          <Block text="\\v"/>
+          <Block text="\\\\"/>
+          <Block text="\\'"/>
+          <Block text="\\&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="$" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="keywords" name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="and"/>
+          <Keyword text="break"/>
+          <Keyword text="do"/>
+          <Keyword text="else"/>
+          <Keyword text="elseif"/>
+          <Keyword text="end"/>
+          <Keyword text="false"/>
+          <Keyword text="for"/>
+          <Keyword text="function"/>
+          <Keyword text="if"/>
+          <Keyword text="in"/>
+          <Keyword text="local"/>
+          <Keyword text="nil"/>
+          <Keyword text="not"/>
+          <Keyword text="or"/>
+          <Keyword text="repeat"/>
+          <Keyword text="return"/>
+          <Keyword text="then"/>
+          <Keyword text="true"/>
+          <Keyword text="until"/>
+          <Keyword text="while"/>
+        </Keywords>
+      </Style>
+      <Style id="functions" name="Basic Functions" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords pattern="%CurrentWord%(%|%)">
+          <Keyword text="_ALERT"/>
+          <Keyword text="_ERRORMESSAGE"/>
+          <Keyword text="_G"/>
+          <Keyword text="_INPUT"/>
+          <Keyword text="_OUTPUT"/>
+          <Keyword text="_PROMPT"/>
+          <Keyword text="_STDERR"/>
+          <Keyword text="_STDIN"/>
+          <Keyword text="_STDOUT"/>
+          <Keyword text="_VERSION"/>
+          <Keyword text="abs"/>
+          <Keyword text="acos"/>
+          <Keyword text="appendto"/>
+          <Keyword text="asin"/>
+          <Keyword text="assert"/>
+          <Keyword text="atan"/>
+          <Keyword text="atan2"/>
+          <Keyword text="call"/>
+          <Keyword text="ceil"/>
+          <Keyword text="clock"/>
+          <Keyword text="closefile"/>
+          <Keyword text="collectgarbage"/>
+          <Keyword text="coroutine"/>
+          <Keyword text="cos"/>
+          <Keyword text="date"/>
+          <Keyword text="debug"/>
+          <Keyword text="deg"/>
+          <Keyword text="difftime"/>
+          <Keyword text="dofile"/>
+          <Keyword text="dostring"/>
+          <Keyword text="error"/>
+          <Keyword text="execute"/>
+          <Keyword text="exit"/>
+          <Keyword text="exp"/>
+          <Keyword text="floor"/>
+          <Keyword text="flush"/>
+          <Keyword text="foreach"/>
+          <Keyword text="foreachi"/>
+          <Keyword text="format"/>
+          <Keyword text="frexp"/>
+          <Keyword text="gcinfo"/>
+          <Keyword text="getenv"/>
+          <Keyword text="getfenv"/>
+          <Keyword text="getmetatable"/>
+          <Keyword text="getn"/>
+          <Keyword text="globals"/>
+          <Keyword text="gsub"/>
+          <Keyword text="io"/>
+          <Keyword text="ipairs"/>
+          <Keyword text="ldexp"/>
+          <Keyword text="load"/>
+          <Keyword text="loadfile"/>
+          <Keyword text="loadlib"/>
+          <Keyword text="loadstring"/>
+          <Keyword text="log"/>
+          <Keyword text="log10"/>
+          <Keyword text="math"/>
+          <Keyword text="max"/>
+          <Keyword text="min"/>
+          <Keyword text="mod"/>
+          <Keyword text="module"/>
+          <Keyword text="newtype"/>
+          <Keyword text="next"/>
+          <Keyword text="openfile"/>
+          <Keyword text="os"/>
+          <Keyword text="pairs"/>
+          <Keyword text="pcall"/>
+          <Keyword text="print"/>
+          <Keyword text="rad"/>
+          <Keyword text="random"/>
+          <Keyword text="randomseed"/>
+          <Keyword text="rawequal"/>
+          <Keyword text="rawget"/>
+          <Keyword text="rawset"/>
+          <Keyword text="read"/>
+          <Keyword text="readfrom"/>
+          <Keyword text="remove"/>
+          <Keyword text="rename"/>
+          <Keyword text="require"/>
+          <Keyword text="seek"/>
+          <Keyword text="select"/>
+          <Keyword text="setfenv"/>
+          <Keyword text="setlocale"/>
+          <Keyword text="setmetatable"/>
+          <Keyword text="sin"/>
+          <Keyword text="sort"/>
+          <Keyword text="sqrt"/>
+          <Keyword text="strbyte"/>
+          <Keyword text="strchar"/>
+          <Keyword text="strfind"/>
+          <Keyword text="string"/>
+          <Keyword text="strlen"/>
+          <Keyword text="strlower"/>
+          <Keyword text="strrep"/>
+          <Keyword text="strsub"/>
+          <Keyword text="strupper"/>
+          <Keyword text="table"/>
+          <Keyword text="tan"/>
+          <Keyword text="time"/>
+          <Keyword text="tinsert"/>
+          <Keyword text="tmpfile"/>
+          <Keyword text="tmpname"/>
+          <Keyword text="tonumber"/>
+          <Keyword text="tostring"/>
+          <Keyword text="tremove"/>
+          <Keyword text="type"/>
+          <Keyword text="unpack"/>
+          <Keyword text="write"/>
+          <Keyword text="writeto"/>
+          <Keyword text="xpcall"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+          <Block open="todo" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

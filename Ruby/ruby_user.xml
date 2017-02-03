@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangUser"/>
+  <SYNTAX id="ruby">
+    <CodeTemplates>
+      <Template key="def" descr="def %">def %Name% \n    %|%\nend # end %Name% </Template>
+      <Template key="class" descr="class %">class %Name% \n    %|%\nend # end %Name% </Template>
+      <Template key="module" descr="module %">module %Name% \n    %|%\nend # end %Name% </Template>
+      <Template key="begin" descr="begin %">begin\n    %|%\nend</Template>
+      <Template key="while" descr="while %">while\n    %|%\nend</Template>
+      <Template key="do" descr="do %">do\n    %|%\nend</Template>
+      <Template key="for" descr="for %">for\n    %|%\nend</Template>
+      <Template key="until" descr="until %">until\n    %|%\nend</Template>
+      <Template key="unless" descr="unless %">unless\n    %|%\nend</Template>
+    </CodeTemplates>
+	</SYNTAX>
+</XMLConfigSettings>

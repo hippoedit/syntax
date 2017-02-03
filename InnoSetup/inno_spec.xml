@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="inno" name="Inno Setup" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.iss;*.isi;*.isl"/>
+      <OpenClose>()[]{}''""</OpenClose>
+      <LineEnd>;</LineEnd>
+      <Operators>?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]</Operators>
+      <Delimiters>"'@#{}</Delimiters>
+      <Words init="A-Za-z_">0-9A-Za-z_</Words>
+    </SPECIFICATION>
+    <FORMAT>
+      <FormatWords>
+        <FormatWord word="case" next_line="true" range_sentence="true"/>
+        <FormatWord word="do" next_line="true" range_sentence="true"/>
+        <FormatWord word="else" next_line="true" range_sentence="true"/>
+        <FormatWord word="then" next_line="true" range_sentence="true"/>
+      </FormatWords>
+    </FORMAT>
+    <SCOPES open_container="preprocessor">
+      <Scope open="if" middle="else" close="endif"/>
+      <Scope open="ifdef" middle="else" close="endif"/>
+      <Scope open="ifndef" middle="else" close="endif"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="documentation"/>          
+        </Containers>
+      </Style>
+      <Style id="operator" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open=";" close="\n" first_pos="true"/>
+        </Blocks>
+      </Style>
+      <Style id="documentation" name="Documentation" text="1" bold="0" italic="1" underline="0" clr="Documentation" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open=";;" close="\n" first_pos="true"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Blocks>
+          <Block open="&quot;" close="&quot;">
+            <Close text="\n"/>
+          </Block>
+          <Block open="'" close="'">
+            <Close text="\n"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="section" name="Section" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="[" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="macro" name="Macro" bold="0" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="string"/>
+        </Containers>
+        <Blocks>
+          <Block open="{" close="}"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="13" bold="1" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="allowcancelduringinstall"/>
+          <Keyword text="allownoicons"/>
+          <Keyword text="allowrootdirectory"/>
+          <Keyword text="allowuncpath"/>
+          <Keyword text="alwaysrestart"/>
+          <Keyword text="alwaysshowcomponentslist"/>
+          <Keyword text="alwaysshowdironreadypage"/>
+          <Keyword text="alwaysshowgrouponreadypage"/>
+          <Keyword text="alwaysusepersonalgroup"/>
+          <Keyword text="appcomments"/>
+          <Keyword text="appcontact"/>
+          <Keyword text="appcopyright"/>
+          <Keyword text="appenddefaultdirname"/>
+          <Keyword text="appenddefaultgroupname"/>
+          <Keyword text="appid"/>
+          <Keyword text="appmodifypath"/>
+          <Keyword text="appmutex"/>
+          <Keyword text="appname"/>
+          <Keyword text="apppublisher"/>
+          <Keyword text="apppublisherurl"/>
+          <Keyword text="appreadmefile"/>
+          <Keyword text="appsupporturl"/>
+          <Keyword text="appupdatesurl"/>
+          <Keyword text="appvername"/>
+          <Keyword text="appversion"/>
+          <Keyword text="architecturesallowed"/>
+          <Keyword text="architecturesinstallin64bitmode"/>
+          <Keyword text="backcolor"/>
+          <Keyword text="backcolor2"/>
+          <Keyword text="backcolordirection"/>
+          <Keyword text="backsolid"/>
+          <Keyword text="beveledlabel"/>                    
+          <Keyword text="changesassociations"/>
+          <Keyword text="changesenvironment"/>
+          <Keyword text="compression"/>
+          <Keyword text="copyrightfontname"/>
+          <Keyword text="copyrightfontsize"/>
+          <Keyword text="createappdir"/>
+          <Keyword text="createuninstallregkey"/>
+          <Keyword text="defaultdirname"/>
+          <Keyword text="defaultgroupname"/>
+          <Keyword text="defaultuserinfoname"/>
+          <Keyword text="defaultuserinfoorg"/>
+          <Keyword text="defaultuserinfoserial"/>
+          <Keyword text="dialogfontname"/>
+          <Keyword text="dialogfontsize"/>
+          <Keyword text="direxistswarning"/>
+          <Keyword text="disabledirpage"/>
+          <Keyword text="disablefinishedpage"/>
+          <Keyword text="disableprogramgrouppage"/>
+          <Keyword text="disablereadymemo"/>
+          <Keyword text="disablereadypage"/>
+          <Keyword text="disablestartupprompt"/>
+          <Keyword text="diskclustersize"/>
+          <Keyword text="diskslicesize"/>
+          <Keyword text="diskspanning"/>
+          <Keyword text="enablesdirdoesntexistwarning"/>
+          <Keyword text="encryption"/>
+          <Keyword text="extradiskspacerequired"/>
+          <Keyword text="flatcomponentslist"/>
+          <Keyword text="infoafterfile"/>
+          <Keyword text="infobeforefile"/>
+          <Keyword text="internalcompresslevel"/>
+          <Keyword text="languagedetectionmethod"/>
+          <Keyword text="languagecodepage"/>
+          <Keyword text="languageid"/>
+          <Keyword text="languagename"/>
+          <Keyword text="licensefile"/>
+          <Keyword text="mergeduplicatefiles"/>
+          <Keyword text="minversion"/>
+          <Keyword text="onlybelowversion"/>
+          <Keyword text="outputbasefilename"/>
+          <Keyword text="outputdir"/>
+          <Keyword text="outputmanifestfile"/>
+          <Keyword text="password"/>
+          <Keyword text="privilegesrequired"/>
+          <Keyword text="reservebytes"/>
+          <Keyword text="restartifneededbyrun"/>
+          <Keyword text="setupiconfile"/>
+          <Keyword text="showcomponentsizes"/>
+          <Keyword text="showlanguagedialog"/>
+          <Keyword text="showtaskstreelines"/>
+          <Keyword text="slicesperdisk"/>
+          <Keyword text="solidcompression"/>
+          <Keyword text="sourcedir"/>
+          <Keyword text="timestamprounding"/>
+          <Keyword text="timestampsinutc"/>
+          <Keyword text="titlefontname"/>
+          <Keyword text="titlefontsize"/>
+          <Keyword text="touchdate"/>
+          <Keyword text="touchtime"/>
+          <Keyword text="uninstallable"/>
+          <Keyword text="uninstalldisplayicon"/>
+          <Keyword text="uninstalldisplayname"/>
+          <Keyword text="uninstallfilesdir"/>
+          <Keyword text="uninstalllogmode"/>
+          <Keyword text="uninstallrestartcomputer"/>
+          <Keyword text="updateuninstalllogappname"/>
+          <Keyword text="usepreviousappdir"/>
+          <Keyword text="usepreviousgroup"/>
+          <Keyword text="useprevioussetuptype"/>
+          <Keyword text="useprevioustasks"/>
+          <Keyword text="useprevioususerinfo"/>
+          <Keyword text="userinfopage"/>
+          <Keyword text="usesetupldr"/>
+          <Keyword text="versioninfocompany"/>
+          <Keyword text="versioninfocopyright"/>
+          <Keyword text="versioninfodescription"/>
+          <Keyword text="versioninfotextversion"/>
+          <Keyword text="versioninfoversion"/>
+          <Keyword text="welcomefontname"/>
+          <Keyword text="welcomefontsize"/>
+          <Keyword text="windowshowcaption"/>
+          <Keyword text="windowstartmaximized"/>
+          <Keyword text="windowresizable"/>
+          <Keyword text="windowvisible"/>
+          <Keyword text="wizardimagebackcolor"/>
+          <Keyword text="wizardimagefile"/>
+          <Keyword text="wizardimagestretch"/>
+          <Keyword text="wizardsmallimagefile"/>
+          <Keyword text="wizardstyle"/>
+        </Keywords>
+      </Style>
+      <Style name="Section Keyword" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="section"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="code"/>
+          <Keyword text="components"/>
+          <Keyword text="custommessages"/>
+          <Keyword text="dirs"/>
+          <Keyword text="files"/>
+          <Keyword text="icons"/>
+          <Keyword text="ini"/>
+          <Keyword text="installdelete"/>
+          <Keyword text="langoptions"/>
+          <Keyword text="languages"/>
+          <Keyword text="messages"/>
+          <Keyword text="registry"/>
+          <Keyword text="run"/>
+          <Keyword text="setup"/>
+          <Keyword text="types"/>
+          <Keyword text="tasks"/>
+          <Keyword text="uninstalldelete"/>
+          <Keyword text="uninstallrun"/>
+          <Keyword text="_istool"/>
+        </Keywords>
+      </Style>
+      <Style name="Parameter" image="7" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="afterinstall"/>
+          <Keyword text="attribs"/>
+          <Keyword text="beforeinstall"/>
+          <Keyword text="check"/>
+          <Keyword text="comment"/>
+          <Keyword text="components"/>
+          <Keyword text="copymode"/>
+          <Keyword text="description"/>
+          <Keyword text="destdir"/>
+          <Keyword text="destname"/>
+          <Keyword text="excludes"/>
+          <Keyword text="extradiskspacerequired"/>
+          <Keyword text="filename"/>
+          <Keyword text="flags"/>
+          <Keyword text="fontinstall"/>
+          <Keyword text="groupdescription"/>
+          <Keyword text="hotkey"/>
+          <Keyword text="infoafterfile"/>
+          <Keyword text="infobeforefile"/>
+          <Keyword text="iconfilename"/>
+          <Keyword text="iconindex"/>
+          <Keyword text="key"/>
+          <Keyword text="languages"/>
+          <Keyword text="messagesfile"/>
+          <Keyword text="name"/>
+          <Keyword text="root"/>          
+          <Keyword text="onlybelowversion"/>
+          <Keyword text="parameters"/>
+          <Keyword text="permissions"/>
+          <Keyword text="root"/>
+          <Keyword text="runonceid"/>
+          <Keyword text="section"/>
+          <Keyword text="source"/>
+          <Keyword text="statusmsg"/>
+          <Keyword text="string"/>
+          <Keyword text="subkey"/>
+          <Keyword text="tasks"/>
+          <Keyword text="type"/>
+          <Keyword text="types"/>
+          <Keyword text="valuedata"/>
+          <Keyword text="valuename"/>
+          <Keyword text="valuetype"/>
+          <Keyword text="workingdir"/>
+        </Keywords>
+      </Style>
+      <Style name="Preprocessor Keywords" bold="0" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="append"/>
+          <Keyword text="define"/>
+          <Keyword text="defined"/>
+          <Keyword text="dim"/>
+          <Keyword text="else"/>
+          <Keyword text="emit"/>
+          <Keyword text="endif"/>
+          <Keyword text="endsub"/>
+          <Keyword text="error"/>
+          <Keyword text="expr"/>
+          <Keyword text="file"/>
+          <Keyword text="for"/>
+          <Keyword text="if"/>
+          <Keyword text="ifdef"/>
+          <Keyword text="ifexist"/>
+          <Keyword text="ifndef"/>
+          <Keyword text="ifnexist"/>
+          <Keyword text="include"/>
+          <Keyword text="insert"/>
+          <Keyword text="pragma"/>
+          <Keyword text="sub"/>
+          <Keyword text="undef"/>
+        </Keywords>
+      </Style>
+      <Style name="Macro Keywords" bold="0" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="macro"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="pf"/>          
+          <Keyword text="app"/>
+          <Keyword text="group"/>
+          <Keyword text="userstartup"/>
+          <Keyword text="uninstallexe"/>
+          <Keyword text="language"/>
+          <Keyword text="srcexe"/>
+          <Keyword text="commonappdata"/>
+        </Keywords>
+      </Style>      
+      <Style name="Pascal Code" include="pascal:normal" bold="0" italic="0" underline="0" clr="#FF000000" bkclr="Embedded Language 1 Back" overview="1">
+        <Blocks>
+          <Block open="[Code]" close="[/Code]"/>
+        </Blocks>
+      </Style>
+      <Style name="TODOs" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+          <Open id="documentation"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

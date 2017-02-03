@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec">
+    <Revision author="Robin Pope" descr="Added revised keywords 03/11/09"/>
+  </FILEINFO>
+  <SYNTAX id="auto_dcl" name="AutoCAD DCL" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <CaseSensitive>true</CaseSensitive>s
+      <Delimiters>,;[].?:&amp;/+%\*=|!~^#&lt;&gt;</Delimiters>
+      <OpenClose>()[]''&quot;&quot;</OpenClose>
+      <Words>0-9A-Za-z_--</Words>
+      <Numbers>-+0-9.E</Numbers>
+      <Operators>:{},.</Operators>
+      <EscapeChar>\</EscapeChar>
+      <FilePattern mask="*.dcl">
+        <Pair file1="*.dcl" file2="*.lsp"/>
+      </FilePattern>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="string"/>
+        </Containers>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="//" close="\n"/>
+          <Block open="/*" close="*/"/>
+        </Blocks>
+      </Style>
+      <Style name="DCL Clusters" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="boxed_column"/>
+          <Keyword text="boxed_radio_column"/>
+          <Keyword text="boxed_radio_row"/>
+          <Keyword text="boxed_row"/>
+          <Keyword text="column"/>
+          <Keyword text="dialog"/>
+          <Keyword text="radio_column"/>
+          <Keyword text="radio_row"/>
+          <Keyword text="row"/>
+        </Keywords>
+      </Style>
+      <Style name="DCL Standard tiles" image="14" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="button"/>
+          <Keyword text="concatenation"/>
+          <Keyword text="edit_box"/>
+          <Keyword text="image"/>
+          <Keyword text="image_button"/>
+          <Keyword text="list_box"/>
+          <Keyword text="paragraph"/>
+          <Keyword text="popup_list"/>
+          <Keyword text="radio_button"/>
+          <Keyword text="slider"/>
+          <Keyword text="spacer"/>
+          <Keyword text="spacer_0"/>
+          <Keyword text="spacer_1"/>
+          <Keyword text="text"/>
+          <Keyword text="text_part"/>
+          <Keyword text="toggle"/>
+        </Keywords>
+      </Style>
+      <Style name="DCL Predefined tiles" image="14" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="cancel_button"/>
+          <Keyword text="cancel_only"/>
+          <Keyword text="default_button"/>
+          <Keyword text="destroy_button"/>
+          <Keyword text="destroy_cancel_help"/>
+          <Keyword text="errmsg"/>
+          <Keyword text="errtile"/>
+          <Keyword text="help_button"/>
+          <Keyword text="info_button"/>
+          <Keyword text="ok_button"/>
+          <Keyword text="ok_cancel"/>
+          <Keyword text="ok_cancel_help"/>
+          <Keyword text="ok_cancel_help_errtile"/>
+          <Keyword text="ok_cancel_help_info"/>
+          <Keyword text="ok_only"/>
+        </Keywords>
+      </Style>
+      <Style name="DCL Attributes" image="12" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="action"/>
+          <Keyword text="alignment"/>
+          <Keyword text="allow_accept"/>
+          <Keyword text="aspect_ratio"/>
+          <Keyword text="big_increment"/>
+          <Keyword text="children_alignment"/>
+          <Keyword text="children_fixed_height"/>
+          <Keyword text="children_fixed_width"/>
+          <Keyword text="color"/>
+          <Keyword text="edit_limit"/>
+          <Keyword text="edit_width"/>
+          <Keyword text="fixed_height"/>
+          <Keyword text="fixed_width"/>
+          <Keyword text="fixed_width_font"/>
+          <Keyword text="height"/>
+          <Keyword text="initial_focus"/>
+          <Keyword text="is_accept"/>
+          <Keyword text="is_bold"/>
+          <Keyword text="is_cancel"/>
+          <Keyword text="is_default"/>
+          <Keyword text="is_enabled"/>
+          <Keyword text="is_tab_stop"/>
+          <Keyword text="key"/>
+          <Keyword text="label"/>
+          <Keyword text="layout"/>
+          <Keyword text="list"/>
+          <Keyword text="max_value"/>
+          <Keyword text="min_value"/>
+          <Keyword text="mnemonic"/>
+          <Keyword text="multiple_select"/>
+          <Keyword text="password_char"/>
+          <Keyword text="small_increment"/>
+          <Keyword text="tab_truncate"/>
+          <Keyword text="tabs"/>
+          <Keyword text="value"/>
+          <Keyword text="width"/>
+        </Keywords>
+      </Style>
+      <Style name="DCL Properties" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="black"/>
+          <Keyword text="blue"/>
+          <Keyword text="bottom"/>
+          <Keyword text="centered"/>
+          <Keyword text="cyan"/>
+          <Keyword text="dialog_background"/>
+          <Keyword text="dialog_foreground"/>
+          <Keyword text="dialog_line"/>
+          <Keyword text="false"/>
+          <Keyword text="graphics_background"/>
+          <Keyword text="graphics_foreground"/>
+          <Keyword text="green"/>
+          <Keyword text="left"/>
+          <Keyword text="magenta"/>
+          <Keyword text="middle"/>
+          <Keyword text="red"/>
+          <Keyword text="right"/>
+          <Keyword text="top"/>
+          <Keyword text="true"/>
+          <Keyword text="white"/>
+          <Keyword text="yellow"/>
+        </Keywords>
+      </Style>
+      <Style name="DCL General settings" image="7" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="audit_level"/>
+          <Keyword text="dcl_settings"/>
+          <Keyword text="default_dcl_settings"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+          <Block open="todo" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

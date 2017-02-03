@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="ini" name="INI Files" inherit="def_text" inherit_url="deftext_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.ini"/>
+      <OpenClose>()[]{}''""</OpenClose>
+      <Numbers>0-9.</Numbers>
+      <Operators>=</Operators>
+      <Bars navigation="true"/>
+      <Words>0-9A-Za-z_--</Words>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="Section" match="^[\t ]*\[([^\]]+)\]\s*" name="\1" descr="Section \1" image="9">
+        <Containers open="normal"/>
+        <Containers open="section"/>
+      </Label>
+    </LABELS>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open=";" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF"/>
+      <Style id="number" name="Numbers" dbkclr="false" bold="0" italic="0" underline="0" clr="Number" bkclr="#FFFFFFFF" overview="3"/>
+      <Style id="section" name="Section" bold="1" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="[" close="]"/>
+        </Blocks>
+      </Style>
+      <Style name="Value names" bold="1" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Words>
+          <Word trail_with="=" trail="="/>
+        </Words>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

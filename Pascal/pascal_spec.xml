@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="pascal" name="Pascal" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.pas;*.inc;*.dfm;*.lpr;*.lfm">
+        <Pair file1="*.pas" file2="*.dfm"/>
+      </FilePattern>
+      <OpenClose>()[]{}''""</OpenClose>
+      <LineEnd>;</LineEnd>
+      <Operators>?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]</Operators>
+      <Delimiters>$</Delimiters>
+      <Words init="A-Za-z_">0-9A-Za-z_</Words>
+      <Bars navigation="true"/>      
+    </SPECIFICATION>
+    <FORMAT>
+      <DefaultKeywordCase>4</DefaultKeywordCase>
+      <FormatWords>
+        <FormatWord word="case" next_line="true" range_sentence="true"/>
+        <FormatWord word="do" next_line="true" range_sentence="true"/>
+        <FormatWord word="else" next_line="true" range_sentence="true"/>
+        <FormatWord word="then" next_line="true" range_sentence="true"/>
+      </FormatWords>
+    </FORMAT>
+    <SCOPES>
+      <Scope open="unit" close="end"/>      
+      <Scope open="begin" close="end"/>
+      <Scope open="record" close="end"/>
+      <Scope open="repeat" close="until"/>
+      <Scope open="case" middle="else" close="end"/>
+      <Scope open="object" close="end" strict="false"/>
+      <Scope open="item" close="end" strict="false"/>
+      <Scope open="class" close="end" strict="false"/>
+      <Scope open="try" middle="except" close="end">
+        <Middle text="finally"/>
+      </Scope>
+      <Scope open="IFDEF" middle="ELSE" close="ENDIF">
+        <Containers open="preprocessor"/>
+      </Scope>
+      <Scope open="IFNDEF" middle="ELSE" close="ENDIF">
+        <Containers open="preprocessor"/>
+      </Scope>
+      <Scope open="region" close="endregion" has_name="true" decoration="true">
+        <Containers open="format_tag"/>
+      </Scope>
+    </SCOPES>
+    <LABELS>
+      <Label group="Subroutines" match="((procedure|function)\s+([\w.]+)\s*\([^)]*\)[^;]*;).+?(implementation|begin)" name="\3" descr="\1" scope="1" image="9">
+        <Skip if="\4" equal="implementation"/>        
+        <Image if="\2" equal="function" value="6"/>
+      </Label>  
+    </LABELS>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="char"/>
+        </Containers>
+      </Style>
+      <Style id="scope" name="Text Highlights" bold="1" italic="0" underline="0" clr="#8000FF00" bkclr="#FFFFFFFF"/>
+      <Style id="scope_error" name="Text Highlights Error" bold="1" italic="0" underline="0" clr="Error" bkclr="#FFFFFFFF" overview="1"/>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="{" close="}"/>
+          <Block open="//" close="\n"/>
+        </Blocks>
+        <Containers>
+          <Close id="normal"/>
+          <Close id="todo"/>
+        </Containers>
+      </Style>
+      <Style id="documentation" name="Documentation" text="1" bold="0" italic="1" underline="0" clr="Documentation" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="(*" close="*)"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="{$" close="}"/>
+        </Blocks>
+      </Style>
+      <Style id="format_tag" name="Format tags" bold="0" italic="0" underline="0" clr="Format tag" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="//$" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Reserved" image="13" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Implementation"/>
+          <Keyword text="Interface"/>
+          <Keyword text="and"/>
+          <Keyword text="and_then"/>
+          <Keyword text="array"/>
+          <Keyword text="begin"/>
+          <Keyword text="case"/>
+          <Keyword text="const"/>
+          <Keyword text="div"/>
+          <Keyword text="do"/>
+          <Keyword text="downto"/>
+          <Keyword text="else"/>
+          <Keyword text="end"/>
+          <Keyword text="file"/>
+          <Keyword text="finally"/>
+          <Keyword text="for"/>
+          <Keyword text="function"/>
+          <Keyword text="goto"/>
+          <Keyword text="if"/>
+          <Keyword text="in"/>
+          <Keyword text="item"/>
+          <Keyword text="label"/>
+          <Keyword text="mod"/>
+          <Keyword text="module"/>
+          <Keyword text="not"/>
+          <Keyword text="object"/>
+          <Keyword text="of"/>
+          <Keyword text="or"/>
+          <Keyword text="or_else"/>
+          <Keyword text="otherwise"/>
+          <Keyword text="packed"/>
+          <Keyword text="private"/>
+          <Keyword text="procedure"/>
+          <Keyword text="program"/>
+          <Keyword text="protected"/>
+          <Keyword text="public"/>
+          <Keyword text="record"/>
+          <Keyword text="rem"/>
+          <Keyword text="repeat"/>
+          <Keyword text="set"/>
+          <Keyword text="then"/>
+          <Keyword text="to"/>
+          <Keyword text="try"/>
+          <Keyword text="type"/>
+          <Keyword text="unit"/>
+          <Keyword text="until"/>
+          <Keyword text="uses"/>
+          <Keyword text="value"/>
+          <Keyword text="var"/>
+          <Keyword text="varying"/>
+          <Keyword text="while"/>
+          <Keyword text="with"/>
+        </Keywords>
+      </Style>
+      <Style name="Identifiers" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="abs"/>
+          <Keyword text="add_interlocked"/>
+          <Keyword text="address"/>
+          <Keyword text="arctan"/>
+          <Keyword text="argument"/>
+          <Keyword text="argument_list_length"/>
+          <Keyword text="bin"/>
+          <Keyword text="bit_offset"/>
+          <Keyword text="bitnext"/>
+          <Keyword text="bitsize"/>
+          <Keyword text="boolean"/>
+          <Keyword text="byte"/>
+          <Keyword text="byte_offset"/>
+          <Keyword text="card"/>
+          <Keyword text="char"/>
+          <Keyword text="chr"/>
+          <Keyword text="clear_interlocked"/>
+          <Keyword text="clock"/>
+          <Keyword text="close"/>
+          <Keyword text="cos"/>
+          <Keyword text="create_directory"/>
+          <Keyword text="date"/>
+          <Keyword text="dble"/>
+          <Keyword text="dec"/>
+          <Keyword text="delete"/>
+          <Keyword text="delete_file"/>
+          <Keyword text="dispose"/>
+          <Keyword text="double"/>
+          <Keyword text="eof"/>
+          <Keyword text="eoln"/>
+          <Keyword text="epsdouble"/>
+          <Keyword text="epsquadruple"/>
+          <Keyword text="epsreal"/>
+          <Keyword text="eq"/>
+          <Keyword text="establish"/>
+          <Keyword text="exp"/>
+          <Keyword text="expo"/>
+          <Keyword text="extend"/>
+          <Keyword text="false"/>
+          <Keyword text="find"/>
+          <Keyword text="find_first_bit_clear"/>
+          <Keyword text="find_first_bit_set"/>
+          <Keyword text="find_member"/>
+          <Keyword text="find_nonmember"/>
+          <Keyword text="findk"/>
+          <Keyword text="ge"/>
+          <Keyword text="get"/>
+          <Keyword text="gettimestamp"/>
+          <Keyword text="gt"/>
+          <Keyword text="halt"/>
+          <Keyword text="hex"/>
+          <Keyword text="iaddress"/>
+          <Keyword text="inc"/>
+          <Keyword text="index"/>
+          <Keyword text="input"/>
+          <Keyword text="int"/>
+          <Keyword text="integer"/>
+          <Keyword text="le"/>
+          <Keyword text="length"/>
+          <Keyword text="linelimit"/>
+          <Keyword text="ln"/>
+          <Keyword text="locate"/>
+          <Keyword text="longint"/>
+          <Keyword text="lower"/>
+          <Keyword text="lt"/>
+          <Keyword text="max"/>
+          <Keyword text="maxchar"/>
+          <Keyword text="maxdouble"/>
+          <Keyword text="maxint"/>
+          <Keyword text="maxquadruple"/>
+          <Keyword text="maxreal"/>
+          <Keyword text="maxunsigned"/>
+          <Keyword text="min"/>
+          <Keyword text="mindouble"/>
+          <Keyword text="minquadruple"/>
+          <Keyword text="minreal"/>
+          <Keyword text="ne"/>
+          <Keyword text="new"/>
+          <Keyword text="next"/>
+          <Keyword text="nil"/>
+          <Keyword text="oct"/>
+          <Keyword text="odd"/>
+          <Keyword text="open"/>
+          <Keyword text="ord"/>
+          <Keyword text="output"/>
+          <Keyword text="pack"/>
+          <Keyword text="pad"/>
+          <Keyword text="page"/>
+          <Keyword text="pred"/>
+          <Keyword text="present"/>
+          <Keyword text="put"/>
+          <Keyword text="quad"/>
+          <Keyword text="quadruple"/>
+          <Keyword text="read"/>
+          <Keyword text="readln"/>
+          <Keyword text="readv"/>
+          <Keyword text="real"/>
+          <Keyword text="rename_file"/>
+          <Keyword text="reset"/>
+          <Keyword text="resetk"/>
+          <Keyword text="revert"/>
+          <Keyword text="rewrite"/>
+          <Keyword text="round"/>
+          <Keyword text="set_interlocked"/>
+          <Keyword text="sin"/>
+          <Keyword text="single"/>
+          <Keyword text="size"/>
+          <Keyword text="sngl"/>
+          <Keyword text="sqr"/>
+          <Keyword text="sqrt"/>
+          <Keyword text="status"/>
+          <Keyword text="statusv"/>
+          <Keyword text="string"/>
+          <Keyword text="substr"/>
+          <Keyword text="succ"/>
+          <Keyword text="text"/>
+          <Keyword text="time"/>
+          <Keyword text="timestamp"/>
+          <Keyword text="true"/>
+          <Keyword text="trunc"/>
+          <Keyword text="truncate"/>
+          <Keyword text="uand"/>
+          <Keyword text="udec"/>
+          <Keyword text="ufb"/>
+          <Keyword text="uint"/>
+          <Keyword text="undefined"/>
+          <Keyword text="unlock"/>
+          <Keyword text="unot"/>
+          <Keyword text="unpack"/>
+          <Keyword text="unsigned"/>
+          <Keyword text="uor"/>
+          <Keyword text="update"/>
+          <Keyword text="upper"/>
+          <Keyword text="uround"/>
+          <Keyword text="utrunc"/>
+          <Keyword text="uxor"/>
+          <Keyword text="word"/>
+          <Keyword text="write"/>
+          <Keyword text="writeln"/>
+          <Keyword text="writev"/>
+          <Keyword text="xor"/>
+          <Keyword text="zero"/>
+        </Keywords>
+      </Style>
+      <Style name="Attributes" image="10" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="asynchronous"/>
+          <Keyword text="external"/>
+          <Keyword text="global"/>
+          <Keyword text="inherit"/>
+          <Keyword text="local"/>
+          <Keyword text="readonly"/>
+          <Keyword text="static"/>
+          <Keyword text="unbound"/>
+          <Keyword text="unsafe"/>
+          <Keyword text="volatile"/>
+        </Keywords>
+      </Style>
+      <Style name="Address" image="10" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="$" close=""/>
+        </Blocks>
+      </Style>
+      <Style name="Assembler" include="asm:normal" bold="0" italic="0" underline="0" clr="Keyword5" bkclr="Embedded Language 1 Back" overview="1">
+        <Blocks>
+          <Block open="asm" close="end"/>
+        </Blocks>
+      </Style>
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

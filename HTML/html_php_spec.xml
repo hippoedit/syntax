@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Theno" type="LangSpec"/>
+  <SYNTAX id="html_php" name="HTML (PHP)" inherit="html5" inherit_url="html5_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.php;*.php3"/>
+      <SyntaxBlocks>
+        <Block open="&lt;?php"/>
+      </SyntaxBlocks>
+    </SPECIFICATION>
+    <STYLES>
+      <Style name="PHP" include="php:normal" bold="0" italic="0" underline="0" clr="#FF000000" bkclr="Embedded Language 1 Back" overview="1">
+        <Containers>
+          <Close id="php:normal"/>
+          <Close id="php:comment"/>
+          <Open id="js:string"/>
+          <Open id="js:char"/>
+          <Open id="js:normal"/>
+          <Open id="string"/>
+          <Open id="normal"/>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_close_tag"/>
+        </Containers>
+        <Blocks>
+          <Block open="&lt;?php" close="?&gt;"/>
+          <Block open="&lt;?" close="?&gt;"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

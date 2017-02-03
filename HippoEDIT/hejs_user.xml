@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+	<FILEINFO author="Arsen" type="LangUser"/>
+	<SYNTAX id="hejs" inherit="js" inherit_url="js_user.xml">
+		<SPECIFICATION clr="#000000FF">
+			<ShowInheritedStyles>true</ShowInheritedStyles>
+			<ShowInheritedTemplates>true</ShowInheritedTemplates>
+			<WordWrap mode="0" page_width="75" show_page_width="false" show_glyphs="true" tab_size="4" tab_mode="1"/>
+			<Bars navigation="true" overview="true" search="false" hierarchy="false"/>
+			<Display outlining="true" line_numbers="false" indicator_margin="true" current_line="true" white_space="false" trailing_white_space="false" scope_separator="true" scope_nesting="false" alternating="false" guides="true" changed_lines="true" ruler="false" virtual_spaces="false" inactive_code="false" page_break="true"/>
+			<LineSpacing style="0" value="0,000000"/>
+			<Formatting tab_size="4" tab_mode="1"/>
+		</SPECIFICATION>
+		<FONTS>
+			<Font face_name=""/>
+		</FONTS>
+		<STYLES>
+			<Style id="preprocessor" bold="0" italic="0" underline="0" strikeout="2" overview="0" clr="Preprocessor" bkclr="#FFFFFFFF"/>
+			<Style id="xml_dlg" bold="0" italic="0" underline="0" strikeout="2" overview="1" clr="#66666600" bkclr="Embedded Language 2 Back"/>
+			<Style name="Reserved" bold="1" italic="0" underline="0" strikeout="2" overview="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF"/>
+			<Style name="Properties" bold="0" italic="0" underline="0" strikeout="2" overview="0" clr="Keyword2" bkclr="#FFFFFFFF"/>
+			<Style id="format_tag" bold="0" italic="0" underline="0" strikeout="2" overview="0" clr="Format tag" bkclr="#FFFFFFFF"/>
+		</STYLES>
+		<TOOLS>
+			<Tool name="Run WScript" arguments="%FileName%" capture_output="true" command="cscript"/>
+		</TOOLS>
+	</SYNTAX>
+</XMLConfigSettings>

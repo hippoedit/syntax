@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="haskell" name="Haskell" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.hs;*.lhs"/>
+      <CaseSensitive>true</CaseSensitive>
+      <OpenClose>()[]{}""``</OpenClose>
+      <Delimiters>,;.?:()[]`</Delimiters>
+      <EscapeChar>\</EscapeChar>
+      <Operators>%--+/&amp;*=&lt;&gt;|!~^()[].:$@,`</Operators>
+      <Words>0-9A-Za-z_'</Words>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+    </SCOPES>
+    <LABELS>
+      <Label group="Import" match="import\s+([A-Z]\w+(\.[A-Z]\w*)*)" name="import \1" descr="\1" scope="1" navigation="false"/>
+      <Label group="Function declaration" match="([a-z]\w*)\s*::\s*(([\[\]\(\)\w\s,]*=&gt;)?\s*([\[\]\(\)\w\s,]*->)*\s*([\[\]\(\)\w, \t]*))" name="\1" descr="\1 :: \2" scope="1" image="18"/>
+      <Label group="Function definition" match="^*(([a-z]\w*'*)([ \t]+(([\w &quot;'*?\[\]\!.])*)|((\s*\([\w :&quot;'*?\[\]\(\)\!.]*\))*)))\s*=[\w\s]" name="\2" descr="\1" scope="1" image="11">
+        <Skip if="\2" equal="where"/>
+      </Label>
+      <Label group="Function guard definition" match="^(([a-z]\w*'*)([ \t]+(([\w &quot;'*?\[\]\!.])*)|((\s*\([\w :&quot;'*?\[\]\(\)\!.]*\))*)))\s*\|[\w\s]" name="\2" descr="\1" scope="1" image="11"/>
+      <Label group="Function guard definition 2" match="^[ \t]*(([a-z]\w*'*)([ \t]+(([\w &quot;'*?\[\]\!.])*)|((\s*\([\w :&quot;'*?\[\]\(\)\!.]*\))*)))[ \t]*\|[\w\s]" name="\2" descr="\1" scope="1" image="11"/>
+      <Label group="Data" match="data\s+([A-Z]\w*([ \t]+\w+)*)" name="\1" descr="data \1" scope="1" image="9"/>
+      <Label group="Class" match="class\s+([\w\s\(\)\[\],]*=&gt;)?\s*([A-Z]\w*([ \t]+\w+)*)\s+where" name="\2" descr="class \1 \2" scope="1" image="5"/>
+      <Label group="Instance" match="instance\s+([A-Z]\w*\s+[\[\]\(\)\s\w,]*?)\s+where" name="\1" descr="instance \1" scope="1" image="6"/>
+    </LABELS>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="char"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Blocks>
+          <Block open="0x">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="{-" close="-}"/>
+          <Block open="--" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Regexp open="'" open_lead="[^\w\)'\]]" close="'"/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Include" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="import " close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="13" bold="1" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="_"/>
+          <Keyword text="case"/>
+          <Keyword text="class"/>
+          <Keyword text="data"/>
+          <Keyword text="deriving"/>
+          <Keyword text="do"/>
+          <Keyword text="else"/>
+          <Keyword text="export"/>
+          <Keyword text="if"/>
+          <Keyword text="in"/>
+          <Keyword text="infix"/>
+          <Keyword text="infixl"/>
+          <Keyword text="infixr"/>
+          <Keyword text="instance"/>
+          <Keyword text="let"/>
+          <Keyword text="module"/>
+          <Keyword text="newtype"/>
+          <Keyword text="of"/>
+          <Keyword text="primitive"/>
+          <Keyword text="then"/>
+          <Keyword text="type"/>
+          <Keyword text="when"/>
+          <Keyword text="where"/>
+        </Keywords>
+      </Style>
+      <Style name="Asserts" image="13" bold="1" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="undefined"/>
+          <Keyword text="error"/>
+        </Keywords>
+      </Style>
+      <Style name="Functions" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="abs"/>
+          <Keyword text="acos"/>
+          <Keyword text="acosh"/>
+          <Keyword text="all"/>
+          <Keyword text="and"/>
+          <Keyword text="any"/>
+          <Keyword text="appendFile"/>
+          <Keyword text="approxRational"/>
+          <Keyword text="asTypeOf"/>
+          <Keyword text="asin"/>
+          <Keyword text="asinh"/>
+          <Keyword text="atan"/>
+          <Keyword text="atan2"/>
+          <Keyword text="atanh"/>
+          <Keyword text="break"/>
+          <Keyword text="catch"/>
+          <Keyword text="ceiling"/>
+          <Keyword text="chr"/>
+          <Keyword text="compare"/>
+          <Keyword text="concat"/>
+          <Keyword text="concatMap"/>
+          <Keyword text="const"/>
+          <Keyword text="cos"/>
+          <Keyword text="cosh"/>
+          <Keyword text="curry"/>
+          <Keyword text="cycle"/>
+          <Keyword text="decodeFloat"/>
+          <Keyword text="denominator"/>
+          <Keyword text="digitToInt"/>
+          <Keyword text="div"/>
+          <Keyword text="divMod"/>
+          <Keyword text="drop"/>
+          <Keyword text="dropWhile"/>
+          <Keyword text="either"/>
+          <Keyword text="elem"/>
+          <Keyword text="encodeFloat"/>
+          <Keyword text="enumFrom"/>
+          <Keyword text="enumFromThen"/>
+          <Keyword text="enumFromThenTo"/>
+          <Keyword text="enumFromTo"/>
+          <Keyword text="even"/>
+          <Keyword text="exp"/>
+          <Keyword text="exponent"/>
+          <Keyword text="fail"/>
+          <Keyword text="filter"/>
+          <Keyword text="flip"/>
+          <Keyword text="floatDigits"/>
+          <Keyword text="floatRadix"/>
+          <Keyword text="floatRange"/>
+          <Keyword text="floor"/>
+          <Keyword text="fmap"/>
+          <Keyword text="foldl"/>
+          <Keyword text="foldl1"/>
+          <Keyword text="foldr"/>
+          <Keyword text="foldr1"/>
+          <Keyword text="fromDouble"/>
+          <Keyword text="fromEnum"/>
+          <Keyword text="fromInt"/>
+          <Keyword text="fromInteger"/>
+          <Keyword text="fromIntegral"/>
+          <Keyword text="fromRational"/>
+          <Keyword text="fst"/>
+          <Keyword text="gcd"/>
+          <Keyword text="getChar"/>
+          <Keyword text="getContents"/>
+          <Keyword text="getLine"/>
+          <Keyword text="head"/>
+          <Keyword text="id"/>
+          <Keyword text="inRange"/>
+          <Keyword text="index"/>
+          <Keyword text="init"/>
+          <Keyword text="intToDigit"/>
+          <Keyword text="interact"/>
+          <Keyword text="ioError"/>
+          <Keyword text="isAlpha"/>
+          <Keyword text="isAlphaNum"/>
+          <Keyword text="isAscii"/>
+          <Keyword text="isControl"/>
+          <Keyword text="isDenormalized"/>
+          <Keyword text="isDigit"/>
+          <Keyword text="isHexDigit"/>
+          <Keyword text="isIEEE"/>
+          <Keyword text="isInfinite"/>
+          <Keyword text="isLower"/>
+          <Keyword text="isNaN"/>
+          <Keyword text="isNegativeZero"/>
+          <Keyword text="isOctDigit"/>
+          <Keyword text="isPrint"/>
+          <Keyword text="isSpace"/>
+          <Keyword text="isUpper"/>
+          <Keyword text="iterate"/>
+          <Keyword text="last"/>
+          <Keyword text="lcm"/>
+          <Keyword text="length"/>
+          <Keyword text="lex"/>
+          <Keyword text="lexDigits"/>
+          <Keyword text="lexLitChar"/>
+          <Keyword text="lines"/>
+          <Keyword text="log"/>
+          <Keyword text="logBase"/>
+          <Keyword text="lookup"/>
+          <Keyword text="map"/>
+          <Keyword text="mapM"/>
+          <Keyword text="mapM_"/>
+          <Keyword text="max"/>
+          <Keyword text="maxBound"/>
+          <Keyword text="maximum"/>
+          <Keyword text="maybe"/>
+          <Keyword text="min"/>
+          <Keyword text="minBound"/>
+          <Keyword text="minimum"/>
+          <Keyword text="mod"/>
+          <Keyword text="negate"/>
+          <Keyword text="not"/>
+          <Keyword text="notElem"/>
+          <Keyword text="null"/>
+          <Keyword text="numerator"/>
+          <Keyword text="odd"/>
+          <Keyword text="or"/>
+          <Keyword text="ord"/>
+          <Keyword text="otherwise"/>
+          <Keyword text="pi"/>
+          <Keyword text="pred"/>
+          <Keyword text="primExitWith"/>
+          <Keyword text="print"/>
+          <Keyword text="product"/>
+          <Keyword text="properFraction"/>
+          <Keyword text="putChar"/>
+          <Keyword text="putStr"/>
+          <Keyword text="putStrLn"/>
+          <Keyword text="quot"/>
+          <Keyword text="quotRem"/>
+          <Keyword text="range"/>
+          <Keyword text="rangeSize"/>
+          <Keyword text="read"/>
+          <Keyword text="readDec"/>
+          <Keyword text="readFile"/>
+          <Keyword text="readFloat"/>
+          <Keyword text="readHex"/>
+          <Keyword text="readIO"/>
+          <Keyword text="readInt"/>
+          <Keyword text="readList"/>
+          <Keyword text="readLitChar"/>
+          <Keyword text="readLn"/>
+          <Keyword text="readOct"/>
+          <Keyword text="readParen"/>
+          <Keyword text="readSigned"/>
+          <Keyword text="reads"/>
+          <Keyword text="readsPrec"/>
+          <Keyword text="realToFrac"/>
+          <Keyword text="recip"/>
+          <Keyword text="rem"/>
+          <Keyword text="repeat"/>
+          <Keyword text="replicate"/>
+          <Keyword text="return"/>
+          <Keyword text="reverse"/>
+          <Keyword text="round"/>
+          <Keyword text="scaleFloat"/>
+          <Keyword text="scanl"/>
+          <Keyword text="scanl1"/>
+          <Keyword text="scanr"/>
+          <Keyword text="scanr1"/>
+          <Keyword text="seq"/>
+          <Keyword text="sequence"/>
+          <Keyword text="sequence_"/>
+          <Keyword text="show"/>
+          <Keyword text="showChar"/>
+          <Keyword text="showInt"/>
+          <Keyword text="showList"/>
+          <Keyword text="showLitChar"/>
+          <Keyword text="showParen"/>
+          <Keyword text="showSigned"/>
+          <Keyword text="showString"/>
+          <Keyword text="shows"/>
+          <Keyword text="showsPrec"/>
+          <Keyword text="significand"/>
+          <Keyword text="signum"/>
+          <Keyword text="sin"/>
+          <Keyword text="sinh"/>
+          <Keyword text="snd"/>
+          <Keyword text="span"/>
+          <Keyword text="splitAt"/>
+          <Keyword text="sqrt"/>
+          <Keyword text="subtract"/>
+          <Keyword text="succ"/>
+          <Keyword text="sum"/>
+          <Keyword text="tail"/>
+          <Keyword text="take"/>
+          <Keyword text="takeWhile"/>
+          <Keyword text="tan"/>
+          <Keyword text="tanh"/>
+          <Keyword text="toEnum"/>
+          <Keyword text="toInt"/>
+          <Keyword text="toInteger"/>
+          <Keyword text="toLower"/>
+          <Keyword text="toRational"/>
+          <Keyword text="toUpper"/>
+          <Keyword text="truncate"/>
+          <Keyword text="throwError"/>
+          <Keyword text="uncurry"/>
+          <Keyword text="unlines"/>
+          <Keyword text="until"/>
+          <Keyword text="unwords"/>
+          <Keyword text="unzip"/>
+          <Keyword text="unzip3"/>
+          <Keyword text="userError"/>
+          <Keyword text="words"/>
+          <Keyword text="writeFile"/>
+          <Keyword text="zip"/>
+          <Keyword text="zip3"/>
+          <Keyword text="zipWith"/>
+          <Keyword text="zipWith3"/>
+        </Keywords>
+      </Style>
+      <Style name="Data Types" image="10" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Addr"/>
+          <Keyword text="Bool"/>
+          <Keyword text="Char"/>
+          <Keyword text="Double"/>
+          <Keyword text="Either"/>
+          <Keyword text="EmptyRec"/>
+          <Keyword text="EmptyRow"/>
+          <Keyword text="FilePath"/>
+          <Keyword text="Float"/>
+          <Keyword text="IO"/>
+          <Keyword text="IOError"/>
+          <Keyword text="IOResult"/>
+          <Keyword text="Int"/>
+          <Keyword text="Integer"/>
+          <Keyword text="Long"/>
+          <Keyword text="Maybe"/>
+          <Keyword text="Ordering"/>
+          <Keyword text="Ratio"/>
+          <Keyword text="Rational"/>
+          <Keyword text="ReadS"/>
+          <Keyword text="Rec"/>
+          <Keyword text="ShowS"/>
+          <Keyword text="String"/>
+        </Keywords>
+      </Style>
+      <Style name="Classes" image="9" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Bounded"/>
+          <Keyword text="Enum"/>
+          <Keyword text="Eq"/>
+          <Keyword text="Eval"/>
+          <Keyword text="Floating"/>
+          <Keyword text="Fractional"/>
+          <Keyword text="Functor"/>
+          <Keyword text="Integral"/>
+          <Keyword text="Ix"/>
+          <Keyword text="Monad"/>
+          <Keyword text="MonadPlus"/>
+          <Keyword text="MonadZero"/>
+          <Keyword text="Num"/>
+          <Keyword text="Ord"/>
+          <Keyword text="Read"/>
+          <Keyword text="Real"/>
+          <Keyword text="RealFloat"/>
+          <Keyword text="RealFrac"/>
+          <Keyword text="Show"/>
+          <Keyword text="Void"/>
+        </Keywords>
+      </Style>
+      <Style name="Constructors" image="9" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="EQ"/>
+          <Keyword text="False"/>
+          <Keyword text="GT"/>
+          <Keyword text="Just"/>
+          <Keyword text="LT"/>
+          <Keyword text="Left"/>
+          <Keyword text="Nothing"/>
+          <Keyword text="Prelude"/>
+          <Keyword text="Right"/>
+          <Keyword text="True"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

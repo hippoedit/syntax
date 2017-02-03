@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="go" name="Go" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <CaseSensitive>true</CaseSensitive>
+      <OpenClose>()[]{}''""``</OpenClose>
+      <LineEnd>;</LineEnd>
+      <EscapeChar>\</EscapeChar>
+      <Operators>@?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]{}</Operators>
+      <Words init="A-Za-z_">0-9A-Za-z_</Words>
+      <Numbers>-+0-9.EUL</Numbers>
+      <FilePattern mask="*.go"/>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="Function" match="func\s+([^\{]+?)\s+?\{" name="\1" descr="\1" scope="1" image="18"/>
+      <Label group="" match="(if|switch|while|for)\s*\(((?:[^\(\)]|\\r|\\n|\((?-1)\))*+)\)\s*\{" name="\1" descr="\1 (\2)" scope="1" image="13" navigation="false"/>            
+    </LABELS>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="documentation"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Blocks>
+          <Block open="0x">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="//" close="\n"/>
+          <Block open="/*" close="*/"/>
+        </Blocks>
+        <Containers>
+          <Close id="normal"/>
+          <Close id="todo"/>
+        </Containers>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+          <Block open="`" close="`"/>
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style name="Escape Sequence" text="1" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+        </Containers>
+        <Blocks>
+          <Block text="\\a"/>
+          <Block text="\\b"/>
+          <Block text="\\f"/>
+          <Block text="\\n"/>
+          <Block text="\\r"/>
+          <Block text="\\t"/>
+          <Block text="\\v"/>
+          <Block text="\\\\"/>
+          <Block text="\\'"/>
+          <Block text="\\&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF"/>
+      <Style id="documentation" name="Documentation" text="1" bold="0" italic="1" underline="0" clr="Documentation" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="///" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="break"/>
+          <Keyword text="default"/>
+          <Keyword text="func"/>
+          <Keyword text="interface"/>
+          <Keyword text="select"/>
+          <Keyword text="case"/>
+          <Keyword text="defer"/>
+          <Keyword text="go"/>
+          <Keyword text="map"/>
+          <Keyword text="struct"/>
+          <Keyword text="chan"/>
+          <Keyword text="else"/>
+          <Keyword text="goto"/>
+          <Keyword text="package"/>
+          <Keyword text="switch"/>
+          <Keyword text="const"/>
+          <Keyword text="fallthrough"/>
+          <Keyword text="if"/>
+          <Keyword text="range"/>
+          <Keyword text="type"/>
+          <Keyword text="continue"/>
+          <Keyword text="for"/>
+          <Keyword text="import"/>
+          <Keyword text="return"/>
+          <Keyword text="var"/>
+        </Keywords>
+      </Style>
+      <Style name="Functions" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords pattern="%CurrentWord%(%|%)">
+          <Keyword text="cap"/>
+          <Keyword text="close"/>
+          <Keyword text="closed"/>
+          <Keyword text="len"/>
+          <Keyword text="make"/>
+          <Keyword text="new"/>
+          <Keyword text="panic"/>
+          <Keyword text="panicln"/>
+          <Keyword text="print"/>
+          <Keyword text="println"/>
+        </Keywords>
+      </Style>
+      <Style name="Data Types" image="10" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="bool"/>
+          <Keyword text="byte"/>
+          <Keyword text="float"/>
+          <Keyword text="float32"/>
+          <Keyword text="float64"/>
+          <Keyword text="int"/>
+          <Keyword text="int16"/>
+          <Keyword text="int32"/>
+          <Keyword text="int64"/>
+          <Keyword text="int8"/>
+          <Keyword text="string"/>
+          <Keyword text="uint"/>
+          <Keyword text="uint16"/>
+          <Keyword text="uint32"/>
+          <Keyword text="uint64"/>
+          <Keyword text="uint8"/>
+          <Keyword text="uintptr"/>
+        </Keywords>
+      </Style>
+      <Style name="Constants" image="7" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="false"/>
+          <Keyword text="true"/>
+          <Keyword text="iota"/>
+          <Keyword text="nil"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+          <Open id="documentation"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

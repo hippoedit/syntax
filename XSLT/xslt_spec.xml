@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="xslt" name="XSLT" inherit="xml" inherit_url="xml_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.xslt;*.xsl"/>
+      <Operators>:</Operators>
+      <SyntaxBlocks>
+        <Block open="xmlns=&quot;http://www.w3.org/1999/XSL/Transform"/>
+        <Block open="xmlns='http://www.w3.org/1999/XSL/Transform"/>
+      </SyntaxBlocks>
+    </SPECIFICATION>
+    <SCOPES open_container="xslt_open_tag" close_container="xslt_close_tag">
+      <Scope open="template" close="template"/>
+      <Scope open="call-template" close="call-template"/>
+      <Scope open="stylesheet" close="stylesheet"/>
+      <Scope open="for-each" close="for-each"/>
+      <Scope open="if" close="if"/>
+      <Scope open="choose" close="choose"/>
+      <Scope open="when" close="when"/>
+      <Scope open="otherwise" close="otherwise"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="scope" name="Text Highlights" bold="1" italic="2" underline="2" clr="#FFFFFFFF" bkclr="#FFFFFFFF"/>
+      <Style id="scope_error" name="Text Highlights Error" bold="1" italic="0" underline="0" clr="Error" bkclr="#FFFFFFFF" overview="1"/>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xslt_open_tag"/>
+          <Open id="xslt_close_tag"/>
+        </Containers>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xslt_open_tag"/>
+          <Open id="xslt_close_tag"/>
+        </Containers>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xslt_open_tag"/>
+          <Open id="xslt_close_tag"/>
+        </Containers>
+      </Style>
+      <Style id="xslt_open_tag" name="XSLT Open Tags" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&lt;xslt" close="&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="xslt_close_tag" name="XSLT Close Tags" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&lt;/xslt" close="&gt;"/>
+        </Blocks>
+      </Style>
+      <Style name="XSLT Elements" image="9" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF" text="">
+        <Containers>
+          <Open id="xslt_open_tag"/>
+          <Open id="xslt_close_tag"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="template"/>
+          <Keyword text="apply-templates"/>
+          <Keyword text="value-of"/>
+          <Keyword text="with-param"/>
+          <Keyword text="call-template"/>
+          <Keyword text="stylesheet"/>
+          <Keyword text="xmlns"/>
+          <Keyword text="choose"/>
+          <Keyword text="when"/>
+          <Keyword text="otherwise"/>
+          <Keyword text="for-each"/>
+          <Keyword text="if"/>
+        </Keywords>
+      </Style>
+      <Style name="XSLT Attributes" image="11" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xslt_open_tag"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="match"/>
+          <Keyword text="select"/>
+          <Keyword text="test"/>
+          <Keyword text="name"/>
+          <Keyword text="disable-output-escaping"/>
+          <Keyword text="xslt"/>
+          <Keyword text="version"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

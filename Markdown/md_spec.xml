@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="John Killeen" type="LangSpec"/>
+  <SYNTAX id="md" name="Markdown" inherit="html" inherit_url="html_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.md"/>
+      <OpenClose>()[]{}''""</OpenClose>
+      <Operators>=\</Operators>
+      <Bars navigation="true" hierarchy="false"/>
+    </SPECIFICATION>
+    <LABELS>
+      <!--
+      <Label group="Link" match="^\s*\[([^\]]+)\]\s*" name="\1" descr="Link \1" image="9">
+        <Containers open="link"/>
+      </Label>
+      -->
+      <Label group="Header" match="^([^\n\r]+?)\n[-=]+?\s*$" name="\1" descr="Header \1" image="9">
+        <Containers open="normal"/>
+      </Label>
+      <Label group="Header" match="^#+\s+(.+?)#*\s*$" name="\1" descr="Header \1" image="9">
+        <Containers open="header"/>
+      </Label>
+    </LABELS>
+    <STYLES>
+      <Style id="comment" extend="true" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF" >
+        <Blocks>
+          <Block open=";;" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" extend="true" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="header" name="Headers" text="1" bold="1" italic="0" underline="0" clr="Keyword2" bkclr="#0000FFFF" >
+        <Blocks>
+          <Block open="#" close="\n" first_pos="true"/>
+          <Block open="----" close="\n" first_pos="true"/>
+          <Block open="=" close="\n" first_pos="true"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF"/>
+      <Style id="link" name="Link" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="[" close="]"/>
+        </Blocks>
+      </Style>
+      <Style id="image" name="Image" bold="1" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="![" close="]"/>
+        </Blocks>
+      </Style>
+      <Style id="blockquote" name="Blockquote" bold="1" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&gt; " close="\n" first_pos="true" />
+        </Blocks>
+      </Style>
+      <Style id="bold" name="bold" bold="1" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="blockquote"/>
+        </Containers>
+        <Blocks>
+          <Block open="__" close="__"/>
+          <Block open="**" close="**"/>
+        </Blocks>
+      </Style>
+      <Style id="italic" name="italic" bold="0" italic="1" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="blockquote"/>
+        </Containers>
+        <Blocks>
+          <Block open="*" close="*"/>
+          <Block open="_" close="_" />
+        </Blocks>
+      </Style>
+      <Style id="lista" name="lista" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#0000FFFF" >
+        <Containers>
+          <Open id="normal"/>
+          <Open id="blockquote"/>
+        </Containers>
+        <Blocks>
+          <Block open="* " close="\n" first_pos="true" />
+          <Block open="+ " close="\n" first_pos="true" />
+          <Block open="- " close="\n" first_pos="true" />
+        </Blocks>
+      </Style>
+      <Style id="listb" name="listb" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#0000FFFF" >
+        <Containers>
+          <Open id="normal"/>
+          <Open id="blockquote"/>
+        </Containers>
+        <Blocks>
+          <Block open="1." close="\n" first_pos="true" />
+          <Block open="2." close="\n" first_pos="true" />
+          <Block open="3." close="\n" first_pos="true" />
+          <Block open="4." close="\n" first_pos="true" />
+          <Block open="5." close="\n" first_pos="true" />
+          <Block open="6." close="\n" first_pos="true" />
+          <Block open="7." close="\n" first_pos="true" />
+          <Block open="8." close="\n" first_pos="true" />
+          <Block open="9." close="\n" first_pos="true" />
+        </Blocks>
+      </Style>
+      <Style id="codey" name="codey" bold="1" italic="0" underline="0" bkclr="#00FFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="blockquote"/>
+        </Containers>
+        <Blocks>
+          <Block open="`" close="`" />
+        </Blocks>
+      </Style>
+	  <Style id="tables" name="tables" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#0000FFFF" >
+		<Blocks>
+		  <Block text="|"/>
+		</Blocks>
+	  </Style>
+      <Style id="tablejust" name="tablejust" bold="1" italic="0" underline="0" clr="Keyword3" bkclr="#0000FFFF" >
+        <Blocks>
+          <Block open=":--" close=" " />
+        </Blocks>
+      </Style>
+      <Style id="tablejust2" name="tablejust2" bold="1" italic="0" underline="0" clr="Keyword3" bkclr="#0000FFFF" >
+        <Blocks>
+          <Block open="---" close=":">
+            <Close text="\n"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style name="Value names" bold="1" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Words>
+          <Word trail="="/>
+        </Words>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

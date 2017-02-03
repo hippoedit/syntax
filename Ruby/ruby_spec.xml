@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="ruby" name="Ruby" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.rb;*.rbw"/>
+      <OpenClose>()[]{}''""</OpenClose>
+      <Words>0-9A-Za-z_?!=</Words>
+      <EscapeChar>\</EscapeChar>
+      <CaseSensitive>true</CaseSensitive>
+      <Operators>@?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]{}</Operators>
+      <HierarchySeparator>
+        <Separator text="::"/>
+        <Separator text="."/>
+      </HierarchySeparator>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+      <Scope open="def" close="end" has_name="true"/>
+      <Scope open="module" close="end"/>
+      <Scope open="begin" middle="rescue" close="end">
+        <Middle text="else"/>
+        <Middle text="ensure"/>
+      </Scope>
+      <Scope open="while" close="end" strict="false" sent_start="true"/>
+      <Scope open="for" close="end"/>
+      <Scope open="do" close="end"/>
+      <Scope open="until" close="end" strict="false" sent_start="true"/>
+      <Scope open="class" close="end" has_name="true"/>
+      <Scope open="unless" middle="else" close="end" strict="false" open_lead="\s*\'"/>
+      <Scope open="if" middle="else" close="end" strict="false" open_lead="(?:\s*=)|(?:\s*\')">
+        <Middle text="elsif"/>
+        <Middle text="then"/>
+      </Scope>      
+      <Scope open="case" middle="when" close="end">
+        <Middle text="else"/>
+        <Middle text="then"/>
+      </Scope>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="documentation"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Blocks>
+          <Block open="0x">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+        </Blocks>
+      </Style>      
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="documentation" name="Documentation" text="1" bold="0" italic="1" underline="0" clr="Documentation" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="=begin" close="=end"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+          <Block open="'" close="'"/>
+          <Block open="%q" close="\n"/>
+          <Block open="%Q" close="\n"/>
+          <Block open="%!" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="expression" name="Expression" include="normal" text="0" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+          <Open id="regexp"/>
+        </Containers>
+        <Blocks>
+          <Block open="#{" close="}"/>
+          <Block open="#$" close=""/>
+          <Block open="#@" close=""/>
+        </Blocks>
+      </Style>
+      <Style id="regexp" name="Regular Expression" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF" include="perl_regexp:normal">
+        <Blocks>
+          <Block open="%r" close="\n"/>          
+          <Regexp open="/" open_lead="\s*[~=(+\-]" open_trail="[^*]" close="/\w?"/>
+        </Blocks>
+      </Style>
+      <Style name="Command Output" bold="0" italic="0" underline="0" clr="Window Back" bkclr="Keyword3">
+        <Blocks>
+          <Block open="`" close="`"/>
+          <Block open="%x" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Instance Variable" bold="2" italic="1" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="@" close=""/>
+        </Blocks>
+      </Style>
+      <Style name="Global Variable" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="$" close=""/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="!"/>
+          <Keyword text="?"/>
+          <Keyword text="="/>
+          <Keyword text="=="/>
+          <Keyword text="!="/>
+          <Keyword text="and"/>
+          <Keyword text="not"/>
+          <Keyword text="or"/>
+        </Keywords>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="alias"/>
+          <Keyword text="begin"/>
+          <Keyword text="break"/>
+          <Keyword text="case"/>
+          <Keyword text="class"/>
+          <Keyword text="def"/>
+          <Keyword text="defined?"/>
+          <Keyword text="do"/>
+          <Keyword text="else"/>
+          <Keyword text="elsif"/>
+          <Keyword text="end"/>
+          <Keyword text="ensure"/>
+          <Keyword text="for"/>
+          <Keyword text="if"/>
+          <Keyword text="in"/>
+          <Keyword text="module"/>
+          <Keyword text="next"/>
+          <Keyword text="quit"/>
+          <Keyword text="private"/>
+          <Keyword text="protected"/>
+          <Keyword text="public"/>
+          <Keyword text="redo"/>
+          <Keyword text="rescue"/>
+          <Keyword text="retry"/>
+          <Keyword text="return"/>
+          <Keyword text="super"/>
+          <Keyword text="then"/>
+          <Keyword text="undef"/>
+          <Keyword text="unless"/>
+          <Keyword text="until"/>
+          <Keyword text="when"/>
+          <Keyword text="while"/>
+          <Keyword text="yield"/>
+          <Keyword text="BEGIN"/>
+          <Keyword text="END"/>
+        </Keywords>
+      </Style>
+      <Style name="Classes and Exceptions" image="9" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ArgumentError"/>
+          <Keyword text="Array"/>
+          <Keyword text="Bignum"/>
+          <Keyword text="Binding"/>
+          <Keyword text="Class"/>
+          <Keyword text="Complex"/>
+          <Keyword text="ConditionVariable"/>
+          <Keyword text="Continuation"/>
+          <Keyword text="DelegateClass"/>
+          <Keyword text="Dir"/>
+          <Keyword text="English"/>
+          <Keyword text="EOFError"/>
+          <Keyword text="Errno::ENOENT"/>
+          <Keyword text="Errno::EPERM"/>
+          <Keyword text="Exception"/>
+          <Keyword text="FalseClass"/>
+          <Keyword text="Fatal"/>
+          <Keyword text="File"/>
+          <Keyword text="File::Stat"/>
+          <Keyword text="Fixnum"/>
+          <Keyword text="Float"/>
+          <Keyword text="FloatDomainError"/>
+          <Keyword text="GetoptLong"/>
+          <Keyword text="Hash"/>
+          <Keyword text="IndexError"/>
+          <Keyword text="Integer"/>
+          <Keyword text="Interrupt"/>
+          <Keyword text="IO"/>
+          <Keyword text="IOError"/>
+          <Keyword text="LoadError"/>
+          <Keyword text="LocalJumpError"/>
+          <Keyword text="MatchData"/>
+          <Keyword text="Method"/>
+          <Keyword text="Module"/>
+          <Keyword text="Mutex"/>
+          <Keyword text="NameError"/>
+          <Keyword text="NilClass"/>
+          <Keyword text="NoMemoryError"/>
+          <Keyword text="NotImplementedError"/>
+          <Keyword text="Numeric"/>
+          <Keyword text="Object"/>
+          <Keyword text="Proc"/>
+          <Keyword text="Pstore"/>
+          <Keyword text="Range"/>
+          <Keyword text="RangeError"/>
+          <Keyword text="Regexp"/>
+          <Keyword text="RegexpError"/>
+          <Keyword text="RuntimeError"/>
+          <Keyword text="ScriptError"/>
+          <Keyword text="SecurityError"/>
+          <Keyword text="SimpleDelegator"/>
+          <Keyword text="Singleton"/>
+          <Keyword text="StandardError"/>
+          <Keyword text="String"/>
+          <Keyword text="Struct"/>
+          <Keyword text="Struct::Tms"/>
+          <Keyword text="Symbol"/>
+          <Keyword text="SyntaxError"/>
+          <Keyword text="SystemCallError"/>
+          <Keyword text="SystemExit"/>
+          <Keyword text="SystemStackError"/>
+          <Keyword text="Tempfile"/>
+          <Keyword text="Thread"/>
+          <Keyword text="ThreadGroup"/>
+          <Keyword text="Time"/>
+          <Keyword text="TrueClass"/>
+          <Keyword text="TypeError"/>
+          <Keyword text="WeakRef"/>
+          <Keyword text="ZeroDivisionError"/>
+        </Keywords>
+      </Style>
+      <Style name="Libraries and Modules" image="9" bold="1" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="mkmf"/>
+          <Keyword text="win32api"/>
+          <Keyword text="win32ole"/>
+          <Keyword text="BasicSocket"/>
+          <Keyword text="Benchmark"/>
+          <Keyword text="CGI"/>
+          <Keyword text="Comparable"/>
+          <Keyword text="Config"/>
+          <Keyword text="CONFIG"/>
+          <Keyword text="DATA"/>
+          <Keyword text="Date"/>
+          <Keyword text="Enumerable"/>
+          <Keyword text="Errno"/>
+          <Keyword text="FileTest"/>
+          <Keyword text="Find"/>
+          <Keyword text="FTP"/>
+          <Keyword text="GC"/>
+          <Keyword text="HTTP"/>
+          <Keyword text="HTTPResponse"/>
+          <Keyword text="IPSocket"/>
+          <Keyword text="Kernel"/>
+          <Keyword text="Marshal"/>
+          <Keyword text="Math"/>
+          <Keyword text="NET"/>
+          <Keyword text="Net::FTP"/>
+          <Keyword text="Net::HTTP"/>
+          <Keyword text="Net::HTTPResponse"/>
+          <Keyword text="Net::POP"/>
+          <Keyword text="Net::APOP"/>
+          <Keyword text="Net::POPMail"/>
+          <Keyword text="Net::SMTP"/>
+          <Keyword text="Net::Telnet"/>
+          <Keyword text="NIL"/>
+          <Keyword text="ObjectSpace"/>
+          <Keyword text="Observable"/>
+          <Keyword text="ParseDate"/>
+          <Keyword text="POP"/>
+          <Keyword text="POPMail"/>
+          <Keyword text="Process"/>
+          <Keyword text="Session"/>
+          <Keyword text="SMTP"/>
+          <Keyword text="Socket"/>
+          <Keyword text="SOCKSSocket"/>
+          <Keyword text="Stat"/>
+          <Keyword text="STDERR"/>
+          <Keyword text="STDIN"/>
+          <Keyword text="STDOUT"/>
+          <Keyword text="TCPServer"/>
+          <Keyword text="TCPSocket"/>
+          <Keyword text="Telnet"/>
+          <Keyword text="Tms"/>
+          <Keyword text="TOPLEVEL_BINDING"/>
+          <Keyword text="UDPSocket"/>
+          <Keyword text="UNIXServer"/>
+          <Keyword text="UNIXSocket"/>
+          <Keyword text="Win32API"/>
+          <Keyword text="WIN32OLE"/>
+          <Keyword text="WIN32OLE_EVENT"/>
+        </Keywords>
+      </Style>
+      <Style name="Methods" image="9" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="_id2ref"/>
+          <Keyword text="__id__"/>
+          <Keyword text="__send__"/>
+          <Keyword text="abort"/>
+          <Keyword text="abort_on_exception"/>
+          <Keyword text="abort_on_exception!"/>
+          <Keyword text="abs"/>
+          <Keyword text="abs2"/>
+          <Keyword text="add"/>
+          <Keyword text="alias_method"/>
+          <Keyword text="alive?"/>
+          <Keyword text="ancestors"/>
+          <Keyword text="append_features"/>
+          <Keyword text="arg"/>
+          <Keyword text="arity"/>
+          <Keyword text="asctime"/>
+          <Keyword text="assoc"/>
+          <Keyword text="at"/>
+          <Keyword text="atan2"/>
+          <Keyword text="atime"/>
+          <Keyword text="attr"/>
+          <Keyword text="attr_accessor"/>
+          <Keyword text="attr_reader"/>
+          <Keyword text="attr_writer"/>
+          <Keyword text="at_exit"/>
+          <Keyword text="autoload"/>
+          <Keyword text="backtrace"/>
+          <Keyword text="basename"/>
+          <Keyword text="between?"/>
+          <Keyword text="binding"/>
+          <Keyword text="binmode"/>
+          <Keyword text="blksize"/>
+          <Keyword text="blockdev?"/>
+          <Keyword text="block_given?"/>
+          <Keyword text="blocks"/>
+          <Keyword text="broadcast"/>
+          <Keyword text="call"/>
+          <Keyword text="callcc"/>
+          <Keyword text="caller"/>
+          <Keyword text="capitalize"/>
+          <Keyword text="capitalize!"/>
+          <Keyword text="casefold?"/>
+          <Keyword text="catch"/>
+          <Keyword text="ceil"/>
+          <Keyword text="center"/>
+          <Keyword text="chomp"/>
+          <Keyword text="chomp!"/>
+          <Keyword text="chop"/>
+          <Keyword text="chop!"/>
+          <Keyword text="chardev?"/>
+          <Keyword text="chr"/>
+          <Keyword text="chdir"/>
+          <Keyword text="chmod"/>
+          <Keyword text="chown"/>
+          <Keyword text="chroot"/>
+          <Keyword text="class_eval"/>
+          <Keyword text="class_variables"/>
+          <Keyword text="clear"/>
+          <Keyword text="clone"/>
+          <Keyword text="close"/>
+          <Keyword text="closed?"/>
+          <Keyword text="close_read"/>
+          <Keyword text="close_write"/>
+          <Keyword text="cmp"/>
+          <Keyword text="coerce"/>
+          <Keyword text="collect"/>
+          <Keyword text="collect!"/>
+          <Keyword text="compact"/>
+          <Keyword text="compact!"/>
+          <Keyword text="compare"/>
+          <Keyword text="compile"/>
+          <Keyword text="concat"/>
+          <Keyword text="conjugate"/>
+          <Keyword text="const_defined?"/>
+          <Keyword text="const_get"/>
+          <Keyword text="const_set"/>
+          <Keyword text="constants"/>
+          <Keyword text="copy"/>
+          <Keyword text="cp"/>
+          <Keyword text="cos"/>
+          <Keyword text="count"/>
+          <Keyword text="create_makefile"/>
+          <Keyword text="critical"/>
+          <Keyword text="critical="/>
+          <Keyword text="crypt"/>
+          <Keyword text="ctime"/>
+          <Keyword text="current"/>
+          <Keyword text="day"/>
+          <Keyword text="default"/>
+          <Keyword text="default="/>
+          <Keyword text="define_finalizer"/>
+          <Keyword text="delete"/>
+          <Keyword text="delete!"/>
+          <Keyword text="delete_at"/>
+          <Keyword text="delete_if"/>
+          <Keyword text="detect"/>
+          <Keyword text="dev"/>
+          <Keyword text="directory?"/>
+          <Keyword text="dirname"/>
+          <Keyword text="dir_config"/>
+          <Keyword text="disable"/>
+          <Keyword text="display"/>
+          <Keyword text="divmod"/>
+          <Keyword text="downcase"/>
+          <Keyword text="downcase!"/>
+          <Keyword text="downto"/>
+          <Keyword text="dump"/>
+          <Keyword text="dup"/>
+          <Keyword text="each"/>
+          <Keyword text="each_byte"/>
+          <Keyword text="each_index"/>
+          <Keyword text="each_key"/>
+          <Keyword text="each_line"/>
+          <Keyword text="each_object"/>
+          <Keyword text="each_pair"/>
+          <Keyword text="each_with_index"/>
+          <Keyword text="egid"/>
+          <Keyword text="egid="/>
+          <Keyword text="empty?"/>
+          <Keyword text="enable"/>
+          <Keyword text="england"/>
+          <Keyword text="entries"/>
+          <Keyword text="eof"/>
+          <Keyword text="eof?"/>
+          <Keyword text="eql?"/>
+          <Keyword text="equal?"/>
+          <Keyword text="error?"/>
+          <Keyword text="error_message"/>
+          <Keyword text="escape"/>
+          <Keyword text="euid"/>
+          <Keyword text="euid="/>
+          <Keyword text="eval"/>
+          <Keyword text="exception"/>
+          <Keyword text="exclude_end?"/>
+          <Keyword text="exec"/>
+          <Keyword text="executable?"/>
+          <Keyword text="executable_real?"/>
+          <Keyword text="exist?"/>
+          <Keyword text="exist2?"/>
+          <Keyword text="existw?"/>
+          <Keyword text="exit"/>
+          <Keyword text="exit!"/>
+          <Keyword text="exp"/>
+          <Keyword text="expand_path"/>
+          <Keyword text="extend"/>
+          <Keyword text="extend_object"/>
+          <Keyword text="fail"/>
+          <Keyword text="fcntl"/>
+          <Keyword text="fetch"/>
+          <Keyword text="file?"/>
+          <Keyword text="fileno"/>
+          <Keyword text="fill"/>
+          <Keyword text="find"/>
+          <Keyword text="find_all"/>
+          <Keyword text="find_library"/>
+          <Keyword text="finite?"/>
+          <Keyword text="first"/>
+          <Keyword text="flatten"/>
+          <Keyword text="flatten!"/>
+          <Keyword text="flock"/>
+          <Keyword text="flush"/>
+          <Keyword text="foreach"/>
+          <Keyword text="fork"/>
+          <Keyword text="format"/>
+          <Keyword text="freeze"/>
+          <Keyword text="frexp"/>
+          <Keyword text="frozen?"/>
+          <Keyword text="ftype"/>
+          <Keyword text="garbage_collect"/>
+          <Keyword text="get"/>
+          <Keyword text="getc"/>
+          <Keyword text="getogrp"/>
+          <Keyword text="getpriority"/>
+          <Keyword text="gets"/>
+          <Keyword text="getwd"/>
+          <Keyword text="get_option"/>
+          <Keyword text="gid"/>
+          <Keyword text="gid="/>
+          <Keyword text="glob"/>
+          <Keyword text="global_variables"/>
+          <Keyword text="gm"/>
+          <Keyword text="gmt?"/>
+          <Keyword text="gmtime"/>
+          <Keyword text="gregorian"/>
+          <Keyword text="gregorian_leap?"/>
+          <Keyword text="grep"/>
+          <Keyword text="grpowned?"/>
+          <Keyword text="gsub"/>
+          <Keyword text="gsub!"/>
+          <Keyword text="has_key?"/>
+          <Keyword text="has_value?"/>
+          <Keyword text="hash"/>
+          <Keyword text="have_func"/>
+          <Keyword text="have_header"/>
+          <Keyword text="have_library"/>
+          <Keyword text="hex"/>
+          <Keyword text="hour"/>
+          <Keyword text="id"/>
+          <Keyword text="id2name"/>
+          <Keyword text="image"/>
+          <Keyword text="include"/>
+          <Keyword text="include?"/>
+          <Keyword text="included_modules"/>
+          <Keyword text="index"/>
+          <Keyword text="indexes"/>
+          <Keyword text="indices"/>
+          <Keyword text="inherited"/>
+          <Keyword text="initialize"/>
+          <Keyword text="integer?"/>
+          <Keyword text="iterator?"/>
+          <Keyword text="intern"/>
+          <Keyword text="ino"/>
+          <Keyword text="inspect"/>
+          <Keyword text="install"/>
+          <Keyword text="instance_eval"/>
+          <Keyword text="instance_methods"/>
+          <Keyword text="instance_of?"/>
+          <Keyword text="instance_variables"/>
+          <Keyword text="ioctl"/>
+          <Keyword text="is_a?"/>
+          <Keyword text="isatty"/>
+          <Keyword text="isdst"/>
+          <Keyword text="italy"/>
+          <Keyword text="jd"/>
+          <Keyword text="join"/>
+          <Keyword text="julian"/>
+          <Keyword text="julian_leap?"/>
+          <Keyword text="kcode"/>
+          <Keyword text="key?"/>
+          <Keyword text="keys"/>
+          <Keyword text="kill"/>
+          <Keyword text="kind_of?"/>
+          <Keyword text="lambda"/>
+          <Keyword text="last"/>
+          <Keyword text="last_match"/>
+          <Keyword text="ldexp"/>
+          <Keyword text="leap?"/>
+          <Keyword text="length"/>
+          <Keyword text="lineno"/>
+          <Keyword text="lineno="/>
+          <Keyword text="link"/>
+          <Keyword text="list"/>
+          <Keyword text="ljust"/>
+          <Keyword text="load"/>
+          <Keyword text="local"/>
+          <Keyword text="local_variables"/>
+          <Keyword text="localtime"/>
+          <Keyword text="lock"/>
+          <Keyword text="locked?"/>
+          <Keyword text="log"/>
+          <Keyword text="log10"/>
+          <Keyword text="loop"/>
+          <Keyword text="lstat"/>
+          <Keyword text="main"/>
+          <Keyword text="makedirs"/>
+          <Keyword text="makepath"/>
+          <Keyword text="map"/>
+          <Keyword text="map!"/>
+          <Keyword text="match"/>
+          <Keyword text="max"/>
+          <Keyword text="mday"/>
+          <Keyword text="member?"/>
+          <Keyword text="members"/>
+          <Keyword text="message"/>
+          <Keyword text="method"/>
+          <Keyword text="method_added"/>
+          <Keyword text="method_defined?"/>
+          <Keyword text="method_missing"/>
+          <Keyword text="methods"/>
+          <Keyword text="min"/>
+          <Keyword text="mjd"/>
+          <Keyword text="mkdir"/>
+          <Keyword text="mktime"/>
+          <Keyword text="mode"/>
+          <Keyword text="module_eval"/>
+          <Keyword text="module_function"/>
+          <Keyword text="modulo"/>
+          <Keyword text="mon"/>
+          <Keyword text="month"/>
+          <Keyword text="move"/>
+          <Keyword text="mv"/>
+          <Keyword text="mtime"/>
+          <Keyword text="name"/>
+          <Keyword text="nan?"/>
+          <Keyword text="nesting"/>
+          <Keyword text="new"/>
+          <Keyword text="new1"/>
+          <Keyword text="new2"/>
+          <Keyword text="new3"/>
+          <Keyword text="newsg"/>
+          <Keyword text="neww"/>
+          <Keyword text="next!"/>
+          <Keyword text="nil?"/>
+          <Keyword text="nitems"/>
+          <Keyword text="nlink"/>
+          <Keyword text="nonzero?"/>
+          <Keyword text="now"/>
+          <Keyword text="ns?"/>
+          <Keyword text="oct"/>
+          <Keyword text="open"/>
+          <Keyword text="ordering"/>
+          <Keyword text="ordering="/>
+          <Keyword text="os?"/>
+          <Keyword text="owned?"/>
+          <Keyword text="p"/>
+          <Keyword text="pack"/>
+          <Keyword text="parsedate"/>
+          <Keyword text="pass"/>
+          <Keyword text="path"/>
+          <Keyword text="pid"/>
+          <Keyword text="pipe"/>
+          <Keyword text="pipe?"/>
+          <Keyword text="polar"/>
+          <Keyword text="pop"/>
+          <Keyword text="popen"/>
+          <Keyword text="pos"/>
+          <Keyword text="pos="/>
+          <Keyword text="ppid"/>
+          <Keyword text="print"/>
+          <Keyword text="printf"/>
+          <Keyword text="priority"/>
+          <Keyword text="priority="/>
+          <Keyword text="private_methods"/>
+          <Keyword text="proc"/>
+          <Keyword text="protected_methods"/>
+          <Keyword text="prune"/>
+          <Keyword text="public_methods"/>
+          <Keyword text="private_class_method"/>
+          <Keyword text="private_instance_methods"/>
+          <Keyword text="protected_instance_methods"/>
+          <Keyword text="public_class_method"/>
+          <Keyword text="public_instance_methods"/>
+          <Keyword text="push"/>
+          <Keyword text="putc"/>
+          <Keyword text="puts"/>
+          <Keyword text="pwd"/>
+          <Keyword text="require"/>
+          <Keyword text="quiet"/>
+          <Keyword text="quiet="/>
+          <Keyword text="quiet?"/>
+          <Keyword text="quote"/>
+          <Keyword text="raise"/>
+          <Keyword text="rand"/>
+          <Keyword text="rassoc"/>
+          <Keyword text="reject!"/>
+          <Keyword text="read"/>
+          <Keyword text="readable?"/>
+          <Keyword text="readable_real?"/>
+          <Keyword text="readchar"/>
+          <Keyword text="readline"/>
+          <Keyword text="readlines"/>
+          <Keyword text="readlink"/>
+          <Keyword text="real"/>
+          <Keyword text="rehash"/>
+          <Keyword text="reject"/>
+          <Keyword text="reject!"/>
+          <Keyword text="remainder"/>
+          <Keyword text="remove_const"/>
+          <Keyword text="remove_method"/>
+          <Keyword text="rename"/>
+          <Keyword text="reopen"/>
+          <Keyword text="replace"/>
+          <Keyword text="require"/>
+          <Keyword text="respond_to?"/>
+          <Keyword text="restore"/>
+          <Keyword text="reverse"/>
+          <Keyword text="reverse!"/>
+          <Keyword text="reverse_each"/>
+          <Keyword text="rewind"/>
+          <Keyword text="rdev"/>
+          <Keyword text="rindex"/>
+          <Keyword text="rjust"/>
+          <Keyword text="rmdir"/>
+          <Keyword text="rm_f"/>
+          <Keyword text="round"/>
+          <Keyword text="run"/>
+          <Keyword text="safe_level"/>
+          <Keyword text="safe_unlink"/>
+          <Keyword text="scan"/>
+          <Keyword text="sec"/>
+          <Keyword text="seek"/>
+          <Keyword text="select"/>
+          <Keyword text="send"/>
+          <Keyword text="setgid?"/>
+          <Keyword text="setpgid"/>
+          <Keyword text="setpgrp"/>
+          <Keyword text="setpriority"/>
+          <Keyword text="setsid"/>
+          <Keyword text="setuid?"/>
+          <Keyword text="set_backtrace"/>
+          <Keyword text="set_options"/>
+          <Keyword text="set_trace_func"/>
+          <Keyword text="sg"/>
+          <Keyword text="shift"/>
+          <Keyword text="signal"/>
+          <Keyword text="sin"/>
+          <Keyword text="singleton_methods"/>
+          <Keyword text="singleton_method_added"/>
+          <Keyword text="size"/>
+          <Keyword text="size?"/>
+          <Keyword text="sleep"/>
+          <Keyword text="slice"/>
+          <Keyword text="slice!"/>
+          <Keyword text="socket?"/>
+          <Keyword text="sort"/>
+          <Keyword text="sort!"/>
+          <Keyword text="source"/>
+          <Keyword text="split"/>
+          <Keyword text="sprintf"/>
+          <Keyword text="squeeze"/>
+          <Keyword text="squeeze!"/>
+          <Keyword text="sqrt"/>
+          <Keyword text="srand"/>
+          <Keyword text="start"/>
+          <Keyword text="stat"/>
+          <Keyword text="status"/>
+          <Keyword text="step"/>
+          <Keyword text="sticky?"/>
+          <Keyword text="stop"/>
+          <Keyword text="stop?"/>
+          <Keyword text="store"/>
+          <Keyword text="strftime"/>
+          <Keyword text="strip"/>
+          <Keyword text="strip!"/>
+          <Keyword text="sub"/>
+          <Keyword text="sub!"/>
+          <Keyword text="succ"/>
+          <Keyword text="succ!"/>
+          <Keyword text="superclass"/>
+          <Keyword text="symlink"/>
+          <Keyword text="symlink?"/>
+          <Keyword text="sync"/>
+          <Keyword text="synchronize"/>
+          <Keyword text="sync="/>
+          <Keyword text="syscall"/>
+          <Keyword text="syscopy"/>
+          <Keyword text="sysread"/>
+          <Keyword text="system"/>
+          <Keyword text="syswrite"/>
+          <Keyword text="swapcase"/>
+          <Keyword text="swapcase!"/>
+          <Keyword text="taint"/>
+          <Keyword text="tainted?"/>
+          <Keyword text="tell"/>
+          <Keyword text="terminate"/>
+          <Keyword text="test"/>
+          <Keyword text="throw"/>
+          <Keyword text="timeout"/>
+          <Keyword text="times"/>
+          <Keyword text="today"/>
+          <Keyword text="to_a"/>
+          <Keyword text="to_ary"/>
+          <Keyword text="to_f"/>
+          <Keyword text="to_i"/>
+          <Keyword text="to_io"/>
+          <Keyword text="to_proc"/>
+          <Keyword text="to_r"/>
+          <Keyword text="to_s"/>
+          <Keyword text="to_str"/>
+          <Keyword text="tr"/>
+          <Keyword text="tr!"/>
+          <Keyword text="trace_var"/>
+          <Keyword text="trap"/>
+          <Keyword text="try_lock"/>
+          <Keyword text="tr_s"/>
+          <Keyword text="tr_s!"/>
+          <Keyword text="truncate"/>
+          <Keyword text="tty?"/>
+          <Keyword text="tv_sec"/>
+          <Keyword text="tv_usec"/>
+          <Keyword text="type"/>
+          <Keyword text="uid"/>
+          <Keyword text="uid="/>
+          <Keyword text="umask"/>
+          <Keyword text="undef_method"/>
+          <Keyword text="ungetc"/>
+          <Keyword text="uniq"/>
+          <Keyword text="uniq!"/>
+          <Keyword text="unlink"/>
+          <Keyword text="unlock"/>
+          <Keyword text="unpack"/>
+          <Keyword text="unshift"/>
+          <Keyword text="untaint"/>
+          <Keyword text="untrace_var"/>
+          <Keyword text="upcase"/>
+          <Keyword text="upcase!"/>
+          <Keyword text="update"/>
+          <Keyword text="upto"/>
+          <Keyword text="usec"/>
+          <Keyword text="utc"/>
+          <Keyword text="utc?"/>
+          <Keyword text="utime"/>
+          <Keyword text="value?"/>
+          <Keyword text="values"/>
+          <Keyword text="var"/>
+          <Keyword text="wait"/>
+          <Keyword text="wait2"/>
+          <Keyword text="waitpid"/>
+          <Keyword text="waitpid2"/>
+          <Keyword text="wakeup"/>
+          <Keyword text="wday"/>
+          <Keyword text="weakref_alive?"/>
+          <Keyword text="write"/>
+          <Keyword text="writable?"/>
+          <Keyword text="writable_real?"/>
+          <Keyword text="yday"/>
+          <Keyword text="year"/>
+          <Keyword text="zero?"/>
+          <Keyword text="zone"/>
+        </Keywords>
+      </Style>
+      <Style name="Library Methods" image="9" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="a"/>
+          <Keyword text="accept"/>
+          <Keyword text="addr"/>
+          <Keyword text="add_observer"/>
+          <Keyword text="all"/>
+          <Keyword text="base"/>
+          <Keyword text="bind"/>
+          <Keyword text="binmode="/>
+          <Keyword text="blockquote"/>
+          <Keyword text="caption"/>
+          <Keyword text="changed"/>
+          <Keyword text="changed?"/>
+          <Keyword text="checkbox"/>
+          <Keyword text="checkbox_group"/>
+          <Keyword text="cmd"/>
+          <Keyword text="code"/>
+          <Keyword text="const_load"/>
+          <Keyword text="content_type"/>
+          <Keyword text="cookies"/>
+          <Keyword text="connect"/>
+          <Keyword text="count_observers"/>
+          <Keyword text="debug_mode"/>
+          <Keyword text="debug_mode="/>
+          <Keyword text="delete_observer"/>
+          <Keyword text="delete_observers"/>
+          <Keyword text="dir"/>
+          <Keyword text="do_not_reverse_lookup"/>
+          <Keyword text="do_not_reverse_lookup="/>
+          <Keyword text="escapeElement"/>
+          <Keyword text="escapeHTML"/>
+          <Keyword text="file_field"/>
+          <Keyword text="form"/>
+          <Keyword text="for_fd"/>
+          <Keyword text="getaddress"/>
+          <Keyword text="getaddrinfo"/>
+          <Keyword text="getbinaryfile"/>
+          <Keyword text="gethostbyaddr"/>
+          <Keyword text="gethostbyname"/>
+          <Keyword text="gethostname"/>
+          <Keyword text="getnameinfo"/>
+          <Keyword text="getservbyname"/>
+          <Keyword text="getpeername"/>
+          <Keyword text="getsockname"/>
+          <Keyword text="getsockopt"/>
+          <Keyword text="gettextfile"/>
+          <Keyword text="head"/>
+          <Keyword text="header"/>
+          <Keyword text="hidden"/>
+          <Keyword text="html"/>
+          <Keyword text="img"/>
+          <Keyword text="img_button"/>
+          <Keyword text="invoke"/>
+          <Keyword text="lastresp"/>
+          <Keyword text="listen"/>
+          <Keyword text="local_path"/>
+          <Keyword text="login"/>
+          <Keyword text="lookup_order"/>
+          <Keyword text="lookup_order="/>
+          <Keyword text="ls"/>
+          <Keyword text="mails"/>
+          <Keyword text="message_loop"/>
+          <Keyword text="multipart_form"/>
+          <Keyword text="notify_observers"/>
+          <Keyword text="on_event"/>
+          <Keyword text="original_filename"/>
+          <Keyword text="out"/>
+          <Keyword text="pair"/>
+          <Keyword text="params"/>
+          <Keyword text="parse"/>
+          <Keyword text="passive"/>
+          <Keyword text="passive="/>
+          <Keyword text="password_field"/>
+          <Keyword text="peeraddr"/>
+          <Keyword text="popup_menu"/>
+          <Keyword text="port"/>
+          <Keyword text="post"/>
+          <Keyword text="pretty"/>
+          <Keyword text="putbinaryfile"/>
+          <Keyword text="puttextfile"/>
+          <Keyword text="radio_button"/>
+          <Keyword text="radio_groupready"/>
+          <Keyword text="recv"/>
+          <Keyword text="recvfrom"/>
+          <Keyword text="reset"/>
+          <Keyword text="resume"/>
+          <Keyword text="resume="/>
+          <Keyword text="retrbinary"/>
+          <Keyword text="retrlinew"/>
+          <Keyword text="return_code"/>
+          <Keyword text="rfc1123_date"/>
+          <Keyword text="scrolling_list"/>
+          <Keyword text="sendmail"/>
+          <Keyword text="setsockopt"/>
+          <Keyword text="shutdown"/>
+          <Keyword text="socketpair"/>
+          <Keyword text="storbinary"/>
+          <Keyword text="storlines"/>
+          <Keyword text="submit"/>
+          <Keyword text="telnetmode"/>
+          <Keyword text="telnetmode="/>
+          <Keyword text="text_field"/>
+          <Keyword text="textarea"/>
+          <Keyword text="top"/>
+          <Keyword text="uidl"/>
+          <Keyword text="unescape"/>
+          <Keyword text="unescapeElement"/>
+          <Keyword text="unescapeHTML"/>
+          <Keyword text="waitfor"/>
+          <Keyword text="welcome"/>
+        </Keywords>
+      </Style>
+      <Style name="Pseudo variables" image="13" bold="1" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="false"/>
+          <Keyword text="true"/>
+          <Keyword text="self"/>
+          <Keyword text="nil"/>
+          <Keyword text="__FILE__"/>
+          <Keyword text="__LINE__"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" text="1" bold="2" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

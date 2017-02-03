@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="idl" name="IDL" inherit="cbased" inherit_url="cbased_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.idl"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <FormatWords>
+        <FormatWord word="methods" next_line="true" range_till_next="true" pos_sent_start="1"/>
+        <FormatWord word="properties" next_line="true" range_till_next="true" pos_sent_start="1"/>
+      </FormatWords>
+    </FORMAT>
+    <SCOPES>
+      <Scope open="[" close="]"/>
+    </SCOPES>
+    <STYLES>
+      <Style name="Preprocessor Keywords" inherit="cpp:preprocessor_keyword" bold="0" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="cpp_quote"/>
+          <Keyword text="midl_pragma"/>
+          <Keyword text="warning"/>
+        </Keywords>
+      </Style>
+      <Style name="Preprocessor parameter" inherit="cpp:preprocessor_parameter" clr="Keyword2" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style name="Preprocessor directive" inherit="cpp:preprocessor_directive" clr="Keyword3" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style name="Attributes" image="13" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="aggregatable"/>
+          <Keyword text="appobject"/>
+          <Keyword text="bindable"/>
+          <Keyword text="broadcast"/>
+          <Keyword text="callback"/>
+          <Keyword text="const"/>
+          <Keyword text="context_handle"/>
+          <Keyword text="control"/>
+          <Keyword text="custom"/>
+          <Keyword text="default"/>
+          <Keyword text="defaultbind"/>
+          <Keyword text="defaultcollelem"/>
+          <Keyword text="defaultvalue"/>
+          <Keyword text="defaultvtable"/>
+          <Keyword text="displaybind"/>
+          <Keyword text="dllname"/>
+          <Keyword text="dual"/>
+          <Keyword text="endpoint"/>
+          <Keyword text="entry"/>
+          <Keyword text="first_is"/>
+          <Keyword text="handle"/>
+          <Keyword text="helpcontext"/>
+          <Keyword text="helpfile"/>
+          <Keyword text="helpstring"/>
+          <Keyword text="helpstringcontext"/>
+          <Keyword text="helpstringdll"/>
+          <Keyword text="hidden"/>
+          <Keyword text="id"/>
+          <Keyword text="idempotentent"/>
+          <Keyword text="ignore"/>
+          <Keyword text="iid_is"/>
+          <Keyword text="immediatebind"/>
+          <Keyword text="in"/>
+          <Keyword text="last_is"/>
+          <Keyword text="lcid"/>
+          <Keyword text="length_is"/>
+          <Keyword text="licensed"/>
+          <Keyword text="local"/>
+          <Keyword text="max_is"/>
+          <Keyword text="maybe"/>
+          <Keyword text="message"/>
+          <Keyword text="ms_union"/>
+          <Keyword text="nonbrowsable"/>
+          <Keyword text="noncreatable"/>
+          <Keyword text="nonextensible"/>
+          <Keyword text="object"/>
+          <Keyword text="oleautomation"/>
+          <Keyword text="optional"/>
+          <Keyword text="out"/>
+          <Keyword text="pointer_default"/>
+          <Keyword text="propget"/>
+          <Keyword text="propput"/>
+          <Keyword text="propputref"/>
+          <Keyword text="ptr"/>
+          <Keyword text="public"/>
+          <Keyword text="range"/>
+          <Keyword text="readonly"/>
+          <Keyword text="ref"/>
+          <Keyword text="requestedit"/>
+          <Keyword text="restricted"/>
+          <Keyword text="retval"/>
+          <Keyword text="size_is"/>
+          <Keyword text="source"/>
+          <Keyword text="string"/>
+          <Keyword text="switch_is"/>
+          <Keyword text="switch_type"/>
+          <Keyword text="transmit_as"/>
+          <Keyword text="uidefault"/>
+          <Keyword text="unique"/>
+          <Keyword text="user_marshal"/>
+          <Keyword text="usesgetlasterror"/>
+          <Keyword text="uuid"/>
+          <Keyword text="v1_enum"/>
+          <Keyword text="vararg"/>
+          <Keyword text="version"/>
+          <Keyword text="wire_marshal"/>
+        </Keywords>
+      </Style>
+      <Style name="DataTypes" image="12" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="auto"/>
+          <Keyword text="boolean"/>
+          <Keyword text="BSTR"/>
+          <Keyword text="byte"/>
+          <Keyword text="char"/>
+          <Keyword text="double"/>
+          <Keyword text="error_status_t"/>
+          <Keyword text="float"/>
+          <Keyword text="handle_t"/>
+          <Keyword text="HBITMAP"/>
+          <Keyword text="HENHMETAFILE"/>
+          <Keyword text="HGLOBAL"/>
+          <Keyword text="HMETAFILE"/>
+          <Keyword text="HMETAFILE_PICT"/>
+          <Keyword text="HPALETTE"/>
+          <Keyword text="HRESULT"/>
+          <Keyword text="hyper"/>
+          <Keyword text="int"/>
+          <Keyword text="IUnknown"/>
+          <Keyword text="IDispatch"/>
+          <Keyword text="IDispatchEx"/>
+          <Keyword text="long"/>
+          <Keyword text="SAFEARRAY"/>
+          <Keyword text="short"/>
+          <Keyword text="signed"/>
+          <Keyword text="small"/>
+          <Keyword text="unsigned"/>
+          <Keyword text="variant"/>
+          <Keyword text="VARIANT_BOOL"/>
+          <Keyword text="void"/>
+          <Keyword text="wchar_t"/>
+          <Keyword text="__int32"/>
+          <Keyword text="__int64"/>
+        </Keywords>
+      </Style>
+      <Style name="Keywords" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="case"/>
+          <Keyword text="coclass"/>
+          <Keyword text="dispinterface"/>
+          <Keyword text="enum"/>
+          <Keyword text="interface"/>
+          <Keyword text="import"/>
+          <Keyword text="importlib"/>
+          <Keyword text="library"/>
+          <Keyword text="module"/>
+          <Keyword text="methods"/>
+          <Keyword text="pipe"/>
+          <Keyword text="properties"/>
+          <Keyword text="struct"/>
+          <Keyword text="switch"/>
+          <Keyword text="typedef"/>
+          <Keyword text="union"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

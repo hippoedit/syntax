@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="hexmldlg" name="HE XML Dlg" inherit="xml" inherit_url="xml_spec.xml" abstract="true">
+    <LABELS>
+      <Label group="Dialog" match="dialog\s+title=&quot;(.+?)&quot;" name="Dialog &quot;\1&quot;" scope="1" image="16">
+        <Containers open="xml_open_tag"/>
+      </Label>
+    </LABELS>
+    <SCOPES open_container="xml_open_tag" close_container="xml_close_tag">
+      <Scope open="dialog" close="dialog"/>
+      <Scope open="group" close="group"/>
+      <Scope open="groupbox" close="groupbox"/>
+      <Scope open="tabcontrol" close="tabcontrol"/>
+      <Scope open="tab" close="tab"/>
+      <Scope open="image" close="image" strict="false"/>      
+      <Scope open="multi_listbox" close="multi_listbox"/>
+      <Scope open="listbox" close="listbox"/>
+      <Scope open="combobox" close="combobox"/>
+      <Scope open="radio_button_group" close="radio_button_group"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="scope" name="Text Highlights" bold="1" italic="2" underline="2" clr="Keyword4" bkclr="#FFFFFFFF"/>
+      <Style id="scope_error" name="Text Highlights Error" bold="1" italic="0" underline="0" clr="Error" bkclr="#FFFFFFFF" overview="1"/>
+      <Style name="Controls" image="9" bold="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_close_tag"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="button"/>
+          <Keyword text="checkbox"/>
+          <Keyword text="color_browser"/>
+          <Keyword text="columnbreak"/>
+          <Keyword text="combobox"/>
+          <Keyword text="datetime"/>
+          <Keyword text="dialog"/>
+          <Keyword text="dir_browser"/>
+          <Keyword text="edit"/>
+          <Keyword text="file_browser"/>
+          <Keyword text="font_browser"/>
+          <Keyword text="group" lead="[&lt;/]"/>
+          <Keyword text="groupbox"/>
+          <Keyword text="history_edit"/>
+          <Keyword text="hspacer"/>
+          <Keyword text="icon_browser"/>
+          <Keyword text="image"/>
+          <Keyword text="item"/>
+          <Keyword text="listbox"/>
+          <Keyword text="multi_listbox"/>
+          <Keyword text="paragraph"/>
+          <Keyword text="radio_button_group"/>
+          <Keyword text="radiobutton"/>
+          <Keyword text="sectionbreak"/>
+          <Keyword text="spacer"/>
+          <Keyword text="spin"/>
+          <Keyword text="tab"/>
+          <Keyword text="tabcontrol"/>
+          <Keyword text="tri_state_checkbox"/>
+        </Keywords>
+      </Style>
+      <Style name="Property" image="11" bold="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Keywords pattern="%CurrentWord%=&quot;%|%&quot;">
+          <Keyword text="admin"/>
+          <Keyword text="align"/>
+          <Keyword text="autocomplete"/>
+          <Keyword text="checked"/>
+          <Keyword text="colour"/>
+          <Keyword text="contexthelp"/>
+          <Keyword text="cuebanner"/>
+          <Keyword text="default"/>
+          <Keyword text="display"/>
+          <Keyword text="extended_sel"/>
+          <Keyword text="filter"/>
+          <Keyword text="font"/>
+          <Keyword text="format"/>
+          <Keyword text="group" trail="="/>
+          <Keyword text="groupstart"/>
+          <Keyword text="hstretch"/>
+          <Keyword text="id"/>
+          <Keyword text="max"/>
+          <Keyword text="min"/>
+          <Keyword text="minheight"/>
+          <Keyword text="minwidth"/>
+          <Keyword text="modal"/>
+          <Keyword text="path"/>
+          <Keyword text="orientation"/>
+          <Keyword text="pos"/>
+          <Keyword text="positive"/>
+          <Keyword text="properties"/>
+          <Keyword text="resource"/>          
+          <Keyword text="required"/>
+          <Keyword text="resizing"/>
+          <Keyword text="returnval"/>
+          <Keyword text="selected"/>
+          <Keyword text="selected_index"/>
+          <Keyword text="selected_value"/>
+          <Keyword text="size"/>
+          <Keyword text="spacing"/>
+          <Keyword text="state"/>
+          <Keyword text="style"/>
+          <Keyword text="sys_icon"/>
+          <Keyword text="text"/>
+          <Keyword text="title"/>
+          <Keyword text="vstretch"/>
+          <Keyword text="uniform"/>
+        </Keywords>
+      </Style>
+      <Style name="Event" image="20" bold="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="onclick"/>
+          <Keyword text="onchange"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

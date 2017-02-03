@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="Dependency"/>
+  <SYNTAX id="vip">
+<!--	<File local="./download/syntax/vip/help/VIPPROGR.chm" dest="data/syntax/vip/help/VIPPROGR.chm" descr="Vip help file"/> -->
+	<Link url="http://www.tyumbit.ru/gal_forum/viewtopic.php?t=10184&amp;sid=c462702837cbc0582c6cd7cf2c53afe5" name="Galaktika forum" descr="Official Galaktika forum topic of HippoEDIT discussion"/>
+  </SYNTAX>
+</XMLConfigSettings>

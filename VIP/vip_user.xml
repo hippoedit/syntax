@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+	<FILEINFO author="Szmn" type="LangUser"/>
+	<SYNTAX id="vip" inherit="def_source" inherit_url="defsource_user.xml">
+		<CodeTemplates>
+			<Template key="while" descr="while(){}">while ()\n{\n%|%\n}</Template>
+			<Template key="ife" descr="if(){}else{}">if (%|%)\n{\n}\nelse\n{\n}</Template>
+			<Template key="if" descr="if(){}">if ()\n{\n%|%\n}</Template>
+			<Template key="obj" descr="objInterface end;">objInterface IObjInterface1;\n%|%\nend;</Template>
+			<Template key="/**" descr="/**......**/">/*************************************************\n*  %|%\n*************************************************/</Template>
+			<Template key="han" descr="handleEvent end;">handleEvent\n\tcmInit:\n{\n\t\t%|%\n}\nend;</Template>
+			<Template key="do" descr="do{}while();">do\n{\n%|%\n}\nwhile ();</Template>
+			<Template key="///" descr="/////////.......">////////////////////////////////////////////////////////////////////////</Template>
+			<Template key="for" descr="for (i := 0; i &lt; ; i++) {  }">for (i := 0; i &lt; %|%; i++)\n{\n}</Template>
+			<Template key="inter" descr="interface end.">interface Interface1;\n%|%\nend.</Template>
+		</CodeTemplates>
+		<HELP>
+			<Help name="VIPPROGR" arguments="%CurrentWord%" key="112" url="%AppDataDir%syntax\\Vip\\Help\\VIPPROGR.chm"/>
+		</HELP>
+	</SYNTAX>
+</XMLConfigSettings>

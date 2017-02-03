@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="SynCap.ru" type="LangSpec" />
+  <SYNTAX id="apache" name="Apache config" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.conf;.htaccess;.htgroups;.htpasswd"/>
+      <Delimiters>,;.?:&amp;/+%\*=|!~^#&lt;&gt;</Delimiters>
+      <OpenClose>()[]''&quot;&quot;</OpenClose>
+      <EscapeChar>\</EscapeChar>
+      <Words>0-9A-Za-z_--</Words>
+      <Numbers>0-9.</Numbers>
+      <Operators>=*</Operators>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <SCOPES open_container="xml_open_tag" close_container="xml_close_tag">
+      <Scope  open="IfDefine" close="IfDefine" />
+      <Scope  open="IfModule" close="IfModule" has_name="true"/>
+      <Scope  open="Directory" close="Directory" />
+      <Scope  open="DirectoryMatch" close="DirectoryMatch" />
+      <Scope  open="Files" close="Files" />
+      <Scope  open="FilesMatch" close="FilesMatch" />
+      <Scope  open="Location" close="Location" />
+      <Scope  open="LocationMatch" close="LocationMatch" />
+      <Scope  open="Proxy" close="Proxy" />
+      <Scope  open="LimitExcept" close="LimitExcept" />
+      <Scope  open="Limit" close="Limit" />
+      <Scope  open="VirtualHost" close="VirtualHost" />
+    </SCOPES>
+    <LABELS>
+      <Label group="Directory" match="Directory(?:\s+(&quot;.+?&quot;)\s*)?" image="7" name="Directory \1" descr="Directory \1" scope="1">
+        <Containers open="xml_open_tag"/>
+      </Label>
+      <Label group="IfModule" match="IfModule\s+([\w.]+)" image="8" name="Module \1" scope="1">
+        <Containers open="xml_open_tag"/>
+      </Label>
+      <Label group="Important" match="^\s*ServerName\s+(.+?)$" name="ServerName \1" image="9"/>
+      <Label group="Important" match="^\s*DocumentRoot\s+(.+?)$" name="DocumentRoot \1" image="7"/>
+      <Label group="Important" match="^\s*Port\s+(.+?)$" name="Port \1" image="7"/>
+    </LABELS>
+    <STYLES>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="0" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="string"/>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Containers>
+          <Open id="xml_open_tag"/>
+        </Containers>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="xml_open_tag"/>
+        </Containers>
+        <Blocks>
+          <Block open="&quot;" close="&quot;">
+            <Close text="\n"/>
+          </Block>
+          <Block open="'" close="'">
+            <Close text="\n"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="xml_open_tag" name="Open Tags" bold="0" italic="0" underline="0" clr="Tag" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&lt;" close="&gt;">
+            <Close text="/&gt;"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="xml_close_tag" name="Close Tags" bold="0" italic="0" underline="0" clr="Tag" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&lt;/" close="&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="xml_node" name="Node" bold="2" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_close_tag"/>
+        </Containers>
+        <Words>
+          <Word lead_with="&lt;" lead="&lt;"/>
+          <Word trail_with="&gt;" trail="&gt;"/>
+        </Words>
+      </Style>
+      <Style id="variable" name="Variable" image="6" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="string"/>
+          <Open id="command"/>
+        </Containers>
+        <Blocks>
+          <Block open="%{" close="}"/>
+        </Blocks>
+      </Style>
+      <Style name="Built-In Variables" bold="0" image="6" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="variable"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="HTTP_HOST"/>
+        </Keywords>
+      </Style>
+      <Style name="Directives" image="13" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="AccessConfig"/>
+          <Keyword text="AccessFileName"/>
+          <Keyword text="Action"/>
+          <Keyword text="AddCharset"/>
+          <Keyword text="AddDefaultCharset"/>
+          <Keyword text="AddDescription"/>
+          <Keyword text="AddEncoding"/>
+          <Keyword text="AddHandler"/>
+          <Keyword text="AddIcon"/>
+          <Keyword text="AddIconByEncoding"/>
+          <Keyword text="AddIconByType"/>
+          <Keyword text="AddLanguage"/>
+          <Keyword text="AddModule"/>
+          <Keyword text="AddOutputFilter"/>
+          <Keyword text="AddOutputFilterByType"/>
+          <Keyword text="AddType"/>
+          <Keyword text="Alias"/>
+          <Keyword text="Allow"/>
+          <Keyword text="AllowOverride"/>
+          <Keyword text="AuthName"/>
+          <Keyword text="AuthType"/>
+          <Keyword text="BindAddress"/>
+          <Keyword text="BrowserMatch"/>
+          <Keyword text="CacheDefaultExpire"/>
+          <Keyword text="CacheGcInterval"/>
+          <Keyword text="CacheLastModifiedFactor"/>
+          <Keyword text="CacheMaxExpire"/>
+          <Keyword text="CacheNegotiatedDocs"/>
+          <Keyword text="CacheRoot"/>
+          <Keyword text="CacheSize"/>
+          <Keyword text="ClearModuleList"/>
+          <Keyword text="CustomLog"/>
+          <Keyword text="Dav"/>
+          <Keyword text="DavLockDB"/>
+          <Keyword text="DefaultIcon"/>
+          <Keyword text="DefaultType"/>
+          <Keyword text="DeflateCompressionLevel"/>
+          <Keyword text="Deny"/>
+          <Keyword text="DirectoryIndex"/>
+          <Keyword text="DocumentRoot"/>
+          <Keyword text="ErrorDocument"/>
+          <Keyword text="ErrorLog"/>
+          <Keyword text="ExpiresActive"/>
+          <Keyword text="ExpiresDefault"/>
+          <Keyword text="ExtendedStatus"/>
+          <Keyword text="FileETag"/>
+          <Keyword text="ForceLanguagePriority"/>
+          <Keyword text="Header"/>
+          <Keyword text="HeaderName"/>
+          <Keyword text="HostnameLookups"/>
+          <Keyword text="Include"/>
+          <Keyword text="IndexIgnore"/>
+          <Keyword text="IndexOptions"/>
+          <Keyword text="JkSet"/>
+          <Keyword text="JkUriSet"/>
+          <Keyword text="KeepAlive"/>
+          <Keyword text="KeepAliveTimeout"/>
+          <Keyword text="LanguagePriority"/>
+          <Keyword text="Listen"/>
+          <Keyword text="LoadFile"/>
+          <Keyword text="LoadModule"/>
+          <Keyword text="LogFormat"/>
+          <Keyword text="LogLevel"/>
+          <Keyword text="MIMEMagicFile"/>
+          <Keyword text="MaxKeepAliveRequests"/>
+          <Keyword text="MaxRequestsPerChild"/>
+          <Keyword text="MetaDir"/>
+          <Keyword text="MetaSuffix"/>
+          <Keyword text="NameVirtualHost"/>
+          <Keyword text="NoCache"/>
+          <Keyword text="Options"/>
+          <Keyword text="Order"/>
+          <Keyword text="PHPIniDir"/>
+          <Keyword text="PidFile"/>
+          <Keyword text="Port"/>
+          <Keyword text="ProxyPass"/>
+          <Keyword text="ProxyPassReverse"/>
+          <Keyword text="ProxyRequests"/>
+          <Keyword text="ProxyVia"/>
+          <Keyword text="ReadmeName"/>
+          <Keyword text="RedirectMatch"/>
+          <Keyword text="RedirectTemp"/>
+          <Keyword text="Require"/>
+          <Keyword text="ResourceConfig"/>
+          <Keyword text="RewriteBase"/>
+          <Keyword text="RewriteCond"/>
+          <Keyword text="RewriteEngine"/>
+          <Keyword text="RewriteRule"/>
+          <Keyword text="SSIErrorMsg"/>
+          <Keyword text="SSITimeFormat"/>
+          <Keyword text="SSIUndefinedEcho"/>
+          <Keyword text="SSPIAuth"/>
+          <Keyword text="SSPIAuthoritative"/>
+          <Keyword text="SSPIDomain"/>
+          <Keyword text="SSPIOfferBasic"/>
+          <Keyword text="Satisfy"/>
+          <Keyword text="ScoreBoardFile"/>
+          <Keyword text="ScriptAlias"/>
+          <Keyword text="ScriptInterpreterSource"/>
+          <Keyword text="ServerAdmin"/>
+          <Keyword text="ServerAlias"/>
+          <Keyword text="ServerName"/>
+          <Keyword text="ServerRoot"/>
+          <Keyword text="ServerSignature"/>
+          <Keyword text="ServerTokens"/>
+          <Keyword text="ServerType"/>
+          <Keyword text="SetEnv"/>
+          <Keyword text="SetEnvIf"/>
+          <Keyword text="SetEnvIfNoCase"/>
+          <Keyword text="SetHandler"/>
+          <Keyword text="SetOutputFilter"/>
+          <Keyword text="ThreadsPerChild"/>
+          <Keyword text="Timeout"/>
+          <Keyword text="TypesConfig"/>
+          <Keyword text="UseCanonicalName"/>
+          <Keyword text="UserDir"/>
+          <Keyword text="VirtualHost"/>          
+          <Keyword text="SSLRandomSeed"/>          
+        </Keywords>
+      </Style>
+      <Style name="Common Values" image="13" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="AuthConfig"/>
+          <Keyword text="CMP"/>
+          <Keyword text="Cache-Control"/>
+          <Keyword text="DEFLATE"/>
+          <Keyword text="ETag"/>
+          <Keyword text="ExecCGI"/>
+          <Keyword text="Fallback"/>
+          <Keyword text="FancyIndexing"/>
+          <Keyword text="FileInfo"/>
+          <Keyword text="FoldersFirst"/>
+          <Keyword text="FollowSymLinks"/>
+          <Keyword text="Full"/>
+          <Keyword text="IMG"/>
+          <Keyword text="INCLUDES"/>
+          <Keyword text="Includes"/>
+          <Keyword text="IncludesNoExec"/>
+          <Keyword text="Indexes"/>
+          <Keyword text="Indexes"/>
+          <Keyword text="Indexes"/>
+          <Keyword text="Last-Modified"/>
+          <Keyword text="Min"/>
+          <Keyword text="MultiViews"/>
+          <Keyword text="None"/>
+          <Keyword text="Off"/>
+          <Keyword text="On"/>
+          <Keyword text="Pragma"/>
+          <Keyword text="Prefer"/>
+          <Keyword text="Request_URI"/>
+          <Keyword text="SND"/>
+          <Keyword text="SSPI"/>
+          <Keyword text="TXT"/>
+          <Keyword text="VID"/>
+          <Keyword text="VersionSort"/>
+          <Keyword text="agent"/>
+          <Keyword text="all"/>
+          <Keyword text="allow"/>
+          <Keyword text="append"/>
+          <Keyword text="application"/>
+          <Keyword text="combined"/>
+          <Keyword text="common"/>
+          <Keyword text="deny"/>
+          <Keyword text="dont-vary"/>
+          <Keyword text="downgrade"/>
+          <Keyword text="downgrade-1.0"/>
+          <Keyword text="env"/>
+          <Keyword text="force"/>
+          <Keyword text="force-response-1.0"/>
+          <Keyword text="from"/>
+          <Keyword text="group"/>
+          <Keyword text="localhost"/>
+          <Keyword text="no-gzip"/>
+          <Keyword text="nokeepalive"/>
+          <Keyword text="prefer-language"/>
+          <Keyword text="redirect-carefully"/>
+          <Keyword text="referer"/>
+          <Keyword text="registry"/>
+          <Keyword text="response"/>
+          <Keyword text="send-as-is"/>
+          <Keyword text="set"/>
+          <Keyword text="standalone"/>
+          <Keyword text="type-map"/>
+          <Keyword text="unset"/>
+          <Keyword text="user"/>
+          <Keyword text="valid-user"/>
+          <Keyword text="warn"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

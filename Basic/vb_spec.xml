@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="vb" name="Visual Basic" inherit="basic" inherit_url="basic_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.vb"/>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="region" close="end region" has_name="true" separator="true">
+        <Containers open="format_tag" close="format_tag"/>
+      </Scope>
+      <Scope open="Property" close="End Property" has_name="true" separator="true" strict="false"/>
+      <Scope open="Module" close="End Module" has_name="true" separator="true"/>
+      <Scope open="Get" close="End Get" strict="false"/>
+      <Scope open="Set" close="End Set" strict="false"/>
+      <Scope open="Using" close="End Using"/>
+      <Scope open="Namespace" close="End Namespace" has_name="true"/>
+      <Scope open="Structure" close="End Structure" has_name="true"/>
+      <Scope open="Try" middle="Catch" close="End Try">
+        <Middle text="Finally"/>
+      </Scope>
+      <Scope open="Delegate Sub" strict="false"/>
+    </SCOPES>
+    <LABELS>
+      <Label group="Subroutine" match="(?!exit|end)(sub|function)[\s\[]+(\w+)[\s\]]*(\([^)]*\))" name="\2" descr="\1 \2 \3" image="6" scope="1">
+        <Image if="\1" equal="sub" value="9"/>
+      </Label>
+      <Label group="Property" match="(?!end)(public|private)?\s+(?:readonly)?\s+property\s+(\w+)\s*\(\s*\)" name="\2" descr="Property \2" image="18" scope="1">
+        <SubImage if="\1" equal="public" value="2"/>
+        <SubImage if="\1" equal="private" value="4"/>
+      </Label>
+      <Label group="Class" match="(?!end)(public|private|end)?\s+class\s+(\w+)\s*" name="\2" descr="Class \2" image="5" scope="1">
+        <SubImage if="\1" equal="public" value="2"/>
+        <SubImage if="\1" equal="private" value="4"/>
+      </Label>      
+    </LABELS>
+    <STYLES>
+      <Style id="comment" extend="true">
+        <Blocks>
+          <Block open="'" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="documentation" name="Documentation" text="1" bold="0" italic="1" underline="0" clr="Documentation" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'''" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="System" text="1" bold="0" italic="1" underline="0" clr="Documentation" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&lt;System" close="&gt;"/>
+          <Block open="&lt;CLSCompliant" close="&gt;"/>
+          <Block open="&lt;Assembly:" close="&gt;"/>
+          <Block open="&lt;Global" close="&gt;"/>
+          <Block open="&lt;Microsoft" close="&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="format_tag" name="Format tags" bold="0" italic="1" underline="0" clr="Format tag" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" extend="true">
+        <Containers>
+          <Open id="format_tag"/>
+        </Containers>
+      </Style>
+      <Style id="objects" extend="true">
+        <Keywords>
+          <Keyword text="Hashtable"/>
+        </Keywords>
+      </Style>
+      <Style id="statements" extend="true">
+        <Keywords>
+          <Keyword text="Catch"/>
+          <Keyword text="Imports"/>
+          <Keyword text="Inherits"/>
+          <Keyword text="Finally"/>
+          <Keyword text="Overloads"/>
+          <Keyword text="Overrides"/>
+          <Keyword text="Module"/>
+          <Keyword text="Namespace"/>
+          <Keyword text="Partial"/>
+          <Keyword text="Return"/>
+          <Keyword text="Shared"/>
+          <Keyword text="Structure"/>
+          <Keyword text="Try"/>
+          <Keyword text="Using"/>
+        </Keywords>
+      </Style>
+      <Style id="functions" extend="true">
+        <Keywords>
+          <Keyword text="WriteLine"/>
+        </Keywords>
+      </Style>
+      <Style name="DocXML" text="1" bold="1" italic="2" underline="2" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="documentation"/>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="&lt;" close="&gt;"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

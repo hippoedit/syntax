@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Theno" type="LangSpec"/>
+  <SYNTAX id="html_asp" name="HTML (ASP)" inherit="html" inherit_url="html_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.asp"/>
+    </SPECIFICATION>
+    <STYLES>
+      <Style name="PHP" exclude="true"/>
+      <Style name="ASP" include="asp:normal" bold="0" italic="0" underline="0" overview="1" clr="#FF000000" bkclr="Embedded Language 1 Back">
+        <Containers>
+          <Close id="asp:normal"/>
+          <Close id="asp:comment"/>
+          <Open id="js:string"/>
+          <Open id="js:char"/>
+          <Open id="js:normal"/>
+          <Open id="normal"/>
+          <Open id="string"/>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_close_tag"/>
+        </Containers>
+        <Blocks>
+          <Block open="&lt;%" close="%&gt;"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

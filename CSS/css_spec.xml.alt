@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="css" name="CSS" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.css"/>
+      <OpenClose>(){}''""</OpenClose>
+      <Operators>?(-/=&lt;&gt;:%</Operators>
+      <Delimiters>&amp;/%/|!~^</Delimiters>
+      <Words>0-9A-Za-z_--#</Words>
+      <Numbers>0-9pxemexptcm</Numbers>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+    </SCOPES>
+    <LABELS>
+      <Label group="Class" match="\}(?:\s*\}\s*)*([\w#.: \-]+)\{" name="\1" image="9" scope="1"/>
+    </LABELS>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="string"/>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="/*" close="*/"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style id="elements" name="Elements" inherit="html:elements" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF"/>
+      <Style name="Attributes" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="background" descr="A shorthand property for setting all background properties in one declaration"/>
+          <Keyword text="background-attachment" descr="Sets whether a background image is fixed or scrolls with the rest of the page"/>
+          <Keyword text="background-color" descr="Sets the background color of an element"/>
+          <Keyword text="background-image" descr="Sets an image as the background"/>
+          <Keyword text="background-position" descr="Sets the starting position of a background image"/>
+          <Keyword text="background-repeat" descr="Sets if/how a background image will be repeated"/>
+          <Keyword text="border" descr="A shorthand property for setting all of the properties for the four borders in one declaration"/>
+          <Keyword text="border-bottom" descr="A shorthand property for setting all of the properties for the bottom border in one declaration"/>
+          <Keyword text="border-bottom-color" descr="Sets the color of the bottom border"/>
+          <Keyword text="border-bottom-style" descr="Sets the style of the bottom border"/>
+          <Keyword text="border-bottom-width" descr="Sets the width of the bottom border"/>
+          <Keyword text="border-collapse" descr="Sets whether the table borders are collapsed into a single border or detached as in standard HTML"/>
+          <Keyword text="border-color" descr="Sets the color of the four borders, can have from one to four colors"/>
+          <Keyword text="border-left" descr="A shorthand property for setting all of the properties for the left border in one declaration"/>
+          <Keyword text="border-left-color" descr="Sets the color of the left border"/>
+          <Keyword text="border-left-style" descr="Sets the style of the left border"/>
+          <Keyword text="border-left-width" descr="Sets the width of the left border"/>
+          <Keyword text="border-right" descr="A shorthand property for setting all of the properties for the right border in one declaration"/>
+          <Keyword text="border-right-color" descr="Sets the color of the right border"/>
+          <Keyword text="border-right-style" descr="Sets the style of the right border"/>
+          <Keyword text="border-right-width" descr="Sets the width of the right border"/>
+          <Keyword text="border-spacing" descr="Sets the distance that separates cell borders (only for the &quot;separated borders&quot; model)"/>
+          <Keyword text="border-style" descr="Sets the style of the four borders, can have from one to four styles"/>
+          <Keyword text="border-top" descr="A shorthand property for setting all of the properties for the top border in one declaration"/>
+          <Keyword text="border-top-color" descr="Sets the color of the top border"/>
+          <Keyword text="border-top-style" descr="Sets the style of the top border"/>
+          <Keyword text="border-top-width" descr="Sets the width of the top border"/>
+          <Keyword text="border-width" descr="A shorthand property for setting the width of the four borders in one declaration, can have from one to four values"/>
+          <Keyword text="bottom" descr="Sets how far the bottom edge of an element is above/below the bottom edge of the parent element"/>
+          <Keyword text="caption-side" descr="Sets the position of the table caption"/>
+          <Keyword text="clear" descr="Sets the sides of an element where other floating elements are not allowed"/>
+          <Keyword text="clip" descr="Sets the shape of an element. The element is clipped into this shape, and displayed"/>
+          <Keyword text="color" descr="Sets the color of a text"/>
+          <Keyword text="content" descr="Generates content in a document. Used with the :before and :after pseudo-elements"/>
+          <Keyword text="counter-increment" descr="Sets how much the counter increments on each occurrence of a selector"/>
+          <Keyword text="counter-reset" descr="Sets the value the counter is set to on each occurrence of a selector"/>
+          <Keyword text="cursor" descr="Specifies the type of cursor to be displayed"/>
+          <Keyword text="direction" descr="Sets the text direction"/>
+          <Keyword text="display" descr="Sets how/if an element is displayed"/>
+          <Keyword text="empty-cells" descr="Sets whether or not to show empty cells in a table (only for the &quot;separated borders&quot; model)"/>
+          <Keyword text="float" descr="Sets where an image or a text will appear in another element"/>
+          <Keyword text="font" descr="A shorthand property for setting all of the properties for a font in one declaration"/>
+          <Keyword text="font-family" descr="A prioritized list of font family names and/or generic family names for an element"/>
+          <Keyword text="font-size" descr="Sets the size of a font"/>
+          <Keyword text="font-size-adjust" descr="Specifies an aspect value for an element that will preserve the x-height of the first-choice font"/>
+          <Keyword text="font-stretch" descr="Condenses or expands the current font-family"/>
+          <Keyword text="font-style" descr="Sets the style of the font"/>
+          <Keyword text="font-variant" descr="Displays text in a small-caps font or a normal font"/>
+          <Keyword text="font-weight" descr="Sets the weight of a font"/>
+          <Keyword text="height" descr="Sets the height of an element"/>
+          <Keyword text="left" descr="Sets how far the left edge of an element is to the right/left of the left edge of the parent element"/>
+          <Keyword text="letter-spacing" descr="Increase or decrease the space between characters"/>
+          <Keyword text="line-height" descr="Sets the distance between lines"/>
+          <Keyword text="line-height" descr="Sets the distance between lines"/>
+          <Keyword text="list-style" descr="A shorthand property for setting all of the properties for a list in one declaration"/>
+          <Keyword text="list-style-image" descr="Sets an image as the list-item marker"/>
+          <Keyword text="list-style-position" descr="Sets where the list-item marker is placed in the list"/>
+          <Keyword text="list-style-type" descr="Sets the type of the list-item marker"/>
+          <Keyword text="margin" descr="A shorthand property for setting the margin properties in one declaration"/>
+          <Keyword text="margin-bottom" descr="Sets the bottom margin of an element"/>
+          <Keyword text="margin-left" descr="Sets the left margin of an element"/>
+          <Keyword text="margin-right" descr="Sets the right margin of an element"/>
+          <Keyword text="margin-top" descr="Sets the top margin of an element"/>
+          <Keyword text="max-height" descr="Sets the maximum height of an element"/>
+          <Keyword text="max-width" descr="Sets the maximum width of an element"/>
+          <Keyword text="min-height" descr="Sets the minimum height of an element"/>
+          <Keyword text="min-width" descr="Sets the minimum width of an element"/>
+          <Keyword text="outline" descr="A shorthand property for setting all the outline properties in one declaration"/>
+          <Keyword text="outline-color" descr="Sets the color of the outline around an element"/>
+          <Keyword text="outline-style" descr="Sets the style of the outline around an element"/>
+          <Keyword text="outline-width" descr="Sets the width of the outline around an element"/>
+          <Keyword text="overflow" descr="Sets what happens if the content of an element overflow its area"/>
+          <Keyword text="padding" descr="A shorthand property for setting all of the padding properties in one declaration"/>
+          <Keyword text="padding-bottom" descr="Sets the bottom padding of an element"/>
+          <Keyword text="padding-left" descr="Sets the left padding of an element"/>
+          <Keyword text="padding-right" descr="Sets the right padding of an element"/>
+          <Keyword text="padding-top" descr="Sets the top padding of an element"/>
+          <Keyword text="position" descr="Places an element in a static, relative, absolute or fixed position"/>
+          <Keyword text="position" descr="Places an element in a static, relative, absolute or fixed position"/>
+          <Keyword text="quotes" descr="Sets the type of quotation marks"/>
+          <Keyword text="right" descr="Sets how far the right edge of an element is to the left/right of the right edge of the parent element"/>
+          <Keyword text="speak" descr="Used to enable or disable speech processing of text or to specify to\nspecify text to be spelled out one letter at a time."/>
+          <Keyword text="speak-header" descr="Specifies whether table headers are spoken before every cell."/>
+          <Keyword text="speak-numeral" descr="Controls how numerals are spoken."/>
+          <Keyword text="speak-punctuation" descr="Specifies how punctuation is spoken."/>
+          <Keyword text="table-layout" descr="Sets the algorithm used to display the table cells, rows, and columns"/>
+          <Keyword text="text-align" descr="Aligns the text in an element"/>
+          <Keyword text="text-decoration" descr="Adds decoration to text"/>
+          <Keyword text="text-indent" descr="Indents the first line of text in an element"/>
+          <Keyword text="text-transform" descr="Controls the letters in an element"/>
+          <Keyword text="top" descr="Sets how far the top edge of an element is above/below the top edge of the parent element"/>
+          <Keyword text="vertical-align" descr="Sets the vertical alignment of an element"/>
+          <Keyword text="visibility" descr="Sets if an element should be visible or invisible"/>
+          <Keyword text="voice-family" descr="The voice-family property is a comma-separated, prioritized list of voice family names.\nFor example, a designer might use this property to indicate to a user agent, such as a browser,\nthat certain portions of text should be read by a female voice."/>
+          <Keyword text="white-space" descr="Sets how white space inside an element is handled"/>
+          <Keyword text="width" descr="Sets the width of an element"/>
+          <Keyword text="word-spacing" descr="Increase or decrease the space between words"/>
+          <Keyword text="z-index" descr="Sets the stack order of an element"/>
+        </Keywords>
+      </Style>
+      <Style name="Values" image="12" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Century Gothic"/>
+          <Keyword text="Courier New"/>
+          <Keyword text="Courier"/>
+          <Keyword text="Monaco"/>
+          <Keyword text="Times"/>
+          <Keyword text="absolute"/>
+          <Keyword text="announcer"/>
+          <Keyword text="arial"/>
+          <Keyword text="armenian"/>
+          <Keyword text="attr" pattern="%CurrentWord%(%|%)"/>
+          <Keyword text="auto"/>
+          <Keyword text="baseline"/>
+          <Keyword text="bidi-override"/>
+          <Keyword text="blink"/>
+          <Keyword text="block"/>
+          <Keyword text="bold"/>
+          <Keyword text="bolder"/>
+          <Keyword text="both"/>
+          <Keyword text="bottom center"/>
+          <Keyword text="bottom left"/>
+          <Keyword text="bottom right"/>
+          <Keyword text="bottom"/>
+          <Keyword text="capitalize"/>
+          <Keyword text="caption"/>
+          <Keyword text="center center"/>
+          <Keyword text="center left"/>
+          <Keyword text="center right"/>
+          <Keyword text="center"/>
+          <Keyword text="child"/>
+          <Keyword text="circle"/>
+          <Keyword text="cjk-ideographic"/>
+          <Keyword text="close-quote"/>
+          <Keyword text="collapse"/>
+          <Keyword text="comedian"/>
+          <Keyword text="comic sans ms"/>
+          <Keyword text="compact"/>
+          <Keyword text="condensed"/>
+          <Keyword text="counter" pattern="%CurrentWord%(%name%, %list-style-type%%|%)"/>
+          <Keyword text="counters" pattern="%CurrentWord%(%name%, %string%, %list-style-type%%|%)"/>
+          <Keyword text="crosshair"/>
+          <Keyword text="dashed"/>
+          <Keyword text="decimal"/>
+          <Keyword text="decimal-leading-zero"/>
+          <Keyword text="default"/>
+          <Keyword text="disc"/>
+          <Keyword text="dotted"/>
+          <Keyword text="double"/>
+          <Keyword text="e-resize"/>
+          <Keyword text="embed"/>
+          <Keyword text="expanded"/>
+          <Keyword text="extra-condensed"/>
+          <Keyword text="extra-expanded"/>
+          <Keyword text="female"/>
+          <Keyword text="fixed"/>
+          <Keyword text="georgian"/>
+          <Keyword text="groove"/>
+          <Keyword text="hebrew"/>
+          <Keyword text="help"/>
+          <Keyword text="helvetica"/>
+          <Keyword text="hidden"/>
+          <Keyword text="hide"/>
+          <Keyword text="hiragana"/>
+          <Keyword text="hiragana-iroha"/>
+          <Keyword text="hsl" pattern="%CurrentWord%(%|%)"/>
+          <Keyword text="icon"/>
+          <Keyword text="inherit"/>
+          <Keyword text="inline"/>
+          <Keyword text="inline-table"/>
+          <Keyword text="inset"/>
+          <Keyword text="inside"/>
+          <Keyword text="italic"/>
+          <Keyword text="juliet"/>
+          <Keyword text="justify"/>
+          <Keyword text="katakana"/>
+          <Keyword text="katakana-iroha"/>
+          <Keyword text="large"/>
+          <Keyword text="larger"/>
+          <Keyword text="left"/>
+          <Keyword text="lighter"/>
+          <Keyword text="line-through"/>
+          <Keyword text="list-item"/>
+          <Keyword text="lower-alpha"/>
+          <Keyword text="lower-greek"/>
+          <Keyword text="lower-latin"/>
+          <Keyword text="lower-roman"/>
+          <Keyword text="lowercase"/>
+          <Keyword text="ltr"/>
+          <Keyword text="male"/>
+          <Keyword text="marker"/>
+          <Keyword text="mary"/>
+          <Keyword text="medium"/>
+          <Keyword text="menu"/>
+          <Keyword text="message-box"/>
+          <Keyword text="middle"/>
+          <Keyword text="mono"/>
+          <Keyword text="monospace"/>
+          <Keyword text="move"/>
+          <Keyword text="n-resize"/>
+          <Keyword text="narrower"/>
+          <Keyword text="ne-resize"/>
+          <Keyword text="no-close-quote"/>
+          <Keyword text="no-open-quote"/>
+          <Keyword text="no-repeat"/>
+          <Keyword text="none"/>
+          <Keyword text="normal" descr="Collapse whitespace."/>
+          <Keyword text="nowrap" descr="Same as normal but suppresses line breaks."/>
+          <Keyword text="nw-resize"/>
+          <Keyword text="oblique"/>
+          <Keyword text="open-quote"/>
+          <Keyword text="outset"/>
+          <Keyword text="overline"/>
+          <Keyword text="pointer"/>
+          <Keyword text="pre" descr="Preserve whitespace."/>
+          <Keyword text="pre-line" descr="Collapse whitespace but preserve line breaks."/>
+          <Keyword text="pre-wrap" descr="Preserve whitespace but wrap text."/>
+          <Keyword text="relative"/>
+          <Keyword text="repeat"/>
+          <Keyword text="repeat-x"/>
+          <Keyword text="repeat-y"/>
+          <Keyword text="rgb" pattern="%CurrentWord%(%|%)"/>
+          <Keyword text="ridge"/>
+          <Keyword text="right"/>
+          <Keyword text="romeo"/>
+          <Keyword text="rtl" pattern="%CurrentWord%(%|%)"/>
+          <Keyword text="run-in"/>
+          <Keyword text="s-resize"/>
+          <Keyword text="sam"/>
+          <Keyword text="sans-serif"/>
+          <Keyword text="scroll"/>
+          <Keyword text="se-resize"/>
+          <Keyword text="semi-condensed"/>
+          <Keyword text="semi-expanded"/>
+          <Keyword text="separate"/>
+          <Keyword text="serif"/>
+          <Keyword text="show"/>
+          <Keyword text="small"/>
+          <Keyword text="small-caps"/>
+          <Keyword text="small-caption"/>
+          <Keyword text="smaller"/>
+          <Keyword text="solid"/>
+          <Keyword text="square"/>
+          <Keyword text="static"/>
+          <Keyword text="status-bar"/>
+          <Keyword text="sub"/>
+          <Keyword text="super"/>
+          <Keyword text="sw-resize"/>
+          <Keyword text="table"/>
+          <Keyword text="table-caption"/>
+          <Keyword text="table-cell"/>
+          <Keyword text="table-column"/>
+          <Keyword text="table-column-group"/>
+          <Keyword text="table-footer-group"/>
+          <Keyword text="table-header-group"/>
+          <Keyword text="table-row"/>
+          <Keyword text="table-row-group"/>
+          <Keyword text="tahoma"/>
+          <Keyword text="text"/>
+          <Keyword text="text-bottom"/>
+          <Keyword text="text-top"/>
+          <Keyword text="thick"/>
+          <Keyword text="thin"/>
+          <Keyword text="top center"/>
+          <Keyword text="top left"/>
+          <Keyword text="top right"/>
+          <Keyword text="top"/>
+          <Keyword text="transparent"/>
+          <Keyword text="ultra-condensed"/>
+          <Keyword text="ultra-expanded"/>
+          <Keyword text="underline"/>
+          <Keyword text="upper-alpha"/>
+          <Keyword text="upper-latin"/>
+          <Keyword text="upper-roman"/>
+          <Keyword text="uppercase"/>
+          <Keyword text="url" pattern="%CurrentWord%(&quot;%url%&quot;)"/>
+          <Keyword text="verdana"/>
+          <Keyword text="visible"/>
+          <Keyword text="w-resize"/>
+          <Keyword text="wait"/>
+          <Keyword text="wider"/>
+          <Keyword text="x-large"/>
+          <Keyword text="x-small"/>
+          <Keyword text="xx-large"/>
+          <Keyword text="xx-small"/>
+        </Keywords>
+      </Style>
+      <Style name="Color" id="color" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+        </Blocks>
+        <Keywords>
+          <Keyword text="aliceblue"/>
+          <Keyword text="antiquewhite"/>
+          <Keyword text="aqua"/>
+          <Keyword text="aquamarine"/>
+          <Keyword text="azure"/>
+          <Keyword text="beige"/>
+          <Keyword text="bisque"/>
+          <Keyword text="black"/>
+          <Keyword text="blanchedalmond"/>
+          <Keyword text="blue"/>
+          <Keyword text="blueviolet"/>
+          <Keyword text="brown"/>
+          <Keyword text="burlywood"/>
+          <Keyword text="cadetblue"/>
+          <Keyword text="chartreuse"/>
+          <Keyword text="chocolate"/>
+          <Keyword text="coral"/>
+          <Keyword text="cornflowerblue"/>
+          <Keyword text="cornsilk"/>
+          <Keyword text="crimson"/>
+          <Keyword text="cyan"/>
+          <Keyword text="darkblue"/>
+          <Keyword text="darkcyan"/>
+          <Keyword text="darkgoldenrod"/>
+          <Keyword text="darkgray"/>
+          <Keyword text="darkgreen"/>
+          <Keyword text="darkkhaki"/>
+          <Keyword text="darkmagenta"/>
+          <Keyword text="darkolivegreen"/>
+          <Keyword text="darkorange"/>
+          <Keyword text="darkorchid"/>
+          <Keyword text="darkred"/>
+          <Keyword text="darksalmon"/>
+          <Keyword text="darkseagreen"/>
+          <Keyword text="darkslateblue"/>
+          <Keyword text="darkslategray"/>
+          <Keyword text="darkturquoise"/>
+          <Keyword text="darkviolet"/>
+          <Keyword text="deeppink"/>
+          <Keyword text="deepskyblue"/>
+          <Keyword text="dimgray"/>
+          <Keyword text="dodgerblue"/>
+          <Keyword text="firebrick"/>
+          <Keyword text="floralwhite"/>
+          <Keyword text="forestgreen"/>
+          <Keyword text="fuchsia"/>
+          <Keyword text="gainsboro"/>
+          <Keyword text="ghostwhite"/>
+          <Keyword text="gold"/>
+          <Keyword text="goldenrod"/>
+          <Keyword text="gray"/>
+          <Keyword text="green"/>
+          <Keyword text="greenyellow"/>
+          <Keyword text="honeydew"/>
+          <Keyword text="hotpink"/>
+          <Keyword text="indianred"/>
+          <Keyword text="indigo"/>
+          <Keyword text="ivory"/>
+          <Keyword text="khaki"/>
+          <Keyword text="lavender"/>
+          <Keyword text="lavenderblush"/>
+          <Keyword text="lawngreen"/>
+          <Keyword text="lemonchiffon"/>
+          <Keyword text="lightblue"/>
+          <Keyword text="lightcoral"/>
+          <Keyword text="lightcyan"/>
+          <Keyword text="lightgoldenrodyellow"/>
+          <Keyword text="lightgreen"/>
+          <Keyword text="lightgrey"/>
+          <Keyword text="lightpink"/>
+          <Keyword text="lightsalmon"/>
+          <Keyword text="lightseagreen"/>
+          <Keyword text="lightskyblue"/>
+          <Keyword text="lightslategray"/>
+          <Keyword text="lightsteelblue"/>
+          <Keyword text="lightyellow"/>
+          <Keyword text="lime"/>
+          <Keyword text="limegreen"/>
+          <Keyword text="linen"/>
+          <Keyword text="magenta"/>
+          <Keyword text="maroon"/>
+          <Keyword text="mediumaquamarine"/>
+          <Keyword text="mediumblue"/>
+          <Keyword text="mediumorchid"/>
+          <Keyword text="mediumpurple"/>
+          <Keyword text="mediumseagreen"/>
+          <Keyword text="mediumslateblue"/>
+          <Keyword text="mediumspringgreen"/>
+          <Keyword text="mediumturquoise"/>
+          <Keyword text="mediumvioletred"/>
+          <Keyword text="midnightblue"/>
+          <Keyword text="mintcream"/>
+          <Keyword text="mistyrose"/>
+          <Keyword text="moccasin"/>
+          <Keyword text="navajowhite"/>
+          <Keyword text="navy"/>
+          <Keyword text="oldlace"/>
+          <Keyword text="olive"/>
+          <Keyword text="olivedrab"/>
+          <Keyword text="orange"/>
+          <Keyword text="orangered"/>
+          <Keyword text="orchid"/>
+          <Keyword text="palegoldenrod"/>
+          <Keyword text="palegreen"/>
+          <Keyword text="paleturquoise"/>
+          <Keyword text="palevioletred"/>
+          <Keyword text="papayawhip"/>
+          <Keyword text="peachpuff"/>
+          <Keyword text="peru"/>
+          <Keyword text="pink"/>
+          <Keyword text="plum"/>
+          <Keyword text="powderblue"/>
+          <Keyword text="purple"/>
+          <Keyword text="red"/>
+          <Keyword text="rosybrown"/>
+          <Keyword text="royalblue"/>
+          <Keyword text="saddlebrown"/>
+          <Keyword text="salmon"/>
+          <Keyword text="sandybrown"/>
+          <Keyword text="seagreen"/>
+          <Keyword text="seashell"/>
+          <Keyword text="sienna"/>
+          <Keyword text="silver"/>
+          <Keyword text="skyblue"/>
+          <Keyword text="slateblue"/>
+          <Keyword text="slategray"/>
+          <Keyword text="snow"/>
+          <Keyword text="springgreen"/>
+          <Keyword text="steelblue"/>
+          <Keyword text="tan"/>
+          <Keyword text="teal"/>
+          <Keyword text="thistle"/>
+          <Keyword text="tomato"/>
+          <Keyword text="turquoise"/>
+          <Keyword text="violet"/>
+          <Keyword text="wheat"/>
+          <Keyword text="white"/>
+          <Keyword text="whitesmoke"/>
+          <Keyword text="yellow"/>
+          <Keyword text="yellowgreen"/>
+        </Keywords>
+      </Style>
+      <Style name="Important" bold="0" italic="0" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="2">
+        <Blocks>
+          <Block open="!important" close=""/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

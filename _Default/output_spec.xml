@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+	<FILEINFO author="HippoEDIT.com" type="LangSpec" />
+	<SYNTAX id="output" name="Output Window" abstract="true" readonly="true" inherit="def_text" inherit_url="deftext_spec.xml">
+    <SPECIFICATION>
+      <Display outlining="false" indicator_margin="false" current_line="false" guides="false"/>
+    </SPECIFICATION>
+    <STYLES>
+			<Style id="window" name="Window" dstyle="true" clr="Output Window Text" bkclr="Output Window Back"/>
+		</STYLES>
+		<FONTS>
+			<Font only_monospaced="false" size="9" face_name="Courier New" charset="1"/>
+		</FONTS>
+	</SYNTAX>
+</XMLConfigSettings>

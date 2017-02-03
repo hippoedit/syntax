@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="cmake" name="CMake" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <CaseSensitive>true</CaseSensitive>
+      <OpenClose>()[]{}''""</OpenClose>
+      <EscapeChar>\</EscapeChar>
+      <Operators>@?%*-/&amp;*=&lt;&gt;|!~^{}()[];:</Operators>
+      <Delimiters>&quot;'@#{}</Delimiters>
+      <Words init="A-Za-z_">0-9A-Za-z_</Words>
+      <Numbers>-+0-9.EUL</Numbers>
+      <FilePattern mask="CMakeLists.txt;*.cmake;*.cmake.in;*.ctest;*.ctest.in"/>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <DefaultKeywordCase>4</DefaultKeywordCase>
+      <FormatWords>
+        <FormatWord word="if" next_line="true" range_sentence="true"/>
+        <FormatWord word="else" next_line="true" range_sentence="true" range_till_next="true"/>
+        <FormatWord word="while" next_line="true" range_sentence="true"/>
+        <FormatWord word="case" next_line="true" range_till_next="true"/>
+        <FormatWord word="for" next_line="true" range_sentence="true"/>
+      </FormatWords>
+    </FORMAT>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+      <Scope open="foreach" close="endforeach"/>
+      <Scope open="function" close="endfunction"/>
+      <Scope open="if" middle="else" close="endif" strict="false">
+        <Middle text="elseif"/>
+      </Scope>
+      <Scope open="macro" close="endmacro"/>
+      <Scope open="while" close="endwhile"/>
+    </SCOPES>
+    <LABELS>
+      <Label group="Macro" match="\s+macro\s*\((\w+)(\s+[\w\s]+)?\)" name="\1" scope="1" descr="macro (\1\2)" image="12"/>
+      <Label group="Function" match="\s+function\s*\((\w+)(\s+[\w\s]+)?\)" name="\1" scope="1" descr="function (\1\2)" image="18"/>      
+      <Label group="" match="(if|foreach|while)\s*\(((?:[^\(\)]|\\r|\\n|\((?-1)\))*+)\)" name="\1" descr="\1 (\2)" scope="1" image="13" navigation="false"/>
+    </LABELS>
+    <STYLES>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="variable" name="Variables" bold="1" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="string"/>
+          <Open id="variable"/>          
+        </Containers>
+        <Blocks>
+          <Block open="${" close="}"/>
+        </Blocks>
+      </Style>
+      <Style id="number" name="Numbers" dbkclr="false" bold="0" italic="0" underline="0" clr="Number" bkclr="#FFFFFFFF" overview="3"/>
+      <Style name="Constants" image="7" bold="1" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="WIN32"/>
+          <Keyword text="UNIX"/>
+          <Keyword text="APPLE"/>
+          <Keyword text="CYGWIN"/>
+          <Keyword text="BORLAND"/>
+          <Keyword text="MINGW"/>
+          <Keyword text="MSVC"/>
+          <Keyword text="MSVC_IDE"/>
+          <Keyword text="MSVC60"/>
+          <Keyword text="MSVC70"/>
+          <Keyword text="MSVC71"/>
+          <Keyword text="MSVC80"/>
+          <Keyword text="MSVC90"/>
+        </Keywords>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ABSOLUTE"/>
+          <Keyword text="AND"/>
+          <Keyword text="BOOL"/>
+          <Keyword text="CACHE"/>
+          <Keyword text="COMMAND"/>
+          <Keyword text="DEFINED"/>
+          <Keyword text="DOC"/>
+          <Keyword text="EQUAL"/>
+          <Keyword text="EXISTS"/>
+          <Keyword text="EXT"/>
+          <Keyword text="FALSE"/>
+          <Keyword text="GREATER"/>
+          <Keyword text="INTERNAL"/>
+          <Keyword text="LESS"/>
+          <Keyword text="MATCHES"/>
+          <Keyword text="NAME"/>
+          <Keyword text="NAMES"/>
+          <Keyword text="NAME_WE"/>
+          <Keyword text="NOT"/>
+          <Keyword text="OFF"/>
+          <Keyword text="ON"/>
+          <Keyword text="OR"/>
+          <Keyword text="PATH"/>
+          <Keyword text="PATHS"/>
+          <Keyword text="PROGRAM"/>
+          <Keyword text="STREQUAL"/>
+          <Keyword text="STRGREATER"/>
+          <Keyword text="STRING"/>
+          <Keyword text="STRLESS"/>
+          <Keyword text="TRUE"/>
+        </Keywords>
+      </Style>
+      <Style name="Functions" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ABSOLUTE"/>
+          <Keyword text="ADD_CUSTOM_COMMAND"/>
+          <Keyword text="ADD_CUSTOM_TARGET"/>
+          <Keyword text="ADD_DEFINITIONS"/>
+          <Keyword text="ADD_DEPENDENCIES"/>
+          <Keyword text="ADD_EXECUTABLE"/>
+          <Keyword text="ADD_LIBRARY"/>
+          <Keyword text="ADD_SUBDIRECTORY"/>
+          <Keyword text="ADD_TEST"/>
+          <Keyword text="AUX_SOURCE_DIRECTORY"/>
+          <Keyword text="BUILD_COMMAND"/>
+          <Keyword text="BUILD_NAME"/>
+          <Keyword text="CMAKE_MINIMUM_REQUIRED"/>
+          <Keyword text="CONFIGURE_FILE"/>
+          <Keyword text="CREATE_TEST_SOURCELIST"/>
+          <Keyword text="ELSE"/>
+          <Keyword text="ELSEIF"/>
+          <Keyword text="ENABLE_LANGUAGE"/>
+          <Keyword text="ENABLE_TESTING"/>
+          <Keyword text="ENDFOREACH"/>
+          <Keyword text="ENDFUNCTION"/>
+          <Keyword text="ENDIF"/>
+          <Keyword text="ENDMACRO"/>
+          <Keyword text="ENDWHILE"/>
+          <Keyword text="EXEC_PROGRAM"/>
+          <Keyword text="EXECUTE_PROCESS"/>
+          <Keyword text="EXPORT_LIBRARY_DEPENDENCIES"/>
+          <Keyword text="FILE"/>
+          <Keyword text="FIND_FILE"/>
+          <Keyword text="FIND_LIBRARY"/>
+          <Keyword text="FIND_PACKAGE"/>
+          <Keyword text="FIND_PATH"/>
+          <Keyword text="FIND_PROGRAM"/>
+          <Keyword text="FLTK_WRAP_UI"/>
+          <Keyword text="FOREACH"/>
+          <Keyword text="FUNCTION"/>
+          <Keyword text="GET_CMAKE_PROPERTY"/>
+          <Keyword text="GET_DIRECTORY_PROPERTY"/>
+          <Keyword text="GET_FILENAME_COMPONENT"/>
+          <Keyword text="GET_SOURCE_FILE_PROPERTY"/>
+          <Keyword text="GET_TARGET_PROPERTY"/>
+          <Keyword text="GET_TEST_PROPERTY"/>
+          <Keyword text="IF"/>
+          <Keyword text="INCLUDE"/>
+          <Keyword text="INCLUDE_DIRECTORIES"/>
+          <Keyword text="INCLUDE_EXTERNAL_MSPROJECT"/>
+          <Keyword text="INCLUDE_REGULAR_EXPRESSION"/>
+          <Keyword text="INSTALL"/>
+          <Keyword text="INSTALL_FILES"/>
+          <Keyword text="INSTALL_PROGRAMS"/>
+          <Keyword text="INSTALL_TARGETS"/>
+          <Keyword text="LINK_DIRECTORIES"/>
+          <Keyword text="LINK_LIBRARIES"/>
+          <Keyword text="LIST"/>
+          <Keyword text="LOAD_CACHE"/>
+          <Keyword text="LOAD_COMMAND"/>
+          <Keyword text="MACRO"/>
+          <Keyword text="MAKE_DIRECTORY"/>
+          <Keyword text="MARK_AS_ADVANCED"/>
+          <Keyword text="MATH"/>
+          <Keyword text="MESSAGE"/>
+          <Keyword text="OPTION"/>
+          <Keyword text="OUTPUT_REQUIRED_FILES"/>
+          <Keyword text="PROJECT"/>
+          <Keyword text="QT_WRAP_CPP"/>
+          <Keyword text="QT_WRAP_UI"/>
+          <Keyword text="REMOVE"/>
+          <Keyword text="REMOVE_DEFINITIONS"/>
+          <Keyword text="SEPARATE_ARGUMENTS"/>
+          <Keyword text="SET"/>
+          <Keyword text="SET_DIRECTORY_PROPERTIES"/>
+          <Keyword text="SET_SOURCE_FILES_PROPERTIES"/>
+          <Keyword text="SET_TARGET_PROPERTIES"/>
+          <Keyword text="SET_TESTS_PROPERTIES"/>
+          <Keyword text="SITE_NAME"/>
+          <Keyword text="SOURCE_GROUP"/>
+          <Keyword text="STRING"/>
+          <Keyword text="SUBDIR_DEPENDS"/>
+          <Keyword text="SUBDIRS"/>
+          <Keyword text="TARGET_LINK_LIBRARIES"/>
+          <Keyword text="TRY_COMPILE"/>
+          <Keyword text="TRY_RUN"/>
+          <Keyword text="UNSET"/>
+          <Keyword text="USE_MANGLED_MESA"/>
+          <Keyword text="UTILITY_SOURCE"/>
+          <Keyword text="VARIABLE_REQUIRES"/>
+          <Keyword text="VTK_MAKE_INSTANTIATOR"/>
+          <Keyword text="VTK_WRAP_JAVA"/>
+          <Keyword text="VTK_WRAP_PYTHON"/>
+          <Keyword text="VTK_WRAP_TCL"/>
+          <Keyword text="WHILE"/>
+          <Keyword text="WRITE_FILE"/>
+          <Keyword text="add_custom_command"/>
+          <Keyword text="add_custom_target"/>
+          <Keyword text="add_definitions"/>
+          <Keyword text="add_dependencies"/>
+          <Keyword text="add_executable"/>
+          <Keyword text="add_library"/>
+          <Keyword text="add_subdirectory"/>
+          <Keyword text="add_test"/>
+          <Keyword text="aux_source_directory"/>
+          <Keyword text="break"/>
+          <Keyword text="build_command"/>
+          <Keyword text="cmake_minimum_required"/>
+          <Keyword text="cmake_policy"/>
+          <Keyword text="configure_file"/>
+          <Keyword text="create_test_sourcelist"/>
+          <Keyword text="define_property"/>
+          <Keyword text="else"/>
+          <Keyword text="elseif"/>
+          <Keyword text="enable_language"/>
+          <Keyword text="enable_testing"/>
+          <Keyword text="endforeach"/>
+          <Keyword text="endfunction"/>
+          <Keyword text="endif"/>
+          <Keyword text="endmacro"/>
+          <Keyword text="endwhile"/>
+          <Keyword text="execute_process"/>
+          <Keyword text="export"/>
+          <Keyword text="file"/>
+          <Keyword text="find_file"/>
+          <Keyword text="find_library"/>
+          <Keyword text="find_package"/>
+          <Keyword text="find_path"/>
+          <Keyword text="find_program"/>
+          <Keyword text="fltk_wrap_ui"/>
+          <Keyword text="foreach"/>
+          <Keyword text="function"/>
+          <Keyword text="get_cmake_property"/>
+          <Keyword text="get_directory_property"/>
+          <Keyword text="get_filename_component"/>
+          <Keyword text="get_property"/>
+          <Keyword text="get_source_file_property"/>
+          <Keyword text="get_target_property"/>
+          <Keyword text="get_test_property"/>
+          <Keyword text="if"/>
+          <Keyword text="include"/>
+          <Keyword text="include_directories"/>
+          <Keyword text="include_external_msproject"/>
+          <Keyword text="include_regular_expression"/>
+          <Keyword text="install"/>
+          <Keyword text="link_directories"/>
+          <Keyword text="list"/>
+          <Keyword text="load_cache"/>
+          <Keyword text="load_command"/>
+          <Keyword text="macro"/>
+          <Keyword text="mark_as_advanced"/>
+          <Keyword text="math"/>
+          <Keyword text="message"/>
+          <Keyword text="option"/>
+          <Keyword text="output_required_files"/>
+          <Keyword text="project"/>
+          <Keyword text="qt_wrap_cpp"/>
+          <Keyword text="qt_wrap_ui"/>
+          <Keyword text="remove_definitions"/>
+          <Keyword text="return"/>
+          <Keyword text="separate_arguments"/>
+          <Keyword text="set"/>
+          <Keyword text="set_directory_properties"/>
+          <Keyword text="set_property"/>
+          <Keyword text="set_source_files_properties"/>
+          <Keyword text="set_target_properties"/>
+          <Keyword text="set_tests_properties"/>
+          <Keyword text="site_name"/>
+          <Keyword text="source_group"/>
+          <Keyword text="string"/>
+          <Keyword text="target_link_libraries"/>
+          <Keyword text="try_compile"/>
+          <Keyword text="try_run"/>
+          <Keyword text="unset"/>
+          <Keyword text="variable_watch"/>
+          <Keyword text="while"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

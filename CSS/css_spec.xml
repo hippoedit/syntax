@@ -1,0 +1,937 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="css" name="CSS" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.css"/>
+      <OpenClose>(){}''""</OpenClose>
+      <Operators>?()-/=&lt;&gt;:%</Operators>
+      <Delimiters>&amp;/%/|!~^</Delimiters>
+      <Words>0-9A-Za-z_--#</Words>
+      <Numbers>0-9pxemexptcm</Numbers>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="{" close="}">
+        <Containers open="attributes" close="attributes">
+          <Close id="values"/>
+        </Containers>
+      </Scope>
+      <Scope open="region" close="endregion" has_name="true" decoration="true">
+        <Containers open="format_tag"/>
+      </Scope>
+    </SCOPES>
+    <LABELS>
+      <Label group="Class" match="(?:\}|^)\s*([\w#.: \-]+)\s*\{" name="\1" image="9" scope="1">
+        <Containers open="normal"/>
+        <Containers open="color"/>
+        <Containers open="attributes"/>
+        <Containers open="class"/>
+        <Containers open="id"/>
+      </Label>
+      <Label group="Region" match="region\s+(\w+)\s*$" name="\1" scope="1" image="12">
+        <Containers open="format_tag"/>
+      </Label>
+    </LABELS>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="string"/>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Containers>
+          <Open id="values"/>
+        </Containers>
+      </Style>
+      <Style id="operator" extend="true">
+        <Containers>
+          <Open id="values"/>
+          <Open id="attributes"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="values"/>
+          <Open id="normal"/>
+          <Open id="attributes"/>
+        </Containers>
+        <Blocks>
+          <Block open="/*" close="*/"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="values"/>
+        </Containers>
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+          <Block open="url(" close=")"/>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style id="format_tag" name="Format tags" bold="2" italic="1" underline="0" clr="Format tag" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="/*$" close="*/"/>
+        </Blocks>
+      </Style>
+      <Style id="media" name="Media" text="1" bold="0" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="@" close=""/>
+        </Blocks>
+      </Style>
+      <Style id="id" name="ID" bold="1" italic="0" underline="0" clr="Tag" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close=""/>
+        </Blocks>
+      </Style>
+      <Style id="class" name="Class" bold="1" italic="0" underline="0" clr="Tag2" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="." close=""/>
+        </Blocks>
+      </Style>
+      <Style id="pseudoclasses" name="Pseudo Classes" text="1" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open=":" close=""/>
+          <Block open="::" close=""/>
+        </Blocks>
+      </Style>
+      <Style id="pseudoclasses_attributes" name="Pseudo Classes Attributes" image="12" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="pseudoclasses"/>
+        </Containers>
+        <Keywords>
+          <!-- Pseudo classes - these should have their own color! -->
+          <Keyword text="link" descr="Selects all unvisited links"/>
+          <Keyword text="visited" descr="Selects all visited links"/>
+          <Keyword text="active" descr="Selects the active link"/>
+          <Keyword text="focus" descr="Selects the input element which has focus"/>
+          <Keyword text="hover" descr="Selects links on mouse over"/>
+          <Keyword text="first-letter" descr="Selects the first letter of element"/>
+          <Keyword text="first-line" descr="Selects the first line of element"/>
+          <Keyword text="first-child" descr="Selects the first line of element"/>
+          <Keyword text="before" descr="Insert content before element"/>
+          <Keyword text="after" descr="Insert content after element"/>
+          <Keyword text="lang" descr="Selects every element with a lang attribute starting with a mathing value"/>
+          <Keyword text="first-of-type" descr="Selects every element x that is the first element x of its parent"/>
+          <Keyword text="last-of-type" descr="Selects every element x that is the last element x of its parent"/>
+          <Keyword text="last-of-type" descr="Selects every element x that is the last element x of its parent"/>
+          <Keyword text="only-child" descr="Selects every element x that is the only child of its parent"/>
+          <Keyword text="nth-child" descr="Selects every element x that is the n:th child of its parent"/>
+          <Keyword text="nth-last-child" descr="Selects every element x that is the n:th child of its parent, counting from the last child"/>
+          <Keyword text="nth-of-type" descr="Selects every element x that is the n:th x element of its parent"/>
+          <Keyword text="nth-last-of-type" descr="Selects every element x that is the n:th element x of its parent, counting from the last child"/>
+          <Keyword text="last-child" descr="Selects every element x that is the last child of its parent"/>
+          <Keyword text="root" descr="Selects the document's root element"/>
+          <Keyword text="empty" descr="Selects every element x that has no children (including text nodes)"/>
+          <Keyword text="target" descr="Selects the current active element x (clicked on a URL containing that anchor name)"/>
+          <Keyword text="enabled" descr="Selects every enabled input element"/>
+          <Keyword text="disabled" descr="Selects every disabled input element"/>
+          <Keyword text="not" descr="Selects every element that is not element x"/>
+          <Keyword text="selection" descr="Selects the portion of an element that is selected by a user"/>
+          <Keyword text="moz-selection" descr="Selects the portion of an element that is selected by a user"/>
+        </Keywords>
+      </Style>
+      <Style id="attributes" bold="2" italic="2" underline="2" clr="Error" bkclr="#FFFFFFFF" abstract="true"/>
+      <Style id="attributes_outer" include="attributes" bold="2" italic="2" underline="2" clr="Operator" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="attributes"/>
+          <Open id="normal"/>
+          <Close id="attributes"/>
+          <Close id="values"/>
+        </Containers>
+        <Blocks>
+          <Block open="{" close="}"/>
+        </Blocks>
+      </Style>
+      <Style id="values" bold="2" italic="2" underline="2" clr="Error" bkclr="#FFFFFFFF" abstract="true"/>
+      <Style id="values_outer" include="values" bold="2" italic="2" underline="2" clr="Operator" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="attributes"/>
+        </Containers>
+        <Blocks>
+          <Block open=":" close=";"/>
+        </Blocks>
+      </Style>
+      <Style id="elements" name="Elements" inherit="html:elements" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF"/>
+      <Style id="html5elements" name="HTML5 Elements " inherit="html5:elements" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF"/>
+      <Style id="media_attributes" name="Media Attributes" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="and"/>
+          <Keyword text="not"/>
+          <Keyword text="only"/>
+
+          <Keyword text="orientation"/>
+
+          <!--  Media queries. All withing @media block -->
+          <Keyword text="color" descr="Number of bits per color component"/>
+          <Keyword text="min-color" descr="Number of bits per color component"/>
+          <Keyword text="max-color" descr="Number of bits per color component"/>
+          <Keyword text="color-index" descr="Number of entries in the color lookup table"/>
+          <Keyword text="min-color-index" descr="Number of entries in the color lookup table"/>
+          <Keyword text="max-color-index" descr="Number of entries in the color lookup table"/>
+          <Keyword text="device-aspect-ratio" descr="Aspect ratio of the output device"/>
+          <Keyword text="min-device-aspect-ratio" descr="Aspect ratio of the output device"/>
+          <Keyword text="max-device-aspect-ratio" descr="Aspect ratio of the output device"/>
+          <Keyword text="-webkit-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="-webkit-min-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="-webkit-max-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="-o-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="-o-min-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="-o-max-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="min-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="-moz-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="min--moz-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="max--moz-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="device-height" descr="Height of the output device"/>
+          <Keyword text="min-device-height" descr="Height of the output device"/>
+          <Keyword text="max-device-height" descr="Height of the output device"/>
+          <Keyword text="device-width" descr="Width of the output device"/>
+          <Keyword text="min-device-width" descr="Width of the output device"/>
+          <Keyword text="max-device-width" descr="Width of the output device"/>
+          <Keyword text="grid" descr="Used to query whether the output device is grid or bitmap"/>
+          <Keyword text="height" descr="Height of the rendering surface"/>
+          <Keyword text="min-height" descr="Height of the rendering surface"/>
+          <Keyword text="max-height" descr="Height of the rendering surface"/>
+          <Keyword text="monochrome" descr="Number of bits per pixel in a monochrome frame buffer"/>
+          <Keyword text="min-monochrome" descr="Number of bits per pixel in a monochrome frame buffer"/>
+          <Keyword text="max-monochrome" descr="Number of bits per pixel in a monochrome frame buffer"/>
+          <Keyword text="resolution" descr="Resolution of the output device"/>
+          <Keyword text="min-resolution" descr="Resolution of the output device"/>
+          <Keyword text="max-resolution" descr="Resolution of the output device"/>
+          <Keyword text="scan" descr="Scanning process of tv media types"/>
+          <Keyword text="width" descr="Width of the output device"/>
+          <Keyword text="min-width" descr="Width of the output device"/>
+          <Keyword text="max-width" descr="Width of the output device"/>
+          <Keyword text="all" descr="Suitable for all devices. If media is not specified, all is implied."/>
+          <Keyword text="handheld" descr="Intended for handheld devices (typically small screen, limited bandwidth)."/>
+          <Keyword text="print" descr="Intended for paged material and for documents viewed on screen in print preview mode."/>
+          <Keyword text="projection" descr="Intended for projected presentations, for example projectors."/>
+          <Keyword text="screen" descr="Intended primarily for color computer screens. "/>
+          <Keyword text="speech" descr="Intended for speech synthesizers."/>
+          <Keyword text="tv" descr="Intended for television-type devices (low resolution, color, limited-scrollability screens, sound available)."/>
+        </Keywords>
+      </Style>
+      <Style name="Attributes" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="attributes"/>
+        </Containers>
+        <Keywords>
+          <!-- Web fonts and related stuff. -->
+          <Keyword text="-webkit-font-smoothing" descr="Optional anti-aliasing parameter for webkit font rendering."/>
+          <Keyword text="text-rendering" descr="Optional svg-parameter for controlling Firefox and Webkit font rendering. Has no effect on iOS."/>
+          <Keyword text="-webkit-text-size-adjust" descr="iOS text size adjustment"/>
+          <Keyword text="-ms-text-size-adjust" descr="IE text size adjustment"/>
+
+          <!-- Common CSS3 as of Feb 2012-->
+          <Keyword text="src" descr="Path to font file within @font-face"/>
+          <Keyword text="opacity" descr="Sets the opacity level for an element"/>
+          <Keyword text="outline-offset" descr="Offsets an outline, and draws it beyond the border edge"/>
+          <Keyword text="resize" descr="Specifies whether or not an element is resizable by the user"/>
+          <Keyword text="animation" descr="A shorthand property for all the animation properties below, except the animation-play-state property"/>
+          <Keyword text="-moz-animation" descr="A shorthand property for all the animation properties below, except the animation-play-state property"/>
+          <Keyword text="-webkit-animation" descr="A shorthand property for all the animation properties below, except the animation-play-state property"/>
+          <Keyword text="-ms-animation" descr="A shorthand property for all the animation properties below, except the animation-play-state property"/>
+          <Keyword text="animation-name" descr="Specifies a name for the @keyframes animation"/>
+          <Keyword text="-moz-animation-name" descr="Specifies a name for the @keyframes animation"/>
+          <Keyword text="-webkit-animation-name" descr="Specifies a name for the @keyframes animation"/>
+          <Keyword text="animation-duration" descr="Specifies how many seconds or milliseconds an animation takes to complete one cycle"/>
+          <Keyword text="-moz-animation-duration" descr="Specifies how many seconds or milliseconds an animation takes to complete one cycle"/>
+          <Keyword text="-webkit-animation-duration" descr="Specifies how many seconds or milliseconds an animation takes to complete one cycle"/>
+          <Keyword text="animation-timing-function" descr="Specifies the speed curve of the animation"/>
+          <Keyword text="-moz-animation-timing-function" descr="Specifies the speed curve of the animation"/>
+          <Keyword text="-webkit-animation-timing-function" descr="Specifies the speed curve of the animation"/>
+          <Keyword text="animation-delay" descr="Specifies when the animation will start"/>
+          <Keyword text="-moz-animation-delay" descr="Specifies when the animation will start"/>
+          <Keyword text="-webkit-animation-delay" descr="Specifies when the animation will start"/>
+          <Keyword text="animation-iteration-count" descr="Specifies the number of times an animation should be played"/>
+          <Keyword text="-moz-animation-iteration-count" descr="Specifies the number of times an animation should be played"/>
+          <Keyword text="-webkit-animation-iteration-count" descr="Specifies the number of times an animation should be played"/>
+          <Keyword text="animation-direction" descr="Specifies whether or not the animation should play in reverse on alternate cycles"/>
+          <Keyword text="-moz-animation-direction" descr="Specifies whether or not the animation should play in reverse on alternate cycles"/>
+          <Keyword text="-webkit-animation-direction" descr="Specifies whether or not the animation should play in reverse on alternate cycles"/>
+          <Keyword text="animation-play-state" descr="Specifies whether the animation is running or paused"/>
+          <Keyword text="-moz-animation-play-state" descr="Specifies whether the animation is running or paused"/>
+          <Keyword text="-webkit-animation-play-state" descr="Specifies whether the animation is running or paused"/>
+          <Keyword text="from" descr="Specifies whether the animation is running or paused"/>
+          <Keyword text="to " descr="Specifies whether the animation is running or paused"/>
+          <Keyword text="background-clip" descr="Specifies the painting area of the background"/>
+          <Keyword text="-moz-background-clip" descr="Specifies the painting area of the background"/>
+          <Keyword text="-webkit-background-clip" descr="Specifies the painting area of the background"/>
+          <Keyword text="-o-background-clip" descr="Specifies the painting area of the background"/>
+          <Keyword text="-ms-background-clip" descr="Specifies the painting area of the background"/>
+          <Keyword text="background-origin" descr="Specifies the positioning area of the background images"/>
+          <Keyword text="-moz-background-origin" descr="Specifies the positioning area of the background images"/>
+          <Keyword text="-webkit-background-origin" descr="Specifies the positioning area of the background images"/>
+          <Keyword text="-ms-background-origin" descr="Specifies the positioning area of the background images"/>
+          <Keyword text="-o-background-origin" descr="Specifies the positioning area of the background images"/>
+          <Keyword text="background-size" descr="Specifies the size of the background images"/>
+          <Keyword text="-moz-background-size" descr="Specifies the size of the background images"/>
+          <Keyword text="-webkit-background-size" descr="Specifies the size of the background images"/>
+          <Keyword text="-moz-background-size" descr="Specifies the size of the background images"/>
+          <Keyword text="border-bottom-left-radius" descr="Defines the shape of the border of the bottom-left corner"/>
+          <Keyword text="border-bottom-right-radius" descr="Defines the shape of the border of the bottom-right corner"/>
+          <Keyword text="border-image" descr="A shorthand property for setting all the border-image-* properties"/>
+          <Keyword text="-moz-border-image" descr="A shorthand property for setting all the border-image-* properties"/>
+          <Keyword text="-webkit-border-image" descr="A shorthand property for setting all the border-image-* properties"/>
+          <Keyword text="-o-border-image" descr="A shorthand property for setting all the border-image-* properties"/>
+          <Keyword text="border-radius" descr="A shorthand property for setting all the four border-*-radius properties"/>
+          <Keyword text="-moz-border-radius" descr="A shorthand property for setting all the four border-*-radius properties for FF1-3.6"/>
+          <Keyword text="-webkit-border-radius" descr="A shorthand property for setting all the four border-*-radius properties for Safari3-4, iOS 1-3.2, Android ≤1.6"/>
+          <Keyword text="border-top-left-radius" descr="Defines the shape of the border of the top-left corner"/>
+          <Keyword text="border-top-right-radius" descr="Defines the shape of the border of the top-right corner"/>
+          <Keyword text="box-shadow" descr="Attaches one or more drop-shadows to the box"/>
+          <Keyword text="-webkit-box-shadow" descr="Attaches one or more drop-shadows to the box"/>
+          <Keyword text="-moz-box-shadow" descr="Attaches one or more drop-shadows to the box"/>
+          <Keyword text="box-align" descr="Specifies how to align the child elements of a box"/>
+          <Keyword text="-moz-box-align" descr="Specifies how to align the child elements of a box"/>
+          <Keyword text="-webkit-box-align" descr="Specifies how to align the child elements of a box"/>
+          <Keyword text="box-direction" descr="Specifies in which direction the children of a box are displayed"/>
+          <Keyword text="-moz-box-direction" descr="Specifies in which direction the children of a box are displayed"/>
+          <Keyword text="-webkit-box-direction" descr="Specifies in which direction the children of a box are displayed"/>
+          <Keyword text="box-flex" descr="Specifies whether the children of a box is flexible or inflexible in size"/>
+          <Keyword text="-moz-box-flex" descr="Specifies whether the children of a box is flexible or inflexible in size"/>
+          <Keyword text="-webkit-box-flex" descr="Specifies whether the children of a box is flexible or inflexible in size"/>
+          <Keyword text="box-ordinal-group" descr="Specifies the display order of the child elements of a box"/>
+          <Keyword text="-moz-box-ordinal-group" descr="Specifies the display order of the child elements of a box"/>
+          <Keyword text="-webkit-box-ordinal-group" descr="Specifies the display order of the child elements of a box"/>
+          <Keyword text="box-orient" descr="Specifies whether the children of a box should be laid out horizontally or vertically"/>
+          <Keyword text="-moz-box-orient" descr="Specifies whether the children of a box should be laid out horizontally or vertically"/>
+          <Keyword text="-webkit-box-orient" descr="Specifies whether the children of a box should be laid out horizontally or vertically"/>
+          <Keyword text="box-pack" descr="Specifies the horizontal position in horizontal boxes and the vertical position in vertical boxes"/>
+          <Keyword text="-moz-box-pack" descr="Specifies the horizontal position in horizontal boxes and the vertical position in vertical boxes"/>
+          <Keyword text="-webkit-box-pack" descr="Specifies the horizontal position in horizontal boxes and the vertical position in vertical boxes"/>
+          <Keyword text="column-count" descr="Specifies the number of columns an element should be divided into"/>
+          <Keyword text="-moz-column-count" descr="Specifies the number of columns an element should be divided into"/>
+          <Keyword text="-webkit-column-count" descr="Specifies the number of columns an element should be divided into"/>
+          <Keyword text="-o-column-count" descr="Specifies the number of columns an element should be divided into"/>
+          <Keyword text="column-gap" descr="Specifies the gap between the columns"/>
+          <Keyword text="-moz-column-gap" descr="Specifies the gap between the columns"/>
+          <Keyword text="-webkit-column-gap" descr="Specifies the gap between the columns"/>
+          <Keyword text="-o-column-gap" descr="Specifies the gap between the columns"/>
+          <Keyword text="column-rule" descr="A shorthand property for setting all the column-rule-* properties"/>
+          <Keyword text="-moz-column-rule" descr="A shorthand property for setting all the column-rule-* properties"/>
+          <Keyword text="-webkit-column-rule" descr="A shorthand property for setting all the column-rule-* properties"/>
+          <Keyword text="-o-column-rule" descr="A shorthand property for setting all the column-rule-* properties"/>
+          <Keyword text="column-rule-color" descr="Specifies the color of the rule between columns"/>
+          <Keyword text="-moz-column-rule-color" descr="Specifies the color of the rule between columns"/>
+          <Keyword text="-webkit-column-rule-color" descr="Specifies the color of the rule between columns"/>
+          <Keyword text="column-rule-style" descr="Specifies the style of the rule between columns"/>
+          <Keyword text="-moz-column-rule-style" descr="Specifies the style of the rule between columns"/>
+          <Keyword text="-webkit-column-rule-style" descr="Specifies the style of the rule between columns"/>
+          <Keyword text="column-rule-width" descr="Specifies the width of the rule between columns"/>
+          <Keyword text="-moz-column-rule-width" descr="Specifies the width of the rule between columns"/>
+          <Keyword text="-webkit-column-rule-width" descr="Specifies the width of the rule between columns"/>
+          <Keyword text="column-rule-span" descr="Specifies how many columns an element should span across"/>
+          <Keyword text="-moz-column-rule-span" descr="Specifies how many columns an element should span across"/>
+          <Keyword text="-webkit-column-rule-span" descr="Specifies how many columns an element should span across"/>
+          <Keyword text="column-width" descr="Specifies the width of the columns"/>
+          <Keyword text="-moz-column-width" descr="Specifies the width of the columns"/>
+          <Keyword text="-webkit-column-width" descr="Specifies the width of the columns"/>
+          <Keyword text="-o-column-width" descr="Specifies the width of the columns"/>
+          <Keyword text="columns" descr="Shorthand property for setting column-width and column-count"/>
+          <Keyword text="-moz-columns" descr="Shorthand property for setting column-width and column-count"/>
+          <Keyword text="-webkit-columns" descr="Shorthand property for setting column-width and column-count"/>
+          <Keyword text="text-justify" descr="Specifies the justification method used when text-align is justify"/>
+          <Keyword text="text-overflow" descr="Specifies what should happen when text overflows the containing element"/>
+          <Keyword text="text-shadow" descr="Adds shadow to text"/>
+          <Keyword text="word-wrap" descr="Allows long, unbreakable words to be broken and wrap to the next line"/>
+          <Keyword text="transform" descr="Applies a 2D or 3D transformation to an element"/>
+          <Keyword text="-moz-transform" descr="Applies a 2D or 3D transformation to an element"/>
+          <Keyword text="-ms-transform" descr="Applies a 2D or 3D transformation to an element"/>
+          <Keyword text="-webkit-transform" descr="Applies a 2D or 3D transformation to an element"/>
+          <Keyword text="-o-transform" descr="Applies a 2D or 3D transformation to an element"/>
+          <Keyword text="transform-origin" descr="Allows you to change the position on transformed elements"/>
+          <Keyword text="-moz-transform-origin" descr="Allows you to change the position on transformed elements"/>
+          <Keyword text="-ms-transform-origin" descr="Allows you to change the position on transformed elements"/>
+          <Keyword text="-webkit-transform-origin" descr="Allows you to change the position on transformed elements"/>
+          <Keyword text="-o-transform-origin" descr="Allows you to change the position on transformed elements"/>
+          <Keyword text="backface-visibility" descr="Defines whether or not an element should be visible when not facing the screen"/>
+          <Keyword text="-moz-backface-visibility" descr="Defines whether or not an element should be visible when not facing the screen"/>
+          <Keyword text="-webkit-backface-visibility" descr="Defines whether or not an element should be visible when not facing the screen"/>
+          <Keyword text="transition" descr="A shorthand property for setting the four transition properties"/>
+          <Keyword text="-moz-transition" descr="A shorthand property for setting the four transition properties"/>
+          <Keyword text="-webkit-transition" descr="A shorthand property for setting the four transition properties"/>
+          <Keyword text="-ms-transition" descr="A shorthand property for setting the four transition properties"/>
+          <Keyword text="-o-transition" descr="A shorthand property for setting the four transition properties"/>
+          <Keyword text="transition-property" descr="Specifies the name of the CSS property the transition effect is for"/>
+          <Keyword text="-moz-transition-property" descr="Specifies the name of the CSS property the transition effect is for"/>
+          <Keyword text="-webkit-transition-property" descr="Specifies the name of the CSS property the transition effect is for"/>
+          <Keyword text="-o-transition-property" descr="Specifies the name of the CSS property the transition effect is for"/>
+          <Keyword text="transition-duration" descr="Specifies how many seconds or milliseconds a transition effect takes to complete"/>
+          <Keyword text="-moz-transition-duration" descr="Specifies how many seconds or milliseconds a transition effect takes to complete"/>
+          <Keyword text="-webkit-transition-duration" descr="Specifies how many seconds or milliseconds a transition effect takes to complete"/>
+          <Keyword text="-o-transition-duration" descr="Specifies how many seconds or milliseconds a transition effect takes to complete"/>
+          <Keyword text="transition-timing-function" descr="Specifies the speed curve of the transition effect"/>
+          <Keyword text="-moz-transition-timing-function" descr="Specifies the speed curve of the transition effect"/>
+          <Keyword text="-webkit-transition-timing-function" descr="Specifies the speed curve of the transition effect"/>
+          <Keyword text="-o-transition-timing-function" descr="Specifies the speed curve of the transition effect"/>
+          <Keyword text="transition-delay" descr="Specifies when the transition effect will start"/>
+          <Keyword text="-moz-transition-delay" descr="Specifies when the transition effect will start"/>
+          <Keyword text="-o-transition-delay" descr="Specifies when the transition effect will start"/>
+          <Keyword text="-webkit-transition-delay" descr="Specifies when the transition effect will start"/>
+          <Keyword text="appearance" descr="Allows you to make an element look like a standard user interface element"/>
+          <Keyword text="-moz-appearance" descr="Allows you to make an element look like a standard user interface element"/>
+          <Keyword text="-webkit-appearance" descr="Allows you to make an element look like a standard user interface element"/>
+          <Keyword text="box-sizing" descr="Allows you to define certain elements to fit an area in a certain way"/>
+          <Keyword text="-moz-box-sizing" descr="Allows you to define certain elements to fit an area in a certain way"/>
+          <Keyword text="-webkit-box-sizing" descr="Allows you to define certain elements to fit an area in a certain way"/>
+          <Keyword text="overflow-x" descr="Specifies whether or not to clip the left/right edges of the content, if it overflows the element's content area"/>
+          <Keyword text="overflow-y" descr="Specifies whether or not to clip the top/bottom edges of the content, if it overflows the element's content area"/>
+
+          <!-- CSS2 additions to the spec -->
+          <Keyword text="page-break-inside" descr="Sets the page-breaking behavior inside an element"/>
+          <Keyword text="page-break-after" descr="Sets the page-breaking behavior after an element"/>
+          <Keyword text="page-break-before" descr="Sets the page-breaking behavior before an element"/>
+          <Keyword text="orphans" descr="Sets the minimum number of lines that must be left at the bottom of a page when a page break occurs inside an element"/>
+          <Keyword text="widows" descr="Sets the minimum number of lines that must be left at the top of a page when a page break occurs inside an element"/>
+
+          <!-- Existing schema -->
+          <Keyword text="background" descr="A shorthand property for setting all background properties in one declaration"/>
+          <Keyword text="background-attachment" descr="Sets whether a background image is fixed or scrolls with the rest of the page"/>
+          <Keyword text="background-color" descr="Sets the background color of an element"/>
+          <Keyword text="background-image" descr="Sets an image as the background"/>
+          <Keyword text="background-position" descr="Sets the starting position of a background image"/>
+          <Keyword text="background-repeat" descr="Sets if/how a background image will be repeated"/>
+          <Keyword text="border" descr="A shorthand property for setting all of the properties for the four borders in one declaration"/>
+          <Keyword text="border-bottom" descr="A shorthand property for setting all of the properties for the bottom border in one declaration"/>
+          <Keyword text="border-bottom-color" descr="Sets the color of the bottom border"/>
+          <Keyword text="border-bottom-style" descr="Sets the style of the bottom border"/>
+          <Keyword text="border-bottom-width" descr="Sets the width of the bottom border"/>
+          <Keyword text="border-collapse" descr="Sets whether the table borders are collapsed into a single border or detached as in standard HTML"/>
+          <Keyword text="border-color" descr="Sets the color of the four borders, can have from one to four colors"/>
+          <Keyword text="border-left" descr="A shorthand property for setting all of the properties for the left border in one declaration"/>
+          <Keyword text="border-left-color" descr="Sets the color of the left border"/>
+          <Keyword text="border-left-style" descr="Sets the style of the left border"/>
+          <Keyword text="border-left-width" descr="Sets the width of the left border"/>
+          <Keyword text="border-right" descr="A shorthand property for setting all of the properties for the right border in one declaration"/>
+          <Keyword text="border-right-color" descr="Sets the color of the right border"/>
+          <Keyword text="border-right-style" descr="Sets the style of the right border"/>
+          <Keyword text="border-right-width" descr="Sets the width of the right border"/>
+          <Keyword text="border-spacing" descr="Sets the distance that separates cell borders (only for the &quot;separated borders&quot; model)"/>
+          <Keyword text="border-style" descr="Sets the style of the four borders, can have from one to four styles"/>
+          <Keyword text="border-top" descr="A shorthand property for setting all of the properties for the top border in one declaration"/>
+          <Keyword text="border-top-color" descr="Sets the color of the top border"/>
+          <Keyword text="border-top-style" descr="Sets the style of the top border"/>
+          <Keyword text="border-top-width" descr="Sets the width of the top border"/>
+          <Keyword text="border-width" descr="A shorthand property for setting the width of the four borders in one declaration, can have from one to four values"/>
+          <Keyword text="bottom" descr="Sets how far the bottom edge of an element is above/below the bottom edge of the parent element"/>
+          <Keyword text="caption-side" descr="Sets the position of the table caption"/>
+          <Keyword text="clear" descr="Sets the sides of an element where other floating elements are not allowed"/>
+          <Keyword text="clip" descr="Sets the shape of an element. The element is clipped into this shape, and displayed"/>
+          <Keyword text="color" descr="Sets the color of a text"/>
+          <Keyword text="content" descr="Generates content in a document. Used with the :before and :after pseudo-elements"/>
+          <Keyword text="counter-increment" descr="Sets how much the counter increments on each occurrence of a selector"/>
+          <Keyword text="counter-reset" descr="Sets the value the counter is set to on each occurrence of a selector"/>
+          <Keyword text="cursor" descr="Specifies the type of cursor to be displayed"/>
+          <Keyword text="direction" descr="Sets the text direction"/>
+          <Keyword text="display" descr="Sets how/if an element is displayed"/>
+          <Keyword text="empty-cells" descr="Sets whether or not to show empty cells in a table (only for the &quot;separated borders&quot; model)"/>
+          <Keyword text="float" descr="Sets where an image or a text will appear in another element"/>
+          <Keyword text="font" descr="A shorthand property for setting all of the properties for a font in one declaration"/>
+          <Keyword text="font-family" descr="A prioritized list of font family names and/or generic family names for an element"/>
+          <Keyword text="font-size" descr="Sets the size of a font"/>
+          <Keyword text="font-size-adjust" descr="Specifies an aspect value for an element that will preserve the x-height of the first-choice font"/>
+          <Keyword text="font-stretch" descr="Condenses or expands the current font-family"/>
+          <Keyword text="font-style" descr="Sets the style of the font"/>
+          <Keyword text="font-variant" descr="Displays text in a small-caps font or a normal font"/>
+          <Keyword text="font-weight" descr="Sets the weight of a font"/>
+          <Keyword text="height" descr="Sets the height of an element"/>
+          <Keyword text="left" descr="Sets how far the left edge of an element is to the right/left of the left edge of the parent element"/>
+          <Keyword text="letter-spacing" descr="Increase or decrease the space between characters"/>
+          <Keyword text="line-height" descr="Sets the distance between lines"/>
+          <Keyword text="line-height" descr="Sets the distance between lines"/>
+          <Keyword text="list-style" descr="A shorthand property for setting all of the properties for a list in one declaration"/>
+          <Keyword text="list-style-image" descr="Sets an image as the list-item marker"/>
+          <Keyword text="list-style-position" descr="Sets where the list-item marker is placed in the list"/>
+          <Keyword text="list-style-type" descr="Sets the type of the list-item marker"/>
+          <Keyword text="margin" descr="A shorthand property for setting the margin properties in one declaration"/>
+          <Keyword text="margin-bottom" descr="Sets the bottom margin of an element"/>
+          <Keyword text="margin-left" descr="Sets the left margin of an element"/>
+          <Keyword text="margin-right" descr="Sets the right margin of an element"/>
+          <Keyword text="margin-top" descr="Sets the top margin of an element"/>
+          <Keyword text="max-height" descr="Sets the maximum height of an element"/>
+          <Keyword text="max-width" descr="Sets the maximum width of an element"/>
+          <Keyword text="min-height" descr="Sets the minimum height of an element"/>
+          <Keyword text="min-width" descr="Sets the minimum width of an element"/>
+          <Keyword text="outline" descr="A shorthand property for setting all the outline properties in one declaration"/>
+          <Keyword text="outline-color" descr="Sets the color of the outline around an element"/>
+          <Keyword text="outline-style" descr="Sets the style of the outline around an element"/>
+          <Keyword text="outline-width" descr="Sets the width of the outline around an element"/>
+          <Keyword text="overflow" descr="Sets what happens if the content of an element overflow its area"/>
+          <Keyword text="padding" descr="A shorthand property for setting all of the padding properties in one declaration"/>
+          <Keyword text="padding-bottom" descr="Sets the bottom padding of an element"/>
+          <Keyword text="padding-left" descr="Sets the left padding of an element"/>
+          <Keyword text="padding-right" descr="Sets the right padding of an element"/>
+          <Keyword text="padding-top" descr="Sets the top padding of an element"/>
+          <Keyword text="position" descr="Places an element in a static, relative, absolute or fixed position"/>
+          <Keyword text="position" descr="Places an element in a static, relative, absolute or fixed position"/>
+          <Keyword text="quotes" descr="Sets the type of quotation marks"/>
+          <Keyword text="right" descr="Sets how far the right edge of an element is to the left/right of the right edge of the parent element"/>
+          <Keyword text="speak" descr="Used to enable or disable speech processing of text or to specify to\nspecify text to be spelled out one letter at a time."/>
+          <Keyword text="speak-header" descr="Specifies whether table headers are spoken before every cell."/>
+          <Keyword text="speak-numeral" descr="Controls how numerals are spoken."/>
+          <Keyword text="speak-punctuation" descr="Specifies how punctuation is spoken."/>
+          <Keyword text="table-layout" descr="Sets the algorithm used to display the table cells, rows, and columns"/>
+          <Keyword text="text-align" descr="Aligns the text in an element"/>
+          <Keyword text="text-decoration" descr="Adds decoration to text"/>
+          <Keyword text="text-indent" descr="Indents the first line of text in an element"/>
+          <Keyword text="text-transform" descr="Controls the letters in an element"/>
+          <Keyword text="top" descr="Sets how far the top edge of an element is above/below the top edge of the parent element"/>
+          <Keyword text="vertical-align" descr="Sets the vertical alignment of an element"/>
+          <Keyword text="visibility" descr="Sets if an element should be visible or invisible"/>
+          <Keyword text="voice-family" descr="The voice-family property is a comma-separated, prioritized list of voice family names.\nFor example, a designer might use this property to indicate to a user agent, such as a browser,\nthat certain portions of text should be read by a female voice."/>
+          <Keyword text="white-space" descr="Sets how white space inside an element is handled"/>
+          <Keyword text="width" descr="Sets the width of an element"/>
+          <Keyword text="word-spacing" descr="Increase or decrease the space between words"/>
+          <Keyword text="z-index" descr="Sets the stack order of an element"/>
+        </Keywords>
+      </Style>
+      <Style name="Values" image="12" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="values"/>
+        </Containers>
+        <Keywords>
+          <!--  CSS3 additions Feb 2012 -->
+          <Keyword text="-moz-linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
+          <Keyword text="-ms-linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference. IE10+"/>
+          <Keyword text="-webkit-linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
+          <Keyword text="-webkit-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
+          <Keyword text="-o-linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
+          <Keyword text="linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
+          <Keyword text="radial-gradient" descr="Allows the creation of a radial gradient on an element using a function that's included where you would normally place an image reference."/>
+          <Keyword text="-moz-radial-gradient" descr="Allows the creation of a radial gradient on an element using a function that's included where you would normally place an image reference."/>
+          <Keyword text="-ms-radial-gradient" descr="Allows the creation of a radial gradient on an element using a function that's included where you would normally place an image reference."/>
+          <Keyword text="-webkit-radial-gradient" descr="Allows the creation of a radial gradient on an element using a function that's included where you would normally place an image reference."/>
+          <Keyword text="radial" descr=""/>
+          <Keyword text="closest-corner" descr=""/>
+          <Keyword text="color-stop" descr=""/>
+          <Keyword text="avoid" descr=""/>
+          <Keyword text="format" descr="Web font format definition within @font-face rule"/>
+          <Keyword text="hsla" pattern="%CurrentWord%(%|%|%|%)"/>
+          <Keyword text="rgba" pattern="%CurrentWord%(%|%|%|%)"/>
+          <Keyword text="src" pattern="%CurrentWord%(&quot;%url%&quot;)"/>
+          <Keyword text="border-box"/>
+          <Keyword text="padding-box"/>
+          <Keyword text="content-box"/>
+          <Keyword text="visible"/>
+          <Keyword text="scroll"/>
+          <Keyword text="auto"/>
+          <Keyword text="no-display"/>
+          <Keyword text="no-content"/>
+          <Keyword text="start"/>
+          <Keyword text="end"/>
+          <Keyword text="stretch"/>
+          <Keyword text="reverse"/>
+          <Keyword text="inline-axis"/>
+          <Keyword text="box-axis"/>
+          <Keyword text="condensed"/>
+          <Keyword text="extra-condensed"/>
+          <Keyword text="semi-condensed"/>
+          <Keyword text="ultra-condensed"/>
+          <Keyword text="expanded"/>
+          <Keyword text="extra-expanded"/>
+          <Keyword text="semi-expanded"/>
+          <Keyword text="ultra-expanded"/>
+          <Keyword text="inter-word"/>
+          <Keyword text="inter-ideograph"/>
+          <Keyword text="inter-cluster"/>
+          <Keyword text="distribute"/>
+          <Keyword text="kashida"/>
+          <Keyword text="clip"/>
+          <Keyword text="ellipsis"/>
+          <Keyword text="break-word"/>
+          <Keyword text="matrix"/>
+          <Keyword text="matrix3d"/>
+          <Keyword text="translate"/>
+          <Keyword text="translate3d"/>
+          <Keyword text="translateX"/>
+          <Keyword text="translateY"/>
+          <Keyword text="translateZ"/>
+          <Keyword text="scale"/>
+          <Keyword text="scale3d"/>
+          <Keyword text="scaleX"/>
+          <Keyword text="scaleY"/>
+          <Keyword text="scaleZ"/>
+          <Keyword text="rotate"/>
+          <Keyword text="rotate3d"/>
+          <Keyword text="rotateX"/>
+          <Keyword text="rotateY"/>
+          <Keyword text="rotateZ"/>
+          <Keyword text="skew"/>
+          <Keyword text="skewX"/>
+          <Keyword text="skewY"/>
+          <Keyword text="perspecive"/>
+          <Keyword text="linear"/>
+          <Keyword text="ease"/>
+          <Keyword text="ease-in"/>
+          <Keyword text="ease-out"/>
+          <Keyword text="ease-in-out"/>
+          <Keyword text="cubic-bezier"/>
+          <Keyword text="icon"/>
+          <Keyword text="window"/>
+          <Keyword text="button"/>
+          <Keyword text="menu"/>
+          <Keyword text="field"/>
+          <Keyword text="content-box"/>
+          <Keyword text="border-box"/>
+          <Keyword text="optimizeSpeed"/>
+          <Keyword text="optimizeLegibility"/>
+          <Keyword text="geometricPrecision"/>
+          <Keyword text="subpixel-antialiased"/>
+          <Keyword text="antialiased"/>
+
+          <Keyword text="landscape"/>
+          <Keyword text="portrait"/>
+
+          <!-- Existing schema. Comic sans removed - it's evil! -->
+          <Keyword text="Century Gothic"/>
+          <Keyword text="Courier New"/>
+          <Keyword text="Courier"/>
+          <Keyword text="Monaco"/>
+          <Keyword text="Times"/>
+          <Keyword text="absolute"/>
+          <Keyword text="announcer"/>
+          <Keyword text="arial"/>
+          <Keyword text="armenian"/>
+          <Keyword text="attr" pattern="%CurrentWord%(%|%)"/>
+          <Keyword text="auto"/>
+          <Keyword text="baseline"/>
+          <Keyword text="bidi-override"/>
+          <Keyword text="blink"/>
+          <Keyword text="block"/>
+          <Keyword text="bold"/>
+          <Keyword text="bolder"/>
+          <Keyword text="both"/>
+          <Keyword text="bottom center"/>
+          <Keyword text="bottom left"/>
+          <Keyword text="bottom right"/>
+          <Keyword text="bottom"/>
+          <Keyword text="capitalize"/>
+          <Keyword text="caption"/>
+          <Keyword text="center center"/>
+          <Keyword text="center left"/>
+          <Keyword text="center right"/>
+          <Keyword text="center"/>
+          <Keyword text="child"/>
+          <Keyword text="circle"/>
+          <Keyword text="cjk-ideographic"/>
+          <Keyword text="close-quote"/>
+          <Keyword text="collapse"/>
+          <Keyword text="comedian"/>
+          <Keyword text="compact"/>
+          <Keyword text="condensed"/>
+          <Keyword text="counter" pattern="%CurrentWord%(%name%, %list-style-type%%|%)"/>
+          <Keyword text="counters" pattern="%CurrentWord%(%name%, %string%, %list-style-type%%|%)"/>
+          <Keyword text="crosshair"/>
+          <Keyword text="dashed"/>
+          <Keyword text="decimal"/>
+          <Keyword text="decimal-leading-zero"/>
+          <Keyword text="default"/>
+          <Keyword text="disc"/>
+          <Keyword text="dotted"/>
+          <Keyword text="double"/>
+          <Keyword text="e-resize"/>
+          <Keyword text="embed"/>
+          <Keyword text="expanded"/>
+          <Keyword text="extra-condensed"/>
+          <Keyword text="extra-expanded"/>
+          <Keyword text="female"/>
+          <Keyword text="fixed"/>
+          <Keyword text="georgian"/>
+          <Keyword text="groove"/>
+          <Keyword text="hebrew"/>
+          <Keyword text="help"/>
+          <Keyword text="helvetica"/>
+          <Keyword text="hidden"/>
+          <Keyword text="hide"/>
+          <Keyword text="hiragana"/>
+          <Keyword text="hiragana-iroha"/>
+          <Keyword text="hsl" pattern="%CurrentWord%(%|%)"/>
+          <Keyword text="icon"/>
+          <Keyword text="inherit"/>
+          <Keyword text="inline"/>
+          <Keyword text="inline-table"/>
+          <Keyword text="inline-block"/>
+          <Keyword text="inset"/>
+          <Keyword text="inside"/>
+          <Keyword text="italic"/>
+          <Keyword text="juliet"/>
+          <Keyword text="justify"/>
+          <Keyword text="katakana"/>
+          <Keyword text="katakana-iroha"/>
+          <Keyword text="large"/>
+          <Keyword text="larger"/>
+          <Keyword text="left"/>
+          <Keyword text="lighter"/>
+          <Keyword text="line-through"/>
+          <Keyword text="list-item"/>
+          <Keyword text="lower-alpha"/>
+          <Keyword text="lower-greek"/>
+          <Keyword text="lower-latin"/>
+          <Keyword text="lower-roman"/>
+          <Keyword text="lowercase"/>
+          <Keyword text="ltr"/>
+          <Keyword text="male"/>
+          <Keyword text="marker"/>
+          <Keyword text="mary"/>
+          <Keyword text="medium"/>
+          <Keyword text="menu"/>
+          <Keyword text="message-box"/>
+          <Keyword text="middle"/>
+          <Keyword text="mono"/>
+          <Keyword text="monospace"/>
+          <Keyword text="move"/>
+          <Keyword text="n-resize"/>
+          <Keyword text="narrower"/>
+          <Keyword text="ne-resize"/>
+          <Keyword text="no-close-quote"/>
+          <Keyword text="no-open-quote"/>
+          <Keyword text="no-repeat"/>
+          <Keyword text="none"/>
+          <Keyword text="normal" descr="Collapse whitespace."/>
+          <Keyword text="nowrap" descr="Same as normal but suppresses line breaks."/>
+          <Keyword text="nw-resize"/>
+          <Keyword text="oblique"/>
+          <Keyword text="open-quote"/>
+          <Keyword text="outset"/>
+          <Keyword text="overline"/>
+          <Keyword text="pointer"/>
+          <Keyword text="pre" descr="Preserve whitespace."/>
+          <Keyword text="pre-line" descr="Collapse whitespace but preserve line breaks."/>
+          <Keyword text="pre-wrap" descr="Preserve whitespace but wrap text."/>
+          <Keyword text="relative"/>
+          <Keyword text="repeat"/>
+          <Keyword text="repeat-x"/>
+          <Keyword text="repeat-y"/>
+          <Keyword text="rgb" pattern="%CurrentWord%(%|%)"/>
+          <Keyword text="ridge"/>
+          <Keyword text="right"/>
+          <Keyword text="romeo"/>
+          <Keyword text="rtl" pattern="%CurrentWord%(%|%)"/>
+          <Keyword text="run-in"/>
+          <Keyword text="s-resize"/>
+          <Keyword text="sam"/>
+          <Keyword text="sans-serif"/>
+          <Keyword text="scroll"/>
+          <Keyword text="se-resize"/>
+          <Keyword text="semi-condensed"/>
+          <Keyword text="semi-expanded"/>
+          <Keyword text="separate"/>
+          <Keyword text="serif"/>
+          <Keyword text="show"/>
+          <Keyword text="small"/>
+          <Keyword text="small-caps"/>
+          <Keyword text="small-caption"/>
+          <Keyword text="smaller"/>
+          <Keyword text="solid"/>
+          <Keyword text="square"/>
+          <Keyword text="static"/>
+          <Keyword text="status-bar"/>
+          <Keyword text="sub"/>
+          <Keyword text="super"/>
+          <Keyword text="sw-resize"/>
+          <Keyword text="table"/>
+          <Keyword text="table-caption"/>
+          <Keyword text="table-cell"/>
+          <Keyword text="table-column"/>
+          <Keyword text="table-column-group"/>
+          <Keyword text="table-footer-group"/>
+          <Keyword text="table-header-group"/>
+          <Keyword text="table-row"/>
+          <Keyword text="table-row-group"/>
+          <Keyword text="tahoma"/>
+          <Keyword text="text"/>
+          <Keyword text="text-bottom"/>
+          <Keyword text="text-top"/>
+          <Keyword text="thick"/>
+          <Keyword text="thin"/>
+          <Keyword text="top center"/>
+          <Keyword text="top left"/>
+          <Keyword text="top right"/>
+          <Keyword text="top"/>
+          <Keyword text="transparent"/>
+          <Keyword text="ultra-condensed"/>
+          <Keyword text="ultra-expanded"/>
+          <Keyword text="underline"/>
+          <Keyword text="upper-alpha"/>
+          <Keyword text="upper-latin"/>
+          <Keyword text="upper-roman"/>
+          <Keyword text="uppercase"/>
+          <Keyword text="url" pattern="%CurrentWord%(&quot;%url%&quot;)"/>
+          <Keyword text="verdana"/>
+          <Keyword text="visible"/>
+          <Keyword text="w-resize"/>
+          <Keyword text="wait"/>
+          <Keyword text="wider"/>
+          <Keyword text="x-large"/>
+          <Keyword text="x-small"/>
+          <Keyword text="xx-large"/>
+          <Keyword text="xx-small"/>
+        </Keywords>
+      </Style>
+      <Style name="Color" id="color" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="values"/>
+        </Containers>
+        <Blocks>
+          <Block open="#">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+        </Blocks>
+        <Keywords>
+          <Keyword text="aliceblue"/>
+          <Keyword text="antiquewhite"/>
+          <Keyword text="aqua"/>
+          <Keyword text="aquamarine"/>
+          <Keyword text="azure"/>
+          <Keyword text="beige"/>
+          <Keyword text="bisque"/>
+          <Keyword text="black"/>
+          <Keyword text="blanchedalmond"/>
+          <Keyword text="blue"/>
+          <Keyword text="blueviolet"/>
+          <Keyword text="brown"/>
+          <Keyword text="burlywood"/>
+          <Keyword text="cadetblue"/>
+          <Keyword text="chartreuse"/>
+          <Keyword text="chocolate"/>
+          <Keyword text="coral"/>
+          <Keyword text="cornflowerblue"/>
+          <Keyword text="cornsilk"/>
+          <Keyword text="crimson"/>
+          <Keyword text="cyan"/>
+          <Keyword text="darkblue"/>
+          <Keyword text="darkcyan"/>
+          <Keyword text="darkgoldenrod"/>
+          <Keyword text="darkgray"/>
+          <Keyword text="darkgreen"/>
+          <Keyword text="darkkhaki"/>
+          <Keyword text="darkmagenta"/>
+          <Keyword text="darkolivegreen"/>
+          <Keyword text="darkorange"/>
+          <Keyword text="darkorchid"/>
+          <Keyword text="darkred"/>
+          <Keyword text="darksalmon"/>
+          <Keyword text="darkseagreen"/>
+          <Keyword text="darkslateblue"/>
+          <Keyword text="darkslategray"/>
+          <Keyword text="darkturquoise"/>
+          <Keyword text="darkviolet"/>
+          <Keyword text="deeppink"/>
+          <Keyword text="deepskyblue"/>
+          <Keyword text="dimgray"/>
+          <Keyword text="dodgerblue"/>
+          <Keyword text="firebrick"/>
+          <Keyword text="floralwhite"/>
+          <Keyword text="forestgreen"/>
+          <Keyword text="fuchsia"/>
+          <Keyword text="gainsboro"/>
+          <Keyword text="ghostwhite"/>
+          <Keyword text="gold"/>
+          <Keyword text="goldenrod"/>
+          <Keyword text="gray"/>
+          <Keyword text="green"/>
+          <Keyword text="greenyellow"/>
+          <Keyword text="honeydew"/>
+          <Keyword text="hotpink"/>
+          <Keyword text="indianred"/>
+          <Keyword text="indigo"/>
+          <Keyword text="ivory"/>
+          <Keyword text="khaki"/>
+          <Keyword text="lavender"/>
+          <Keyword text="lavenderblush"/>
+          <Keyword text="lawngreen"/>
+          <Keyword text="lemonchiffon"/>
+          <Keyword text="lightblue"/>
+          <Keyword text="lightcoral"/>
+          <Keyword text="lightcyan"/>
+          <Keyword text="lightgoldenrodyellow"/>
+          <Keyword text="lightgreen"/>
+          <Keyword text="lightgrey"/>
+          <Keyword text="lightpink"/>
+          <Keyword text="lightsalmon"/>
+          <Keyword text="lightseagreen"/>
+          <Keyword text="lightskyblue"/>
+          <Keyword text="lightslategray"/>
+          <Keyword text="lightsteelblue"/>
+          <Keyword text="lightyellow"/>
+          <Keyword text="lime"/>
+          <Keyword text="limegreen"/>
+          <Keyword text="linen"/>
+          <Keyword text="magenta"/>
+          <Keyword text="maroon"/>
+          <Keyword text="mediumaquamarine"/>
+          <Keyword text="mediumblue"/>
+          <Keyword text="mediumorchid"/>
+          <Keyword text="mediumpurple"/>
+          <Keyword text="mediumseagreen"/>
+          <Keyword text="mediumslateblue"/>
+          <Keyword text="mediumspringgreen"/>
+          <Keyword text="mediumturquoise"/>
+          <Keyword text="mediumvioletred"/>
+          <Keyword text="midnightblue"/>
+          <Keyword text="mintcream"/>
+          <Keyword text="mistyrose"/>
+          <Keyword text="moccasin"/>
+          <Keyword text="navajowhite"/>
+          <Keyword text="navy"/>
+          <Keyword text="oldlace"/>
+          <Keyword text="olive"/>
+          <Keyword text="olivedrab"/>
+          <Keyword text="orange"/>
+          <Keyword text="orangered"/>
+          <Keyword text="orchid"/>
+          <Keyword text="palegoldenrod"/>
+          <Keyword text="palegreen"/>
+          <Keyword text="paleturquoise"/>
+          <Keyword text="palevioletred"/>
+          <Keyword text="papayawhip"/>
+          <Keyword text="peachpuff"/>
+          <Keyword text="peru"/>
+          <Keyword text="pink"/>
+          <Keyword text="plum"/>
+          <Keyword text="powderblue"/>
+          <Keyword text="purple"/>
+          <Keyword text="red"/>
+          <Keyword text="rosybrown"/>
+          <Keyword text="royalblue"/>
+          <Keyword text="saddlebrown"/>
+          <Keyword text="salmon"/>
+          <Keyword text="sandybrown"/>
+          <Keyword text="seagreen"/>
+          <Keyword text="seashell"/>
+          <Keyword text="sienna"/>
+          <Keyword text="silver"/>
+          <Keyword text="skyblue"/>
+          <Keyword text="slateblue"/>
+          <Keyword text="slategray"/>
+          <Keyword text="snow"/>
+          <Keyword text="springgreen"/>
+          <Keyword text="steelblue"/>
+          <Keyword text="tan"/>
+          <Keyword text="teal"/>
+          <Keyword text="thistle"/>
+          <Keyword text="tomato"/>
+          <Keyword text="turquoise"/>
+          <Keyword text="violet"/>
+          <Keyword text="wheat"/>
+          <Keyword text="white"/>
+          <Keyword text="whitesmoke"/>
+          <Keyword text="yellow"/>
+          <Keyword text="yellowgreen"/>
+        </Keywords>
+      </Style>
+      <Style name="Important" bold="0" italic="0" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="2">
+        <Containers>
+          <Open id="values"/>
+        </Containers>
+        <Blocks>
+          <Block open="!important" close=""/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

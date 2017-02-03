@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="perl_regexp" name="Perl Regular Expressions" inherit="def_source" inherit_url="defsource_spec.xml" abstract="true">
+    <SPECIFICATION>
+      <CaseSensitive>true</CaseSensitive>
+      <OpenClose>()[]{}</OpenClose>
+      <EscapeChar>\</EscapeChar>
+      <Operators>?--+*|^.,()[]{}&lt;&gt;$</Operators>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="(" close=")"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="normal" name="Normal" dbkclr="false" bold="2" italic="2" underline="2" clr="#FFFFFFFF" bkclr="#FFFFFFFF" overview="3"/>
+      <Style name="Reserved" image="9" bold="1" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block text="\\/"/>          
+          <Block text="\\w"/>
+          <Block text="\\s"/>
+          <Block text="\\r"/>
+          <Block text="\\n"/>
+          <Block text="\\g"/>
+          <Block text="\\0"/>
+          <Block text="\\c"/>
+          <Block text="\\x"/>
+          <Block text="\\d"/>
+          <Block text="\\l"/>
+          <Block text="\\u"/>
+          <Block text="\\h"/>
+          <Block text="\\v"/>
+          <Block text="\\D"/>
+          <Block text="\\L"/>
+          <Block text="\\S"/>
+          <Block text="\\U"/>
+          <Block text="\\W"/>
+          <Block text="\\H"/>
+          <Block text="\\V"/>
+          <Block text="\\p"/>
+          <Block text="\\P"/>
+          <Block text=":digit:"/>
+          <Block text=":lower:"/>
+          <Block text=":space:"/>
+          <Block text=":upper:"/>
+          <Block text=":word:"/>          
+          <Block text="\\\\"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

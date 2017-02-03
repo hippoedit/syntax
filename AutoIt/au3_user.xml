@@ -1,0 +1,615 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Alexandr Cojocari" type="LangUser"/>
+  <SYNTAX id="au3" inherit="def_source" inherit_url="defsource_user.xml">
+    <CodeTemplates>
+      <Template key="au3check">C:\Program Files\Autoit3\SciTe\Au3Check\Au3Check.exe%|%</Template>
+      <Template key="autoit3">C:\Program Files\Autoit3\AutoIt3.exe%|%</Template>
+      <Template key="aut2exe">C:\Program Files\AutoIt3\Aut2Exe\Aut2Exe.exe%|%</Template>
+      <Template key="datbeta">C:\Program Files\AutoIt3\SciTe\Defs\unstable\Au3Check\au3check.dat%|%</Template>
+      <Template key="datfinal">C:\Program Files\AutoIt3\SciTe\Defs\Production\Au3Check\au3check.dat%|%</Template>
+      <Template key="icon">C:\Program Files\AutoIt3\Aut2Exe\Icons\%|%.ico</Template>
+      <Template key="scite">C:\Program Files\Autoit3\SciTe\SciTe.exe%|%</Template>
+      <Template key="autoit3dir">C:\Program Files\AutoIt3\%|%</Template>
+      <Template key="aut2exedir">C:\Program Files\AutoIt3\Aut2Exe\%|%</Template>
+      <Template key="icondir">C:\Program Files\AutoIt3\Aut2Exe\Icons\%|%</Template>
+      <Template key="includedir">C:\Program Files\AutoIt3\Include\%|%</Template>
+      <Template key="scitedir">C:\Program Files\Autoit3\SciTe\%|%</Template>
+      <Template key="chk">$Checkbox_%|%</Template>
+      <Template key="edt">$Edit_%|%</Template>
+      <Template key="inp">$Input_%|%</Template>
+      <Template key="lbl">$Label_%|%</Template>
+      <Template key="but">$Button_%|%</Template>
+      <Template key="rad">$Radio_%|%</Template>
+      <Template key="tab">$Tab_%|%</Template>
+      <Template key="error">$Error %|%</Template>
+      <Template key="result">$Result %|%</Template>
+      <Template key="gchecked">$GUI_CHECKED%|%</Template>
+      <Template key="gunchecked">$GUI_UNCHECKED%|%</Template>
+      <Template key="genable">$GUI_ENABLE%|%</Template>
+      <Template key="gdisable">$GUI_DISABLE%|%</Template>
+      <Template key="ghide">$GUI_HIDE%|%</Template>
+      <Template key="gshow">$GUI_SHOW%|%</Template>
+      <Template key="gfocus">$GUI_FOCUS%|%</Template>
+      <Template key="eclose">$GUI_EVENT_CLOSE%|%</Template>
+      <Template key="emin">$GUI_EVENT_MINIMIZE%|%</Template>
+      <Template key="erestore">$GUI_EVENT_RESTORE%|%</Template>
+      <Template key="emax">$GUI_EVENT_MAXIMIZE%|%</Template>
+      <Template key="cmd">
+        RunWait(@ComSpec &amp; &apos; /c %|%&apos;, &apos;&apos;, @SW_HIDE)
+      </Template>
+      <Template key="slp1">
+        Sleep(1000)
+        %|%
+      </Template>
+      <Template key="slp2">
+        Sleep(2000)
+        %|%
+      </Template>
+      <Template key="slp3">
+        Sleep(3000)
+        %|%
+      </Template>
+      <Template key="slp4">
+        Sleep(4000)
+        %|%
+      </Template>
+      <Template key="slp5">
+        Sleep(5000)
+        %|%
+      </Template>
+      <Template key="gcc">GUICtrlCreate%|%</Template>
+      <Template key="gcs">GUICtrlSet%|%</Template>
+      <Template key="cr1">&amp; @CRLF %|%</Template>
+      <Template key="cr2">&amp; @CRLF &amp; @CRLF %|%</Template>
+      <Template key="cr3">&amp; @CRLF &amp; @CRLF &amp; @CRLF %|%</Template>
+      <Template key="cr4">&amp; @CRLF &amp; @CRLF &amp; @CRLF &amp; @CRLF %|%</Template>
+      <Template key="cr5">&amp; @CRLF &amp; @CRLF &amp; @CRLF &amp; @CRLF &amp; @CRLF %|%</Template>
+      <Template key="tab1">&amp; @TAB %|%</Template>
+      <Template key="tab2">&amp; @TAB &amp; @TAB %|%</Template>
+      <Template key="tab3">&amp; @TAB &amp; @TAB &amp; @TAB %|%</Template>
+      <Template key="tab4">&amp; @TAB &amp; @TAB &amp; @TAB &amp; @TAB %|%</Template>
+      <Template key="tab5">&amp; @TAB &amp; @TAB &amp; @TAB &amp; @TAB &amp; @TAB %|%</Template>
+      <Template key="lf1">&amp; @LF %|%</Template>
+      <Template key="lf2">&amp; @LF &amp; @LF %|%</Template>
+      <Template key="lf3">&amp; @LF &amp; @LF &amp; @LF %|%</Template>
+      <Template key="lf4">&amp; @LF &amp; @LF &amp; @LF &amp; @LF %|%</Template>
+      <Template key="lf5">&amp; @LF &amp; @LF &amp; @LF &amp; @LF &amp; @LF %|%</Template>
+      <Template key="cl">ContinueLoop%|%</Template>
+      <Template key="el">ExitLoop%|%</Template>
+      <Template key="err">@Error %|%</Template>
+      <Template key="ext">@Extended %|%</Template>
+      <Template key="include">
+        #include &lt;GUIConstants.au3&gt;
+        %|%
+      </Template>
+      <Template key="includeonce">
+        #include-once
+        %|%
+      </Template>
+      <Template key="reg">
+        #Region - %|%
+      </Template>
+      <Template key="ereg">
+        #EndRegion
+        %|%
+      </Template>
+      <Template key="nti">
+        #NoTrayIcon
+        %|%
+      </Template>
+      <Template key="ifthen">
+        If %|% Then
+        EndIf
+      </Template>
+      <Template key="ifelse">
+        If %|% Then
+        Else
+        EndIf
+      </Template>
+      <Template key="ifelseif">
+        If %|% Then
+        ElseIf
+        Else
+        EndIf
+      </Template>
+      <Template key="dountil">
+        Do
+        %|%
+        Until
+      </Template>
+      <Template key="fornext">
+        For $i = %|% To  Step 1
+        Next
+      </Template>
+      <Template key="fun">
+        Func _%|%()
+        EndFunc
+      </Template>
+      <Template key="selectcase">
+        Select
+
+        Case %|%
+
+        Case
+
+        Case
+
+        Case
+
+        Case Else
+
+        EndSelect
+      </Template>
+      <Template key="more">
+        %|%
+
+        Case
+
+        Case
+
+        Case
+
+        Case
+
+        Case Else
+      </Template>
+      <Template key="whilewend">
+        While %|%
+        WEnd
+      </Template>
+      <Template key="for0">For $i = 0 To %|%</Template>
+      <Template key="for0ub">For $i = 0 To UBound(%|%)</Template>
+      <Template key="for1">For $i = 1 To %|%</Template>
+      <Template key="for1ub">For $i = 1 To UBound(%|%)</Template>
+      <Template key="setupgui">
+        #include &lt;GUIConstants.au3&gt;
+
+        #Region - GUI Create
+
+        GUICreate(%|%)
+
+        #EndRegion
+
+        GUISetState(@SW_SHOW)
+
+        selectloop
+
+        functions
+      </Template>
+      <Template key="selectloop">
+        #Region - GUI SelectLoop
+
+        While 1
+        $msg = GUIGetMsg()
+
+        Select
+
+        Case $msg = -3 ;$GUI_EVENT_CLOSE
+        Exit
+
+        Case $msg = %|%
+
+        Case $msg =
+
+        Case $msg =
+
+        Case $msg =
+
+        Case $msg =
+
+        EndSelect
+
+        WEnd
+        #EndRegion
+      </Template>
+      <Template key="moremsg">
+        $msg = %|%
+
+        Case $msg =
+
+        Case $msg =
+
+        Case $msg =
+
+        Case $msg =
+
+        Case $msg =
+      </Template>
+      <Template key="functions">
+        ; Start - Functions
+
+        Func _%|%A()
+        EndFunc
+
+        Func _B()
+        EndFunc
+
+        Func _C()
+        EndFunc
+
+        Func _D()
+        EndFunc
+
+        Func _E()
+        EndFunc
+
+        Func _F()
+        EndFunc
+
+        Func _G()
+        EndFunc
+
+        Func _H()
+        EndFunc
+
+        Func _I()
+        EndFunc
+
+        Func _J()
+        EndFunc
+      </Template>
+      <Template key="selfdelete">
+        Func _SelfDelete()
+        Local $cmdfile
+        FileDelete(@TempDir &amp; &quot;\scratch.cmd&quot;)
+        $cmdfile = &apos;:loop&apos; &amp; @CRLF _
+        &amp; &apos;del &quot;&apos; &amp; @ScriptFullPath &amp; &apos;&quot;&apos; &amp; @CRLF _
+        &amp; &apos;if exist &quot;&apos; &amp; @ScriptFullPath &amp; &apos;&quot; goto loop&apos; &amp; @CRLF _
+        &amp; &apos;del &apos; &amp; @TempDir &amp; &apos;\scratch.cmd&apos;
+        FileWrite(@TempDir &amp; &quot;\scratch.cmd&quot;, $cmdfile)
+        Run(@TempDir &amp; &quot;\scratch.cmd&quot;, @TempDir, @SW_HIDE)
+        EndFunc
+        %|%
+      </Template>
+      <Template key="compiler">
+        #Region - Compiler Directives
+
+        #Compiler_Prompt = y
+        #Compiler_AutoIt3 =
+        #Compiler_Aut2Exe =
+        #Compiler_Icon =
+        #Compiler_OutFile =
+        #Compiler_Compression = 2
+        #Compiler_Allow_Decompile = y
+        #Compiler_PassPhrase =
+        #Compiler_Res_Comment =
+        #Compiler_Res_Description =
+        #Compiler_Res_Fileversion = 0.0.0.0
+        #Compiler_Res_LegalCopyright =
+        #Compiler_Res_Field = Platform
+        #Compiler_Res_Field = AutoIt Version
+        #Compiler_Run_AU3Check = y
+        #Compiler_AU3Check_Dat =
+        #Compiler_Run_Before =
+        #Compiler_Run_After =
+        #EndRegion
+
+      </Template>
+      <Template key="options">
+        #Region - Options
+
+        ;~ Opt(&apos;CaretCoordMode&apos;, 0)			; 1 = Absolute screen coordinates, 0 = Relative coords to the active window.
+        ;~ Opt(&apos;ColorMode&apos;, 1)				; 0 = Colors are defined as RGB (0xRRGGBB), 1 = Colors are defined as BGR (0xBBGGRR).
+        ;~ Opt(&apos;ExpandEnvStrings&apos;, 1)		; 0 = Don&apos;t expand, 1 = Do expand (Use %dos% variables in strings).
+        ;~ Opt(&apos;ExpandVarStrings&apos;, 1)		; 0 = Don&apos;t expand, 1 = Do expand (Use $autoit$ variables in strings).
+        ;~ Opt(&apos;FtpBinaryMode&apos;, 0)			; 1 = Binary transfer, 0 = ASCII transfer.
+        ;~ Opt(&apos;GUICloseOnESC&apos;, 0)			; 1 = Send the $GUI_EVENT_CLOSE message when ESC is pressed (default).
+        ; 									  0 = Don&apos;t send the $GUI_EVENT_CLOSE message when ESC is pressed.
+        ;~ Opt(&apos;GUICoordMode&apos;, 2)			; 1 = Absolute coordinates still relative to the dialog box.
+        ; 									  0 = Relative position to the start of the last control (Upper left corner).
+        ; 									  2 = Cell positionining relative to current cell.
+        ;~ Opt(&apos;GUIOnEventMode&apos;, 1)			; 0 = Disable, 1 = Enable.
+        ;~ Opt(&apos;GUIResizeMode&apos;, 1)			; 0 = No resizing, &lt;1024 = Anytype of resizing (Reference: GuiCtrlSetResizing).
+        ;~ Opt(&apos;MouseClickDelay&apos;, 10)		; ? = 10 milliseconds.
+        ;~ Opt(&apos;MouseClickDownDelay&apos;, 10)	; ? = 10 milliseconds.
+        ;~ Opt(&apos;MouseClickDragDelay&apos;, 250)	; ? = 250 milliseconds.
+        ;~ Opt(&apos;MouseCoordMode&apos;, 0)			; 1 = Absolute, 0 = Relative to active window, 2 = Relative to client area.
+        ;~ Opt(&apos;MustDeclareVars&apos;, 1)		; 0 = No, 1 = Require pre-declare.
+        ;~ Opt(&apos;OnExitFunc&apos;, &apos;&apos;)			; &apos;&apos;  Sets the name of the function called when AutoIt exits (Default is OnAutoItExit).
+        ;~ Opt(&apos;PixelCoordMode&apos;, 0)			; 1 = Absolute, 0 = relative, 2 = Relative coords to the client area.
+        ;~ Opt(&apos;RunErrorsFatal&apos;, 0)			; 1 = Fatal, 0 = Silent set @error.
+        ;~ Opt(&apos;SendAttachMode&apos;, 1)			; 0 = Don&apos;t attach, 1 = Attach.
+        ;~ Opt(&apos;SendCapslockMode&apos;, 0)		; 1 = Store and restore, 0 = Don&apos;t store/restore.
+        ;~ Opt(&apos;SendKeyDelay&apos;, 5)			; ? = 5 milliseconds.
+        ;~ Opt(&apos;SendKeyDownDelay&apos;, 1)		; ? = 1 millisecond.
+        ;~ Opt(&apos;TrayIconDebug&apos;, 1)			; 0 = No info, 1 = Debug line info.
+        ;~ Opt(&apos;TrayIconHide&apos;, 1)			; 0 = Show, 1 = Hide.
+        ;~ Opt(&apos;WinDetectHiddenText&apos;, 1)	; 0 = Don&apos;t detect, 1=Do detect.
+        ;~ Opt(&apos;WinSearchChildren&apos;, 1)		; 0 = No, 1 = Search children also.
+        ;~ Opt(&apos;WinTextMatchMode&apos;, 4)		; 1 = Complete / Slow mode, 2 = Quick mode.
+        ;~ Opt(&apos;WinTitleMatchMode&apos;, 4)		; 1 = Start, 2 = SubString, 3 = Exact, 4 = ...
+        ;~ Opt(&apos;WinWaitDelay&apos;, 250)			; ? = 250 milliseconds.
+        #EndRegion
+
+      </Template>
+      <Template key="setupudf">
+        #Region - %|%
+
+        ;===============================================================================
+        ;
+        ; Description:		:
+        ; Parameter(s):		:
+        ; Requirement:		:
+        ; Return Value(s):	:
+        ; User CallTip:		:
+        ; Author(s):		:
+        ; Note(s):			:
+        ;
+        ;===============================================================================
+
+        ; Insert script here.
+        #EndRegion
+
+      </Template>
+      <Template key="ad">AdlibDisable()%|%</Template>
+      <Template key="ae">AdlibEnable(%|%)</Template>
+      <Template key="as">Assign(%|%)</Template>
+      <Template key="aso">AutoitSetOption(%|%)</Template>
+      <Template key="awgt">AutoitWinGetTitle()%|%</Template>
+      <Template key="awst">AutoitWinSetTitle(%|%)</Template>
+      <Template key="ba">BitAND(%|%)</Template>
+      <Template key="bn">BitNOT(%|%)</Template>
+      <Template key="bo">BitOR(%|%)</Template>
+      <Template key="bs">BitShift(%|%)</Template>
+      <Template key="bx">BitXOR(%|%)</Template>
+      <Template key="bi">BlockInput(%|%)</Template>
+      <Template key="br">Break(%|%)</Template>
+      <Template key="cdt">CDTray(%|%)</Template>
+      <Template key="cg">ClipGet()%|%</Template>
+      <Template key="cp">ClipPut(%|%)</Template>
+      <Template key="cw">ConsoleWrite(%|% &amp; @LF)</Template>
+      <Template key="ccl">ControlClick(%|%)</Template>
+      <Template key="cco">ControlCommand(%|%)</Template>
+      <Template key="cd">ControlDisable(%|%)</Template>
+      <Template key="ce">ControlEnable(%|%)</Template>
+      <Template key="cf">ControlFocus(%|%)</Template>
+      <Template key="cgf">ControlGetFocus(%|%)</Template>
+      <Template key="cgh">ControlGetHandle(%|%)</Template>
+      <Template key="cgp">ControlGetPos(%|%)</Template>
+      <Template key="cgt">ControlGetText(%|%)</Template>
+      <Template key="ch">ControlHide(%|%)</Template>
+      <Template key="clv">ControlListView(%|%)</Template>
+      <Template key="cm">ControlMove(%|%)</Template>
+      <Template key="cs">ControlSend(%|%)</Template>
+      <Template key="cst">ControlSetText(%|%)</Template>
+      <Template key="csh">ControlShow(%|%)</Template>
+      <Template key="dco">DirCopy(%|%)</Template>
+      <Template key="dcr">DirCreate(%|%)</Template>
+      <Template key="dgs">DirGetSize(%|%)</Template>
+      <Template key="dm">DirMove(%|%)</Template>
+      <Template key="dr">DirRemove(%|%)</Template>
+      <Template key="dll">DllCall(%|%)</Template>
+      <Template key="dllc">DllClose(%|%)</Template>
+      <Template key="dllo">DllOpen(%|%)</Template>
+      <Template key="dgd">DriveGetDrive(%|%)</Template>
+      <Template key="dgfs">DriveGetFileSystem(%|%)</Template>
+      <Template key="dgl">DriveGetLabel(%|%)</Template>
+      <Template key="dgs">DriveGetSerial(%|%)</Template>
+      <Template key="dgt">DriveGetType(%|%)</Template>
+      <Template key="dma">DriveMapAdd(%|%)</Template>
+      <Template key="dmd">DriveMapDel(%|%)</Template>
+      <Template key="dmg">DriveMapGet(%|%)</Template>
+      <Template key="dsl">DriveSetLabel(%|%)</Template>
+      <Template key="dsf">DriveSpaceFree(%|%)</Template>
+      <Template key="dst">DriveSpaceTotal(%|%)</Template>
+      <Template key="ds">DriveStatus(%|%)</Template>
+      <Template key="eg">EnvGet(%|%)</Template>
+      <Template key="es">EnvSet(%|%)</Template>
+      <Template key="eu">EnvUpdate()%|%</Template>
+      <Template key="fcd">FileChangeDir(%|%)</Template>
+      <Template key="fcl">FileClose(%|%)</Template>
+      <Template key="fco">FileCopy(%|%)</Template>
+      <Template key="fcs">FileCreateShortcut(%|%)</Template>
+      <Template key="fd">FileDelete(%|%)</Template>
+      <Template key="fe">FileExists(%|%)</Template>
+      <Template key="ffff">FileFindFirstFile(%|%)</Template>
+      <Template key="ffnf">FileFindNextFile(%|%)</Template>
+      <Template key="fga">FileGetAttrib(%|%)</Template>
+      <Template key="fgln">FileGetLongName(%|%)</Template>
+      <Template key="fgs">FileGetShortcut(%|%)</Template>
+      <Template key="fgsn">FileGetShortName(%|%)</Template>
+      <Template key="fgsi">FileGetSize(%|%)</Template>
+      <Template key="fgt">FileGetTime(%|%)</Template>
+      <Template key="fgv">FileGetVersion(%|%)</Template>
+      <Template key="fi">FileInstall(%|%)</Template>
+      <Template key="fm">FileMove(%|%)</Template>
+      <Template key="fo">FileOpen(%|%)</Template>
+      <Template key="fod">FileOpenDialog(%|%)</Template>
+      <Template key="fr">FileRead(%|%)</Template>
+      <Template key="frl">FileReadLine(%|%)</Template>
+      <Template key="frc">FileRecycle(%|%)</Template>
+      <Template key="frce">FileRecycleEmpty(%|%)</Template>
+      <Template key="fsd">FileSaveDialog(%|%)</Template>
+      <Template key="fsf">FileSelectFolder(%|%)</Template>
+      <Template key="fsa">FileSetAttrib(%|%)</Template>
+      <Template key="fst">FileSetTime(%|%)</Template>
+      <Template key="fw">FileWrite(%|%)</Template>
+      <Template key="fwl">FileWriteLine(%|%)</Template>
+      <Template key="fsp">FtpSetProxy(%|%)</Template>
+      <Template key="gc">GUICreate(%|%)</Template>
+      <Template key="gcca">GUICtrlCreateAvi(%|%)</Template>
+      <Template key="gccb">GUICtrlCreateButton(%|%)</Template>
+      <Template key="gcccb">GUICtrlCreateCheckbox(%|%)</Template>
+      <Template key="gccc">GUICtrlCreateCombo(%|%)</Template>
+      <Template key="gcccm">GUICtrlCreateContextMenu(%|%)</Template>
+      <Template key="gccda">GUICtrlCreateDate(%|%)</Template>
+      <Template key="gccdu">GUICtrlCreateDummy()%|%</Template>
+      <Template key="gcce">GUICtrlCreateEdit(%|%)</Template>
+      <Template key="gccg">GUICtrlCreateGroup(%|%)</Template>
+      <Template key="gccgc">
+        GUICtrlCreateGroup(&apos;&apos;, -99, -99, 1, 1) ; Close group.
+        %|%
+      </Template>
+      <Template key="gccico">GUICtrlCreateIcon(%|%)</Template>
+      <Template key="gcci">GUICtrlCreateInput(%|%)</Template>
+      <Template key="gccla">GUICtrlCreateLabel(%|%)</Template>
+      <Template key="gccli">GUICtrlCreateList(%|%)</Template>
+      <Template key="gccm">GUICtrlCreateMenu(%|%)</Template>
+      <Template key="gccmi">GUICtrlCreateMenuItem(%|%)</Template>
+      <Template key="gccpi">GUICtrlCreatePic(%|%)</Template>
+      <Template key="gccpr">GUICtrlCreateProgress(%|%)</Template>
+      <Template key="gccr">GUICtrlCreateRadio(%|%)</Template>
+      <Template key="gccs">GUICtrlCreateSlider(%|%)</Template>
+      <Template key="gcct">GUICtrlCreateTab(%|%)</Template>
+      <Template key="gccti">GUICtrlCreateTabItem(%|%)</Template>
+      <Template key="gcctic">
+        GUICtrlCreateTabItem(&apos;&apos;) ; Close tabitem.
+        %|%
+      </Template>
+      <Template key="gcctv">GUICtrlCreateTreeView(%|%)</Template>
+      <Template key="gcctvi">GUICtrlCreateTreeViewItem(%|%)</Template>
+      <Template key="gccu">GUICtrlCreateUpdown(%|%)</Template>
+      <Template key="gcd">GUICtrlDelete(%|%)</Template>
+      <Template key="gcgs">GUICtrlGetState(%|%)</Template>
+      <Template key="gcr">GUICtrlRead(%|%)</Template>
+      <Template key="gcrm">GUICtrlRecvMsg(%|%)</Template>
+      <Template key="gcsm">GUICtrlSendMsg(%|%)</Template>
+      <Template key="gcstd">GUICtrlSendToDummy(%|%)</Template>
+      <Template key="gcsbc">GUICtrlSetBkColor(%|%)</Template>
+      <Template key="gcsco">GUICtrlSetColor(%|%)</Template>
+      <Template key="gcscu">GUICtrlSetCursor(%|%)</Template>
+      <Template key="gcsd">GUICtrlSetData(%|%)</Template>
+      <Template key="gcsf">GUICtrlSetFont(%|%)</Template>
+      <Template key="gcsi">GUICtrlSetImage(%|%)</Template>
+      <Template key="gcsl">GUICtrlSetLimit(%|%)</Template>
+      <Template key="gcsoe">GUICtrlSetOnEvent(%|%)</Template>
+      <Template key="gcsp">GUICtrlSetPos(%|%)</Template>
+      <Template key="gcsr">GUICtrlSetResizing(%|%)</Template>
+      <Template key="gcss">GUICtrlSetState(%|%)</Template>
+      <Template key="gcsst">GUICtrlSetStyle(%|%)</Template>
+      <Template key="gcst">GUICtrlSetTip(%|%)</Template>
+      <Template key="gd">GUIDelete(%|%)</Template>
+      <Template key="ggci">GUIGetCursorInfo(%|%)</Template>
+      <Template key="ggm">GUIGetMsg(%|%)</Template>
+      <Template key="gsbc">GUISetBkColor(%|%)</Template>
+      <Template key="gsc">GUISetCoord(%|%)</Template>
+      <Template key="gscu">GUISetCursor(%|%)</Template>
+      <Template key="gsf">GUISetFont(%|%)</Template>
+      <Template key="gsh">GUISetHelp(%|%)</Template>
+      <Template key="gsi">GUISetIcon(%|%)</Template>
+      <Template key="gsoe">GUISetOnEvent(%|%)</Template>
+      <Template key="gss">GUISetState(%|%)</Template>
+      <Template key="gsg">GUIStartgroup(%|%)</Template>
+      <Template key="gs">GUISwitch(%|%)</Template>
+      <Template key="hks">HotKeySet(%|%)</Template>
+      <Template key="hsp">httpSetProxy(%|%)</Template>
+      <Template key="ig">InetGet(%|%)</Template>
+      <Template key="igs">InetGetSize(%|%)</Template>
+      <Template key="id">IniDelete(%|%)</Template>
+      <Template key="ir">IniRead(%|%)</Template>
+      <Template key="irs">IniReadSection(%|%)</Template>
+      <Template key="irsn">IniReadSectionNames(%|%)</Template>
+      <Template key="iw">IniWrite(%|%)</Template>
+      <Template key="ib">InputBox(%|%)</Template>
+      <Template key="isad">IsAdmin()%|%</Template>
+      <Template key="isar">IsArray(%|%)</Template>
+      <Template key="isd">IsDeclared(%|%)</Template>
+      <Template key="isf">IsFloat(%|%)</Template>
+      <Template key="isi">IsInt(%|%)</Template>
+      <Template key="isn">IsNumber(%|%)</Template>
+      <Template key="iss">IsString(%|%)</Template>
+      <Template key="mgs">MemGetStats()%|%</Template>
+      <Template key="mc">MouseClick(%|%)</Template>
+      <Template key="mcd">MouseClickDrag(%|%)</Template>
+      <Template key="md">MouseDown(%|%)</Template>
+      <Template key="mgc">MouseGetCursor()%|%</Template>
+      <Template key="mgp">MouseGetPos()%|%</Template>
+      <Template key="mm">MouseMove(%|%)</Template>
+      <Template key="mu">MouseUp(%|%)</Template>
+      <Template key="mw">MouseWheel(%|%)</Template>
+      <Template key="mb">MsgBox(%|%)</Template>
+      <Template key="num">Number(%|%)</Template>
+      <Template key="pcs">PixelChecksum(%|%)</Template>
+      <Template key="pgc">PixelGetColor(%|%)</Template>
+      <Template key="ps">PixelSearch(%|%)</Template>
+      <Template key="pc">ProcessClose(%|%)</Template>
+      <Template key="pe">ProcessExists(%|%)</Template>
+      <Template key="pl">ProcessList(%|%)</Template>
+      <Template key="psp">ProcessSetPriority(%|%)</Template>
+      <Template key="pw">ProcessWait(%|%)</Template>
+      <Template key="pwc">ProcessWaitClose(%|%)</Template>
+      <Template key="poff">ProgressOff()%|%</Template>
+      <Template key="pon">ProgressOn(%|%)</Template>
+      <Template key="pset">ProgressSet(%|%)</Template>
+      <Template key="rdm">Random(%|%)</Template>
+      <Template key="rd">RegDelete(%|%)</Template>
+      <Template key="rek">RegEnumKey(%|%)</Template>
+      <Template key="rev">RegEnumVal(%|%)</Template>
+      <Template key="rr">RegRead(%|%)</Template>
+      <Template key="rw">RegWrite(%|%)</Template>
+      <Template key="rnd">Round(%|%)</Template>
+      <Template key="ras">RunAsSet(%|%)</Template>
+      <Template key="rwa">RunWait(%|%)</Template>
+      <Template key="se">SetError(%|%)</Template>
+      <Template key="sex">SetExtended(%|%)</Template>
+      <Template key="sd">Shutdown(%|%)</Template>
+      <Template key="slp">Sleep(%|%)</Template>
+      <Template key="sp">SoundPlay(%|%)</Template>
+      <Template key="sswv">SoundSetWaveVolume(%|%)</Template>
+      <Template key="sio">SplashImageOn(%|%)</Template>
+      <Template key="so">SplashOff()%|%</Template>
+      <Template key="sto">SplashTextOn(%|%)</Template>
+      <Template key="sbgt">StatusbarGetText(%|%)</Template>
+      <Template key="stri">String(%|%)</Template>
+      <Template key="sacr">StringAddCR(%|%)</Template>
+      <Template key="sf">StringFormat(%|%)</Template>
+      <Template key="sis">StringInStr(%|%)</Template>
+      <Template key="sian">StringIsAlNum(%|%)</Template>
+      <Template key="sia">StringIsAlpha(%|%)</Template>
+      <Template key="siascii">StringIsASCII(%|%)</Template>
+      <Template key="sid">StringIsDigit(%|%)</Template>
+      <Template key="sif">StringIsFloat(%|%)</Template>
+      <Template key="sii">StringIsInt(%|%)</Template>
+      <Template key="sil">StringIsLower(%|%)</Template>
+      <Template key="sisp">StringIsSpace(%|%)</Template>
+      <Template key="siu">StringIsUpper(%|%)</Template>
+      <Template key="sixd">StringIsXDigit(%|%)</Template>
+      <Template key="sl">StringLeft(%|%)</Template>
+      <Template key="slen">StringLen(%|%)</Template>
+      <Template key="slower">StringLower(%|%)</Template>
+      <Template key="sm">StringMid(%|%)</Template>
+      <Template key="srep">StringReplace(%|%)</Template>
+      <Template key="sr">StringRight(%|%)</Template>
+      <Template key="ss">StringSplit(%|%)</Template>
+      <Template key="sscr">StringStripCR(%|%)</Template>
+      <Template key="ssws">StringStripWS(%|%)</Template>
+      <Template key="stl">StringTrimLeft(%|%)</Template>
+      <Template key="str">StringTrimRight(%|%)</Template>
+      <Template key="supper">StringUpper(%|%)</Template>
+      <Template key="td">TimerDiff(%|%)</Template>
+      <Template key="ti">TimerInit()%|%</Template>
+      <Template key="toolt">ToolTip(%|%)</Template>
+      <Template key="tt">TrayTip(%|%)</Template>
+      <Template key="ub">UBound(%|%)</Template>
+      <Template key="wat">WinActivate(%|%)</Template>
+      <Template key="wa">WinActive(%|%)</Template>
+      <Template key="wc">WinClose(%|%)</Template>
+      <Template key="we">WinExists(%|%)</Template>
+      <Template key="wgcp">WinGetCaretPos()%|%</Template>
+      <Template key="wgcl">WinGetClassList(%|%)</Template>
+      <Template key="wgcs">WinGetClientSize(%|%)</Template>
+      <Template key="wgh">WinGetHandle(%|%)</Template>
+      <Template key="wgpo">WinGetPos(%|%)</Template>
+      <Template key="wgpr">WinGetProcess(%|%)</Template>
+      <Template key="wgs">WinGetState(%|%)</Template>
+      <Template key="wgte">WinGetText(%|%)</Template>
+      <Template key="wgti">WinGetTitle(%|%)</Template>
+      <Template key="wk">WinKill(%|%)</Template>
+      <Template key="wl">WinList(%|%)</Template>
+      <Template key="wmsi">WinMenuSelectItem(%|%)</Template>
+      <Template key="wma">WinMinimizeAll()%|%</Template>
+      <Template key="wmau">WinMinimizeAllUndo()%|%</Template>
+      <Template key="wm">WinMove(%|%)</Template>
+      <Template key="wsot">WinSetOnTop(%|%)</Template>
+      <Template key="wss">WinSetState(%|%)</Template>
+      <Template key="wst">WinSetTitle(%|%)</Template>
+      <Template key="wstr">WinSetTrans(%|%)</Template>
+      <Template key="ww">WinWait(%|%)</Template>
+      <Template key="wwa">WinWaitActive(%|%)</Template>
+      <Template key="wwc">WinWaitClose(%|%)</Template>
+      <Template key="wwna">WinWaitNotActive(%|%)</Template>
+    </CodeTemplates>
+  </SYNTAX>
+</XMLConfigSettings>

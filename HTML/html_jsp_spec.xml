@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Theno" type="LangSpec"/>
+  <SYNTAX id="html_jsp" name="HTML (JSP)" inherit="html" inherit_url="html_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.jsp"/>
+    </SPECIFICATION>
+    <STYLES>
+      <Style name="JSP Scriptlet" include="java:normal" bold="0" italic="0" underline="0" overview="1" clr="#FF000000" bkclr="Embedded Language 1 Back">
+        <Containers>
+          <Close id="java:normal"/>
+          <Close id="java:comment"/>
+          <Open id="js:string"/>
+          <Open id="js:char"/>
+          <Open id="js:normal"/>
+          <Open id="normal"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_close_tag"/>
+        </Containers>
+        <Blocks>
+          <Block open="&lt;%" close="%&gt;"/>
+        </Blocks>
+      </Style>
+      <Style name="JSP Expression" include="java:normal" bold="0" italic="0" underline="0" overview="1" clr="#FF000000" bkclr="Embedded Language 1 Back">
+        <Containers>
+          <Close id="java:normal"/>
+          <Close id="java:comment"/>
+          <Open id="js:string"/>
+          <Open id="js:char"/>
+          <Open id="js:normal"/>
+          <Open id="normal"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_close_tag"/>
+        </Containers>
+        <Blocks>
+          <Block open="&lt;%=" close="%&gt;"/>
+        </Blocks>
+      </Style>
+      <Style name="JSP Comment" include="java:comment" bold="0" italic="0" underline="0" overview="1" clr="comment" bkclr="Embedded Language 1 Back">
+        <Containers>
+          <Close id="java:normal"/>
+          <Close id="java:comment"/>
+          <Open id="js:string"/>
+          <Open id="js:char"/>
+          <Open id="js:normal"/>
+          <Open id="normal"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_close_tag"/>
+        </Containers>
+        <Blocks>
+          <Block open="&lt;%--" close="--&gt;"/>
+        </Blocks>
+      </Style>
+      <Style name="JSP Directive" include="java:normal" bold="0" italic="0" underline="0" overview="1" clr="#FF000000" bkclr="Embedded Language 1 Back">
+        <Containers>
+          <Close id="java:normal"/>
+          <Close id="java:comment"/>
+          <Open id="js:string"/>
+          <Open id="js:char"/>
+          <Open id="js:normal"/>
+          <Open id="normal"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="xml_open_tag"/>
+          <Open id="xml_close_tag"/>
+        </Containers>
+        <Blocks>
+          <Block open="&lt;%@" close="%&gt;"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

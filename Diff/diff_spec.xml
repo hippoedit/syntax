@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="diff" name="Diff" inherit="def_text" inherit_url="deftext_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.diff;*.patch;"/>
+    </SPECIFICATION>
+    <STYLES>
+      <Style name="Inserted" clr="#FFFFFFFF" bkclr="Embedded Language 3 Back" >
+        <Blocks>
+          <Block open="+" start_pos="0" close="\n"/>
+          <Block open="&gt;" start_pos="0" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Deleted" clr="#FFFFFFFF" bkclr="Embedded Language 1 Back" >
+        <Blocks>
+          <Block open="-" start_pos="0" close="\n"/>
+          <Block open="&lt;" start_pos="0" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Changed" clr="#FFFFFFFF" bkclr="Embedded Language 2 Back" >
+        <Blocks>
+          <Block open="!" start_pos="0" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Unified" clr="Format tag" bkclr="#FFFFFFFF" >
+        <Blocks>
+          <Block open="@@" start_pos="0" close="@@"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

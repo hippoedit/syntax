@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="fortran_fixed" name="Fortran (Fixed)" inherit="fortran" inherit_url="fortran_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.for;*.f;*.fi;*.fd;*.f77;">
+        <Pair file1="*.for" file2="*.fi"/>
+      </FilePattern>
+      <Formatting tab_size="4" tab_mode="2"/>
+      <WordWrap page_width="72" show_page_width="true"/>
+      <!--<MaxLineLength>72</MaxLineLength>-->
+    </SPECIFICATION>
+    <STYLES>
+      <Style id="comment" extend="true">
+        <Blocks>
+          <Block open="*" close="\n" start_pos="0"/>
+          <Block open="c" close="\n" start_pos="0"/>
+        </Blocks>
+      </Style>
+      <Style id="control" name="Control" bold="0" italic="0" underline="0" clr="Window Back" bkclr="Tag2">
+        <Blocks>
+          <Regexp text="[^\s]" start_pos="5"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

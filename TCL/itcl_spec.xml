@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="pokey" type="LangSpec"/>
+  <SYNTAX id="iTCL" name="iTCL/Tk" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.tcl;*.itcl;*.tcx;"/>
+      <CaseSensitive>true</CaseSensitive>
+      <Words>0-9A-Za-z_--</Words>
+      <OpenClose>()[]{}""</OpenClose>
+      <EscapeChar>\</EscapeChar>
+      <LineEnd>;</LineEnd>
+      <Operators>%*-/&amp;*=&lt;&gt;|!^{}()[];:</Operators>
+      <Delimiters>"{}</Delimiters>
+      <HierarchySeparator>
+        <Separator text="::"/>
+      </HierarchySeparator>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <DefaultKeywordCase>4</DefaultKeywordCase>
+      <FormatWords>
+        <FormatWord word="public" next_line="true" range_till_next="true" pos_sent_start="1"/>
+        <FormatWord word="private" next_line="true" range_till_next="true" pos_sent_start="1"/>
+        <FormatWord word="protected" next_line="true" range_till_next="true" pos_sent_start="1"/>
+        <FormatWord word="if" next_line="true" range_sentence="true"/>
+        <FormatWord word="else" next_line="true" range_sentence="true" range_till_next="true"/>
+        <FormatWord word="elseif" next_line="true" range_sentence="true" range_till_next="true"/>
+        <FormatWord word="while" next_line="true" range_sentence="true"/>
+        <FormatWord word="case" next_line="true" range_till_next="true"/>
+        <FormatWord word="default" next_line="true" range_till_next="true"/>
+        <FormatWord word="for" next_line="true" range_sentence="true"/>
+        <FormatWord word="foreach" next_line="true" range_sentence="true"/>
+      </FormatWords>
+    </FORMAT>
+    <LABELS>
+      <Label group="Class" match="(itcl::)*class\s+(\w+)\s+\{" name="\2" scope="1" image="5"/>
+      <Label group="Constructor" match="constructor\s+(\{[^}]*\})\s+\{" name="constructor" descr="constructor \1" scope="1" image="11"/>
+      <Label group="Destructor" match="destructor\s+\{" name="destructor" descr="destructor" scope="1" image="11"/>
+      <Label group="Method" match="(public|protected|private)?\s+method\s+(\w+)\s+(\{[^}]*\})\s*\{" name="\2" descr="method \2 \3" scope="1" image="11">
+        <SubImage if="\1" equal="public" value="2"/>
+        <SubImage if="\1" equal="protected" value="3"/>
+        <SubImage if="\1" equal="private" value="4"/>
+      </Label>
+      <Label group="Procedure" match="proc\s+(\w+)\s+(\{[^}]*\})\s+\{" name="\1" descr="proc \1 \2" scope="1" image="9"/>
+      <Label group="Body" match="itcl::body\s+([\w-]+::[\w-]+)\s+(\{[^}]*\})\s*\{" name="\1" descr="body \1 \2" scope="1" image="11"/>
+      <Label group="Configbody" match="(itcl::)*configbody\s+(\w::\w)[\s+\{]" name="\2" descr="configbody \2\3" scope="1" image="11"/>
+      <Label group="" match="(if|switch|while|for|foreach)\s*\{((?:[^\{\}]|\\r|\\n|\((?-1)\))*+)\}\s*\{" name="\1" descr="\1 (\2)" scope="1" image="13" navigation="false"/>
+    </LABELS>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+      <Scope open="[" close="]"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="number" extend="true">
+        <Blocks>
+          <Block open="0x">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" first_pos="true" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block text="-&gt;"/>
+        </Blocks>
+      </Style>
+      <Style id="variable" name="Variables" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="$" close=""/>
+        </Blocks>
+      </Style>
+      <Style id="keyword" name="Keywords" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text = "after"/>
+          <Keyword text = "append"/>
+          <Keyword text = "apply"/>
+          <Keyword text = "array"/>
+          <Keyword text = "bgerror"/>
+          <Keyword text = "binary"/>
+          <Keyword text = "body"/>
+          <Keyword text = "break"/>
+          <Keyword text = "catch"/>
+          <Keyword text = "cd"/>
+          <Keyword text = "chan"/>
+          <Keyword text = "class"/>
+          <Keyword text = "clock"/>
+          <Keyword text = "close"/>
+          <Keyword text = "common"/>
+          <Keyword text = "concat"/>
+          <Keyword text = "configbody"/>
+          <Keyword text = "constructor"/>
+          <Keyword text = "continue"/>
+          <Keyword text = "dde"/>
+          <Keyword text = "default"/>
+          <Keyword text = "destructor"/>
+          <Keyword text = "else"/>
+          <Keyword text = "elseif"/>
+          <Keyword text = "encoding"/>
+          <Keyword text = "eof"/>
+          <Keyword text = "error"/>
+          <Keyword text = "eval"/>
+          <Keyword text = "exec"/>
+          <Keyword text = "exit"/>
+          <Keyword text = "expr"/>
+          <Keyword text = "fblocked"/>
+          <Keyword text = "fconfigure"/>
+          <Keyword text = "fcopy"/>
+          <Keyword text = "file"/>
+          <Keyword text = "fileevent"/>
+          <Keyword text = "flush"/>
+          <Keyword text = "for"/>
+          <Keyword text = "foreach"/>
+          <Keyword text = "format"/>
+          <Keyword text = "gets"/>
+          <Keyword text = "glob"/>
+          <Keyword text = "global"/>
+          <Keyword text = "history"/>
+          <Keyword text = "http"/>
+          <Keyword text = "if"/>
+          <Keyword text = "incr"/>
+          <Keyword text = "info"/>
+          <Keyword text = "interp"/>
+          <Keyword text = "itcl"/>
+          <Keyword text = "join"/>
+          <Keyword text = "lappend"/>
+          <Keyword text = "lassign"/>
+          <Keyword text = "lindex"/>
+          <Keyword text = "linsert"/>
+          <Keyword text = "list"/>
+          <Keyword text = "llength"/>
+          <Keyword text = "load"/>
+          <Keyword text = "lrange"/>
+          <Keyword text = "lrepeat"/>
+          <Keyword text = "lreplace"/>
+          <Keyword text = "lreverse"/>
+          <Keyword text = "lsearch"/>
+          <Keyword text = "lset"/>
+          <Keyword text = "lsort"/>
+          <Keyword text = "memory"/>
+          <Keyword text = "method"/>
+          <Keyword text = "msgcat"/>
+          <Keyword text = "namespace"/>
+          <Keyword text = "open"/>
+          <Keyword text = "package"/>
+          <Keyword text = "pid"/>
+          <Keyword text = "proc"/>
+          <Keyword text = "private"/>
+          <Keyword text = "protected"/>
+          <Keyword text = "public"/>
+          <Keyword text = "puts"/>
+          <Keyword text = "pwd"/>
+          <Keyword text = "re_syntax"/>
+          <Keyword text = "read"/>
+          <Keyword text = "refchan"/>
+          <Keyword text = "regexp" descr="Match a regular expression against a string"/>
+          <Keyword text = "regsub"/>
+          <Keyword text = "rename"/>
+          <Keyword text = "require"/>
+          <Keyword text = "return"/>
+          <Keyword text = "scan"/>
+          <Keyword text = "seek"/>
+          <Keyword text = "set"/>
+          <Keyword text = "socket"/>
+          <Keyword text = "source"/>
+          <Keyword text = "split"/>
+          <Keyword text = "string"/>
+          <Keyword text = "subst"/>
+          <Keyword text = "switch"/>
+          <Keyword text = "tell"/>
+          <Keyword text = "time"/>
+          <Keyword text = "trace"/>
+          <Keyword text = "unknown"/>
+          <Keyword text = "unset"/>
+          <Keyword text = "update"/>
+          <Keyword text = "uplevel"/>
+          <Keyword text = "upvar"/>
+          <Keyword text = "variable"/>
+          <Keyword text = "vwait"/>
+          <Keyword text = "while"/>
+        </Keywords>
+      </Style>
+      <Style name="Functions" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text = "acos"/>
+          <Keyword text = "argc"/>
+          <Keyword text = "argv"/>
+          <Keyword text = "argv0"/>
+          <Keyword text = "asin"/>
+          <Keyword text = "atan"/>
+          <Keyword text = "atan2"/>
+          <Keyword text = "auto_index"/>
+          <Keyword text = "auto_noload"/>
+          <Keyword text = "auto_noexec"/>
+          <Keyword text = "auto_path"/>
+          <Keyword text = "ceil"/>
+          <Keyword text = "cos"/>
+          <Keyword text = "cosh"/>
+          <Keyword text = "dirname"/>
+          <Keyword text = "env"/>
+          <Keyword text = "errorInfo"/>
+          <Keyword text = "exists"/>
+          <Keyword text = "exp"/>
+          <Keyword text = "extension"/>
+          <Keyword text = "first"/>
+          <Keyword text = "floor"/>
+          <Keyword text = "fmod"/>
+          <Keyword text = "geometry"/>
+          <Keyword text = "index"/>
+          <Keyword text = "last"/>
+          <Keyword text = "length"/>
+          <Keyword text = "log"/>
+          <Keyword text = "log10"/>
+          <Keyword text = "lsort"/>
+          <Keyword text = "match"/>
+          <Keyword text = "pow"/>
+          <Keyword text = "range"/>
+          <Keyword text = "rootname"/>
+          <Keyword text = "sin"/>
+          <Keyword text = "size"/>
+          <Keyword text = "tcl_interactive"/>
+          <Keyword text = "tcl_prompt1"/>
+          <Keyword text = "tcl_prompt2"/>
+          <Keyword text = "tolower"/>
+          <Keyword text = "-nonewline"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>
+

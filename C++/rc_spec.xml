@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="rc" name="Resource Script" inherit="cpp" inherit_url="c++_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.rc;*.rc2"/>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="BEGIN" close="END"/>
+    </SCOPES>
+    <LABELS>
+      <Label group="Dialog" match="^(\w+)\s+(?:DIALOG|DIALOGEX)\s+.+?BEGIN" name="\1" descr="Dialog \1" image="14" scope="1"/>
+      <Label group="Menu" match="^(\w+)\s+(?:MENU)\s+.+?BEGIN" name="\1" descr="Menu \1" image="16" scope="1"/>
+      <Label group="VersionInfo" match="^(\w+)\s+(?:VERSIONINFO)\s+.+?BEGIN" name="\1" descr="Menu \1" image="16" scope="1"/>      
+      <Label group="Toolbar" match="^(\w+)\s+(?:TOOLBAR)[\s\d,]+BEGIN" name="\1" descr="Toolbar \1" image="8" scope="1"/>
+    </LABELS>
+    <STYLES>
+      <Style name="Language Constants" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="LANG_ENGLISH"/>
+          <Keyword text="LANG_GERMAN"/>
+          <Keyword text="LANG_NEUTRAL"/>
+          <Keyword text="SUBLANG_DEFAULT"/>
+          <Keyword text="SUBLANG_ENGLISH_US"/>
+          <Keyword text="SUBLANG_GERMAN"/>
+          <Keyword text="SUBLANG_GERMAN_LUXEMBOURG"/>
+          <Keyword text="SUBLANG_NEUTRAL"/>
+        </Keywords>
+      </Style>
+      <Style name="RC Keywords" image="12" bold="2" italic="2" underline="2" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ACCELERATORS"/>
+          <Keyword text="ALT"/>
+          <Keyword text="BEGIN"/>
+          <Keyword text="BITMAP"/>
+          <Keyword text="BLOCK"/>
+          <Keyword text="BOTTOMMARGIN"/>
+          <Keyword text="BUTTON"/>
+          <Keyword text="CAPTION"/>
+          <Keyword text="COMBOBOX"/>
+          <Keyword text="CONTROL"/>
+          <Keyword text="CTEXT"/>          
+          <Keyword text="CURSOR"/>
+          <Keyword text="DEFPUSHBUTTON"/>
+          <Keyword text="DESIGNINFO"/>
+          <Keyword text="DIALOG"/>
+          <Keyword text="DIALOGEX"/>
+          <Keyword text="DISCARDABLE"/>
+          <Keyword text="EDITTEXT"/>
+          <Keyword text="END"/>
+          <Keyword text="EXSTYLE"/>
+          <Keyword text="FILEFLAGS"/>
+          <Keyword text="FILEFLAGSMASK"/>
+          <Keyword text="FILEOS"/>
+          <Keyword text="FILESUBTYPE"/>
+          <Keyword text="FILETYPE"/>
+          <Keyword text="FILEVERSION"/>
+          <Keyword text="FONT"/>
+          <Keyword text="GRAYED"/>
+          <Keyword text="GROUPBOX"/>
+          <Keyword text="GUIDELINES"/>
+          <Keyword text="HORZGUIDE"/>
+          <Keyword text="ICON"/>
+          <Keyword text="IDCANCEL"/>
+          <Keyword text="IDC_STATIC"/>
+          <Keyword text="IDOK"/>
+          <Keyword text="IMAGELIST"/>
+          <Keyword text="LANGUAGE"/>
+          <Keyword text="LEFTMARGIN"/>
+          <Keyword text="LISTBOX"/>
+          <Keyword text="LTEXT"/>
+          <Keyword text="RTEXT"/>          
+          <Keyword text="MENU"/>
+          <Keyword text="MENUITEM"/>
+          <Keyword text="MOVEABLE"/>
+          <Keyword text="NOINVERT"/>
+          <Keyword text="NOT"/>
+          <Keyword text="POPUP"/>
+          <Keyword text="PRODUCTVERSION"/>
+          <Keyword text="PURE"/>
+          <Keyword text="PUSHBUTTON"/>
+          <Keyword text="REGISTRY"/>
+          <Keyword text="RIGHTMARGIN"/>
+          <Keyword text="RT_MANIFEST"/>
+          <Keyword text="SEPARATOR"/>
+          <Keyword text="SHIFT"/>
+          <Keyword text="STRINGTABLE"/>
+          <Keyword text="STYLE"/>
+          <Keyword text="TEXTINCLUDE"/>
+          <Keyword text="TOPMARGIN"/>
+          <Keyword text="TYPELIB"/>
+          <Keyword text="VALUE"/>
+          <Keyword text="VERSIONINFO"/>
+          <Keyword text="VERTGUIDE"/>
+          <Keyword text="VIRTKEY"/>
+          <Keyword text="VS_VERSION_INFO"/>
+        </Keywords>
+      </Style>
+      <Style name="Control STYLES" image="10" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="BS_AUTO3STATE"/>
+          <Keyword text="BS_AUTOCHECKBOX"/>
+          <Keyword text="BS_AUTORADIOBUTTON"/>
+          <Keyword text="BS_CENTER"/>
+          <Keyword text="BS_FLAT"/>
+          <Keyword text="BS_LEFT"/>
+          <Keyword text="BS_LEFTTEXT"/>          
+          <Keyword text="BS_NOTIFY"/>
+          <Keyword text="BS_OWNERDRAW"/>
+          <Keyword text="BS_VCENTER"/>
+          <Keyword text="CBS_AUTOHSCROLL"/>
+          <Keyword text="CBS_DROPDOWN"/>
+          <Keyword text="CBS_DROPDOWNLIST"/>
+          <Keyword text="CBS_HASSTRINGS"/>
+          <Keyword text="CBS_NOINTEGRALHEIGHT"/>
+          <Keyword text="CBS_OEMCONVERT"/>
+          <Keyword text="CBS_OWNERDRAWFIXED"/>
+          <Keyword text="CBS_OWNERDRAWVARIABLE"/>
+          <Keyword text="CBS_SORT"/>
+          <Keyword text="DS_3DLOOK"/>
+          <Keyword text="DS_CENTER"/>
+          <Keyword text="DS_CENTERMOUSE"/>
+          <Keyword text="DS_CONTEXTHELP"/>
+          <Keyword text="DS_CONTROL"/>          
+          <Keyword text="DS_FIXEDSYS"/>
+          <Keyword text="DS_LOCALEDIT"/>          
+          <Keyword text="DS_MODALFRAME"/>
+          <Keyword text="DS_NOIDLEMSG"/>
+          <Keyword text="DS_SETFONT"/>
+          <Keyword text="DS_SETFOREGROUND"/>
+          <Keyword text="DTS_APPCANPARSE"/>
+          <Keyword text="DTS_LONGDATEFORMAT"/>
+          <Keyword text="DTS_RIGHTALIGN"/>
+          <Keyword text="DTS_UPDOWN"/>
+          <Keyword text="ES_AUTOHSCROLL"/>
+          <Keyword text="ES_AUTOVSCROLL"/>
+          <Keyword text="ES_MULTILINE"/>
+          <Keyword text="ES_NOHIDESEL"/>
+          <Keyword text="ES_NUMBER"/>
+          <Keyword text="ES_OEMCONVERT"/>
+          <Keyword text="ES_PASSWORD"/>
+          <Keyword text="ES_READONLY"/>
+          <Keyword text="ES_RIGHT"/>          
+          <Keyword text="ES_WANTRETURN"/>
+          <Keyword text="LBS_EXTENDEDSEL"/>
+          <Keyword text="LBS_HASSTRINGS"/>
+          <Keyword text="LBS_MULTIPLESEL"/>
+          <Keyword text="LBS_NOINTEGRALHEIGHT"/>
+          <Keyword text="LBS_NOTIFY"/>
+          <Keyword text="LBS_NODATA"/>          
+          <Keyword text="LBS_OWNERDRAWFIXED"/>
+          <Keyword text="LBS_SORT"/>
+          <Keyword text="LBS_USETABSTOPS"/>
+          <Keyword text="LBS_WANTKEYBOARDINPUT"/>
+          <Keyword text="LVS_ALIGNLEFT"/>
+          <Keyword text="LVS_AUTOARRANGE"/>
+          <Keyword text="LVS_NOCOLUMNHEADER"/>
+          <Keyword text="LVS_NOSCROLL"/>
+          <Keyword text="LVS_NOSORTHEADER"/>
+          <Keyword text="LVS_REPORT"/>
+          <Keyword text="LVS_SHOWSELALWAYS"/>
+          <Keyword text="LVS_SINGLESEL"/>
+          <Keyword text="LVS_SORTASCENDING"/>
+          <Keyword text="LVS_SHAREIMAGELISTS"/>                    
+          <Keyword text="SS_BITMAP"/>
+          <Keyword text="SS_BLACKFRAME"/>
+          <Keyword text="SS_BLACKRECT"/>
+          <Keyword text="SS_CENTERIMAGE"/>
+          <Keyword text="SS_ETCHEDFRAME"/>
+          <Keyword text="SS_ETCHEDHORZ"/>
+          <Keyword text="SS_ETCHEDHORZ"/>
+          <Keyword text="SS_ETCHEDVERT"/>
+          <Keyword text="SS_GRAYFRAME"/>
+          <Keyword text="SS_LEFTNOWORDWRAP"/>
+          <Keyword text="SS_NOPREFIX"/>
+          <Keyword text="SS_SIMPLE"/>
+          <Keyword text="SS_SUNKEN"/>
+          <Keyword text="SS_WHITEFRAME"/>
+          <Keyword text="SS_WORDELLIPSIS"/>
+          <Keyword text="TBS_BOTH"/>
+          <Keyword text="TBS_NOTICKS"/>
+          <Keyword text="TBS_VERT"/>
+          <Keyword text="TVS_CHECKBOXES"/>
+          <Keyword text="TVS_DISABLEDRAGDROP"/>
+          <Keyword text="TVS_EDITLABELS"/>
+          <Keyword text="TVS_HASBUTTONS"/>
+          <Keyword text="TVS_HASLINES"/>
+          <Keyword text="TVS_LINESATROOT"/>
+          <Keyword text="TVS_NOSCROLL"/>
+          <Keyword text="TVS_NOTOOLTIPS"/>
+          <Keyword text="TVS_SHOWSELALWAYS"/>
+          <Keyword text="TVS_TRACKSELECT"/>
+          <Keyword text="UDS_ALIGNLEFT"/>
+          <Keyword text="UDS_ALIGNRIGHT"/>
+          <Keyword text="UDS_ARROWKEYS"/>
+          <Keyword text="UDS_AUTOBUDDY"/>
+          <Keyword text="UDS_HOTTRACK"/>
+          <Keyword text="UDS_NOTHOUSANDS"/>          
+          <Keyword text="UDS_SETBUDDYINT"/>
+          <Keyword text="UDS_WRAP"/>
+          <Keyword text="WS_BORDER"/>
+          <Keyword text="WS_CAPTION"/>
+          <Keyword text="WS_CHILD"/>
+          <Keyword text="WS_CLIPCHILDREN"/>
+          <Keyword text="WS_CLIPSIBLINGS"/>
+          <Keyword text="WS_DISABLED"/>
+          <Keyword text="WS_EX_CLIENTEDGE"/>
+          <Keyword text="WS_EX_CONTROLPARENT"/>
+          <Keyword text="WS_EX_RIGHT"/>
+          <Keyword text="WS_EX_STATICEDGE"/>
+          <Keyword text="WS_EX_TOOLWINDOW"/>
+          <Keyword text="WS_EX_TRANSPARENT"/>
+          <Keyword text="WS_EX_WINDOWEDGE"/>
+          <Keyword text="WS_EX_RTLREADING"/>
+          <Keyword text="WS_EX_CONTEXTHELP"/>
+          <Keyword text="WS_GROUP"/>
+          <Keyword text="WS_HSCROLL"/>
+          <Keyword text="WS_MAXIMIZEBOX"/>
+          <Keyword text="WS_MINIMIZEBOX"/>
+          <Keyword text="WS_POPUP"/>
+          <Keyword text="WS_SYSMENU"/>
+          <Keyword text="WS_TABSTOP"/>
+          <Keyword text="WS_THICKFRAME"/>
+          <Keyword text="WS_VISIBLE"/>
+          <Keyword text="WS_VSCROLL"/>
+        </Keywords>
+      </Style>
+      <Style name="Keyboard Constants" bold="2" italic="2" underline="2" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="VK_BACK"/>
+          <Keyword text="VK_DELETE"/>
+          <Keyword text="VK_F1"/>
+          <Keyword text="VK_F10"/>
+          <Keyword text="VK_F11"/>
+          <Keyword text="VK_F12"/>
+          <Keyword text="VK_F2"/>
+          <Keyword text="VK_F3"/>
+          <Keyword text="VK_F4"/>
+          <Keyword text="VK_F5"/>
+          <Keyword text="VK_F6"/>
+          <Keyword text="VK_F7"/>
+          <Keyword text="VK_F8"/>
+          <Keyword text="VK_F9"/>
+          <Keyword text="VK_INSERT"/>
+          <Keyword text="VK_RETURN"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

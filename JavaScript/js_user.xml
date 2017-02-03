@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+	<FILEINFO author="HippoEDIT.com" type="LangUser"/>
+	<SYNTAX id="js">
+		<CodeTemplates>
+			<Template key="while" descr="while() {§};">while ( %|% ) {\n\n}</Template>
+			<Template key="do" descr="do {§} while ();">do {\n\n} while ( %|% );</Template>
+			<Template key="/**" descr="/**...$...**/">/*************************************************\n*  %|%\n*************************************************/</Template>
+			<Template key="ife" descr="if () {§}else{§}">if ( %|% )\n{\n}\nelse\n{\n}</Template>
+      <Template key="{" descr="{§}">{\n\t%|%\n}</Template>      
+			<Template key="///" descr="/////////.......">////////////////////////////////////////////////////////////////////////</Template>
+			<Template key="for" descr="for (var i = 0; i &lt; ; i++) { § }">for (i = 0; i &lt; %|%; i++)\n{\n\n}</Template>
+			<Template key="if" descr="if () {§}">if ( %|% )\n{\n\n}</Template>
+		</CodeTemplates>
+		<HELP>
+			<Help name="W3 Schools" arguments="&amp;as_q=%CurrentWord%" key="112" virt="true" ctrl="true" url="http://www.google.com/search?sitesearch=www.w3schools.com"/>
+		</HELP>
+	</SYNTAX>
+</XMLConfigSettings>

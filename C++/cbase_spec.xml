@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="cbased" name="C Based Languages" inherit="def_source" abstract="true" inherit_url="defsource_spec.xml" version="1.1">
+    <SPECIFICATION>
+      <CaseSensitive>true</CaseSensitive>
+      <OpenClose>()[]{}''""</OpenClose>
+      <LineEnd>;</LineEnd>
+      <EscapeChar>\</EscapeChar>
+      <Operators>@?%*-/&amp;*=&lt;&gt;|!~^{}()[];:</Operators>
+      <Delimiters>&quot;'@#{}</Delimiters>
+      <Words init="A-Za-z_">0-9A-Za-z_</Words>
+      <Numbers>-+0-9.EUL</Numbers>
+      <HierarchySeparator>
+        <Separator text="::"/>
+        <Separator text="."/>
+        <Separator text="-&gt;"/>
+      </HierarchySeparator>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <DefaultKeywordCase>4</DefaultKeywordCase>
+      <FormatWords>
+        <FormatWord word="public" next_line="true" range_till_next="true" pos_sent_start="1"/>
+        <FormatWord word="private" next_line="true" range_till_next="true" pos_sent_start="1"/>
+        <FormatWord word="protected" next_line="true" range_till_next="true" pos_sent_start="1"/>
+        <FormatWord word="if" next_line="true" range_sentence="true"/>
+        <FormatWord word="else" next_line="true" range_sentence="true" range_till_next="true"/>
+        <FormatWord word="while" next_line="true" range_sentence="true"/>
+        <FormatWord word="case" next_line="true" range_till_next="true"/>
+        <FormatWord word="default" next_line="true" range_till_next="true"/>
+        <FormatWord word="for" next_line="true" range_sentence="true"/>
+      </FormatWords>
+    </FORMAT>
+    <LABELS>
+      <Label group="Include" match="#include\s*[&quot;&lt;]+([\w.\/]+)[&quot;&gt;]+" name="\1" image="15" navigation="false">
+        <Containers open="preprocessor"/>
+      </Label>
+      <Label group="Exits" match="\&lt;(continue|break)\&gt;\s*(.*?);" name="\1" descr="\1 \2;" navigation="false" marker="19" context="exit_scope" visible="false"/>
+      <Label group="Exits" match="\&lt;(return|throw)\&gt;\s*(.*?);" name="\1" descr="\1 \2;" navigation="false" marker="20" context="exit_all" visible="false"/>
+      <Label group="Exits" match="\&lt;goto\&gt;\s+(\w+)\s*;" name="\1" descr="\1 \2;" navigation="false" marker="20" context="exit_all" visible="false" style="data_types"/>
+      <Label group="Macro" match="define\s+([\w\.\/]+)\s+(.+?)$" name="\1" image="12" descr="\1 \2" context="macro" style="macro" highlight="\1">
+        <Containers open="preprocessor"/>
+      </Label>
+      <Label group="Region" match="region\s+(\w+)\s*$" name="\1" scope="1" image="12">
+        <Containers open="format_tag"/>
+      </Label>
+      <Label group="Structure" match="struct\s+(\w+)[^\;{]*?\{" name="\1" descr="struct \1" scope="1" image="9" style="data_types" highlight="\1"/>
+      <Label group="Enumeration" match="enum\s+(\w+).+?\{" name="\1" descr="enum \1" scope="1" image="6" style="data_types" highlight="\1"/>
+      <Label group="Union" match="union\s+(\w+).+?\{" name="\1" descr="union \1" scope="1" image="10" style="data_types" highlight="\1"/>
+      <Label group="Class" match="class(\s+(\w+))+[^\;\\\{]*\{" name="\1" descr="class \1" scope="1" image="5" style="data_types" highlight="\2"/>
+      <Label group="Constructor" match="([A-Za-z_]\w*::(\w+))\s*(\([^.;)]*\))\s*(:\s*[^\{]*)?(\s+explicit)?(\s+throw)?\s*\{" name="\1" descr="\1\3" scope="1" image="5" style="data_types" highlight="\2"/>
+      <Label group="Destructor" match="([A-Za-z_]\w*::(~\w+))\s*(\([^.;)]*\))\s*\{" name="\1" descr="\1\3" scope="1" image="11" style="function" highlight="\2"/>
+      <Label group="Method" match="([A-Za-z_][\w*&amp;&lt;&gt;]*)\s+([\w&lt;&gt;]+)::(\w+)\s*\(((?:[^\(\)]|\\r|\\n|\((?-1)\))*+)\)(\s+\w+)?[^;{}]+?\{" name="\2::\3" descr="\1 \2::\3(\4)\5" scope="1" image="11" style="function" highlight="\3"/>
+      <Label group="Function" match="(?:^|[\s;}])([A-Za-z_][\w*&amp;]*?)\s+([~\w]+)\s*?\(((?:[^\(\)]|\\r|\\n|\((?-1)\))*+)\)(\s+\w+)?\s*?\{" name="\2" descr="\1 \2(\3)\4" scope="1" image="18" style="function" highlight="\2">
+        <Skip if="\2" equal="if"/>
+        <Skip if="\2" equal="while"/>
+        <Skip if="\2" equal="switch"/>
+        <Skip if="\2" equal="do"/>
+      </Label>
+      <Label group="" match="(if|switch|while|for)\s*\(((?:[^\(\)]|\\r|\\n|\((?-1)\))*+)\)\s*[\{]" name="\1" descr="\1 (\2)" scope="1" image="13" navigation="false"/>
+      <Label group="" match="do\s*\{" name="do" descr="do" scope="1" image="13" navigation="false"/>
+      <Label group="Switch" match="(#if[def|ndef]+)\s*?([\w.\/]+)\s*?$" name="\1 \2" scope="1" image="12" navigation="false">
+        <Containers open="preprocessor"/>
+      </Label>
+      <Label group="Function" match="(?:(?:::)|(?:[\.=*+\-\/]?\s*?))(\w+)(?:&lt;\w+&gt;)?\(" name="\1" descr="\1" navigation="false" context="function_call" style="function"  highlight="\1" visible="false"/>      
+    </LABELS>
+    <SCOPES>
+      <Scope open="region" close="endregion" has_name="true" decoration="true">
+        <Containers>
+          <Open id="format_tag"/>
+          <Open id="preprocessor"/>
+        </Containers>    
+      </Scope>
+      <Scope open="{" close="}"/>
+      <Scope open="ifndef" middle="else" close="endif">
+        <Containers open="preprocessor"/>
+      </Scope>
+      <Scope open="ifdef" middle="else" close="endif">
+        <Containers open="preprocessor"/>
+      </Scope>
+      <Scope open="if" middle="else" close="endif" strict="false" sent_start="true">
+        <Containers open="preprocessor"/>
+      </Scope>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="char"/>
+          <Open id="documentation"/>
+        </Containers>
+      </Style>
+      <Style id="format_tag" name="Format tags" bold="2" italic="1" underline="0" clr="Format tag" bkclr="#FFFFFFFF"/>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="preprocessor"/>
+          <Open id="normal"/>
+          <Close id="normal"/>
+          <Close id="preprocessor"/>
+          <Close id="todo"/>
+        </Containers>
+        <Blocks>
+          <Block open="//" close="\n"/>
+          <Block open="/*" close="*/"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="preprocessor"/>
+          <Open id="normal"/>
+        </Containers>
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style name="Escape Sequence" text="1" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+          <Open id="char"/>
+        </Containers>
+        <Blocks>
+          <Block text="\\a"/>
+          <Block text="\\b"/>
+          <Block text="\\f"/>
+          <Block text="\\n"/>
+          <Block text="\\r"/>
+          <Block text="\\t"/>
+          <Block text="\\v"/>
+          <Block text="\\\\"/>
+          <Block text="\\'"/>
+          <Block text="\\&quot;"/>
+        </Blocks>
+      </Style>
+      <Style name="Printf Sequence" text="1" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+          <Open id="char"/>
+        </Containers>
+        <Blocks>
+          <Block text="%d"/>
+          <Block text="%i"/>
+          <Block text="%o"/>
+          <Block text="%u"/>          
+          <Block text="%x"/>
+          <Block text="%X"/>
+          <Block text="%e"/>
+          <Block text="%E"/>
+          <Block text="%f"/>
+          <Block text="%g"/>
+          <Block text="%G"/>
+          <Block text="%c"/>
+          <Block text="%C"/>
+          <Block text="%a"/>
+          <Block text="%A"/>
+          <Block text="%n"/>
+          <Block text="%p"/>
+          <Block text="%s"/>
+          <Block text="%S"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Blocks>
+          <Block open="0x">
+            <Close noneof="0-9A-Fa-fU"/>
+          </Block>
+          <Regexp text="\\d+e[\\-\\+]\\d+"/>
+          <Regexp text="\\d+(?:[ulUL]{1,2}|f)"/>          
+        </Blocks>
+      </Style>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="function" name="Functions"/>
+      <Style id="data_types" name="Data Types"/>
+      <Style id="macro" name="Macros" image="12"/>
+      <Style id="documentation" name="Documentation" text="1" bold="0" italic="1" underline="0" clr="Documentation" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="///" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+          <Open id="documentation"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+          <Block open="todo" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

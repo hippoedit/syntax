@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Cyril Larionov" type="LangSpec">
+    <Revision author="Robin Pope" descr="added keywords, removed redundancy for Lisp" date="12/12/09"/>
+  </FILEINFO>
+  <SYNTAX id="autolisp" name="AutoLISP" inherit="lisp" inherit_url="lisp_spec.xml">
+    <SPECIFICATION>
+      <CaseSensitive>false</CaseSensitive>
+      <FilePattern mask="*.lsp;*.lisp">
+        <Pair file1="*.lsp" file2="*.dcl"/>
+      </FilePattern>
+      <Numbers>-+0-9.E</Numbers>
+    </SPECIFICATION>
+    <STYLES>
+      <Style name="AutoLISP Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="acad-pop-dbmod"/>
+          <Keyword text="acad-push-dbmod"/>
+          <Keyword text="acad_colordlg"/>
+          <Keyword text="acad_helpdlg"/>
+          <Keyword text="acad_strlsort"/>
+          <Keyword text="acad_truecolorcli"/>
+          <Keyword text="acad_truecolordlg"/>
+          <Keyword text="acdimenableupdate"/>
+          <Keyword text="acet-ms-to-ps"/>
+          <Keyword text="acet-ps-to-ms"/>
+          <Keyword text="acet_layerp-mark"/>
+          <Keyword text="acet_layerp-mode"/>
+          <Keyword text="acet_laytrans"/>
+          <Keyword text="action_tile"/>
+          <Keyword text="add_list"/>
+          <Keyword text="alert"/>">
+          <Keyword text="alloc"/>
+          <Keyword text="angle"/>
+          <Keyword text="angtof"/>
+          <Keyword text="angtos"/>
+          <Keyword text="arx"/>
+          <Keyword text="arxload"/>
+          <Keyword text="arxunload"/>
+          <Keyword text="ascii"/>
+          <Keyword text="atof"/>
+          <Keyword text="atoi"/>
+          <Keyword text="atoms-family"/>
+          <Keyword text="autoarxload"/>
+          <Keyword text="autoload"/>
+          <Keyword text="bool"/>
+          <Keyword text="caddr" descr="returns third element in the list"/>
+          <Keyword text="cadr" descr="returns second element in the list"/>
+          <Keyword text="car" descr="returns first element in the list"/>
+          <Keyword text="cdddr" descr="returns"/>
+          <Keyword text="chr"/>
+          <Keyword text="client_data_tile"/>
+          <Keyword text="command"/>
+          <Keyword text="cvunit"/>
+          <Keyword text="defun-q"/>
+          <Keyword text="defun-q-list-ref"/>
+          <Keyword text="defun-q-list-set"/>
+          <Keyword text="dictadd"/>
+          <Keyword text="dictnext"/>
+          <Keyword text="dictremove"/>
+          <Keyword text="dictrename"/>
+          <Keyword text="dictsearch"/>
+          <Keyword text="dimx_tile"/>
+          <Keyword text="dimy_tile"/>
+          <Keyword text="distance"/>
+          <Keyword text="distof"/>
+          <Keyword text="done_dialog"/>
+          <Keyword text="end_image"/>
+          <Keyword text="end_dialog"/>
+          <Keyword text="end_list"/>
+          <Keywors text="entdel"/>
+          <Keyword text="entget"/>
+          <Keyword text="entlast"/>
+          <Keyword text="entmake"/>
+          <Keyword text="entmakex"/>
+          <Keyword text="entmod"/>
+          <Keyword text="entnext"/>
+          <Keyword text="entsel"/>
+          <Keyword text="entupd"/>
+          <Keyword text="*error*"/>
+          <Keyword text="exit"/>
+          <Keyword text="expand"/>
+          <Keyword text="fill_image"/>
+          <Keyword text="findfile"/>
+          <Keyword text="fix"/>
+          <Keyword text="float"/>
+          <Keyword text="foreach"/>
+          <Keyword text="gc"/>
+          <Keyword text="getangle"/>
+          <Keyword text="getcfg"/>
+          <Keyword text="getcname"/>
+          <Keyword text="getcorner"/>
+          <Keyword text="getdist"/>
+          <Keyword text="getenv"/>
+          <Keyword text="getfiled"/>
+          <Keyword text="getint"/>
+          <Keyword text="getkword"/>
+          <Keyword text="getorient"/>
+          <Keyword text="getpoint"/>
+          <Keyword text="getreal"/>
+          <Keyword text="getstring"/>
+          <Keyword text="getvar"/>
+          <Keyword text="get_attr"/>
+          <Keyword text="get_tile"/>
+          <Keyword text="graphscr"/>
+          <Keyword text="grclear"/>
+          <Keyword text="grdraw"/>
+          <Keyword text="grread"/>
+          <Keyword text="grtext"/>
+          <Keyword text="grvecs"/>
+          <Keyword text="handent"/>
+          <Keyword text="help"/>
+          <Keyword text="horizontal"/>
+          <Keyword text="horizontal_margin"/>
+          <Keyword text="initdia"/>
+          <Keyword text="initget"/>
+          <Keyword text="inters"/>
+          <Keyword text="itoa"/>
+          <Keyword text="layerstate-addlayer"/>
+          <Keyword text="layerstate-delete"/>
+          <Keyword text="layerstate-export"/>
+          <Keyword text="layerstate-getlayers"/>
+          <Keyword text="layerstate-has"/>
+          <Keyword text="layerstate-import"/>
+          <Keyword text="layerstate-rename"/>
+          <Keyword text="layerstate-restore"/>
+          <Keyword text="layerstate-save"/>
+          <Keyword text="layoutlist"/>
+          <Keyword text="load_dialog"/>
+          <Keyword text="logior"/>
+          <Keyword text="logand"/>
+          <Keyword text="lsh"/>
+          <Keyword text="mem"/>
+          <Keyword text="menucmd"/>
+          <Keyword text="menugroup"/>
+          <Keyword text="mode_tile"/>
+          <Keyword text="namedobjdict"/>
+          <Keyword text="nentsel"/>
+          <Keyword text="nentselp"/>
+          <Keyword text="new_dialog"/>
+          <Keyword text="ntdel"/>
+          <Keyword text="osnap"/>
+          <Keyword text="polar"/>
+          <Keyword text="prompt"/>
+          <Keyword text="quit"/>
+          <Keyword text="read-line"/>
+          <Keyword text="redraw"/>
+          <Keyword text="regapp"/>
+          <Keyword text="repeat"/>
+          <Keyword text="rtos"/>
+          <Keyword text="setcfg"/>
+          <Keyword text="setenv"/>
+          <Keyword text="setfunhelp"/>
+          <Keyword text="setview"/>
+          <Keyword text="setvar"/>
+          <Keyword text="set_tile"/>
+          <Keyword text="slide_image"/>
+          <Keyword text="snvalid"/>
+          <Keyword text="ssadd"/>
+          <Keyword text="ssdel"/>
+          <Keyword text="ssget"/>
+          <Keyword text="ssgetfirst"/>
+          <Keyword text="sslength"/>
+          <Keyword text="ssmemb"/>
+          <Keyword text="ssname"/>
+          <Keyword text="ssnamex"/>
+          <Keyword text="sssetfirst"/>
+          <Keyword text="startapp"/>
+          <Keyword text="start_dialog"/>
+          <Keyword text="start_image"/>
+          <Keyword text="start_list"/>
+          <Keyword text="strcase"/>
+          <Keyword text="strcat"/>
+          <Keyword text="strlen"/>
+          <Keyword text="subst"/>
+          <Keyword text="substr"/>
+          <Keyword text="tablet"/>
+          <Keyword text="tblnext"/>
+          <Keyword text="tblobjname"/>
+          <Keyword text="tblsearch"/>
+          <Keyword text="term_dialog"/>
+          <Keyword text="textbox"/>
+          <Keyword text="textpage"/>
+          <Keyword text="textscr"/>
+          <Keyword text="trans"/>
+          <Keyword text="two-pi"/>
+          <Keyword text="type"/>
+          <Keyword text="unload_dialog"/>
+          <Keyword text="vector_image"/>
+          <Keyword text="ver"/>
+          <Keyword text="vertical"/>
+          <Keyword text="vertical_margin"/>
+          <Keyword text="vports"/>
+          <Keyword text="wcmatch"/>
+          <Keyword text="while"/>
+          <Keyword text="write-line"/>
+          <Keyword text="xdroom"/>
+          <Keyword text="xdsize"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

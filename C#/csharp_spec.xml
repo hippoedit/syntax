@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="csharp" name="C#" inherit="cbased" inherit_url="cbase_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.cs;"/>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="region" close="endregion" has_name="true" decoration="true">
+        <Containers open="preprocessor"/>
+      </Scope>
+    </SCOPES>
+    <STYLES>
+      <Style extend="true" id="documentation">
+        <Blocks>
+          <Block open="///" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string_noesc" name="Strings (no escape)" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF" escaping="false">
+        <Containers>
+          <Open id="preprocessor"/>
+          <Open id="normal"/>
+        </Containers>
+        <Blocks>
+          <Block open="@&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="as"/>
+          <Keyword text="auto"/>
+          <Keyword text="base"/>
+          <Keyword text="break"/>
+          <Keyword text="case"/>
+          <Keyword text="catch"/>
+          <Keyword text="checked"/>
+          <Keyword text="const"/>
+          <Keyword text="continue"/>
+          <Keyword text="default"/>
+          <Keyword text="do"/>
+          <Keyword text="else"/>
+          <Keyword text="event"/>
+          <Keyword text="explicit"/>
+          <Keyword text="extern"/>
+          <Keyword text="finally"/>
+          <Keyword text="fixed"/>
+          <Keyword text="for"/>
+          <Keyword text="foreach"/>
+          <Keyword text="goto"/>
+          <Keyword text="if"/>
+          <Keyword text="implicit"/>
+          <Keyword text="in"/>
+          <Keyword text="internal"/>
+          <Keyword text="is"/>
+          <Keyword text="lock"/>
+          <Keyword text="namespace"/>
+          <Keyword text="new"/>
+          <Keyword text="operator"/>
+          <Keyword text="out"/>
+          <Keyword text="override"/>
+          <Keyword text="params"/>
+          <Keyword text="private"/>
+          <Keyword text="protected"/>
+          <Keyword text="public"/>
+          <Keyword text="readonly"/>
+          <Keyword text="ref"/>
+          <Keyword text="return"/>
+          <Keyword text="sealed"/>
+          <Keyword text="sizeof"/>
+          <Keyword text="stackalloc"/>
+          <Keyword text="static"/>
+          <Keyword text="switch"/>
+          <Keyword text="this"/>
+          <Keyword text="throw"/>
+          <Keyword text="try"/>
+          <Keyword text="typeof"/>
+          <Keyword text="unchecked"/>
+          <Keyword text="unsafe"/>
+          <Keyword text="using"/>
+          <Keyword text="virtual"/>
+          <Keyword text="void"/>
+          <Keyword text="while"/>
+        </Keywords>
+      </Style>
+      <Style name="Data Types" image="10" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="bool"/>
+          <Keyword text="byte"/>
+          <Keyword text="char"/>
+          <Keyword text="class"/>
+          <Keyword text="decimal"/>
+          <Keyword text="delegate"/>
+          <Keyword text="double"/>
+          <Keyword text="enum"/>
+          <Keyword text="float"/>
+          <Keyword text="int"/>
+          <Keyword text="interface"/>
+          <Keyword text="long"/>
+          <Keyword text="object"/>
+          <Keyword text="sbyte"/>
+          <Keyword text="short"/>
+          <Keyword text="string"/>
+          <Keyword text="struct"/>
+          <Keyword text="uint"/>
+          <Keyword text="ulong"/>
+          <Keyword text="ushort"/>
+        </Keywords>
+      </Style>
+      <Style name="Constants" image="7" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="false"/>
+          <Keyword text="true"/>
+          <Keyword text="null"/>
+        </Keywords>
+      </Style>
+      <Style name="DocXML" text="1" bold="1" italic="2" underline="2" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="documentation"/>
+        </Containers>
+        <Blocks>
+          <Block open="&lt;" close="&gt;"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

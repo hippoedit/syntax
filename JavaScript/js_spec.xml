@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="js" name="Java Script" inherit="def_source" inherit_url="defsource_spec.xml" version="1.1">
+    <SPECIFICATION>
+      <FilePattern mask="*.js"/>
+      <Scripting id="JScript"/>
+      <Words init="A-Za-z_$">0-9A-Za-z_$</Words>
+      <CaseSensitive>true</CaseSensitive>
+      <OpenClose>()[]{}''""</OpenClose>
+      <LineEnd>;</LineEnd>
+      <EscapeChar>\</EscapeChar>
+      <Operators>@?%--+/&amp;*=&lt;&gt;|!~^,;.:(){}[]</Operators>
+      <HierarchySeparator>
+        <Separator text="::"/>
+        <Separator text="."/>
+      </HierarchySeparator>
+      <Bars navigation="true"/>
+      <Encoding default="utf-8" bom="false"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <FormatWords>
+        <FormatWord word="if" next_line="true" range_sentence="true"/>
+        <FormatWord word="else" next_line="true" range_sentence="true"/>
+        <FormatWord word="while" next_line="true" range_sentence="true"/>
+        <FormatWord word="case" next_line="true" range_till_next="true"/>
+        <FormatWord word="for" next_line="true" range_sentence="true"/>
+      </FormatWords>
+    </FORMAT>
+    <LABELS>
+      <Label group="Function" match="function\s+([\w\$.]+)\s*(\([^.;)]*\))\s*\{" name="\1" descr="\1 \2" scope="1" image="18" style="methods" highlight="\1"/>
+      <Label group="Function" match="^\s*([&quot;\w\$.]+)\s*[=:]\s*function\s*(\([\w\$&amp;=&apos;,\s]*\))\s*\{" name="\1" descr="\1 \2" scope="1" image="18" style="methods"/>
+      <Label group="Function" match="^\s*var\s*([&quot;\w\$.]+)\s*[=:]\s*function\s*(\([\w\$&amp;=&apos;,\s]*\))\s*\{" name="\1" descr="\1 \2" scope="1" image="18" style="methods"/>
+      <Label group="Variable" match="^\s*var\s*([&quot;\w\$.]+)\s*[=:]\s*\{" name="\1" descr="\1" scope="1" image="6" style="variable"/>
+      <Label group="Exits" match="\&lt;(continue|break)\&gt;\s*(.*?)[{;]" name="\1" descr="\1 \2;" navigation="false" marker="19" context="exit_scope" visible="false"/>
+      <Label group="Exits" match="\&lt;(return|throw)\&gt;\s*(.*?)[{;]" name="\1" descr="\1 \2;" navigation="false" marker="20" context="exit_all" visible="false"/>
+      <Label group="Variable" match="^\s*var\s+([^=;]+)" name="\1" descr="\1" image="6" navigation="false" context="variable" style="variable" visible="false">
+        <Highlight in="\1" all="\w+" style="variable" global="false"/>
+      </Label>
+      <Label group="Function" match="(\w+)\(" name="\1" descr="\1" navigation="false" context="function_call" style="methods" highlight="\1" visible="false"/>
+      <Label group="" match="(if|switch|while|for)\s*\(((?:[^\(\)]|\\r|\\n|\((?-1)\))*+)\)\s*\{" name="\1" descr="\1 (\2)" scope="1" image="13" navigation="false"/>
+    </LABELS>
+    <SCOPES>
+      <Scope open="{" close="}"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+          <Open id="char"/>
+          <Open id="documentation"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Blocks>
+          <Block open="0x">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="//" close="\n"/>
+          <Block open="/*" close="*/"/>
+        </Blocks>
+        <Containers>
+          <Close id="normal"/>
+          <Close id="todo"/>
+        </Containers>
+      </Style>
+      <Style id="documentation" name="Documentation" text="1" bold="0" italic="1" underline="0" clr="Documentation" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="///" close="\n"/>
+          <Block open="/**" close="*/"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="regexp" name="Regular Expression" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF" include="perl_regexp:normal">
+        <Blocks>
+          <Regexp open="/" open_lead="\s*(?:[=(:,]|$|nruter|&amp;&amp;|\|\||!)" open_trail="[^/*+{}?]" close="/\w*"/>
+          <!--<Regexp open="&quot;" open_lead="\s*\(\s*pxEgeR" close="&quot;"/>-->
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style name="Escaped symbols" text="1" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="string"/>
+          <Open id="char"/>
+        </Containers>
+        <Blocks>
+          <Block text="\\r"/>
+          <Block text="\\n"/>
+          <Block text="\\t"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF"/>
+      <Style id="documentation" name="Documentation" text="1" bold="0" italic="1" underline="0" clr="Documentation" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="///" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="boolean"/>
+          <Keyword text="break"/>
+          <Keyword text="byte"/>
+          <Keyword text="case"/>
+          <Keyword text="catch"/>
+          <Keyword text="char"/>
+          <Keyword text="class"/>
+          <Keyword text="const"/>
+          <Keyword text="continue"/>
+          <Keyword text="debugger"/>
+          <Keyword text="default"/>
+          <Keyword text="delete"/>
+          <Keyword text="do"/>
+          <Keyword text="double"/>
+          <Keyword text="else"/>
+          <Keyword text="enum"/>
+          <Keyword text="export"/>
+          <Keyword text="extends"/>
+          <Keyword text="final"/>
+          <Keyword text="finally"/>
+          <Keyword text="float"/>
+          <Keyword text="for"/>
+          <Keyword text="function"/>
+          <Keyword text="goto"/>
+          <Keyword text="if"/>
+          <Keyword text="implements"/>
+          <Keyword text="import"/>
+          <Keyword text="in"/>
+          <Keyword text="instanceof"/>
+          <Keyword text="int"/>
+          <Keyword text="interface"/>
+          <Keyword text="long"/>
+          <Keyword text="native"/>
+          <Keyword text="new"/>
+          <Keyword text="null"/>
+          <Keyword text="package"/>
+          <Keyword text="private"/>
+          <Keyword text="protected"/>
+          <Keyword text="public"/>
+          <Keyword text="return"/>
+          <Keyword text="short"/>
+          <Keyword text="static"/>
+          <Keyword text="super"/>
+          <Keyword text="switch"/>
+          <Keyword text="synchronized"/>
+          <Keyword text="this"/>
+          <Keyword text="throw"/>
+          <Keyword text="throws"/>
+          <Keyword text="transient"/>
+          <Keyword text="try"/>
+          <Keyword text="typeof"/>
+          <Keyword text="var"/>
+          <Keyword text="void"/>
+          <Keyword text="volatile"/>
+          <Keyword text="while"/>
+          <Keyword text="with"/>
+        </Keywords>
+      </Style>
+      <Style name="Objects" image="12" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Anchor"/>
+          <Keyword text="Applet"/>
+          <Keyword text="Area"/>
+          <Keyword text="Array"/>
+          <Keyword text="Boolean"/>
+          <Keyword text="Button"/>
+          <Keyword text="Checkbox"/>
+          <Keyword text="Date"/>
+          <Keyword text="document"/>
+          <Keyword text="event"/>
+          <Keyword text="Enumerator"/>
+          <Keyword text="FileUpload"/>
+          <Keyword text="Form"/>
+          <Keyword text="Frame"/>
+          <Keyword text="Function"/>
+          <Keyword text="Hidden"/>
+          <Keyword text="History"/>
+          <Keyword text="Image"/>
+          <Keyword text="JavaArray"/>
+          <Keyword text="JavaClass"/>
+          <Keyword text="JavaObject"/>
+          <Keyword text="JavaPackage"/>
+          <Keyword text="java"/>
+          <Keyword text="Layer"/>
+          <Keyword text="Link"/>
+          <Keyword text="Location"/>
+          <Keyword text="Math"/>
+          <Keyword text="MimeType"/>
+          <Keyword text="Number"/>
+          <Keyword text="navigator"/>
+          <Keyword text="netscape"/>
+          <Keyword text="Object"/>
+          <Keyword text="Option"/>
+          <Keyword text="Packages"/>
+          <Keyword text="Password"/>
+          <Keyword text="Plugin"/>
+          <Keyword text="Radio"/>
+          <Keyword text="RegExp"/>
+          <Keyword text="Reset"/>
+          <Keyword text="Select"/>
+          <Keyword text="String"/>
+          <Keyword text="Style"/>
+          <Keyword text="Submit"/>
+          <Keyword text="screen"/>
+          <Keyword text="sun"/>
+          <Keyword text="Text"/>
+          <Keyword text="Textarea"/>
+          <Keyword text="window"/>
+        </Keywords>
+      </Style>
+      <Style id="methods" name="Methods" image="9" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords pattern="%CurrentWord%(%|%)">
+          <Keyword text="abs"/>
+          <Keyword text="acos"/>
+          <Keyword text="alert"/>
+          <Keyword text="anchor"/>
+          <Keyword text="apply"/>
+          <Keyword text="asin"/>
+          <Keyword text="atan"/>
+          <Keyword text="atan2"/>
+          <Keyword text="atob"/>
+          <Keyword text="atEnd"/>
+          <Keyword text="attachEvent"/>
+          <Keyword text="back"/>
+          <Keyword text="big"/>
+          <Keyword text="blink"/>
+          <Keyword text="blur"/>
+          <Keyword text="bold"/>
+          <Keyword text="borderWidths"/>
+          <Keyword text="btoa"/>
+          <Keyword text="call"/>
+          <Keyword text="captureEvents"/>
+          <Keyword text="ceil"/>
+          <Keyword text="charAt"/>
+          <Keyword text="charCodeAt"/>
+          <Keyword text="clear"/>
+          <Keyword text="clearInterval"/>
+          <Keyword text="clearTimeout"/>
+          <Keyword text="click"/>
+          <Keyword text="close"/>
+          <Keyword text="compile"/>
+          <Keyword text="concat"/>
+          <Keyword text="confirm"/>
+          <Keyword text="contextual"/>
+          <Keyword text="cos"/>
+          <Keyword text="createElement"/>
+          <Keyword text="createEventObject"/>
+          <Keyword text="createPopup"/>
+          <Keyword text="createStyleSheet"/>
+          <Keyword text="createTextNode"/>
+          <Keyword text="detachEvent"/>
+          <Keyword text="disableExternalCapture"/>
+          <Keyword text="dump"/>
+          <Keyword text="elementFromPoint"/>
+          <Keyword text="enableExternalCapture"/>
+          <Keyword text="escape"/>
+          <Keyword text="eval"/>
+          <Keyword text="exec"/>
+          <Keyword text="execCommand"/>
+          <Keyword text="execScript"/>
+          <Keyword text="exp"/>
+          <Keyword text="fileCreatedDate"/>
+          <Keyword text="fileModifiedDate"/>
+          <Keyword text="fileSize"/>
+          <Keyword text="fileUpdatedDate"/>
+          <Keyword text="find"/>
+          <Keyword text="firstChild"/>
+          <Keyword text="fixed"/>
+          <Keyword text="floor"/>
+          <Keyword text="focus"/>
+          <Keyword text="fontcolor"/>
+          <Keyword text="fontsize"/>
+          <Keyword text="fromCharCode"/>
+          <Keyword text="forward"/>
+          <Keyword text="getAttention"/>
+          <Keyword text="getDate"/>
+          <Keyword text="getDay"/>
+          <Keyword text="getElementById"/>
+          <Keyword text="getElementsByName"/>
+          <Keyword text="getElementsByTagName"/>
+          <Keyword text="getFullYear"/>
+          <Keyword text="getHours"/>
+          <Keyword text="getMilliseconds"/>
+          <Keyword text="getMinutes"/>
+          <Keyword text="getMonth"/>
+          <Keyword text="getSeconds"/>
+          <Keyword text="getSelection"/>
+          <Keyword text="getTime"/>
+          <Keyword text="getTimezoneOffset"/>
+          <Keyword text="getUTCDate"/>
+          <Keyword text="getUTCDay"/>
+          <Keyword text="getUTCFullYear"/>
+          <Keyword text="getUTCHours"/>
+          <Keyword text="getUTCMilliseconds"/>
+          <Keyword text="getUTCMinutes"/>
+          <Keyword text="getUTCMonth"/>
+          <Keyword text="getUTCSeconds"/>
+          <Keyword text="getYear"/>
+          <Keyword text="go"/>
+          <Keyword text="handleEvent"/>
+          <Keyword text="home"/>
+          <Keyword text="indexOf"/>
+          <Keyword text="isFinite"/>
+          <Keyword text="isNaN"/>
+          <Keyword text="italics"/>
+          <Keyword text="item"/>
+          <Keyword text="javaEnabled"/>
+          <Keyword text="join"/>
+          <Keyword text="lastIndexOf"/>
+          <Keyword text="link"/>
+          <Keyword text="load"/>
+          <Keyword text="log"/>
+          <Keyword text="margins"/>
+          <Keyword text="match"/>
+          <Keyword text="max"/>
+          <Keyword text="mergeAttributes"/>
+          <Keyword text="min"/>
+          <Keyword text="moveAbove"/>
+          <Keyword text="moveBelow"/>
+          <Keyword text="moveBy"/>
+          <Keyword text="moveNext"/>
+          <Keyword text="moveTo"/>
+          <Keyword text="moveToAbsolute"/>
+          <Keyword text="navigate"/>
+          <Keyword text="open"/>
+          <Keyword text="paddings"/>
+          <Keyword text="parse"/>
+          <Keyword text="parseFloat"/>
+          <Keyword text="parseInt"/>
+          <Keyword text="plugins.refresh"/>
+          <Keyword text="pop"/>
+          <Keyword text="pow"/>
+          <Keyword text="preference"/>
+          <Keyword text="print"/>
+          <Keyword text="prompt"/>
+          <Keyword text="push"/>
+          <Keyword text="queryCommandEnabled"/>
+          <Keyword text="queryCommandIndeterm"/>
+          <Keyword text="queryCommandState"/>
+          <Keyword text="queryCommandValue"/>
+          <Keyword text="random"/>
+          <Keyword text="recalc"/>
+          <Keyword text="releaseCapture"/>
+          <Keyword text="releaseEvents"/>
+          <Keyword text="reload"/>
+          <Keyword text="replace"/>
+          <Keyword text="reset"/>
+          <Keyword text="resizeBy"/>
+          <Keyword text="resizeTo"/>
+          <Keyword text="returnValue"/>
+          <Keyword text="reverse"/>
+          <Keyword text="round"/>
+          <Keyword text="routeEvents"/>
+          <Keyword text="savePreferences"/>
+          <Keyword text="scroll"/>
+          <Keyword text="scrollBy"/>
+          <Keyword text="scrollByLines"/>
+          <Keyword text="scrollByPages"/>
+          <Keyword text="scrollTo"/>
+          <Keyword text="scrollX"/>
+          <Keyword text="scrollY"/>
+          <Keyword text="search"/>
+          <Keyword text="select"/>
+          <Keyword text="setDate"/>
+          <Keyword text="setFullYear"/>
+          <Keyword text="setActive"/>
+          <Keyword text="setCursor"/>
+          <Keyword text="setHotKeys"/>
+          <Keyword text="setHours"/>
+          <Keyword text="setInterval"/>
+          <Keyword text="setMilliseconds"/>
+          <Keyword text="setMinutes"/>
+          <Keyword text="setMonth"/>
+          <Keyword text="setResizable"/>
+          <Keyword text="setSeconds"/>
+          <Keyword text="setTime"/>
+          <Keyword text="setTimeout"/>
+          <Keyword text="setUTCDate"/>
+          <Keyword text="setUTCFullYear"/>
+          <Keyword text="setUTCHours"/>
+          <Keyword text="setUTCMilliseconds"/>
+          <Keyword text="setUTCMinutes"/>
+          <Keyword text="setUTCMonth"/>
+          <Keyword text="setUTCSeconds"/>
+          <Keyword text="setYear"/>
+          <Keyword text="setZOptions"/>
+          <Keyword text="shift"/>
+          <Keyword text="showHelp"/>
+          <Keyword text="showModalDialog"/>
+          <Keyword text="showModelessDialog"/>
+          <Keyword text="sidebar"/>
+          <Keyword text="sin"/>
+          <Keyword text="signText"/>
+          <Keyword text="sizeToContent"/>
+          <Keyword text="slice"/>
+          <Keyword text="small"/>
+          <Keyword text="sort"/>
+          <Keyword text="splice"/>
+          <Keyword text="split"/>
+          <Keyword text="sqrt"/>
+          <Keyword text="strike"/>
+          <Keyword text="stop"/>
+          <Keyword text="sub"/>
+          <Keyword text="submit"/>
+          <Keyword text="substr"/>
+          <Keyword text="substring"/>
+          <Keyword text="sup"/>
+          <Keyword text="taint"/>
+          <Keyword text="taintEnabled"/>
+          <Keyword text="tan"/>
+          <Keyword text="test"/>
+          <Keyword text="toGMTString"/>
+          <Keyword text="toLocaleString"/>
+          <Keyword text="toLowerCase"/>
+          <Keyword text="toSource"/>
+          <Keyword text="toString"/>
+          <Keyword text="toUpperCase"/>
+          <Keyword text="toUTCString"/>
+          <Keyword text="UTC"/>
+          <Keyword text="unescape"/>
+          <Keyword text="unshift"/>
+          <Keyword text="untaint"/>
+          <Keyword text="updateCommands"/>
+          <Keyword text="unwatch"/>
+          <Keyword text="valueOf"/>
+          <Keyword text="watch"/>
+          <Keyword text="write"/>
+          <Keyword text="writeln"/>
+        </Keywords>
+      </Style>
+      <Style name="Properties" image="11" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="E"/>
+          <Keyword text="Infinity"/>
+          <Keyword text="LN10"/>
+          <Keyword text="LN2"/>
+          <Keyword text="LOG10E"/>
+          <Keyword text="LOG2E"/>
+          <Keyword text="MAX_VALUE"/>
+          <Keyword text="MIN_VALUE"/>
+          <Keyword text="NEGATIVE_INFINITY"/>
+          <Keyword text="NaN"/>
+          <Keyword text="PI"/>
+          <Keyword text="POSITIVE_INFINITY"/>
+          <Keyword text="SQRT1_2"/>
+          <Keyword text="SQRT2"/>
+          <Keyword text="URL"/>
+          <Keyword text="URLUnencoded"/>
+          <Keyword text="XMLDocument"/>
+          <Keyword text="XSLDocument"/>
+          <Keyword text="_content"/>
+          <Keyword text="aLinkcolor"/>
+          <Keyword text="above"/>
+          <Keyword text="action"/>
+          <Keyword text="align"/>
+          <Keyword text="all"/>
+          <Keyword text="anchors"/>
+          <Keyword text="appCodeName"/>
+          <Keyword text="appCore"/>
+          <Keyword text="appMinorVersion"/>
+          <Keyword text="appName"/>
+          <Keyword text="appVersion"/>
+          <Keyword text="applets"/>
+          <Keyword text="arguments"/>
+          <Keyword text="arity"/>
+          <Keyword text="attributes"/>
+          <Keyword text="availHeight"/>
+          <Keyword text="availLeft"/>
+          <Keyword text="availTop"/>
+          <Keyword text="availWidth"/>
+          <Keyword text="background"/>
+          <Keyword text="backgroundColor"/>
+          <Keyword text="backgroundImage"/>
+          <Keyword text="below"/>
+          <Keyword text="bgColor"/>
+          <Keyword text="body"/>
+          <Keyword text="border"/>
+          <Keyword text="borderBottomWidth"/>
+          <Keyword text="borderColor"/>
+          <Keyword text="borderLeftWidth"/>
+          <Keyword text="borderRightWidth"/>
+          <Keyword text="borderStyle"/>
+          <Keyword text="borderTopWidth"/>
+          <Keyword text="bottom"/>
+          <Keyword text="bufferDepth"/>
+          <Keyword text="callee"/>
+          <Keyword text="caller"/>
+          <Keyword text="characterSet"/>
+          <Keyword text="checked"/>
+          <Keyword text="childNodes"/>
+          <Keyword text="className"/>
+          <Keyword text="classes"/>
+          <Keyword text="clientInformation"/>
+          <Keyword text="clip"/>
+          <Keyword text="clipboardData"/>
+          <Keyword text="closed"/>
+          <Keyword text="colorDepth"/>
+          <Keyword text="complete"/>
+          <Keyword text="components"/>
+          <Keyword text="constructor"/>
+          <Keyword text="controllers"/>
+          <Keyword text="cookie"/>
+          <Keyword text="cookieEnabled"/>
+          <Keyword text="cpuClass"/>
+          <Keyword text="crypto"/>
+          <Keyword text="current"/>
+          <Keyword text="data"/>
+          <Keyword text="defaultCharset"/>
+          <Keyword text="defaultChecked"/>
+          <Keyword text="defaultStatus"/>
+          <Keyword text="defaultValue"/>
+          <Keyword text="defaultView"/>
+          <Keyword text="description"/>
+          <Keyword text="dialogArguments"/>
+          <Keyword text="dialogHeight"/>
+          <Keyword text="dialogLeft"/>
+          <Keyword text="dialogTop"/>
+          <Keyword text="dialogWidth"/>
+          <Keyword text="dir"/>
+          <Keyword text="directories"/>
+          <Keyword text="display"/>
+          <Keyword text="doctype"/>
+          <Keyword text="documentElement"/>
+          <Keyword text="domain"/>
+          <Keyword text="elements"/>
+          <Keyword text="embeds"/>
+          <Keyword text="enabledPlugin"/>
+          <Keyword text="encoding"/>
+          <Keyword text="expando"/>
+          <Keyword text="external"/>
+          <Keyword text="fgColor"/>
+          <Keyword text="filename"/>
+          <Keyword text="fontFamily"/>
+          <Keyword text="fontSize"/>
+          <Keyword text="fontWeight"/>
+          <Keyword text="form"/>
+          <Keyword text="formName"/>
+          <Keyword text="forms"/>
+          <Keyword text="frameElement"/>
+          <Keyword text="frames"/>
+          <Keyword text="global"/>
+          <Keyword text="hasFocus"/>
+          <Keyword text="hash"/>
+          <Keyword text="height"/>
+          <Keyword text="history"/>
+          <Keyword text="host"/>
+          <Keyword text="hostname"/>
+          <Keyword text="href"/>
+          <Keyword text="hspace"/>
+          <Keyword text="ids"/>
+          <Keyword text="ignoreCase"/>
+          <Keyword text="images"/>
+          <Keyword text="implementation"/>
+          <Keyword text="index"/>
+          <Keyword text="innerHeight"/>
+          <Keyword text="innerWidth"/>
+          <Keyword text="input"/>
+          <Keyword text="language"/>
+          <Keyword text="lastChild"/>
+          <Keyword text="lastIndex"/>
+          <Keyword text="lastMatch"/>
+          <Keyword text="lastModified"/>
+          <Keyword text="lastParen"/>
+          <Keyword text="layerX"/>
+          <Keyword text="layers"/>
+          <Keyword text="left"/>
+          <Keyword text="leftContext"/>
+          <Keyword text="length"/>
+          <Keyword text="lineHeight"/>
+          <Keyword text="linkColor"/>
+          <Keyword text="links"/>
+          <Keyword text="listStyleType"/>
+          <Keyword text="localName"/>
+          <Keyword text="location"/>
+          <Keyword text="locationbar"/>
+          <Keyword text="lowsrc"/>
+          <Keyword text="marginBottom"/>
+          <Keyword text="marginLeft"/>
+          <Keyword text="marginRight"/>
+          <Keyword text="marginTop"/>
+          <Keyword text="media"/>
+          <Keyword text="menubar"/>
+          <Keyword text="method"/>
+          <Keyword text="mimeTypes"/>
+          <Keyword text="multiline"/>
+          <Keyword text="name"/>
+          <Keyword text="nameProp"/>
+          <Keyword text="namespaceURI"/>
+          <Keyword text="namespaces"/>
+          <Keyword text="next"/>
+          <Keyword text="nextSibling"/>
+          <Keyword text="nodeName"/>
+          <Keyword text="nodeType"/>
+          <Keyword text="nodeValue"/>
+          <Keyword text="offscreenBuffering"/>
+          <Keyword text="onLine"/>
+          <Keyword text="opener"/>
+          <Keyword text="opsProfile"/>
+          <Keyword text="options"/>
+          <Keyword text="oscpu"/>
+          <Keyword text="outerHeight"/>
+          <Keyword text="outerWidth"/>
+          <Keyword text="ownerDocument"/>
+          <Keyword text="paddingBottom"/>
+          <Keyword text="paddingLeft"/>
+          <Keyword text="paddingRight"/>
+          <Keyword text="paddingTop"/>
+          <Keyword text="pageX"/>
+          <Keyword text="pageXOffset"/>
+          <Keyword text="pageY"/>
+          <Keyword text="pageYOffset"/>
+          <Keyword text="parent"/>
+          <Keyword text="parentLayer"/>
+          <Keyword text="parentNode"/>
+          <Keyword text="parentWindow"/>
+          <Keyword text="pathname"/>
+          <Keyword text="personalbar"/>
+          <Keyword text="pixelDepth"/>
+          <Keyword text="pkcs11"/>
+          <Keyword text="platform"/>
+          <Keyword text="plugins"/>
+          <Keyword text="port"/>
+          <Keyword text="prefix"/>
+          <Keyword text="previous"/>
+          <Keyword text="previousSibling"/>
+          <Keyword text="product"/>
+          <Keyword text="productSub"/>
+          <Keyword text="prompter"/>
+          <Keyword text="protocol"/>
+          <Keyword text="prototype"/>
+          <Keyword text="readyState"/>
+          <Keyword text="referrer"/>
+          <Keyword text="right"/>
+          <Keyword text="rightContext"/>
+          <Keyword text="screenLeft"/>
+          <Keyword text="screenTop"/>
+          <Keyword text="screenX"/>
+          <Keyword text="screenY"/>
+          <Keyword text="scripts"/>
+          <Keyword text="scrollbars"/>
+          <Keyword text="security"/>
+          <Keyword text="securityPolicy"/>
+          <Keyword text="selected"/>
+          <Keyword text="selectedIndex"/>
+          <Keyword text="selection"/>
+          <Keyword text="self"/>
+          <Keyword text="siblingAbove"/>
+          <Keyword text="siblingBelow"/>
+          <Keyword text="source"/>
+          <Keyword text="src"/>
+          <Keyword text="status"/>
+          <Keyword text="statusbar"/>
+          <Keyword text="styleSheets"/>
+          <Keyword text="suffixes"/>
+          <Keyword text="systemLanguage"/>
+          <Keyword text="tags"/>
+          <Keyword text="target"/>
+          <Keyword text="text"/>
+          <Keyword text="textAlign"/>
+          <Keyword text="textDecoration"/>
+          <Keyword text="textIndent"/>
+          <Keyword text="textTransform"/>
+          <Keyword text="title"/>
+          <Keyword text="toolbar"/>
+          <Keyword text="top"/>
+          <Keyword text="type"/>
+          <Keyword text="undefined"/>
+          <Keyword text="uniqueID"/>
+          <Keyword text="updateInterval"/>
+          <Keyword text="userAgent"/>
+          <Keyword text="userLanguage"/>
+          <Keyword text="userProfile"/>
+          <Keyword text="vLinkcolor"/>
+          <Keyword text="value"/>
+          <Keyword text="vendor"/>
+          <Keyword text="vendorSub"/>
+          <Keyword text="visibility"/>
+          <Keyword text="vspace"/>
+          <Keyword text="whiteSpace"/>
+          <Keyword text="width"/>
+          <Keyword text="x"/>
+          <Keyword text="y"/>
+          <Keyword text="zIndex"/>
+        </Keywords>
+      </Style>
+      <Style name="Events" image="20" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="onAbort"/>
+          <Keyword text="onActivate"/>
+          <Keyword text="onAfterprint"/>
+          <Keyword text="onAfterupdate"/>
+          <Keyword text="onBeforeactivate"/>
+          <Keyword text="onBeforecut"/>
+          <Keyword text="onBeforedeactivate"/>
+          <Keyword text="onBeforeeditfocus"/>
+          <Keyword text="onBeforepaste"/>
+          <Keyword text="onBeforeprint"/>
+          <Keyword text="onBeforeunload"/>
+          <Keyword text="onBeforeupdate"/>
+          <Keyword text="onBlur"/>
+          <Keyword text="onCellchange"/>
+          <Keyword text="onChange"/>
+          <Keyword text="onClick"/>
+          <Keyword text="onClose"/>
+          <Keyword text="onContextmenu"/>
+          <Keyword text="onControlselect"/>
+          <Keyword text="onCut"/>
+          <Keyword text="onDataavailable"/>
+          <Keyword text="onDatasetchanged"/>
+          <Keyword text="onDatasetcomplete"/>
+          <Keyword text="onDblclick"/>
+          <Keyword text="onDeactivate"/>
+          <Keyword text="onDrag"/>
+          <Keyword text="onDragdrop"/>
+          <Keyword text="onDragend"/>
+          <Keyword text="onDragenter"/>
+          <Keyword text="onDragleave"/>
+          <Keyword text="onDragover"/>
+          <Keyword text="onDragstart"/>
+          <Keyword text="onDrop"/>
+          <Keyword text="onError"/>
+          <Keyword text="onErrorupdate"/>
+          <Keyword text="onFocus"/>
+          <Keyword text="onHelp"/>
+          <Keyword text="onKeydown"/>
+          <Keyword text="onKeypress"/>
+          <Keyword text="onKeyup"/>
+          <Keyword text="onLoad"/>
+          <Keyword text="onMousedown"/>
+          <Keyword text="onMousemove"/>
+          <Keyword text="onMouseout"/>
+          <Keyword text="onMouseover"/>
+          <Keyword text="onMouseup"/>
+          <Keyword text="onPaste"/>
+          <Keyword text="onPropertychange"/>
+          <Keyword text="onReadystatechange"/>
+          <Keyword text="onReset"/>
+          <Keyword text="onResize"/>
+          <Keyword text="onResizeend"/>
+          <Keyword text="onResizestart"/>
+          <Keyword text="onRowenter"/>
+          <Keyword text="onRowexit"/>
+          <Keyword text="onRowsdelete"/>
+          <Keyword text="onRowsinserted"/>
+          <Keyword text="onScroll"/>
+          <Keyword text="onSelect"/>
+          <Keyword text="onSelectionchange"/>
+          <Keyword text="onSelectstart"/>
+          <Keyword text="onStop"/>
+          <Keyword text="onSubmit"/>
+          <Keyword text="onUnload"/>
+        </Keywords>
+      </Style>
+      <Style name="Constants" image="7" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="false"/>
+          <Keyword text="true"/>
+        </Keywords>
+      </Style>
+      <Style name="Variables" id="variable" image="15" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF"/>
+      <Style name="JavaDocParameter" text="1" bold="1" italic="2" underline="2" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="comment"/>
+          <Open id="documentation"/>
+        </Containers>
+        <Blocks>
+          <Block open="@" close=""/>
+        </Blocks>
+      </Style>
+      <Style name="JavaDocHTML" text="1" bold="1" italic="2" underline="2" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="comment"/>
+          <Open id="documentation"/>
+        </Containers>
+        <Blocks>
+          <Block open="&lt;" close="&gt;">
+            <Close text="\n"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+          <Open id="documentation"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+          <Block open="todo" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

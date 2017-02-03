@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangUser"/>
+  <SYNTAX id="fortran" inherit="def_source" inherit_url="defsource_user.xml">
+    <TOOLS>
+      <Tool name="Compile and Link" arguments="%FileName%" save="1" command="ifort" capture_output="true"/>
+      <Tool name="Compile" arguments="-c %FileName%" save="1" command="ifort" capture_output="true"/>
+    </TOOLS>
+    <HELP>
+      <Help name="Fortran Documentation (Intel)" external_browser="true" arguments="%CurrentWord%" key="112" ctrl="true" url="%ROOT%\Documentation\en_US\compiler_f\cl\compiler_ug_f.chm"/>
+    </HELP>
+  </SYNTAX>
+</XMLConfigSettings>

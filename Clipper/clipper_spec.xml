@@ -1,0 +1,1286 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Evi" type="LangSpec"/>
+  <SYNTAX id="clipper" name="Clipper" inherit="def_source" version="1.2" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.prg;*.ch">
+        <Pair file1="*.prg" file2="*.ch"/>
+      </FilePattern>
+      <SyntaxBlocks>
+        <Block open="#include "/>
+      </SyntaxBlocks>
+      <OpenClose>()[]{}''""||</OpenClose>
+      <Operators>#@,;.:?--+/&amp;%*=&lt;&gt;~!^()|\[]{}</Operators>
+      <Delimiters>&quot;</Delimiters>
+      <Words>0-9A-Za-z_</Words>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="FUNCTION" close="RETURN" strict="false"/>
+      <Scope open="PROCEDURE" close="RETURN" strict="false"/>
+      <Scope open="TEXT" close="ENDTEXT"/>
+      <Scope open="IF" middle="ELSE" strict="false">
+        <Close text="END" trail="\s+?(:?/|$)"/>
+        <Close text="ENDIF"/>
+        <Middle text="ELSEIF"/>
+      </Scope>
+      <Scope open="BEGIN SEQUENCE" middle="RECOVER" close="END SEQUENCE"/>
+      <Scope open="WHILE" strict="false">
+        <Close text="END" trail="\s+?(:?/|$)"/>
+        <Close text="ENDDO"/>
+      </Scope>
+      <Scope open="DO WHILE" close="ENDDO"/>
+      <Scope open="MENU" close="ENDMENU" strict="false"/>
+      <Scope open="FOR" close="NEXT" strict="false"/>
+      <Scope open="FOR EACH" close="NEXT"/>
+      <Scope open="WITH OBJECT" close="ENDWITH"/>
+      <Scope open="DO CASE" middle="CASE" close="ENDCASE">
+        <Middle text="OTHERWISE"/>
+        <Close text="END CASE"/>
+      </Scope>
+      <Scope open="SWITCH" middle="CASE" close="ENDSWITCH">
+        <Middle text="DEFAULTSWITCH"/>
+        <Middle text="DEFAULT"/>
+      </Scope>
+      <Scope open="TRY" middle="CATCH" close="ENDTRY">
+        <Middle text="FINALLY"/>
+      </Scope>
+      <Scope open="IFDEF" middle="ELSE" close="ENDIF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Scope>
+      <Scope open="IFNDEF" middle="ELSE" close="ENDIF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Scope>
+      <Scope open="Region" close="EndRegion"/>
+    </SCOPES>
+    <LABELS>
+      <Label group="Include" match="#include\s*[&quot;']+([\w.\/]+)[&quot;']+\s*$" name="\1" image="15" navigation="false">
+        <Containers open="preprocessor"/>
+      </Label>
+      <Label group="Function" match="(?:^|\s)((STATIC)\s+)?FUNCTION\s+(\w+)\s*(\([^.;)]*\))?(?:\s*//\s*([^\r\n)]+))?" name="\3" descr="\1Function \3 \4 \5" image="9" style="function" highlight="\3" scope="1">
+        <SubImage if="\2" equal="STATIC" value="3"/>
+      </Label>
+      <Label group="Procedure" match="(?:^|\s)((STATIC|INIT|EXIT)\s+)?PROCEDURE\s+(\w+)\s*(\([^.;)]*\))?(?:\s*//\s*([^\r\n)]+))?" descr="\1PROCEDURE \3" name="\1Procedure \3 \4 \5" image="9" style="function" highlight="\3" scope="1">
+        <SubImage if="\2" equal="STATIC" value="3"/>
+      </Label>
+      <Label group="Exits" match="\&lt;(loop|exit)\&gt;" name="\1" descr="\1" navigation="false" marker="19" context="exit_scope" visible="false"/>
+      <Label group="Exits" match="\&lt;return\&gt;" name="\1" descr="\0" navigation="false" marker="20" context="exit_all" visible="false"/>
+      <Label group="Function" match="(\w+)\(" name="\1" descr="\1" navigation="false" context="function_call" style="function" highlight="\1" visible="false"/>
+      <Label group="Region" match="(?:^|\s)Region\s+(\w+)" name="\1" descr="Region \1" image="8" scope="1"/>
+      <Label group="Region" match="(?:^|\s)Label\s+(\w+)\s+(\w+)" name="\2" descr="Label \1 \2" image="8" scope="1"/>
+    </LABELS>
+    <STYLES>
+      <Style name="BeginEnds" image="13" bold="1" italic="0" underline="0" clr="#8B000000" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="BEGIN SEQUENCE"/>
+          <Keyword text="BREAK"/>
+          <Keyword text="CASE"/>
+          <Keyword text="CATCH"/>
+          <Keyword text="DEFAULT"/>
+          <Keyword text="DEFAULTSWITCH"/>
+          <Keyword text="DO"/>
+          <Keyword text="EACH"/>
+          <Keyword text="ELSE"/>
+          <Keyword text="ELSEIF"/>
+          <Keyword text="END SEQUENCE"/>
+          <Keyword text="END" trail="\s+?[^(]"/>
+          <Keyword text="ENDCASE"/>
+          <Keyword text="ENDDO"/>
+          <Keyword text="ENDIF"/>
+          <Keyword text="ENDMENU"/>
+          <Keyword text="MENUITEM"/>
+          <Keyword text="ENDSWITCH"/>
+          <Keyword text="ENDTRY"/>
+          <Keyword text="ENDWITH"/>
+          <Keyword text="EXIT"/>
+          <Keyword text="FINALLY"/>
+          <Keyword text="FOR"/>
+          <Keyword text="FUNCTION"/>
+          <Keyword text="Field"/>
+          <Keyword text="IF"/>
+          <Keyword text="INIT"/>
+          <Keyword text="LOOP"/>
+          <Keyword text="Local"/>
+          <Keyword text="MENU"/>
+          <Keyword text="Memvar"/>
+          <Keyword text="NEXT"/>
+          <Keyword text="OTHERWISE"/>
+          <Keyword text="PROCEDURE"/>
+          <Keyword text="Private"/>
+          <Keyword text="Public"/>
+          <Keyword text="RECOVER"/>
+          <Keyword text="RETURN"/>
+          <Keyword text="RETURNO"/>
+          <Keyword text="STEP"/>
+          <Keyword text="SWITCH"/>
+          <Keyword text="Static"/>
+          <Keyword text="THROW"/>
+          <Keyword text="TRY"/>
+          <Keyword text="WHILE"/>
+          <Keyword text="WITH OBJECT"/>
+          <Keyword text="iIF"/>
+        </Keywords>
+      </Style>
+      <Style id="character" name="Character" text="1" bold="2" italic="0" underline="0" clr="#0D92FF00" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style name="Commands" image="7" bold="0" italic="0" underline="0" clr="#8B000000" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ACTIVATE"/>
+          <Keyword text="ADD"/>
+          <Keyword text="Accept"/>
+          <Keyword text="Alias"/>
+          <Keyword text="Append Blank"/>
+          <Keyword text="Append From"/>
+          <Keyword text="Append"/>
+          <Keyword text="Average"/>
+          <Keyword text="BITMAP"/>
+          <Keyword text="BRUSH"/>
+          <Keyword text="BUTTON"/>
+          <Keyword text="Box"/>
+          <Keyword text="Browse"/>
+          <Keyword text="CHECKBOX"/>
+          <Keyword text="Cancel"/>
+          <Keyword text="Clear All"/>
+          <Keyword text="Clear Gets"/>
+          <Keyword text="Clear Memory"/>
+          <Keyword text="Clear Screen"/>
+          <Keyword text="Clear Typeahead"/>
+          <Keyword text="Clear"/>
+          <Keyword text="Close Log"/>
+          <Keyword text="Close"/>
+          <Keyword text="Commit"/>
+          <Keyword text="Continue"/>
+          <Keyword text="Copy File"/>
+          <Keyword text="Copy Structure"/>
+          <Keyword text="Copy to"/>
+          <Keyword text="Count"/>
+          <Keyword text="Create"/>
+          <Keyword text="DEFINE"/>
+          <Keyword text="DIALOG"/>
+          <Keyword text="Default to"/>
+          <Keyword text="Delete File"/>
+          <Keyword text="Delete Tag"/>
+          <Keyword text="Eject"/>
+          <Keyword text="Erase"/>
+          <Keyword text="FONT"/>
+          <Keyword text="Find"/>
+          <Keyword text="GROUP"/>
+          <Keyword text="GROUPBUTTON"/>
+          <Keyword text="Get"/>
+          <Keyword text="Go"/>
+          <Keyword text="Index"/>
+          <Keyword text="Init Log"/>
+          <Keyword text="Input"/>
+          <Keyword text="Join"/>
+          <Keyword text="Keyboard"/>
+          <Keyword text="List"/>
+          <Keyword text="Locate"/>
+          <Keyword text="Log"/>
+          <Keyword text="MESSAGE"/>
+          <Keyword text="Menu to"/>
+          <Keyword text="NOBORDER"/>
+          <Keyword text="OPTION"/>
+          <Keyword text="Pack"/>
+          <Keyword text="Printer"/>
+          <Keyword text="Prompt"/>
+          <Keyword text="QUICKACCESS"/>
+          <Keyword text="Quit"/>
+          <Keyword text="RADIO"/>
+          <Keyword text="REDEFINE"/>
+          <Keyword text="RESNAME"/>
+          <Keyword text="RIBBON"/>
+          <Keyword text="RIBBONBAR"/>
+          <Keyword text="Read"/>
+          <Keyword text="Recall"/>
+          <Keyword text="Reindex"/>
+          <Keyword text="Release"/>
+          <Keyword text="Rename"/>
+          <Keyword text="Replace"/>
+          <Keyword text="Request"/>
+          <Keyword text="Restore"/>
+          <Keyword text="Run"/>
+          <Keyword text="SIZE"/>
+          <Keyword text="Save"/>
+          <Keyword text="Say"/>
+          <Keyword text="Screen"/>
+          <Keyword text="Seek"/>
+          <Keyword text="Select"/>
+          <Keyword text="Set Alternate"/>
+          <Keyword text="Set Autopen"/>
+          <Keyword text="Set Autorder"/>
+          <Keyword text="Set Autoshare"/>
+          <Keyword text="Set Background Tasks"/>
+          <Keyword text="Set Backgroundtick"/>
+          <Keyword text="Set Bell"/>
+          <Keyword text="Set Century"/>
+          <Keyword text="Set Color"/>
+          <Keyword text="Set Confirm"/>
+          <Keyword text="Set Console"/>
+          <Keyword text="Set Cursor"/>
+          <Keyword text="Set Date"/>
+          <Keyword text="Set DbfLockScheme"/>
+          <Keyword text="Set Decimals"/>
+          <Keyword text="Set Default"/>
+          <Keyword text="Set Deleted"/>
+          <Keyword text="Set Delimiters"/>
+          <Keyword text="Set Descending"/>
+          <Keyword text="Set Device"/>
+          <Keyword text="Set Dircase"/>
+          <Keyword text="Set Dirseparator"/>
+          <Keyword text="Set Eol"/>
+          <Keyword text="Set Epoch"/>
+          <Keyword text="Set ErrorLog"/>
+          <Keyword text="Set ErrorLoop"/>
+          <Keyword text="Set Escape"/>
+          <Keyword text="Set EventMask"/>
+          <Keyword text="Set Exact"/>
+          <Keyword text="Set Exclusive"/>
+          <Keyword text="Set FUNCTION"/>
+          <Keyword text="Set FileCase"/>
+          <Keyword text="Set Filter"/>
+          <Keyword text="Set Fixed"/>
+          <Keyword text="Set Hardcommit"/>
+          <Keyword text="Set Index"/>
+          <Keyword text="Set Intensity"/>
+          <Keyword text="Set Key"/>
+          <Keyword text="Set Log Style"/>
+          <Keyword text="Set Margin"/>
+          <Keyword text="Set Memoblock"/>
+          <Keyword text="Set Message"/>
+          <Keyword text="Set Optimize"/>
+          <Keyword text="Set Order"/>
+          <Keyword text="Set Path"/>
+          <Keyword text="Set Printer"/>
+          <Keyword text="Set Relation"/>
+          <Keyword text="Set Scope"/>
+          <Keyword text="Set Scopebottom"/>
+          <Keyword text="Set Scopetop"/>
+          <Keyword text="Set Scoreboard"/>
+          <Keyword text="Set Softseek"/>
+          <Keyword text="Set Strictread"/>
+          <Keyword text="Set Time"/>
+          <Keyword text="Set Trace"/>
+          <Keyword text="Set Typeahead"/>
+          <Keyword text="Set Unique"/>
+          <Keyword text="Set Videomode"/>
+          <Keyword text="Set Wrap"/>
+          <Keyword text="Skip"/>
+          <Keyword text="Sort"/>
+          <Keyword text="Store"/>
+          <Keyword text="Sum"/>
+          <Keyword text="TOOLTIP"/>
+          <Keyword text="Text"/>
+          <Keyword text="Total"/>
+          <Keyword text="Transaction"/>
+          <Keyword text="Unlock"/>
+          <Keyword text="Update"/>
+          <Keyword text="Use"/>
+          <Keyword text="Wait"/>
+          <Keyword text="Zap"/>
+          <Keyword text="IMAGE"/>
+          <Keyword text="RESOURCE"/>
+          <Keyword text="ADJUST"/>
+          <Keyword text="CLOCK"/>
+          <Keyword text="ICON"/>
+          <Keyword text="WINDOW"/>
+          <Keyword text="NAME"/>
+          <Keyword text="COPY FIELDS"/>
+        </Keywords>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="2" underline="0" clr="#008C0000" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Blocks>
+          <Block open="*" close="\n" first_pos="true"/>
+          <Block open="//" close="\n"/>
+          <Block open="/*" close="*/"/>
+          <Block open="&amp;&amp;" close="\n"/>
+          <Block open="**" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="function" name="Functions" image="10" bold="2" italic="2" underline="0" clr="#703DBC00" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="AAdd"/>
+          <Keyword text="AChoice"/>
+          <Keyword text="AClone"/>
+          <Keyword text="ACopy"/>
+          <Keyword text="ACos"/>
+          <Keyword text="ADel"/>
+          <Keyword text="ADir"/>
+          <Keyword text="AEval"/>
+          <Keyword text="AFields"/>
+          <Keyword text="AFill"/>
+          <Keyword text="AIns"/>
+          <Keyword text="ALenAlloc"/>
+          <Keyword text="ASCIISum"/>
+          <Keyword text="AScan"/>
+          <Keyword text="ASin"/>
+          <Keyword text="ASize"/>
+          <Keyword text="ASizeAlloc"/>
+          <Keyword text="ASort"/>
+          <Keyword text="ATail"/>
+          <Keyword text="ATan"/>
+          <Keyword text="ATn2"/>
+          <Keyword text="Abs"/>
+          <Keyword text="AddASCII"/>
+          <Keyword text="AddMonth"/>
+          <Keyword text="AfterAtNum"/>
+          <Keyword text="Alert"/>
+          <Keyword text="Alias"/>
+          <Keyword text="AllTrim"/>
+          <Keyword text="AltD"/>
+          <Keyword text="AmPm"/>
+          <Keyword text="AnsiToHtml"/>
+          <Keyword text="Array"/>
+          <Keyword text="Asc"/>
+          <Keyword text="AscPos"/>
+          <Keyword text="At"/>
+          <Keyword text="AtAdjust"/>
+          <Keyword text="AtNum"/>
+          <Keyword text="AtRepl"/>
+          <Keyword text="AtSkipStrings"/>
+          <Keyword text="AtToken"/>
+          <Keyword text="BeforAtNum"/>
+          <Keyword text="Bin2I"/>
+          <Keyword text="Bin2L"/>
+          <Keyword text="Bin2U"/>
+          <Keyword text="Bin2W"/>
+          <Keyword text="BitToC"/>
+          <Keyword text="Blank"/>
+          <Keyword text="BlobDirectExport"/>
+          <Keyword text="BlobDirectGet"/>
+          <Keyword text="BlobDirectImport"/>
+          <Keyword text="BlobDirectPut"/>
+          <Keyword text="BlobExport"/>
+          <Keyword text="BlobGet"/>
+          <Keyword text="BlobImport"/>
+          <Keyword text="BlobRootDelete"/>
+          <Keyword text="BlobRootGet"/>
+          <Keyword text="BlobRootLock"/>
+          <Keyword text="BlobRootPut"/>
+          <Keyword text="BlobRootUnlock"/>
+          <Keyword text="BoF"/>
+          <Keyword text="BoM"/>
+          <Keyword text="BoQ"/>
+          <Keyword text="BoY"/>
+          <Keyword text="Browse"/>
+          <Keyword text="CDoW"/>
+          <Keyword text="CMonth"/>
+          <Keyword text="CSetAtMuPa"/>
+          <Keyword text="CSetCent"/>
+          <Keyword text="CSetCurs"/>
+          <Keyword text="CSetKey"/>
+          <Keyword text="CSetRef"/>
+          <Keyword text="CSetSafety"/>
+          <Keyword text="CStr"/>
+          <Keyword text="CStrToVal"/>
+          <Keyword text="CallDll"/>
+          <Keyword text="Ceiling"/>
+          <Keyword text="Celsius"/>
+          <Keyword text="Center"/>
+          <Keyword text="CharAND"/>
+          <Keyword text="CharAdd"/>
+          <Keyword text="CharEven"/>
+          <Keyword text="CharHist"/>
+          <Keyword text="CharList"/>
+          <Keyword text="CharMirr"/>
+          <Keyword text="CharMix"/>
+          <Keyword text="CharNOT"/>
+          <Keyword text="CharNoList"/>
+          <Keyword text="CharOR"/>
+          <Keyword text="CharOdd"/>
+          <Keyword text="CharOne"/>
+          <Keyword text="CharOnly"/>
+          <Keyword text="CharPack"/>
+          <Keyword text="CharRLL"/>
+          <Keyword text="CharRLR"/>
+          <Keyword text="CharRelRep"/>
+          <Keyword text="CharRela"/>
+          <Keyword text="CharRem"/>
+          <Keyword text="CharRepl"/>
+          <Keyword text="CharSHL"/>
+          <Keyword text="CharSHR"/>
+          <Keyword text="CharSList"/>
+          <Keyword text="CharSort"/>
+          <Keyword text="CharSpread"/>
+          <Keyword text="CharSub"/>
+          <Keyword text="CharSwap"/>
+          <Keyword text="CharUnpack"/>
+          <Keyword text="CharWin"/>
+          <Keyword text="CharXOR"/>
+          <Keyword text="CheckSum"/>
+          <Keyword text="Chr"/>
+          <Keyword text="ClEol"/>
+          <Keyword text="ClWin"/>
+          <Keyword text="ClearBit"/>
+          <Keyword text="ClearEol"/>
+          <Keyword text="ClearSlow"/>
+          <Keyword text="ClearWin"/>
+          <Keyword text="Col"/>
+          <Keyword text="ColorRepl"/>
+          <Keyword text="ColorSelect"/>
+          <Keyword text="ColorToN"/>
+          <Keyword text="ColorWin"/>
+          <Keyword text="Complement"/>
+          <Keyword text="ConvToAnsiCP"/>
+          <Keyword text="ConvToOemCP"/>
+          <Keyword text="Cos"/>
+          <Keyword text="CosH"/>
+          <Keyword text="Cot"/>
+          <Keyword text="CountGets"/>
+          <Keyword text="CountLeft"/>
+          <Keyword text="CountRight"/>
+          <Keyword text="CreateObject"/>
+          <Keyword text="Crypt"/>
+          <Keyword text="CtoBit"/>
+          <Keyword text="CtoD"/>
+          <Keyword text="CtoDoW"/>
+          <Keyword text="CtoF"/>
+          <Keyword text="CtoMonth"/>
+          <Keyword text="CtoN"/>
+          <Keyword text="CtoT"/>
+          <Keyword text="CurDir"/>
+          <Keyword text="CurDirX"/>
+          <Keyword text="CurDrive"/>
+          <Keyword text="CurrentGet"/>
+          <Keyword text="DMY"/>
+          <Keyword text="Date"/>
+          <Keyword text="DateTime"/>
+          <Keyword text="Day"/>
+          <Keyword text="Days"/>
+          <Keyword text="DaysInMonth"/>
+          <Keyword text="DaysToMonth"/>
+          <Keyword text="DbAppend"/>
+          <Keyword text="DbClearFilter"/>
+          <Keyword text="DbClearIndex"/>
+          <Keyword text="DbClearRelation"/>
+          <Keyword text="DbCloseAll"/>
+          <Keyword text="DbCloseArea"/>
+          <Keyword text="DbCommit"/>
+          <Keyword text="DbCommitAll"/>
+          <Keyword text="DbCopyExtStruct"/>
+          <Keyword text="DbCopyStruct"/>
+          <Keyword text="DbCreate"/>
+          <Keyword text="DbCreateIndex"/>
+          <Keyword text="DbDelete"/>
+          <Keyword text="DbEdit"/>
+          <Keyword text="DbEval"/>
+          <Keyword text="DbFieldInfo"/>
+          <Keyword text="DbFileGet"/>
+          <Keyword text="DbFilePut"/>
+          <Keyword text="DbFilter"/>
+          <Keyword text="DbGoBottom"/>
+          <Keyword text="DbGoTop"/>
+          <Keyword text="DbGoto"/>
+          <Keyword text="DbInfo"/>
+          <Keyword text="DbJoin"/>
+          <Keyword text="DbOrderInfo"/>
+          <Keyword text="DbRLock"/>
+          <Keyword text="DbRLockList"/>
+          <Keyword text="DbRSelect"/>
+          <Keyword text="DbRUnlock"/>
+          <Keyword text="DbRecall"/>
+          <Keyword text="DbRecordInfo"/>
+          <Keyword text="DbReindex"/>
+          <Keyword text="DbRelation"/>
+          <Keyword text="DbSeek"/>
+          <Keyword text="DbSelectArea"/>
+          <Keyword text="DbSetDriver"/>
+          <Keyword text="DbSetFilter"/>
+          <Keyword text="DbSetIndex"/>
+          <Keyword text="DbSetOrder"/>
+          <Keyword text="DbSetRelation"/>
+          <Keyword text="DbSkip"/>
+          <Keyword text="DbSkipper"/>
+          <Keyword text="DbSort"/>
+          <Keyword text="DbStruct"/>
+          <Keyword text="DbTableExt"/>
+          <Keyword text="DbTotal"/>
+          <Keyword text="DbUnlock"/>
+          <Keyword text="DbUnlockAll"/>
+          <Keyword text="DbUpdate"/>
+          <Keyword text="DbUseArea"/>
+          <Keyword text="Dbf"/>
+          <Keyword text="DbfSize"/>
+          <Keyword text="Dblist"/>
+          <Keyword text="DefPath"/>
+          <Keyword text="Default"/>
+          <Keyword text="DeleteFile"/>
+          <Keyword text="Deleted"/>
+          <Keyword text="Descend"/>
+          <Keyword text="DevOut"/>
+          <Keyword text="DevOutPict"/>
+          <Keyword text="DevPos"/>
+          <Keyword text="DirChange"/>
+          <Keyword text="DirMake"/>
+          <Keyword text="DirName"/>
+          <Keyword text="DirRemove"/>
+          <Keyword text="Directory"/>
+          <Keyword text="DirectoryRecurse"/>
+          <Keyword text="DisableWaitLocks"/>
+          <Keyword text="DiskChange"/>
+          <Keyword text="DiskFormat"/>
+          <Keyword text="DiskFree"/>
+          <Keyword text="DiskName"/>
+          <Keyword text="DiskReady"/>
+          <Keyword text="DiskReadyW"/>
+          <Keyword text="DiskSpace"/>
+          <Keyword text="DiskTotal"/>
+          <Keyword text="DiskUsed"/>
+          <Keyword text="DispBegin"/>
+          <Keyword text="DispBox"/>
+          <Keyword text="DispCount"/>
+          <Keyword text="DispEnd"/>
+          <Keyword text="DispOut"/>
+          <Keyword text="DispOutAt"/>
+          <Keyword text="DispOutAtSetPos"/>
+          <Keyword text="DllCall"/>
+          <Keyword text="DllExecuteCall"/>
+          <Keyword text="DllLoad"/>
+          <Keyword text="DllPrepareCall"/>
+          <Keyword text="DllUnload"/>
+          <Keyword text="DoW"/>
+          <Keyword text="DoY"/>
+          <Keyword text="DosError"/>
+          <Keyword text="DosParam"/>
+          <Keyword text="DriveType"/>
+          <Keyword text="DtoC"/>
+          <Keyword text="DtoR"/>
+          <Keyword text="DtoS"/>
+          <Keyword text="ElapTime"/>
+          <Keyword text="Empty"/>
+          <Keyword text="Enhanced"/>
+          <Keyword text="EoM"/>
+          <Keyword text="EoQ"/>
+          <Keyword text="EoY"/>
+          <Keyword text="Eof"/>
+          <Keyword text="ErrorBlock"/>
+          <Keyword text="ErrorLevel"/>
+          <Keyword text="ErrorNew"/>
+          <Keyword text="ErrorSys"/>
+          <Keyword text="Eval"/>
+          <Keyword text="ExeName"/>
+          <Keyword text="Exp"/>
+          <Keyword text="Expand"/>
+          <Keyword text="Exponent"/>
+          <Keyword text="FCharCount"/>
+          <Keyword text="FClose"/>
+          <Keyword text="FCount"/>
+          <Keyword text="FCreate"/>
+          <Keyword text="FErase"/>
+          <Keyword text="FError"/>
+          <Keyword text="FLineCount"/>
+          <Keyword text="FLock"/>
+          <Keyword text="FOpen"/>
+          <Keyword text="FParse"/>
+          <Keyword text="FParseEx"/>
+          <Keyword text="FParseLine"/>
+          <Keyword text="FRead"/>
+          <Keyword text="FReadStr"/>
+          <Keyword text="FRename"/>
+          <Keyword text="FSeek"/>
+          <Keyword text="FWordCount"/>
+          <Keyword text="FWrite"/>
+          <Keyword text="Fact"/>
+          <Keyword text="Fahrenheit"/>
+          <Keyword text="FieldBlock"/>
+          <Keyword text="FieldDec"/>
+          <Keyword text="FieldDeci"/>
+          <Keyword text="FieldGet"/>
+          <Keyword text="FieldLen"/>
+          <Keyword text="FieldName"/>
+          <Keyword text="FieldNum"/>
+          <Keyword text="FieldPos"/>
+          <Keyword text="FieldPut"/>
+          <Keyword text="FieldSize"/>
+          <Keyword text="FieldType"/>
+          <Keyword text="FieldWBlock"/>
+          <Keyword text="File"/>
+          <Keyword text="FileAppend"/>
+          <Keyword text="FileAttr"/>
+          <Keyword text="FileCClose"/>
+          <Keyword text="FileCCont"/>
+          <Keyword text="FileCOpen"/>
+          <Keyword text="FileCopy"/>
+          <Keyword text="FileDate"/>
+          <Keyword text="FileDelete"/>
+          <Keyword text="FileMove"/>
+          <Keyword text="FileReader"/>
+          <Keyword text="FileScreen"/>
+          <Keyword text="FileSeek"/>
+          <Keyword text="FileSize"/>
+          <Keyword text="FileStats"/>
+          <Keyword text="FileStr"/>
+          <Keyword text="FileTime"/>
+          <Keyword text="FileValid"/>
+          <Keyword text="FileWriter"/>
+          <Keyword text="FkLabel"/>
+          <Keyword text="FkMax"/>
+          <Keyword text="Floor"/>
+          <Keyword text="FloppyType"/>
+          <Keyword text="Found"/>
+          <Keyword text="FreeLibrary"/>
+          <Keyword text="FtoC"/>
+          <Keyword text="Fv"/>
+          <Keyword text="GetActive"/>
+          <Keyword text="GetActiveObject"/>
+          <Keyword text="GetApplyKey"/>
+          <Keyword text="GetClearA"/>
+          <Keyword text="GetClearB"/>
+          <Keyword text="GetClrBack"/>
+          <Keyword text="GetClrFore"/>
+          <Keyword text="GetClrPair"/>
+          <Keyword text="GetCurrentThread"/>
+          <Keyword text="GetDefaultPrinter"/>
+          <Keyword text="GetDoSetKey"/>
+          <Keyword text="GetE"/>
+          <Keyword text="GetEnv"/>
+          <Keyword text="GetFldCol"/>
+          <Keyword text="GetFldRow"/>
+          <Keyword text="GetFldVar"/>
+          <Keyword text="GetLastError"/>
+          <Keyword text="GetNew"/>
+          <Keyword text="GetPairLen"/>
+          <Keyword text="GetPairPos"/>
+          <Keyword text="GetPostValidate"/>
+          <Keyword text="GetPreValidate"/>
+          <Keyword text="GetPrec"/>
+          <Keyword text="GetPrinters"/>
+          <Keyword text="GetProcAddress"/>
+          <Keyword text="GetRegistry"/>
+          <Keyword text="GetSecret"/>
+          <Keyword text="GetSystemThreadID"/>
+          <Keyword text="GetThreadID"/>
+          <Keyword text="GetVolInfo"/>
+          <Keyword text="GuiApplyKey"/>
+          <Keyword text="GuiGetPostValidate"/>
+          <Keyword text="GuiGetPrevalidate"/>
+          <Keyword text="GuiReader"/>
+          <Keyword text="HAllocate"/>
+          <Keyword text="HClone"/>
+          <Keyword text="HCopy"/>
+          <Keyword text="HDel"/>
+          <Keyword text="HDelAt"/>
+          <Keyword text="HEval"/>
+          <Keyword text="HFill"/>
+          <Keyword text="HGet"/>
+          <Keyword text="HGetAACompatibility"/>
+          <Keyword text="HGetAutoAdd"/>
+          <Keyword text="HGetCaseMatch"/>
+          <Keyword text="HGetKeyAt"/>
+          <Keyword text="HGetKeys"/>
+          <Keyword text="HGetPairAt"/>
+          <Keyword text="HGetPartition"/>
+          <Keyword text="HGetPos"/>
+          <Keyword text="HGetVaaPos"/>
+          <Keyword text="HGetValueAt"/>
+          <Keyword text="HGetValues"/>
+          <Keyword text="HHasKey"/>
+          <Keyword text="HMerge"/>
+          <Keyword text="HS_Add"/>
+          <Keyword text="HScan"/>
+          <Keyword text="HSet"/>
+          <Keyword text="HSetAACompatibility"/>
+          <Keyword text="HSetAutoAdd"/>
+          <Keyword text="HSetCaseMatch"/>
+          <Keyword text="HSetPartition"/>
+          <Keyword text="HSetValueAt"/>
+          <Keyword text="HaaDelAt"/>
+          <Keyword text="HaaGetKeyAt"/>
+          <Keyword text="HaaGetPos"/>
+          <Keyword text="HaaGetRealPos"/>
+          <Keyword text="HaaGetValueAt"/>
+          <Keyword text="HaaSetValueAt"/>
+          <Keyword text="HardCR"/>
+          <Keyword text="Hash"/>
+          <Keyword text="HbConsoleLock"/>
+          <Keyword text="Header"/>
+          <Keyword text="HexToNum"/>
+          <Keyword text="HexToStr"/>
+          <Keyword text="Hour"/>
+          <Keyword text="HtmlToAnsi"/>
+          <Keyword text="HtmlToOem"/>
+          <Keyword text="I2Bin"/>
+          <Keyword text="IndexExt"/>
+          <Keyword text="IndexKey"/>
+          <Keyword text="IndexOrd"/>
+          <Keyword text="Infinity"/>
+          <Keyword text="Inkey"/>
+          <Keyword text="Int"/>
+          <Keyword text="InvertAttr"/>
+          <Keyword text="InvertWin"/>
+          <Keyword text="IsAffirm"/>
+          <Keyword text="IsAlNum"/>
+          <Keyword text="IsAlpha"/>
+          <Keyword text="IsAscii"/>
+          <Keyword text="IsBit"/>
+          <Keyword text="IsCntrl"/>
+          <Keyword text="IsColor"/>
+          <Keyword text="IsDefColor"/>
+          <Keyword text="IsDigit"/>
+          <Keyword text="IsDir"/>
+          <Keyword text="IsDirectory"/>
+          <Keyword text="IsDisk"/>
+          <Keyword text="IsGraph"/>
+          <Keyword text="IsLeap"/>
+          <Keyword text="IsLocked"/>
+          <Keyword text="IsLower"/>
+          <Keyword text="IsNegative"/>
+          <Keyword text="IsPrint"/>
+          <Keyword text="IsPrinter"/>
+          <Keyword text="IsPunct"/>
+          <Keyword text="IsSameThread"/>
+          <Keyword text="IsSpace"/>
+          <Keyword text="IsUpper"/>
+          <Keyword text="IsValidThread"/>
+          <Keyword text="IsXDigit"/>
+          <Keyword text="JoinThread"/>
+          <Keyword text="JustLeft"/>
+          <Keyword text="JustRight"/>
+          <Keyword text="KSetCaps"/>
+          <Keyword text="KSetIns"/>
+          <Keyword text="KSetNum"/>
+          <Keyword text="KSetScroll"/>
+          <Keyword text="KbdStat"/>
+          <Keyword text="KeySec"/>
+          <Keyword text="KeyTime"/>
+          <Keyword text="KillAllThreads"/>
+          <Keyword text="KillThread"/>
+          <Keyword text="L2bin"/>
+          <Keyword text="LTrim"/>
+          <Keyword text="LUpdate"/>
+          <Keyword text="LastDayoM"/>
+          <Keyword text="LastKey"/>
+          <Keyword text="LastRec"/>
+          <Keyword text="Left"/>
+          <Keyword text="Len"/>
+          <Keyword text="LenNum"/>
+          <Keyword text="LibFree"/>
+          <Keyword text="LibLoad"/>
+          <Keyword text="LoadLibrary"/>
+          <Keyword text="Log"/>
+          <Keyword text="Log10"/>
+          <Keyword text="Lower"/>
+          <Keyword text="LtoC"/>
+          <Keyword text="LtoN"/>
+          <Keyword text="MCol"/>
+          <Keyword text="MDY"/>
+          <Keyword text="MDblClk"/>
+          <Keyword text="MHide"/>
+          <Keyword text="MLCToPos"/>
+          <Keyword text="MLCount"/>
+          <Keyword text="MLeftDown"/>
+          <Keyword text="MPosToLC"/>
+          <Keyword text="MPresent"/>
+          <Keyword text="MRestState"/>
+          <Keyword text="MRightDown"/>
+          <Keyword text="MRow"/>
+          <Keyword text="MSaveState"/>
+          <Keyword text="MSetBounds"/>
+          <Keyword text="MSetCursor"/>
+          <Keyword text="MSetPos"/>
+          <Keyword text="MShow"/>
+          <Keyword text="MakeDir"/>
+          <Keyword text="Mantissa"/>
+          <Keyword text="Max"/>
+          <Keyword text="MaxCol"/>
+          <Keyword text="MaxLine"/>
+          <Keyword text="MaxRow"/>
+          <Keyword text="MemVarBlock"/>
+          <Keyword text="MemoEdit"/>
+          <Keyword text="MemoLine"/>
+          <Keyword text="MemoRead"/>
+          <Keyword text="MemoTran"/>
+          <Keyword text="MemoWrit"/>
+          <Keyword text="Memory"/>
+          <Keyword text="MenuModal"/>
+          <Keyword text="MilliSec"/>
+          <Keyword text="Min"/>
+          <Keyword text="Minute"/>
+          <Keyword text="MlPos"/>
+          <Keyword text="Mod"/>
+          <Keyword text="Month"/>
+          <Keyword text="NNetwork"/>
+          <Keyword text="NationMsg"/>
+          <Keyword text="NetAppend"/>
+          <Keyword text="NetCancel"/>
+          <Keyword text="NetCommitAll"/>
+          <Keyword text="NetDbUse"/>
+          <Keyword text="NetDelete"/>
+          <Keyword text="NetDisk"/>
+          <Keyword text="NetErr"/>
+          <Keyword text="NetError"/>
+          <Keyword text="NetFileLock"/>
+          <Keyword text="NetFunc"/>
+          <Keyword text="NetLock"/>
+          <Keyword text="NetName"/>
+          <Keyword text="NetOpenFiles"/>
+          <Keyword text="NetPrinter"/>
+          <Keyword text="NetRecLock"/>
+          <Keyword text="NetRecall"/>
+          <Keyword text="NetRedir"/>
+          <Keyword text="NetRmtName"/>
+          <Keyword text="Network"/>
+          <Keyword text="NextKey"/>
+          <Keyword text="Notify"/>
+          <Keyword text="NotifyAll"/>
+          <Keyword text="NtoC"/>
+          <Keyword text="NtoCDoW"/>
+          <Keyword text="NtoCMonth"/>
+          <Keyword text="NtoColor"/>
+          <Keyword text="Nul"/>
+          <Keyword text="NumAND"/>
+          <Keyword text="NumAndX"/>
+          <Keyword text="NumAt"/>
+          <Keyword text="NumButtons"/>
+          <Keyword text="NumCount"/>
+          <Keyword text="NumDiskL"/>
+          <Keyword text="NumHigh"/>
+          <Keyword text="NumLine"/>
+          <Keyword text="NumLow"/>
+          <Keyword text="NumMirr"/>
+          <Keyword text="NumMirrX"/>
+          <Keyword text="NumNOT"/>
+          <Keyword text="NumNotX"/>
+          <Keyword text="NumOR"/>
+          <Keyword text="NumOrX"/>
+          <Keyword text="NumRoL"/>
+          <Keyword text="NumRolX"/>
+          <Keyword text="NumToHex"/>
+          <Keyword text="NumToken"/>
+          <Keyword text="NumXOR"/>
+          <Keyword text="NumXorX"/>
+          <Keyword text="OS_NetVRedirOk"/>
+          <Keyword text="Occurs"/>
+          <Keyword text="OemToHtml"/>
+          <Keyword text="Ole2TxtError"/>
+          <Keyword text="OleError"/>
+          <Keyword text="OrdBagExt"/>
+          <Keyword text="OrdBagName"/>
+          <Keyword text="OrdCondSet"/>
+          <Keyword text="OrdCount"/>
+          <Keyword text="OrdCreate"/>
+          <Keyword text="OrdCustom"/>
+          <Keyword text="OrdDescend"/>
+          <Keyword text="OrdDestroy"/>
+          <Keyword text="OrdFindRec"/>
+          <Keyword text="OrdFor"/>
+          <Keyword text="OrdIsUnique"/>
+          <Keyword text="OrdKey"/>
+          <Keyword text="OrdKeyAdd"/>
+          <Keyword text="OrdKeyCount"/>
+          <Keyword text="OrdKeyDel"/>
+          <Keyword text="OrdKeyGoTo"/>
+          <Keyword text="OrdKeyNo"/>
+          <Keyword text="OrdKeyRelPos"/>
+          <Keyword text="OrdKeyVal"/>
+          <Keyword text="OrdListAdd"/>
+          <Keyword text="OrdListClear"/>
+          <Keyword text="OrdListRebuild"/>
+          <Keyword text="OrdName"/>
+          <Keyword text="OrdNumber"/>
+          <Keyword text="OrdScope"/>
+          <Keyword text="OrdSetFocus"/>
+          <Keyword text="OrdSetRelation"/>
+          <Keyword text="OrdSkipRaw"/>
+          <Keyword text="OrdSkipUnique"/>
+          <Keyword text="OrdWildSeek"/>
+          <Keyword text="Os"/>
+          <Keyword text="Os_IsWin2000"/>
+          <Keyword text="Os_IsWin2000_Or_Later"/>
+          <Keyword text="Os_IsWin2003"/>
+          <Keyword text="Os_IsWin95"/>
+          <Keyword text="Os_IsWin98"/>
+          <Keyword text="Os_IsWin9X"/>
+          <Keyword text="Os_IsWinME"/>
+          <Keyword text="Os_IsWinNT"/>
+          <Keyword text="Os_IsWinNT351"/>
+          <Keyword text="Os_IsWinNT4"/>
+          <Keyword text="Os_IsWinVista"/>
+          <Keyword text="Os_IsWinXP"/>
+          <Keyword text="Os_IsWtsClient"/>
+          <Keyword text="Os_NetRegOk"/>
+          <Keyword text="Os_VersionInfo"/>
+          <Keyword text="OutErr"/>
+          <Keyword text="OutStd"/>
+          <Keyword text="PCol"/>
+          <Keyword text="PCount"/>
+          <Keyword text="PRow"/>
+          <Keyword text="PValue"/>
+          <Keyword text="PadC"/>
+          <Keyword text="PadL"/>
+          <Keyword text="PadLeft"/>
+          <Keyword text="PadR"/>
+          <Keyword text="PadRight"/>
+          <Keyword text="Payment"/>
+          <Keyword text="Periods"/>
+          <Keyword text="Pi"/>
+          <Keyword text="PosAlpha"/>
+          <Keyword text="PosChar"/>
+          <Keyword text="PosDel"/>
+          <Keyword text="PosDiff"/>
+          <Keyword text="PosEqual"/>
+          <Keyword text="PosIns"/>
+          <Keyword text="PosLower"/>
+          <Keyword text="PosRange"/>
+          <Keyword text="PosRepl"/>
+          <Keyword text="PosUpper"/>
+          <Keyword text="PrgExpToVal"/>
+          <Keyword text="PrintFileRaw"/>
+          <Keyword text="PrintReady"/>
+          <Keyword text="PrintSend"/>
+          <Keyword text="PrintStat"/>
+          <Keyword text="PrinterExists"/>
+          <Keyword text="PrinterPortToName"/>
+          <Keyword text="ProcFile"/>
+          <Keyword text="ProcLine"/>
+          <Keyword text="ProcName"/>
+          <Keyword text="Pv"/>
+          <Keyword text="QOut"/>
+          <Keyword text="QQOut"/>
+          <Keyword text="Quarter"/>
+          <Keyword text="QueryRegistry"/>
+          <Keyword text="RAscan"/>
+          <Keyword text="RAt"/>
+          <Keyword text="RLock"/>
+          <Keyword text="RTrim"/>
+          <Keyword text="RangeRem"/>
+          <Keyword text="RangeRepl"/>
+          <Keyword text="Rate"/>
+          <Keyword text="RddInfo"/>
+          <Keyword text="RddList"/>
+          <Keyword text="RddName"/>
+          <Keyword text="RddRegister"/>
+          <Keyword text="RddSetDefault"/>
+          <Keyword text="ReadExit"/>
+          <Keyword text="ReadInsert"/>
+          <Keyword text="ReadKey"/>
+          <Keyword text="ReadKill"/>
+          <Keyword text="ReadModal"/>
+          <Keyword text="ReadUpdated"/>
+          <Keyword text="ReadVar"/>
+          <Keyword text="RecCount"/>
+          <Keyword text="RecNo"/>
+          <Keyword text="RecSize"/>
+          <Keyword text="RemAll"/>
+          <Keyword text="RemLeft"/>
+          <Keyword text="RemRight"/>
+          <Keyword text="RenameFile"/>
+          <Keyword text="ReplAll"/>
+          <Keyword text="ReplLeft"/>
+          <Keyword text="ReplRight"/>
+          <Keyword text="Replicate"/>
+          <Keyword text="RestCursor"/>
+          <Keyword text="RestGets"/>
+          <Keyword text="RestScreen"/>
+          <Keyword text="RestSetKey"/>
+          <Keyword text="RestToken"/>
+          <Keyword text="Right"/>
+          <Keyword text="Round"/>
+          <Keyword text="Row"/>
+          <Keyword text="RtoD"/>
+          <Keyword text="SaveCursor"/>
+          <Keyword text="SaveGets"/>
+          <Keyword text="SaveScreen"/>
+          <Keyword text="SaveSetKey"/>
+          <Keyword text="SaveToken"/>
+          <Keyword text="SayDown"/>
+          <Keyword text="SayMoveIn"/>
+          <Keyword text="SayScreen"/>
+          <Keyword text="SaySpread"/>
+          <Keyword text="ScreenAttr"/>
+          <Keyword text="ScreenFile"/>
+          <Keyword text="ScreenMark"/>
+          <Keyword text="ScreenMix"/>
+          <Keyword text="ScreenStr"/>
+          <Keyword text="Scroll"/>
+          <Keyword text="Scrollfixed"/>
+          <Keyword text="SecToTime"/>
+          <Keyword text="Seconds"/>
+          <Keyword text="SecondsCpu"/>
+          <Keyword text="SecondsSleep"/>
+          <Keyword text="Secs"/>
+          <Keyword text="Select"/>
+          <Keyword text="Set"/>
+          <Keyword text="SetAtLike"/>
+          <Keyword text="SetBit"/>
+          <Keyword text="SetBlink"/>
+          <Keyword text="SetCancel"/>
+          <Keyword text="SetClearA"/>
+          <Keyword text="SetClearB"/>
+          <Keyword text="SetClrPair"/>
+          <Keyword text="SetColor"/>
+          <Keyword text="SetCursor"/>
+          <Keyword text="SetDate"/>
+          <Keyword text="SetErrorMode"/>
+          <Keyword text="SetFAttr"/>
+          <Keyword text="SetFCreate"/>
+          <Keyword text="SetFDaTi"/>
+          <Keyword text="SetKey"/>
+          <Keyword text="SetLastError"/>
+          <Keyword text="SetLastKey"/>
+          <Keyword text="SetMode"/>
+          <Keyword text="SetMouse"/>
+          <Keyword text="SetNetDelay"/>
+          <Keyword text="SetNetMsgColor"/>
+          <Keyword text="SetNewDate"/>
+          <Keyword text="SetNewTime"/>
+          <Keyword text="SetPos"/>
+          <Keyword text="SetPosBS"/>
+          <Keyword text="SetPrc"/>
+          <Keyword text="SetPrec"/>
+          <Keyword text="SetRegistry"/>
+          <Keyword text="SetTime"/>
+          <Keyword text="ShowTime"/>
+          <Keyword text="Sign"/>
+          <Keyword text="Sin"/>
+          <Keyword text="SinH"/>
+          <Keyword text="SoundEx"/>
+          <Keyword text="Space"/>
+          <Keyword text="Sqrt"/>
+          <Keyword text="Standard"/>
+          <Keyword text="StartThread"/>
+          <Keyword text="StoD"/>
+          <Keyword text="StoT"/>
+          <Keyword text="StopThread"/>
+          <Keyword text="Str"/>
+          <Keyword text="StrDiff"/>
+          <Keyword text="StrFile"/>
+          <Keyword text="StrPeek"/>
+          <Keyword text="StrPoke"/>
+          <Keyword text="StrScreen"/>
+          <Keyword text="StrSwap"/>
+          <Keyword text="StrToHex"/>
+          <Keyword text="StrTran"/>
+          <Keyword text="StrZero"/>
+          <Keyword text="Strdel"/>
+          <Keyword text="StringToLiteral"/>
+          <Keyword text="Stuff"/>
+          <Keyword text="SubStr"/>
+          <Keyword text="Subscribe"/>
+          <Keyword text="SubscribeNow"/>
+          <Keyword text="TBMouse"/>
+          <Keyword text="THtmlCleanup"/>
+          <Keyword text="THtmlInit"/>
+          <Keyword text="THtmlIsValid"/>
+          <Keyword text="TString"/>
+          <Keyword text="TabExpand"/>
+          <Keyword text="TabPack"/>
+          <Keyword text="Tan"/>
+          <Keyword text="TanH"/>
+          <Keyword text="ThreadSleep"/>
+          <Keyword text="Time"/>
+          <Keyword text="TimeToSec"/>
+          <Keyword text="TimeValid"/>
+          <Keyword text="Token"/>
+          <Keyword text="TokenAt"/>
+          <Keyword text="TokenEnd"/>
+          <Keyword text="TokenExit"/>
+          <Keyword text="TokenInit"/>
+          <Keyword text="TokenLower"/>
+          <Keyword text="TokenNext"/>
+          <Keyword text="TokenNum"/>
+          <Keyword text="TokenSep"/>
+          <Keyword text="TokenUpper"/>
+          <Keyword text="Tone"/>
+          <Keyword text="TraceLog"/>
+          <Keyword text="Transform"/>
+          <Keyword text="Trim"/>
+          <Keyword text="TrueName"/>
+          <Keyword text="TtoC"/>
+          <Keyword text="TtoS"/>
+          <Keyword text="Type"/>
+          <Keyword text="U2bin"/>
+          <Keyword text="Unselected"/>
+          <Keyword text="UntextWin"/>
+          <Keyword text="Updated"/>
+          <Keyword text="Upper"/>
+          <Keyword text="Used"/>
+          <Keyword text="Val"/>
+          <Keyword text="ValPos"/>
+          <Keyword text="ValToPrg"/>
+          <Keyword text="ValToPrgExp"/>
+          <Keyword text="Valtype"/>
+          <Keyword text="Version"/>
+          <Keyword text="VolSerial"/>
+          <Keyword text="Volume"/>
+          <Keyword text="WinExec"/>
+          <Keyword text="XtoC"/>
+          <Keyword text="Year"/>
+          <Keyword text="__Run"/>
+        </Keywords>
+      </Style>
+      <Style name="Keywords" image="12" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Nil"/>
+          <Keyword text="Color"/>
+          <Keyword text="Picture"/>
+          <Keyword text="On"/>
+          <Keyword text="Off"/>
+          <Keyword text="To"/>
+          <Keyword text="AND"/>
+          <Keyword text="FROM"/>
+          <Keyword text="OF"/>
+          <Keyword text="NOT"/>
+          <Keyword text="OR"/>
+          <Keyword text="In"/>
+        </Keywords>
+      </Style>
+      <Style id="number" bold="1" italic="0" underline="0" overview="3" clr="#0000FF00" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style id="operator" bold="1" italic="0" underline="0" overview="3" clr="#0000FF00" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+      </Style>
+      <Style id="preprocessor" name="Preprocessor" bold="2" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor_keyword" name="Preprocessor keyword" bold="0" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="IFDEF"/>
+          <Keyword text="IFNDEF"/>
+          <Keyword text="Pragma"/>
+          <Keyword text="Stdout"/>
+          <Keyword text="ELSE"/>
+          <Keyword text="ENDIF"/>
+          <Keyword text="Define"/>
+          <Keyword text="Include"/>
+          <Keyword text="Command"/>
+          <Keyword text="Undef"/>
+          <Keyword text="Translate"/>
+          <Keyword text="Xcommand"/>
+          <Keyword text="Error"/>
+          <Keyword text="Uncommand"/>
+          <Keyword text="Untranslate"/>
+          <Keyword text="Xuncommand"/>
+          <Keyword text="Xuntranslate"/>
+          <Keyword text="Xtranslate"/>
+        </Keywords>
+      </Style>
+      <Style id="region" name="Region" bold="1" image="18" italic="0" underline="0" overview="0" clr="#D200D200" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Region"/>
+          <Keyword text="EndRegion"/>
+          <Keyword text="Label"/>
+        </Keywords>
+      </Style>
+      <Style id="scope" bold="1" italic="2" underline="2" overview="0" clr="#FF682000" bkclr="#FFFFFFFF"/>
+      <Style name="Strangers" image="14" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="Forr"/>
+          <Keyword text="Iff"/>
+          <Keyword text="Whilee"/>
+        </Keywords>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="2" italic="0" underline="0" clr="#0D92FF00" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Blocks>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style name="TBrowse Methods" image="20" bold="0" italic="0" underline="0" clr="#28999900" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="TBrowseDb"/>
+          <Keyword text="TBrowseNew"/>
+          <Keyword text="TBColumnNew"/>
+          <Keyword text="AddColumn"/>
+          <Keyword text="AutoLite"/>
+          <Keyword text="Block"/>
+          <Keyword text="Cargo"/>
+          <Keyword text="ColCount"/>
+          <Keyword text="ColorBlock"/>
+          <Keyword text="ColorSpec"/>
+          <Keyword text="ColPos"/>
+          <Keyword text="ColSep"/>
+          <Keyword text="Configure"/>
+          <Keyword text="DefColor"/>
+          <Keyword text="DelColumn"/>
+          <Keyword text="Down"/>
+          <Keyword text="Footing"/>
+          <Keyword text="FootSep"/>
+          <Keyword text="ForceStable"/>
+          <Keyword text="Freeze"/>
+          <Keyword text="GetColumn"/>
+          <Keyword text="GoBottom"/>
+          <Keyword text="GoBottomBlock"/>
+          <Keyword text="GoTop"/>
+          <Keyword text="GoTopBlock"/>
+          <Keyword text="Heading"/>
+          <Keyword text="HeadSep"/>
+          <Keyword text="HitBottom"/>
+          <Keyword text="HitTop"/>
+          <Keyword text="Home"/>
+          <Keyword text="InsColumn"/>
+          <Keyword text="Left"/>
+          <Keyword text="LeftVisible"/>
+          <Keyword text="NBottom"/>
+          <Keyword text="nLeft"/>
+          <Keyword text="NRight"/>
+          <Keyword text="NTop"/>
+          <Keyword text="Pagedown"/>
+          <Keyword text="PageUp"/>
+          <Keyword text="PanEnd"/>
+          <Keyword text="PanHome"/>
+          <Keyword text="PanLeft"/>
+          <Keyword text="PanRight"/>
+          <Keyword text="RefreshAll"/>
+          <Keyword text="RefreshCurrent"/>
+          <Keyword text="Right"/>
+          <Keyword text="RightVisible"/>
+          <Keyword text="RowCount"/>
+          <Keyword text="RowPos"/>
+          <Keyword text="SetColumn"/>
+          <Keyword text="SkipBlock"/>
+          <Keyword text="Stabilize"/>
+          <Keyword text="Stable"/>
+          <Keyword text="Up"/>
+          <Keyword text="Width"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Warnings" id="warning" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="Warning!" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

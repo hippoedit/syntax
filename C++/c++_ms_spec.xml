@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="cpp_ms" name="C++ (MS)" inherit="cpp" inherit_url="c++_spec.xml">
+    <SPECIFICATION>
+      <StyleBitmap>images\vs_styles.bmp</StyleBitmap>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="BEGIN_MSG_MAP" close="END_MSG_MAP"/>
+      <Scope open="BEGIN_CONNECTION_POINT_MAP" close="END_CONNECTION_POINT_MAP"/>
+      <Scope open="BEGIN_PROP_MAP" close="END_PROP_MAP"/>
+      <Scope open="BEGIN_COM_MAP" close="END_COM_MAP"/>
+      <Scope open="BEGIN_MESSAGE_MAP" close="END_MESSAGE_MAP"/>
+      <Scope open="BEGIN_EVENT_MAP" close="END_EVENT_MAP"/>
+      <Scope open="BEGIN_DISPATCH_MAP" close="END_DISPATCH_MAP"/>
+      <Scope open="BEGIN_SERVICE_MAP" close="END_SERVICE_MAP"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="keywords" extend="true">
+        <Keywords>
+          <Keyword text="__super"/>
+        </Keywords>
+      </Style>
+      <Style id="macro" name="Macros" image="12" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="A2T"/>
+          <Keyword text="AFX_EXT_API"/>
+          <Keyword text="AFX_EXT_CLASS"/>
+          <Keyword text="AFX_EXT_DATA"/>
+          <Keyword text="AFX_MANAGE_STATE"/>
+          <Keyword text="AFX_ZERO_INIT_OBJECT"/>
+          <Keyword text="ASSERT"/>
+          <Keyword text="ASSERT_KINDOF"/>
+          <Keyword text="ATLASSERT"/>
+          <Keyword text="ATLVERIFY"/>
+          <Keyword text="ATL_NO_VTABLE"/>
+          <Keyword text="BEGIN_COM_MAP"/>
+          <Keyword text="BEGIN_CONNECTION_POINT_MAP"/>
+          <Keyword text="BEGIN_DISPATCH_MAP"/>
+          <Keyword text="BEGIN_EVENT_MAP"/>
+          <Keyword text="BEGIN_MESSAGE_MAP"/>
+          <Keyword text="BEGIN_MSG_MAP"/>
+          <Keyword text="BEGIN_PROP_MAP"/>
+          <Keyword text="BEGIN_SERVICE_MAP"/>
+          <Keyword text="CA2T"/>
+          <Keyword text="CHAIN_MSG_MAP"/>
+          <Keyword text="CHAIN_MSG_MAP_MEMBER"/>
+          <Keyword text="CHAIN_MSG_MAP_MSG"/>
+          <Keyword text="CHAIN_MSG_MAP_MSG_RANGE"/>
+          <Keyword text="CLSID_NULL"/>
+          <Keyword text="COM_INTERFACE_ENTRY"/>
+          <Keyword text="COM_INTERFACE_ENTRY2"/>
+          <Keyword text="COM_INTERFACE_ENTRY_FUNC_BLIND"/>
+          <Keyword text="CONNECTION_POINT_ENTRY"/>
+          <Keyword text="CT2A"/>
+          <Keyword text="CT2W"/>
+          <Keyword text="CW2T"/>
+          <Keyword text="DEBUG_ONLY"/>
+          <Keyword text="DECLARE_DYNAMIC"/>
+          <Keyword text="DECLARE_DYNCREATE"/>
+          <Keyword text="DECLARE_GET_CONTROLLING_UNKNOWN"/>
+          <Keyword text="DECLARE_MESSAGE_MAP"/>
+          <Keyword text="DECLARE_NO_CLSID"/>
+          <Keyword text="DECLARE_NO_REGISTRY"/>
+          <Keyword text="DECLARE_PROTECT_FINAL_CONSTRUCT"/>
+          <Keyword text="DECLARE_REGISTRY_RESOURCEID"/>
+          <Keyword text="DECLARE_WND_CLASS_EX"/>
+          <Keyword text="END_COM_MAP"/>
+          <Keyword text="END_CONNECTION_POINT_MAP"/>
+          <Keyword text="END_DISPATCH_MAP"/>
+          <Keyword text="END_EVENT_MAP"/>
+          <Keyword text="END_MESSAGE_MAP"/>
+          <Keyword text="END_MSG_MAP"/>
+          <Keyword text="END_PROP_MAP"/>
+          <Keyword text="END_SERVICE_MAP"/>
+          <Keyword text="EVENT_CUSTOM_ID"/>
+          <Keyword text="E_ABORT"/>
+          <Keyword text="E_FAIL"/>
+          <Keyword text="E_INVALIDARG"/>
+          <Keyword text="E_PENDING"/>
+          <Keyword text="FAILED"/>
+          <Keyword text="HIBYTE"/>
+          <Keyword text="HIWORD"/>
+          <Keyword text="IMPLEMENT_DYNCREATE"/>
+          <Keyword text="LOBYTE"/>
+          <Keyword text="LOWORD"/>
+          <Keyword text="MAKEINTRESOURCE"/>
+          <Keyword text="MESSAGE_HANDLER"/>
+          <Keyword text="ON_CBN_EDITCHANGE"/>
+          <Keyword text="ON_CBN_SELENDOK"/>
+          <Keyword text="ON_COMMAND"/>
+          <Keyword text="ON_COMMAND_EX"/>
+          <Keyword text="ON_COMMAND_RANGE"/>
+          <Keyword text="ON_MESSAGE"/>
+          <Keyword text="ON_MESSAGE_VOID"/>
+          <Keyword text="ON_NOTIFY"/>
+          <Keyword text="ON_REGISTERED_MESSAGE"/>
+          <Keyword text="ON_UPDATE_COMMAND_UI"/>
+          <Keyword text="ON_UPDATE_COMMAND_UI_RANGE"/>
+          <Keyword text="ON_WM_CLOSE"/>
+          <Keyword text="ON_WM_CREATE"/>
+          <Keyword text="ON_WM_DESTROY"/>
+          <Keyword text="ON_WM_ERASEBKGND"/>
+          <Keyword text="ON_WM_HELPINFO"/>
+          <Keyword text="ON_WM_KEYDOWN"/>
+          <Keyword text="ON_WM_KEYUP"/>
+          <Keyword text="ON_WM_KILLFOCUS"/>
+          <Keyword text="ON_WM_LBUTTONDOWN"/>
+          <Keyword text="ON_WM_LBUTTONUP"/>
+          <Keyword text="ON_WM_MOUSEMOVE"/>
+          <Keyword text="ON_WM_MOUSEWHEEL"/>
+          <Keyword text="ON_WM_PAINT"/>
+          <Keyword text="ON_WM_SETCURSOR"/>
+          <Keyword text="ON_WM_SIZE"/>
+          <Keyword text="ON_WM_SYSKEYDOWN"/>
+          <Keyword text="ON_WM_SYSKEYUP"/>
+          <Keyword text="ON_WM_TIMER"/>
+          <Keyword text="PROP_DATA_ENTRY"/>
+          <Keyword text="PROP_ENTRY"/>
+          <Keyword text="PROP_PAGE"/>
+          <Keyword text="RGB"/>
+          <Keyword text="RUNTIME_CLASS"/>
+          <Keyword text="STDMETHOD"/>
+          <Keyword text="STDMETHODIMP"/>
+          <Keyword text="SUCCEEDED"/>
+          <Keyword text="S_FALSE"/>
+          <Keyword text="S_OK"/>
+          <Keyword text="T2A"/>
+          <Keyword text="T2W"/>
+          <Keyword text="USES_CONVERSION"/>
+          <Keyword text="VERIFY"/>
+          <Keyword text="VK_CANCEL"/>
+          <Keyword text="VT_UI4"/>
+          <Keyword text="W2T"/>
+          <Keyword text="WH_GETMESSAGE"/>
+          <Keyword text="WH_JOURNALRECORD"/>
+          <Keyword text="WINAPI"/>
+          <Keyword text="WM_CANCELJOURNAL"/>
+          <Keyword text="WM_CAPTURECHANGED"/>
+          <Keyword text="WM_CHAR"/>
+          <Keyword text="WM_CREATE"/>
+          <Keyword text="WM_DESTROY"/>
+          <Keyword text="WM_HSCROLL"/>
+          <Keyword text="WM_KEYDOWN"/>
+          <Keyword text="WM_KEYUP"/>
+          <Keyword text="WM_KILLFOCUS"/>
+          <Keyword text="WM_LBUTTONDOWN"/>
+          <Keyword text="WM_LBUTTONUP"/>
+          <Keyword text="WM_MBUTTONDOWN"/>
+          <Keyword text="WM_MBUTTONUP"/>
+          <Keyword text="WM_MOUSEFIRST"/>
+          <Keyword text="WM_MOUSELAST"/>
+          <Keyword text="WM_MOUSEMOVE"/>
+          <Keyword text="WM_MOUSEWHEEL"/>
+          <Keyword text="WM_RBUTTONDOWN"/>
+          <Keyword text="WM_RBUTTONUP"/>
+          <Keyword text="WM_SETCURSOR"/>
+          <Keyword text="WM_SETFOCUS"/>
+          <Keyword text="WM_SIZE"/>
+          <Keyword text="WM_SYSCOLORCHANGE"/>
+          <Keyword text="WM_SYSKEYDOWN"/>
+          <Keyword text="WM_SYSKEYUP"/>
+          <Keyword text="WM_TIMER"/>
+          <Keyword text="WM_VSCROLL"/>
+          <Keyword text="WM_XBUTTONDOWN"/>
+          <Keyword text="WM_XBUTTONUP"/>
+          <Keyword text="_T"/>
+          <Keyword text="afx_msg"/>
+          <Keyword text="max"/>
+          <Keyword text="min"/>
+        </Keywords>
+      </Style>
+      <Style name="Data Types" image="10" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="CArray"/>
+          <Keyword text="CBitmap"/>
+          <Keyword text="CBrush"/>
+          <Keyword text="CCmdUI"/>
+          <Keyword text="CComBSTR"/>
+          <Keyword text="CComPtr"/>
+          <Keyword text="CComObject"/>
+          <Keyword text="CComVariant"/>
+          <Keyword text="CDC"/>
+          <Keyword text="CFont"/>
+          <Keyword text="CImageList"/>
+          <Keyword text="CList"/>
+          <Keyword text="CListBox"/>
+          <Keyword text="CMap"/>
+          <Keyword text="CObject"/>
+          <Keyword text="CPen"/>
+          <Keyword text="CPoint"/>
+          <Keyword text="CRect"/>
+          <Keyword text="CSize"/>
+          <Keyword text="CSplitterWnd"/>
+          <Keyword text="CString"/>
+          <Keyword text="CTime"/>
+          <Keyword text="CView"/>
+          <Keyword text="CWnd"/>
+          <Keyword text="IDispatch"/>
+          <Keyword text="IUnknown"/>
+          <Keyword text="IDispatchEx"/>
+          <Keyword text="INT_PTR"/>
+          <Keyword text="DWORD_PTR"/>
+          <Keyword text="RECT"/>
+          <Keyword text="LPCRECT"/>
+          <Keyword text="POINT"/>
+          <Keyword text="LPPOINT"/>
+          <Keyword text="SIZE"/>
+        </Keywords>
+      </Style>
+      <Style id="function" extend="true">
+        <Keywords>
+          <Keyword text="EndDeferWindowPos"/>
+          <Keyword text="EndDialog"/>
+          <Keyword text="EndDoc"/>
+          <Keyword text="EndDocPrinter"/>
+          <Keyword text="EndPage"/>
+          <Keyword text="EndPagePrinter"/>
+          <Keyword text="EndPaint"/>
+          <Keyword text="EndPath"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Nick" type="LangSpec"/>
+  <SYNTAX id="verilog" name="Verilog" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <CaseSensitive>true</CaseSensitive>
+      <ShowInheritedStyles>true</ShowInheritedStyles>
+      <ShowInheritedTemplates>true</ShowInheritedTemplates>
+      <FilePattern mask="*.v">
+        <Pair file1="*.v" file2="*.do"/>
+      </FilePattern>
+      <OpenClose>()[]{}""</OpenClose>
+      <LineEnd>;</LineEnd>
+      <Operators>{}$@?%-+/&amp;*&lt;&gt;|!~^,`'.:;()[]=</Operators>
+      <Delimiters>;</Delimiters>
+      <Numbers>0-9a-fA-FxXzZ?_.</Numbers>
+      <Words init="A-Za-z_?0-9">0-9A-Za-z_?</Words>
+      <Bars navigation="true" hierarchy="true"/>
+      <Display line_numbers="true" scope_separator="true" page_break="true"/>
+    </SPECIFICATION>
+    <FORMAT>
+      <DefaultKeywordCase>4</DefaultKeywordCase>
+      <FormatWords>
+        <FormatWord word="case" next_line="true" range_sentence="true"/>
+        <FormatWord word="do" next_line="true" range_sentence="true"/>
+        <FormatWord word="else" next_line="true" range_sentence="true"/>
+        <FormatWord word="then" next_line="true" range_sentence="true"/>
+      </FormatWords>
+    </FORMAT>
+    <SCOPES>
+      <Scope open="module" close="endmodule"/>
+      <Scope open="macromodule" close="endmodule"/>
+      <Scope open="begin" close="end"/>
+      <Scope open="fork" close="join"/>
+      <Scope open="function" close="endfunction"/>
+      <Scope open="task" close="endtask"/>
+      <Scope open="attribute" close="endattribute"/>
+      <Scope open="primitive" close="endprimitive"/>
+      <Scope open="specify" close="endspecify"/>
+      <Scope open="table" close="endtable"/>
+      <Scope open="case" middle="default" close="endcase"/>
+      <Scope open="casex" middle="default" close="endcase"/>
+      <Scope open="casez" middle="default" close="endcase"/>
+      <Scope open="IFDEF" middle="ELSE" close="ENDIF">
+        <Containers open="preprocessor"/>
+      </Scope>
+      <Scope open="IFNDEF" middle="ELSE" close="ENDIF">
+        <Containers open="preprocessor"/>
+      </Scope>
+      <Scope open="celldefine" close="endcelldefine">
+        <Containers open="preprocessor"/>
+      </Scope>
+    </SCOPES>
+    <LABELS>
+      <Label group="Module" match="module\s+(\w+)\s*(\([^)]*\))\s*;" name="\1" descr="\1 \2" scope="1" image="18"/>
+      <Label group="Function" match="function\s*(\[\d:\d\])\s*(\w+)\s*;" name="\2" descr="\1 \2" scope="1" image="11"/>
+      <Label group="" match="(if|for)\s*\(((?:[^\(\)]|\\r|\\n|\((?-1)\))*+)\)\s+begin" name="\1" descr="\1 (\2)" scope="1" image="13" navigation="false"/>
+    </LABELS>
+    <STYLES>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="#80FF0000" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="//" close="\n"/>
+          <Block open="/*" close="*/"/>
+        </Blocks>
+        <Containers>
+          <Close id="normal"/>
+          <Close id="todo"/>
+        </Containers>
+      </Style>
+
+      <Style id="string" name="String" text="1" italic="1" underline="0" clr="#B0FF0000" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style name="Loop" text="1" bold="1" underline="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" noneof="0-9"/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="`" close=""/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor_keyword" name="Preprocessor Directives" image="12" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="default_decay_time"/>
+          <Keyword text="default_trireg_strength"/>
+          <Keyword text="delay_mode_distributed"/>
+          <Keyword text="delay_mode_path"/>
+          <Keyword text="delay_mode_unit"/>
+          <Keyword text="delay_mode_zero"/>
+          <Keyword text="celldefine"/>
+          <Keyword text="default_nettype"/>
+          <Keyword text="define"/>
+          <Keyword text="else"/>
+          <Keyword text="elsif"/>
+          <Keyword text="endcelldefine"/>
+          <Keyword text="endif"/>
+          <Keyword text="ifdef"/>
+          <Keyword text="ifndef"/>
+          <Keyword text="include"/>
+          <Keyword text="line"/>
+          <Keyword text="nounconnected_drive"/>
+          <Keyword text="resetall"/>
+          <Keyword text="timescale"/>
+          <Keyword text="unconnected_drive"/>
+          <Keyword text="undef"/>
+        </Keywords>
+      </Style>
+
+      <Style id="number" extend="true">
+        <Blocks>
+          <Block open="'b">
+            <Close noneof="0-1_xXzZ?"/>
+          </Block>
+          <Block open="'d">
+            <Close noneof="0-9_xXzZ?"/>
+          </Block>
+          <Block open="'o">
+            <Close noneof="0-7_xXzZ?"/>
+          </Block>
+          <Block open="'h">
+            <Close noneof="0-9A-Fa-f"/>
+          </Block>
+          <Block open="'h ">
+            <Close noneof="0-9a-fA-F_xXzZ?"/>
+          </Block>
+          <Block open="'h  ">
+            <Close noneof="0-9a-fA-F_xXzZ?"/>
+          </Block>
+        </Blocks>
+      </Style>
+
+      <Style name="Embedded Primitives" image="13" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="and"/>
+          <Keyword text="nand"/>
+          <Keyword text="nor"/>
+          <Keyword text="not"/>
+          <Keyword text="notif0"/>
+          <Keyword text="notif1"/>
+          <Keyword text="or"/>
+          <Keyword text="buf"/>
+          <Keyword text="bufif0"/>
+          <Keyword text="bufif1"/>
+          <Keyword text="cmos"/>
+          <Keyword text="nmos"/>
+          <Keyword text="pmos"/>
+          <Keyword text="pulldown"/>
+          <Keyword text="pullup"/>
+          <Keyword text="rcmos"/>
+          <Keyword text="rnmos"/>
+          <Keyword text="rpmos"/>
+          <Keyword text="rtran"/>
+          <Keyword text="rtranif0"/>
+          <Keyword text="rtranif1"/>
+          <Keyword text="tran"/>
+          <Keyword text="tranif0"/>
+          <Keyword text="tranif1"/>
+          <Keyword text="xnor"/>
+          <Keyword text="xor"/>
+        </Keywords>
+      </Style>
+
+      <Style name="Circuit" image="12" bold="1" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="wire"/>
+          <Keyword text="wand"/>
+          <Keyword text="wor"/>
+          <Keyword text="tri"/>
+          <Keyword text="tri0"/>
+          <Keyword text="tri1"/>
+          <Keyword text="triand"/>
+          <Keyword text="trior"/>
+          <Keyword text="trireg"/>
+          <Keyword text="supply0"/>
+          <Keyword text="supply1"/>
+        </Keywords>
+      </Style>
+
+      <Style name="PowerCapacitor" image="12" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="strong0"/>
+          <Keyword text="strong1"/>
+          <Keyword text="pull0"/>
+          <Keyword text="pull1"/>
+          <Keyword text="highz0"/>
+          <Keyword text="highz1"/>
+          <Keyword text="weak0"/>
+          <Keyword text="weak1"/>
+          <Keyword text="small"/>
+          <Keyword text="medium"/>
+          <Keyword text="large"/>
+        </Keywords>
+      </Style>
+
+      <Style name="Keywords" image="13" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="attribute"/>
+          <Keyword text="begin"/>
+          <Keyword text="end"/>
+          <Keyword text="endattribute"/>
+          <Keyword text="endcase"/>
+          <Keyword text="endfunction"/>
+          <Keyword text="endmodule"/>
+          <Keyword text="endprimitive"/>
+          <Keyword text="endspecify"/>
+          <Keyword text="endtable"/>
+          <Keyword text="endtask"/>
+          <Keyword text="function"/>
+          <Keyword text="macromodule"/>
+          <Keyword text="module"/>
+          <Keyword text="table"/>
+          <Keyword text="task"/>
+          <Keyword text="primitive"/>
+          <Keyword text="specify"/>
+        </Keywords>
+      </Style>
+
+      <Style name="Reserved" image="13" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="always"/>
+          <Keyword text="assign"/>
+          <Keyword text="case"/>
+          <Keyword text="casex"/>
+          <Keyword text="casez"/>
+          <Keyword text="deassign"/>
+          <Keyword text="default"/>
+          <Keyword text="defparam"/>
+          <Keyword text="disable"/>
+          <Keyword text="edge"/>
+          <Keyword text="else"/>
+          <Keyword text="event"/>
+          <Keyword text="for"/>
+          <Keyword text="force"/>
+          <Keyword text="forever"/>
+          <Keyword text="fork"/>
+          <Keyword text="if"/>
+          <Keyword text="ifnone"/>
+          <Keyword text="initial"/>
+          <Keyword text="inout"/>
+          <Keyword text="input"/>
+          <Keyword text="integer"/>
+          <Keyword text="join"/>
+          <Keyword text="localparam"/>
+          <Keyword text="negedge"/>
+          <Keyword text="output"/>
+          <Keyword text="parameter"/>
+          <Keyword text="posedge"/>
+          <Keyword text="real"/>
+          <Keyword text="realtime"/>
+          <Keyword text="reg"/>
+          <Keyword text="release"/>
+          <Keyword text="repeat"/>
+          <Keyword text="scalared"/>
+          <Keyword text="signed"/>
+          <Keyword text="specparam"/>
+          <Keyword text="strength"/>
+          <Keyword text="time"/>
+          <Keyword text="unsigned"/>
+          <Keyword text="vectored"/>
+          <Keyword text="wait"/>
+          <Keyword text="while"/>
+        </Keywords>
+      </Style>
+
+      <Style id="systems" name="Systems" image="10" bold="0" italic="0" underline="0" clr="#FF000000" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="$" close=""/>
+        </Blocks>
+      </Style>
+      <Style id="systems_keyword" name="Known System keywords" image="10" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+        <Containers>
+          <Open id="systems"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="readmemb"/>
+          <Keyword text="readmemh"/>
+          <Keyword text="sreadmemb"/>
+          <Keyword text="sreadmemh"/>
+          <Keyword text="display"/>
+          <Keyword text="write"/>
+          <Keyword text="strobe"/>
+          <Keyword text="monitor"/>
+          <Keyword text="fdisplay"/>
+          <Keyword text="fwrite"/>
+          <Keyword text="fstrobe"/>
+          <Keyword text="fmonitor"/>
+          <Keyword text="fopen"/>
+          <Keyword text="fclose"/>
+          <Keyword text="time"/>
+          <Keyword text="stime"/>
+          <Keyword text="realtime"/>
+          <Keyword text="scale"/>
+          <Keyword text="printtimescale"/>
+          <Keyword text="timeformat"/>
+          <Keyword text="stop"/>
+          <Keyword text="finish"/>
+          <Keyword text="save"/>
+          <Keyword text="incsave"/>
+          <Keyword text="restart"/>
+          <Keyword text="input"/>
+          <Keyword text="log"/>
+          <Keyword text="nolog"/>
+          <Keyword text="key"/>
+          <Keyword text="nokey"/>
+          <Keyword text="scope"/>
+          <Keyword text="showscopes"/>
+          <Keyword text="showvars"/>
+          <Keyword text="countdrivers"/>
+          <Keyword text="list"/>
+          <Keyword text="monitoron"/>
+          <Keyword text="monitoroff"/>
+          <Keyword text="dumpon"/>
+          <Keyword text="dumpoff"/>
+          <Keyword text="dumpfile"/>
+          <Keyword text="dumplimit"/>
+          <Keyword text="dumpflush"/>
+          <Keyword text="dumpvars"/>
+          <Keyword text="dumpall"/>
+          <Keyword text="reset"/>
+          <Keyword text="random"/>
+          <Keyword text="getpattern"/>
+          <Keyword text="rtoi"/>
+          <Keyword text="itor"/>
+          <Keyword text="realtobits"/>
+          <Keyword text="bitstoreal"/>
+          <Keyword text="setup"/>
+          <Keyword text="hold"/>
+          <Keyword text="setuphold"/>
+          <Keyword text="period"/>
+          <Keyword text="width"/>
+          <Keyword text="skew"/>
+          <Keyword text="recovery"/>
+        </Keywords>
+      </Style>
+
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+          <Block open="todo" close="\n"/>
+        </Blocks>
+      </Style>
+
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

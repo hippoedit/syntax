@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="binary" name="Binary" abstract="true" readonly="true">
+    <SPECIFICATION>
+      <Words>0-9A-Za-z</Words>
+      <FilePattern mask="*.exe;*.com;*.dll;*.gif;*.jpeg;*.jpg;*.bmp;*.tiff;*.png;*.ico;*.zip;*.rar;*.7z;*.tar;*.gz"/>
+      <Encoding default="0" force="true"/>
+      <Display outlining="false" guides="false" indicator_margin="false"/>
+    </SPECIFICATION>
+    <STYLES>
+      <Style id="window" name="Window" dstyle="true" clr="Window Text" bkclr="Window Back" overview="3"/>
+      <Style id="margin" name="Selection Margin" dstyle="true" dbkclr="true" clr="Margin" bkclr="Margin" overview="3"/>
+      <Style id="selected" name="Selected Text" bold="2" italic="2" underline="2" clr="Selected Text" bkclr="Selected Back" overview="1"/>
+      <Style id="selected_ina" name="Inactive Selected text" bold="2" italic="2" underline="2" clr="Selected Text Inactive" bkclr="Selected Back Inactive" overview="3"/>
+      <Style id="line_number" name="Line Number" bold="2" italic="2" underline="2" clr="Line Number" bkclr="#FFFFFFFF" overview="3"/>
+      <Style id="curr_line" name="Current Line" bold="2" italic="2" underline="2" clr="#FFFFFFFF" bkclr="Current Line" overview="1"/>
+      <Style id="curr_line_frame" name="Current Line Frame" dstyle="true" dbkclr="true" clr="Current Line Frame" bkclr="Current Line Frame" overview="3"/>
+      <Style id="read_only" name="Read-Only Window" dstyle="true" clr="Window Text" bkclr="Read Only Back" overview="3"/>
+      <Style id="changed" name="Changed Indicator" dstyle="true" dbkclr="true" clr="Changed Indicator" bkclr="Changed Indicator" overview="0"/>
+      <Style id="saved" name="Changed and Saved Indicator" dstyle="true" dbkclr="true" clr="Changed/Saved Indicator" bkclr="Changed/Saved Indicator" overview="0"/>
+      <Style id="bookmark" name="Bookmark" bold="2" italic="2" underline="2" clr="#FFFFFFFF" bkclr="Bookmark" overview="1"/>
+      <Style id="search_result" name="Search Result" bold="2" italic="2" underline="2" clr="#FFFFFFFF" bkclr="Search Result" overview="1"/>
+      <Style id="incremental_search_result1" name="Incremental Search Result 1" bold="2" italic="2" underline="2" clr="#FFFFFFFF" bkclr="Incremental Search Result 1" overview="1"/>
+      <Style id="incremental_search_result2" name="Incremental Search Result 2" bold="2" italic="2" underline="2" clr="#FFFFFFFF" bkclr="Incremental Search Result 2" overview="1"/>
+      <Style id="white_space" name="Visible White Space" clr="Format tag" bkclr="#FFFFFFFF" bold="2" italic="2" underline="2" overview="3"/>
+      <Style id="normal" name="Normal" dbkclr="false" bold="0" italic="0" underline="0" clr="Window Text" bkclr="#FFFFFFFF" overview="3"/>
+    </STYLES>
+    <FONTS>
+      <Font only_monospaced="false" size="10" face_name="FixedSys" quality="0" charset="1"/>
+    </FONTS>
+  </SYNTAX>
+</XMLConfigSettings>
