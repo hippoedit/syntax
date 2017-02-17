@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
 <XMLConfigSettings>
-	<FILEINFO author="HippoEDIT.com" type="LangSpec"/>
-	<SYNTAX id="asm_base" name="ASM Based Syntax" abstract="true" inherit="def_source" inherit_url="defsource_spec.xml">
-		<SPECIFICATION>
-			<OpenClose>()[]''&quot;&quot;{}</OpenClose>
-			<Delimiters>,;.?:&amp;/+--%/*=|!~^@</Delimiters>
-      		<Operators>@?%*-/&amp;*=&lt;&gt;|!~^{}()[];:</Operators>
-			<Words>0-9A-Za-z_</Words>
-			<Bars navigation="true"/>
-		</SPECIFICATION>
-		<STYLES>
-			<Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF"/>
-			<Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF"/>
-			<Style id="label" name="Labels" bold="0" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF"/>
-			<Style id="todo" name="TODOs" text="1" bold="1" italic="0" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
-				<Containers>
-					<Open id="comment"/>
-				</Containers>
-				<Blocks>
-					<Block open="TODO" close="\n"/>
-				</Blocks>
-			</Style>
-		</STYLES>
-	</SYNTAX>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="asm_base" name="ASM Based Syntax" abstract="true" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <OpenClose>()[]''&quot;&quot;{}</OpenClose>
+      <Delimiters>,;.?:&amp;/+--%/*=|!~^@</Delimiters>
+      <Operators>@?%*-/&amp;*=&lt;&gt;|!~^{}()[];:#$</Operators>
+      <Words>0-9A-Za-z_</Words>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <STYLES>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF"/>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF"/>
+      <Style id="label" name="Labels" bold="0" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF"/>
+      <Style id="todo" name="TODOs" text="1" bold="1" italic="0" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+    </STYLES>
+  </SYNTAX>
 </XMLConfigSettings>

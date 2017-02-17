@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="nigel@eyeit.org" type="LangSpec"/>
+  <SYNTAX id="asm68hc11" name="ASM68HC11" inherit="asm_base" inherit_url="asm_base_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.asm;"/>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="Label" match="^(\w+)" name="\1" image="9" style="label">
+        <Containers open="label"/>
+        <Highlight in="\1" style="label_usage" global="true"/>
+      </Label>
+    </LABELS>
+    <SCOPES>
+      <Scope open="ifndef" middle="else" close="endif">
+        <Containers open="preprocessor"/>
+      </Scope>
+      <Scope open="ifdef" middle="else" close="endif">
+        <Containers open="preprocessor"/>
+      </Scope>
+      <Scope open="if" middle="else" close="endif" strict="false" sent_start="true">
+        <Containers open="preprocessor"/>
+      </Scope>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="documentation"/>
+        </Containers>
+      </Style>
+      <Style id="comment" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+          <Close id="todo"/>
+        </Containers>
+        <Blocks>
+          <Block open="{" close="}"/>
+          <Block open=";" close="\n"/>
+          <Block open="*" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="documentation" name="Documentation" text="1" bold="0" italic="1" underline="0" clr="Documentation" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="**" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n" start_pos="0"/>
+        </Blocks>
+      </Style>
+      <Style id="preprocessor_keywords" name="Preprocessor Keywords" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="else"/>
+          <Keyword text="elseif"/>
+          <Keyword text="endif"/>
+          <Keyword text="if"/>
+          <Keyword text="ifdef"/>
+          <Keyword text="ifndef"/>
+        </Keywords>
+      </Style>
+      <Style id="number" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+        </Containers>
+        <!--<Blocks>
+          <Regexp text="[0-9A-Fa-f]+\&gt;" lead="[^\w]"/>
+        </Blocks>-->
+      </Style>
+      <Style name="Instructions" image="13" bold="1" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="ABA" descr="Add Accumulators"/>
+          <Keyword text="ABDA"/>
+          <Keyword text="ABX" descr="Add B to X"/>
+          <Keyword text="ABY" descr="Add B to Y"/>
+          <Keyword text="ADC A" descr="Add with Carry to A"/>
+          <Keyword text="ADC B" descr="Add with Carry to B"/>
+          <Keyword text="ADCA" descr="Add with Carry to A"/>
+          <Keyword text="ADCB" descr="Add with Carry to B"/>
+          <Keyword text="ADD A" descr="Add Memory to A"/>
+          <Keyword text="ADD B" descr="Add Memory to B"/>
+          <Keyword text="ADD D" descr="Add 16-Bit to D"/>
+          <Keyword text="ADDA" descr="Add Memory to A"/>
+          <Keyword text="ADDB" descr="Add Memory to B"/>
+          <Keyword text="ADDD" descr="Add 16-Bit to D"/>
+          <Keyword text="ADMMUX1"/>
+          <Keyword text="ADREAD"/>
+          <Keyword text="AND A" descr="AND A with Memory"/>
+          <Keyword text="AND B" descr="AND B with Memory"/>
+          <Keyword text="ANDA" descr="AND A with Memory"/>
+          <Keyword text="ANDB" descr="AND B with Memory"/>
+          <Keyword text="ASL A" descr="Arithmetic Shift Left A"/>
+          <Keyword text="ASL B" descr="Arithmetic Shift Left B"/>
+          <Keyword text="ASL D" descr="Arithmetic Shift Left D"/>
+          <Keyword text="ASL" descr="Arithmetic Shift Left"/>
+          <Keyword text="ASLA" descr="Arithmetic Shift Left A"/>
+          <Keyword text="ASLB" descr="Arithmetic Shift Left B"/>
+          <Keyword text="ASLD" descr="Arithmetic Shift Left D"/>
+          <Keyword text="ASR A" descr="Arithmetic Shift Right A"/>
+          <Keyword text="ASR B" descr="Arithmetic Shift Right B"/>
+          <Keyword text="ASR" descr="Arithmetic Shift Right"/>
+          <Keyword text="ASRA" descr="Arithmetic Shift Right A"/>
+          <Keyword text="ASRB" descr="Arithmetic Shift Right B"/>
+          <Keyword text="BCC" descr="Branch if Carry Clear"/>
+          <Keyword text="BCLR" descr="Clear Bit(s)"/>
+          <Keyword text="BCS" descr="Branch if Carry Set"/>
+          <Keyword text="BEQ" descr="Branch if = Zero"/>
+          <Keyword text="BGE" descr="Branch if ≥ Zero"/>
+          <Keyword text="BGT" descr="Branch if &gt; Zero"/>
+          <Keyword text="BHI" descr="Branch if Higher"/>
+          <Keyword text="BHS" descr="Branch if Higher or Same"/>
+          <Keyword text="BIT A" descr="Bit(s) Test A with Memory"/>
+          <Keyword text="BIT B" descr="Bit(s) Test B with Memory"/>
+          <Keyword text="BITA" descr="Bit(s) Test A with Memory"/>
+          <Keyword text="BITB" descr="Bit(s) Test B with Memory"/>
+          <Keyword text="BLE" descr="Branch if ≤ Zero"/>
+          <Keyword text="BLO" descr="Branch if Lower"/>
+          <Keyword text="BLS" descr="Branch if Lower or Same"/>
+          <Keyword text="BLT" descr="Branch if &lt; Zero"/>
+          <Keyword text="BMI" descr="Branch if Minus"/>
+          <Keyword text="BNE" descr="Branch if Not = Zero"/>
+          <Keyword text="BPL" descr="Branch if Plus"/>
+          <Keyword text="BRA" descr="Branch Always"/>
+          <Keyword text="BRCLR" descr="Branch if Bit(s) Clear"/>
+          <Keyword text="BRN" descr="Branch Never"/>
+          <Keyword text="BRSET" descr="Branch if Bit(s) Set"/>
+          <Keyword text="BSET" descr="Set Bit(s)"/>
+          <Keyword text="BSR" descr="Branch to Subroutine"/>
+          <Keyword text="BVC" descr="Branch if Overflow Clear"/>
+          <Keyword text="BVS" descr="Branch if Overflow Set"/>
+          <Keyword text="CBA" descr="Compare A to B"/>
+          <Keyword text="CLC" descr="Clear Carry Bit"/>
+          <Keyword text="CLI" descr="Clear Interrupt Mask"/>
+          <Keyword text="CLR A" descr="Clear Accumulator A"/>
+          <Keyword text="CLR B" descr="Clear Accumulator B"/>
+          <Keyword text="CLR" descr="Clear Memory Byte"/>
+          <Keyword text="CLRA" descr="Clear Accumulator A"/>
+          <Keyword text="CLRB" descr="Clear Accumulator B"/>
+          <Keyword text="CLV" descr="Clear Overflow Flag"/>
+          <Keyword text="CMP A" descr="Compare A to Memory"/>
+          <Keyword text="CMP B" descr="Compare B to Memory"/>
+          <Keyword text="CMPA" descr="Compare A to Memory"/>
+          <Keyword text="CMPB" descr="Compare B to Memory"/>
+          <Keyword text="COM A" descr="1's Complement A"/>
+          <Keyword text="COM B" descr="1's Complement B"/>
+          <Keyword text="COM" descr="1's Complement Memory Byte"/>
+          <Keyword text="COMA" descr="1's Complement A"/>
+          <Keyword text="COMB" descr="1's Complement B"/>
+          <Keyword text="CPD" descr="Compare D to Memory 16-Bit"/>
+          <Keyword text="CPX" descr="Compare X to Memory 16-Bit"/>
+          <Keyword text="CPY" descr="Compare Y to Memory 16-Bit"/>
+          <Keyword text="DAA" descr="Decimal Adjust A"/>
+          <Keyword text="DEC A" descr="Decrement Accumulator A"/>
+          <Keyword text="DEC B" descr="Decrement Accumulator B"/>
+          <Keyword text="DEC" descr="Decrement Memory Byte"/>
+          <Keyword text="DECA" descr="Decrement Accumulator A"/>
+          <Keyword text="DECB" descr="Decrement Accumulator B"/>
+          <Keyword text="DES" descr="Decrement Stack Pointer"/>
+          <Keyword text="DEX" descr="Decrement Index Register X"/>
+          <Keyword text="DEY" descr="Decrement Index Register Y"/>
+          <Keyword text="EOR A" descr="Exclusive OR A with Memory"/>
+          <Keyword text="EOR B" descr="Exclusive OR B with Memory"/>
+          <Keyword text="EORA" descr="Exclusive OR A with Memory"/>
+          <Keyword text="EORB" descr="Exclusive OR B with Memory"/>
+          <Keyword text="FDIV" descr="Fractional Divide 16 by 16"/>
+          <Keyword text="IDIV" descr="Integer Divide 16 by 16"/>
+          <Keyword text="INC A" descr="Increment Accumulator A"/>
+          <Keyword text="INC B" descr="Increment Accumulator B"/>
+          <Keyword text="INC" descr="Increment Memory Byte"/>
+          <Keyword text="INCA" descr="Increment Accumulator A"/>
+          <Keyword text="INCB" descr="Increment Accumulator B"/>
+          <Keyword text="INS" descr="Increment Stack Pointer"/>
+          <Keyword text="INX" descr="Increment Index Register X"/>
+          <Keyword text="INY" descr="Increment Index Register Y"/>
+          <Keyword text="JMP" descr="Jump"/>
+          <Keyword text="JSR" descr="Jump to Subroutine"/>
+          <Keyword text="LD D"/>
+          <Keyword text="LD S"/>
+          <Keyword text="LD X"/>
+          <Keyword text="LD Y"/>
+          <Keyword text="LDA A"/>
+          <Keyword text="LDA B"/>
+          <Keyword text="LDA D"/>
+          <Keyword text="LDAA" descr="Load Accumulator A"/>
+          <Keyword text="LDAB" descr="Load Accumulator B"/>
+          <Keyword text="LDAD"/>
+          <Keyword text="LDD" descr="Load Double Accumulator D"/>
+          <Keyword text="LDS" descr="Load Stack Pointer"/>
+          <Keyword text="LDX" descr="Load Index Register X"/>
+          <Keyword text="LDY" descr="Load Index Register Y"/>
+          <Keyword text="LSL A" descr="Logical Shift Left A"/>
+          <Keyword text="LSL B" descr="Logical Shift Left B"/>
+          <Keyword text="LSL D" descr="Logical Shift Left Double"/>
+          <Keyword text="LSL" descr="Logical Shift Left"/>
+          <Keyword text="LSLA" descr="Logical Shift Left A"/>
+          <Keyword text="LSLB" descr="Logical Shift Left B"/>
+          <Keyword text="LSLD" descr="Logical Shift Left Double"/>
+          <Keyword text="LSR A" descr="Logical Shift Right A"/>
+          <Keyword text="LSR B" descr="Logical Shift Right B"/>
+          <Keyword text="LSR D" descr="Logical Shift Right Double"/>
+          <Keyword text="LSR" descr="Logical Shift Right"/>
+          <Keyword text="LSRA" descr="Logical Shift Right A"/>
+          <Keyword text="LSRB" descr="Logical Shift Right B"/>
+          <Keyword text="LSRD" descr="Logical Shift Right Double"/>
+          <Keyword text="MUL" descr="Multiply 8 by 8"/>
+          <Keyword text="NEG" descr="2's Complement Memory Byte"/>
+          <Keyword text="NEGA" descr="2's Complement A"/>
+          <Keyword text="NEGAB" descr="2's Complement B"/>
+          <Keyword text="NEGB" descr="2's Complement B"/>
+          <Keyword text="NOP" descr="No Operation"/>
+          <Keyword text="ORA A" descr="OR Accumulator A (Inclusive)"/>
+          <Keyword text="ORA B" descr="OR Accumulator B (Inclusive)"/>
+          <Keyword text="ORAA" descr="OR Accumulator A (Inclusive)"/>
+          <Keyword text="ORAB" descr="OR Accumulator B (Inclusive)"/>
+          <Keyword text="PSH A" descr="Push A onto Stack"/>
+          <Keyword text="PSH B" descr="Push B onto Stack"/>
+          <Keyword text="PSH X" descr="Push X onto Stack"/>
+          <Keyword text="PSHA" descr="Push A onto Stack"/>
+          <Keyword text="PSHB" descr="Push B onto Stack"/>
+          <Keyword text="PSHX" descr="Push X onto Stack"/>
+          <Keyword text="PSHY" descr="Push Y onto Stack"/>
+          <Keyword text="PUL A" descr="Pull A from Stack"/>
+          <Keyword text="PUL B" descr="Pull B from Stack"/>
+          <Keyword text="PUL X" descr="Pull X from Stack"/>
+          <Keyword text="PUL Y" descr="Pull Y from Stack"/>
+          <Keyword text="PULA" descr="Pull A from Stack"/>
+          <Keyword text="PULB" descr="Pull B from Stack"/>
+          <Keyword text="PULX" descr="Pull X from Stack"/>
+          <Keyword text="PULY" descr="Pull Y from Stack"/>
+          <Keyword text="ROL" descr="Rotate Left"/>
+          <Keyword text="ROLA" descr="Rotate Left A"/>
+          <Keyword text="ROLB" descr="Rotate Left B"/>
+          <Keyword text="ROR A" descr="Rotate Right A"/>
+          <Keyword text="ROR B" descr="Rotate Right B"/>
+          <Keyword text="ROR" descr="Rotate Right"/>
+          <Keyword text="RORA" descr="Rotate Right A"/>
+          <Keyword text="RORB" descr="Rotate Right B"/>
+          <Keyword text="RTI" descr="Return from Interrupt"/>
+          <Keyword text="RTS" descr="Return from Subroutine"/>
+          <Keyword text="SBA" descr="Subtract B from A"/>
+          <Keyword text="SBC A" descr="Subtract with Carry from A"/>
+          <Keyword text="SBC B" descr="Subtract with Carry from B"/>
+          <Keyword text="SBCA" descr="Subtract with Carry from A"/>
+          <Keyword text="SBCB" descr="Subtract with Carry from B"/>
+          <Keyword text="SEC" descr="Set Carry"/>
+          <Keyword text="SEI" descr="Set Interrupt Mask"/>
+          <Keyword text="SEV" descr="Set Overflow Flag"/>
+          <Keyword text="STA A" descr="Store Accumulator A"/>
+          <Keyword text="STA B" descr="Store Accumulator B"/>
+          <Keyword text="STAA" descr="Store Accumulator A"/>
+          <Keyword text="STAB" descr="Store Accumulator B"/>
+          <Keyword text="STAD"/>
+          <Keyword text="STD" descr="Store Accumulator D"/>
+          <Keyword text="STOP" descr="Stop Internal Clocks"/>
+          <Keyword text="STS" descr="Store Stack Pointer"/>
+          <Keyword text="STX" descr="Store Index Register X"/>
+          <Keyword text="STY" descr="Store Index Register Y"/>
+          <Keyword text="SUB A" descr="Subtract Memory from A"/>
+          <Keyword text="SUB B" descr="Subtract Memory from B"/>
+          <Keyword text="SUB D" descr="Subtract Memory from D"/>
+          <Keyword text="SUBA" descr="Subtract Memory from A"/>
+          <Keyword text="SUBB" descr="Subtract Memory from B"/>
+          <Keyword text="SUBD" descr="Subtract Memory from D"/>
+          <Keyword text="SWI" descr="Software Interrupt"/>
+          <Keyword text="TAB" descr="Transfer A to B"/>
+          <Keyword text="TAP" descr="Transfer A to CC Register"/>
+          <Keyword text="TBA" descr="Transfer B to A"/>
+          <Keyword text="TEST" descr="TEST (Only in Test Modes)"/>
+          <Keyword text="TPA" descr="Transfer CC Register to A"/>
+          <Keyword text="TST A" descr="Test A for Zero or Minus"/>
+          <Keyword text="TST B" descr="Test B for Zero or Minus"/>
+          <Keyword text="TST" descr="Test for Zero or Minus"/>
+          <Keyword text="TSTA" descr="Test A for Zero or Minus"/>
+          <Keyword text="TSTB" descr="Test B for Zero or Minus"/>
+          <Keyword text="TSX" descr="Transfer Stack Pointer to X"/>
+          <Keyword text="TSY" descr="Transfer Stack Pointer to Y"/>
+          <Keyword text="TXS" descr="Transfer X to Stack Pointer"/>
+          <Keyword text="TYS" descr="Transfer Y to Stack Pointer"/>
+          <Keyword text="WAI" descr="Wait for Interrupt"/>
+          <Keyword text="XGDX" descr="Exchange D with X"/>
+          <Keyword text="XGDY" descr="Exchange D with Y"/>
+        </Keywords>
+      </Style>
+      <Style name="Registers" image="13" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords lead="$">
+          <Keyword text="01"/>
+          <Keyword text="05"/>
+          <Keyword text="06"/>
+          <Keyword text="08"/>
+          <Keyword text="0A"/>
+          <Keyword text="0B"/>
+          <Keyword text="0C"/>
+          <Keyword text="0D"/>
+          <Keyword text="0E"/>
+          <Keyword text="0F"/>
+          <Keyword text="10"/>
+          <Keyword text="11"/>
+          <Keyword text="12"/>
+          <Keyword text="13"/>
+          <Keyword text="14"/>
+          <Keyword text="15"/>
+          <Keyword text="16"/>
+          <Keyword text="17"/>
+          <Keyword text="18"/>
+          <Keyword text="19"/>
+          <Keyword text="1A"/>
+          <Keyword text="1B"/>
+          <Keyword text="1C"/>
+          <Keyword text="1D"/>
+          <Keyword text="1E"/>
+          <Keyword text="1F"/>
+          <Keyword text="20"/>
+          <Keyword text="21"/>
+          <Keyword text="22"/>
+          <Keyword text="23"/>
+          <Keyword text="24"/>
+          <Keyword text="24"/>
+          <Keyword text="25"/>
+          <Keyword text="25"/>
+          <Keyword text="26"/>
+          <Keyword text="27"/>
+          <Keyword text="28"/>
+          <Keyword text="29"/>
+          <Keyword text="2A"/>
+          <Keyword text="2B"/>
+          <Keyword text="2C"/>
+          <Keyword text="2D"/>
+          <Keyword text="2E"/>
+          <Keyword text="2F"/>
+          <Keyword text="30"/>
+          <Keyword text="31"/>
+          <Keyword text="32"/>
+          <Keyword text="33"/>
+          <Keyword text="34"/>
+          <Keyword text="35"/>
+          <Keyword text="36"/>
+          <Keyword text="37"/>
+          <Keyword text="38"/>
+          <Keyword text="39"/>
+          <Keyword text="3A"/>
+          <Keyword text="3B"/>
+          <Keyword text="3C"/>
+          <Keyword text="3D"/>
+          <Keyword text="3E"/>
+          <Keyword text="3F"/>
+          <Keyword text="40"/>
+          <Keyword text="43"/>
+          <Keyword text="44"/>
+          <Keyword text="46"/>
+          <Keyword text="47"/>
+          <Keyword text="48"/>
+          <Keyword text="48"/>
+          <Keyword text="49"/>
+          <Keyword text="4A"/>
+          <Keyword text="4C"/>
+          <Keyword text="4D"/>
+          <Keyword text="4F"/>
+          <Keyword text="50"/>
+          <Keyword text="53"/>
+          <Keyword text="54"/>
+          <Keyword text="56"/>
+          <Keyword text="57"/>
+          <Keyword text="58"/>
+          <Keyword text="58"/>
+          <Keyword text="59"/>
+          <Keyword text="5A"/>
+          <Keyword text="5C"/>
+          <Keyword text="5D"/>
+          <Keyword text="5F"/>
+          <Keyword text="60"/>
+          <Keyword text="63"/>
+          <Keyword text="64"/>
+          <Keyword text="66"/>
+          <Keyword text="67"/>
+          <Keyword text="68"/>
+          <Keyword text="68"/>
+          <Keyword text="69"/>
+          <Keyword text="6A"/>
+          <Keyword text="6C"/>
+          <Keyword text="6D"/>
+          <Keyword text="6E"/>
+          <Keyword text="6F"/>
+          <Keyword text="70"/>
+          <Keyword text="73"/>
+          <Keyword text="74"/>
+          <Keyword text="76"/>
+          <Keyword text="77"/>
+          <Keyword text="78"/>
+          <Keyword text="78"/>
+          <Keyword text="79"/>
+          <Keyword text="7A"/>
+          <Keyword text="7C"/>
+          <Keyword text="7D"/>
+          <Keyword text="7E"/>
+          <Keyword text="7F"/>
+          <Keyword text="80"/>
+          <Keyword text="81"/>
+          <Keyword text="82"/>
+          <Keyword text="83"/>
+          <Keyword text="83"/>
+          <Keyword text="84"/>
+          <Keyword text="85"/>
+          <Keyword text="86"/>
+          <Keyword text="88"/>
+          <Keyword text="89"/>
+          <Keyword text="8A"/>
+          <Keyword text="8B"/>
+          <Keyword text="8C"/>
+          <Keyword text="8C"/>
+          <Keyword text="8D"/>
+          <Keyword text="8E"/>
+          <Keyword text="8F"/>
+          <Keyword text="90"/>
+          <Keyword text="91"/>
+          <Keyword text="92"/>
+          <Keyword text="93"/>
+          <Keyword text="93"/>
+          <Keyword text="94"/>
+          <Keyword text="95"/>
+          <Keyword text="96"/>
+          <Keyword text="97"/>
+          <Keyword text="98"/>
+          <Keyword text="99"/>
+          <Keyword text="9A"/>
+          <Keyword text="9B"/>
+          <Keyword text="9C"/>
+          <Keyword text="9C"/>
+          <Keyword text="9D"/>
+          <Keyword text="9E"/>
+          <Keyword text="9F"/>
+          <Keyword text="A0"/>
+          <Keyword text="A1"/>
+          <Keyword text="A2"/>
+          <Keyword text="A3"/>
+          <Keyword text="A3"/>
+          <Keyword text="A4"/>
+          <Keyword text="A5"/>
+          <Keyword text="A6"/>
+          <Keyword text="A7"/>
+          <Keyword text="A8"/>
+          <Keyword text="A9"/>
+          <Keyword text="AA"/>
+          <Keyword text="AB"/>
+          <Keyword text="AC"/>
+          <Keyword text="AC"/>
+          <Keyword text="AD"/>
+          <Keyword text="AE"/>
+          <Keyword text="AF"/>
+          <Keyword text="B0"/>
+          <Keyword text="B1"/>
+          <Keyword text="B2"/>
+          <Keyword text="B3"/>
+          <Keyword text="B3"/>
+          <Keyword text="B4"/>
+          <Keyword text="B5"/>
+          <Keyword text="B6"/>
+          <Keyword text="B7"/>
+          <Keyword text="B8"/>
+          <Keyword text="B9"/>
+          <Keyword text="BA"/>
+          <Keyword text="BB"/>
+          <Keyword text="BC"/>
+          <Keyword text="BC"/>
+          <Keyword text="BD"/>
+          <Keyword text="BE"/>
+          <Keyword text="BF"/>
+          <Keyword text="C0"/>
+          <Keyword text="C1"/>
+          <Keyword text="C2"/>
+          <Keyword text="C3"/>
+          <Keyword text="C4"/>
+          <Keyword text="C5"/>
+          <Keyword text="C6"/>
+          <Keyword text="C8"/>
+          <Keyword text="C9"/>
+          <Keyword text="CA"/>
+          <Keyword text="CB"/>
+          <Keyword text="CC"/>
+          <Keyword text="CE"/>
+          <Keyword text="CE"/>
+          <Keyword text="CF"/>
+          <Keyword text="D0"/>
+          <Keyword text="D1"/>
+          <Keyword text="D2"/>
+          <Keyword text="D3"/>
+          <Keyword text="D4"/>
+          <Keyword text="D5"/>
+          <Keyword text="D6"/>
+          <Keyword text="D7"/>
+          <Keyword text="D8"/>
+          <Keyword text="D9"/>
+          <Keyword text="DA"/>
+          <Keyword text="DB"/>
+          <Keyword text="DC"/>
+          <Keyword text="DD"/>
+          <Keyword text="DE"/>
+          <Keyword text="DE"/>
+          <Keyword text="DF"/>
+          <Keyword text="E0"/>
+          <Keyword text="E1"/>
+          <Keyword text="E2"/>
+          <Keyword text="E3"/>
+          <Keyword text="E4"/>
+          <Keyword text="E5"/>
+          <Keyword text="E6"/>
+          <Keyword text="E7"/>
+          <Keyword text="E8"/>
+          <Keyword text="E9"/>
+          <Keyword text="EA"/>
+          <Keyword text="EB"/>
+          <Keyword text="EC"/>
+          <Keyword text="ED"/>
+          <Keyword text="EE"/>
+          <Keyword text="EE"/>
+          <Keyword text="F0"/>
+          <Keyword text="F1"/>
+          <Keyword text="F2"/>
+          <Keyword text="F3"/>
+          <Keyword text="F4"/>
+          <Keyword text="F5"/>
+          <Keyword text="F6"/>
+          <Keyword text="F7"/>
+          <Keyword text="F8"/>
+          <Keyword text="F9"/>
+          <Keyword text="FA"/>
+          <Keyword text="FB"/>
+          <Keyword text="FC"/>
+          <Keyword text="FD"/>
+          <Keyword text="FE"/>
+          <Keyword text="FE"/>
+          <Keyword text="FF"/>
+        </Keywords>
+      </Style>
+      <Style id="label" name="Label" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Regexp text="^[\w]+"/>
+        </Blocks>
+      </Style>
+      <Style id="label_usage" name="Label Usage" underline="1" hotspot="1" clr="#FFFFFFFF" bkclr="#FFFFFFFF"/>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>
+

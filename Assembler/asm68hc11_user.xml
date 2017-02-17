@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+	<FILEINFO author="nigel@eyeit.org" type="LangUser"/>
+	<SYNTAX id="asm68hc11" inherit="asm_base" inherit_url="asm_base_user.xml">
+		<HELP>
+			<Help name="Freescale 68HC11 (Wikipedia)" external_browser="true" url="https://en.wikipedia.org/wiki/Freescale_68HC11"/>
+			<Help name="68HC11 Instruction Set" external_browser="true" url="http://www.ele.uri.edu/Courses/ele205/6811-Instructions/"/>
+		</HELP>
+	</SYNTAX>
+</XMLConfigSettings>
