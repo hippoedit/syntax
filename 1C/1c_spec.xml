@@ -1,0 +1,847 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+
+	<FILEINFO author="Bagatckii Aleksei" email="castmax@mail.ru" type="LangSpec"/>
+
+	<SYNTAX id="1c" name="1C" inherit="def_source" inherit_url="defsource_spec.xml" abstract="false" version="0.1"
+		required="1.60" preferred="1.60" author="Bagatckii Aleksei" email="castmax@mail.ru">
+
+		<SPECIFICATION>
+			<CaseSensitive>false</CaseSensitive>
+			<OpenClose override="true">()[]{}""''</OpenClose>
+			<FilePattern mask="*.bsl" >
+				<Encoding default="utf-8" bom="true"  force="true" />
+			</FilePattern>
+			<!--
+			<SyntaxBlocks>
+				<Block open="Перем "/>
+			</SyntaxBlocks>
+			-->
+			<Operators override="true">?%-+/*=&lt;&gt;,;.:[]()</Operators>
+			<LineEnd>;</LineEnd>
+			<!-- <EscapeChar>\</EscapeChar> -->
+			<Delimiters override="true">&quot;'()\n;</Delimiters>
+			<Words init="A-Za-z_А-Яа-я_" override="true">0-9A-Za-zА-Яа-я_</Words>
+			<WrapBy override="true">(),</WrapBy>
+			<Numbers>-+0-9.</Numbers>
+			<!--
+			<HierarchySeparator>
+				<Separator text="." />
+			</HierarchySeparator>
+			-->
+			<Bars navigation="true" overview="true" search="true" hierarchy="true" />
+
+			<!--
+			<StyleBitmap>images\vs_styles.bmp</StyleBitmap>
+			<MarginBitmap>images\vs_margin.bmp</MarginBitmap>
+			-->
+
+		</SPECIFICATION>
+
+		<FONTS>
+			<Font only_monospaced="true"/>
+		</FONTS>
+
+		<FORMAT>
+			<FormatWords>
+				<FormatWord word="Тогда" next_line="true"/>
+				<FormatWord word="Цикл" next_line="true"/>
+				<FormatWord word="КонецЦикла;" next_line="true"/>
+				<FormatWord word="КонецПроцедуры" next_line="true"/>
+				<FormatWord word="КонецФункции" next_line="true"/>
+				<FormatWord word="Возврат" next_line="true"/>
+			</FormatWords>
+		</FORMAT>
+
+		<SCOPES>
+
+			<!-- Области кода -->
+			<Scope open="#Область" close="#КонецОбласти" has_name="true" separator="true" strict="true" decoration="true" />
+
+			<!-- Инструкции препроцессора -->
+			<Scope open="#Если" close="#КонецЕсли" has_name="false" strict="true" separator="true" decoration="true" >
+				<Middle text="#Иначе" />
+				<Middle text="Тогда" />
+				<Middle text="#ИначеЕсли"/>
+			</Scope>
+
+			<Scope open="Процедура" close="КонецПроцедуры" has_name="true" separator="true" strict="true" />
+
+			<Scope open="Функция" close="КонецФункции" has_name="true" separator="true" strict="true" />
+
+			<Scope open="Попытка" middle="Исключение" close="КонецПопытки" />
+
+			<Scope open="Для" close="КонецЦикла" strict="true">
+				<Middle text="По" />
+				<Middle text="Цикл" />
+			</Scope>
+
+			<Scope open="Для каждого" close="КонецЦикла"strict="true">
+				<Middle text="В" />
+				<Middle text="Цикл" />
+			</Scope>
+
+			<Scope open="Если" close="КонецЕсли" strict="true">
+				<Middle text="Иначе" />
+				<Middle text="Тогда" />
+				<Middle text="ИначеЕсли"/>
+			</Scope>
+
+			<Scope open="Пока" middle="Цикл" close="КонецЦикла"  strict="true"/>
+
+			<Scope open="Возврат" strict="false"/>
+			<!-- <Scope open="Возврат;" strict="false"/> -->
+			<Scope open="Прервать" strict="false"/>
+			<!-- <Scope open="Прервать;" strict="false"/> -->
+			<Scope open="Продолжить" strict="false"/>
+			<!-- <Scope open="Продолжить;" strict="false"/> -->
+
+		</SCOPES>
+
+		<LABELS>
+
+			<Label group="Переменные" match="^\s*(Перем)\s+(\w+)(,\s+(\w+))*(\s+(Экспорт)?)?;"
+					name="\2" descr="\2" image="11" scope="1" navigation="true" visible="true" > <!-- marker="11" -->
+				<SubImage if="\6" equal="Экспорт" value="2"/>
+				<SubImage if="\6" equal="" value="4"/>
+			</Label>
+
+			<Label group="Переменные" match="^\s*(Перем)\s+(\w+,\s+)(\w+)(,\s+(\w+))*(\s+(Экспорт)?)?;"
+					name="\3" descr="\3" image="11" scope="1" navigation="true" visible="true" > <!-- marker="11" -->
+				<SubImage if="\7" equal="Экспорт" value="2"/>
+				<SubImage if="\7" equal="" value="4"/>
+			</Label>
+
+			<Label group="Процедура" match="^\s*(Процедура)\s+(\w+)(?:\s*(\([^)]*\)))(\s+(Экспорт)?)?"
+					name="\2" descr="\2" image="6" scope="1" navigation="true" visible="true"
+					style="functions" >  <!-- marker="6" -->
+				<SubImage if="\4" equal="Экспорт" value="2"/>
+				<SubImage if="\4" equal="" value="4"/>
+			</Label>
+
+			<!-- Задачи "СДЕЛАТЬ" -->
+			<Label group="Задачи" match="//!\sСДЕЛАТЬ\s+(.*)$"
+					name="\1" descr="\1" image="20" scope="0" navigation="true" visible="true" marker="7" >
+				<Containers open="comment" />
+			</Label>
+
+			<!-- Области кода -->
+			<Label group="ТекстоваяОбласть" match="^(#Область)\s+(\w+)$"
+					name="\2" descr="\2" image="12" scope="1" navigation="true" visible="true" > <!-- marker="7" -->
+			</Label>
+
+			<Label group="Функция" match="^\s*(Функция)\s+(\w+)(?:\s*(\([^)]*\)))(\s+(Экспорт)?)?"
+					name="\2" descr="\2" image="9" scope="1" navigation="true" visible="true"
+					style="functions" > <!-- marker="9" -->
+				<SubImage if="\4" equal="Экспорт" value="2"/>
+				<SubImage if="\4" equal="" value="4"/>
+			</Label>
+
+		</LABELS>
+
+		<STYLES>
+
+			<Style id="block_boundaries" name="Границы блока"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#EEEE0E" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+				<Blocks>
+					<Block open="(" close=")" />
+					<Block open="[" close="]" />
+				</Blocks>
+			</Style>
+
+			<Style id="comment" name="Комментарии" text="1"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#00FF00" bkclr="#0000FFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+				<Blocks>
+					<Block open="//" close="\n"/>
+				</Blocks>
+			</Style>
+
+			<Style id="constant_Date" name="Константа Дата"
+					bold="0" italic="0" underline="1" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#646400" bkclr="#0000FFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+					<!-- box_style="2" box_clr="#000000" box_bkg_clr="#FFFFFFFF" > -->
+				<Keywords>
+					<Keyword descr="Дата \iГГГГММДД\i0" pattern="\&apos;\d{8}\&apos;" /> <!-- 20171231 -->
+					<Keyword descr="Дата \iГГГГММДД\i0" pattern="&apos;\d{8}&apos;" /> <!-- 20171231 -->
+					<Keyword descr="Дата \iГГГГММДДЧЧММСС\i0" pattern="\&apos;\d{14}\&apos;" /> <!-- 20171231235959 -->
+					<Keyword descr="Дата \iГГГГММДДЧЧММСС\i0" pattern="&apos;\d{14}&apos;" /> <!-- 20171231235959 -->
+				</Keywords>
+			</Style>
+
+			<!-- Вариант 2 констант типа Дата -->
+			<Style id="constant_Date2" name="Константа Дата2"
+					bold="1" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#CCCCCC" bkclr="#0000FFFF"
+					abstract="false" dbkclr="false" dstyle="false"
+					box_style="2" box_clr="#000000" box_bkg_clr="#FFFFFFFF" >
+				<Blocks>
+					<Regexp text="\&apos;\d{8}\&apos;" />
+					<Regexp text="&apos;\d{8}&apos;" />
+					<Regexp text="\&apos;\d{14}\&apos;" />
+					<Regexp text="&apos;\d{14}&apos;" />
+				</Blocks>
+			</Style>
+
+			<Style id="constant_Digits" name="Константа Число"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#006464" bkclr="#FF0000FF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+				<Keywords>
+					<Keyword text="NULL" descr="" />
+					<Keyword text="Ложь" descr="" />
+					<Keyword text="Истина" descr="" />
+					<Keyword text="False" descr="" />
+					<Keyword text="True" descr="" />
+					<Keyword descr="Число" pattern="[^&quot;&apos;\s]\d+(\.\d*)[^&quot;&apos;\s;]" />
+				</Keywords>
+			</Style>
+
+			<Style id="constant_String" text="1" name="Константа Строка"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#646464" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+				<Blocks>
+					<Block open="&quot;" close="&quot;" />
+				</Blocks>
+			</Style>
+
+			<Style id="functions" name="Встроенные методы"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#0000FF" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+				<Keywords pattern="%CurrentWord%(%|%)">
+					<!-- Глобальный контекст -->
+					<!-- Процедуры и функции для работы со строками -->
+					<Keyword text="СтрДлина" descr="" />
+					<Keyword text="СокрЛ" descr="" />
+					<Keyword text="СокрП" descr="" />
+					<Keyword text="СокрЛП" descr="" />
+					<Keyword text="Лев" descr="" />
+					<Keyword text="Прав" descr="" />
+					<Keyword text="Сред" descr="" />
+					<Keyword text="СтрНайти" descr="" />
+					<Keyword text="ВРег" descr="" />
+					<Keyword text="НРег" descr="" />
+					<Keyword text="ТРег" descr="" />
+					<Keyword text="Символ" descr="" />
+					<Keyword text="КодСимвола" descr="" />
+					<Keyword text="ПустаяСтрока" descr="" />
+					<Keyword text="СтрЗаменить" descr="" />
+					<Keyword text="СтрЧислоСтрок" descr="" />
+					<Keyword text="СтрПолучитьСтроку" descr="" />
+					<Keyword text="СтрЧислоВхождений" descr="" />
+					<Keyword text="СтрСравнить" descr="" />
+					<Keyword text="СтрНачинаетсяС" descr="" />
+					<Keyword text="СтрЗаканчиваетсяНа" descr="" />
+					<Keyword text="СтрРазделить" descr="" />
+					<Keyword text="СтрСоединить" descr="" />
+					<!-- Процедуры и функции для работы с числами -->
+					<Keyword text="Цел" descr="Вычисляет целую часть переданного числа, полностью отсекая дробную часть." />
+					<Keyword text="Окр" descr="Округляет исходное число до нужной разрядности в соответствии с заданным режимом округления." />
+					<Keyword text="Log" descr="Вычисляет натуральный логарифм параметра &lt;Число&gt;." />
+					<Keyword text="Log10" descr="Вычисляет десятичный логарифм параметра &lt;Число&gt;." />
+					<Keyword text="ACos" descr="Вычисляет арккосинус от аргумента &lt;Число&gt;." />
+					<Keyword text="Cos" descr="Вычисляет косинус от аргумента &lt;Угол&gt;, заданного в радианах." />
+					<Keyword text="ASin" descr="Вычисляет арксинус от аргумента &lt;Число&gt;." />
+					<Keyword text="Sin" descr="Вычисляет синус от аргумента &lt;Угол&gt;, заданного в радианах." />
+					<Keyword text="ATan" descr="Вычисляет арктангенс от аргумента &lt;Число&gt;." />
+					<Keyword text="Tan" descr="Вычисляет тангенс от аргумента &lt;Угол&gt;, заданного в радианах." />
+					<Keyword text="Pow" descr="Возводит число &lt;X&gt; в степень &lt;Y&gt;." />
+					<Keyword text="Exp" descr="Вычисляет результат возведения основания натурального логарифма (числа e) в степень &lt;Число&gt;." />
+					<Keyword text="Sqrt" descr="Вычисляет квадратный корень параметра &lt;Число&gt;." />
+					<!-- Процедуры и функции для работы с датами -->
+					<Keyword text="Год" descr="" />
+					<Keyword text="Месяц" descr="" />
+					<Keyword text="День" descr="" />
+					<Keyword text="Час" descr="" />
+					<Keyword text="Минута" descr="" />
+					<Keyword text="Секунда" descr="" />
+					<Keyword text="НачалоГода" descr="" />
+					<Keyword text="НачалоКвартала" descr="" />
+					<Keyword text="НачалоМесяца" descr="" />
+					<Keyword text="НачалоНедели" descr="" />
+					<Keyword text="НачалоДня" descr="" />
+					<Keyword text="НачалоЧаса" descr="" />
+					<Keyword text="НачалоМинуты" descr="" />
+					<Keyword text="КонецГода" descr="" />
+					<Keyword text="КонецКвартала" descr="" />
+					<Keyword text="КонецМесяца" descr="" />
+					<Keyword text="КонецНедели" descr="" />
+					<Keyword text="КонецДня" descr="" />
+					<Keyword text="КонецЧаса" descr="" />
+					<Keyword text="КонецМинуты" descr="" />
+					<Keyword text="НеделяГода" descr="" />
+					<Keyword text="ДеньГода" descr="" />
+					<Keyword text="ДеньНедели" descr="" />
+					<Keyword text="ДобавитьМесяц" descr="" />
+					<Keyword text="ТекущаяДата" descr="" />
+					<!-- Процедуры и функции для работы с типами -->
+					<Keyword text="Тип" descr="" />
+					<Keyword text="ТипЗнч" descr="" />
+					<!-- Функции преобразования значений -->
+					<Keyword text="Булево" descr="" />
+					<Keyword text="Число" descr="" />
+					<Keyword text="Строка" descr="" />
+					<Keyword text="Дата" descr="" />
+					<Keyword text="ЧислоИзШестнадцатеричнойСтроки" descr="" />
+					<Keyword text="ЧислоИзДвоичнойСтроки" descr="" />
+					<!-- Процедуры и функции интерактивной работы -->
+					<Keyword text="ПоказатьВопрос" descr="" />
+					<Keyword text="Вопрос" descr="" />
+					<Keyword text="ПоказатьПредупреждение" descr="" />
+					<Keyword text="Предупреждение" descr="" />
+					<Keyword text="Сообщить" descr="" />
+					<Keyword text="ОчиститьСообщения" descr="" />
+					<Keyword text="ОповеститьОбИзменении" descr="" />
+					<Keyword text="Состояние" descr="" />
+					<Keyword text="Сигнал" descr="" />
+					<Keyword text="ПоказатьЗначение" descr="" />
+					<Keyword text="ОткрытьЗначение" descr="" />
+					<Keyword text="Оповестить" descr="" />
+					<Keyword text="ОбработкаПрерыванияПользователя" descr="" />
+					<Keyword text="ОткрытьСодержаниеСправки" descr="" />
+					<Keyword text="ОткрытьИндексСправки" descr="" />
+					<Keyword text="ОткрытьСправку" descr="" />
+					<Keyword text="ПоказатьИнформациюОбОшибке" descr="" />
+					<Keyword text="КраткоеПредставлениеОшибки" descr="" />
+					<Keyword text="ПодробноеПредставлениеОшибки" descr="" />
+					<Keyword text="ПолучитьФорму" descr="" />
+					<Keyword text="ЗакрытьСправку" descr="" />
+					<Keyword text="ПоказатьОповещениеПользователя" descr="" />
+					<Keyword text="ОткрытьФорму" descr="" />
+					<Keyword text="ОткрытьФормуМодально" descr="" />
+					<Keyword text="АктивноеОкно" descr="" />
+					<Keyword text="ВыполнитьОбработкуОповещения" descr="" />
+					<!-- Функции для вызова диалога ввода данных -->
+					<Keyword text="ПоказатьВводЗначения" descr="" />
+					<Keyword text="ВвестиЗначение" descr="" />
+					<Keyword text="ПоказатьВводЧисла" descr="" />
+					<Keyword text="ВвестиЧисло" descr="" />
+					<Keyword text="ПоказатьВводСтроки" descr="" />
+					<Keyword text="ВвестиСтроку" descr="" />
+					<Keyword text="ПоказатьВводДаты" descr="" />
+					<Keyword text="ВвестиДату" descr="" />
+					<!-- Функции форматирования -->
+					<Keyword text="Формат" descr="" />
+					<Keyword text="ЧислоПрописью" descr="" />
+					<Keyword text="НСтр" descr="" />
+					<Keyword text="ПредставлениеПериода" descr="" />
+					<Keyword text="СтрШаблон" descr="" />
+					<Keyword text="СтрокаСЧислом" descr="" />
+					<!-- Функции обращения к конфигурации -->
+					<Keyword text="ПолучитьОбщийМакет" descr="" />
+					<Keyword text="ПолучитьОбщуюФорму" descr="" />
+					<Keyword text="ПредопределенноеЗначение" descr="" />
+					<Keyword text="ПолучитьПолноеИмяПредопределенногоЗначения" descr="" />
+					<!-- Процедуры и функции сеанса работы -->
+					<Keyword text="ПолучитьСкоростьКлиентскогоСоединения" descr="" />
+					<Keyword text="ПодключитьОбработчикОжидания" descr="" />
+					<Keyword text="ОтключитьОбработчикОжидания" descr="" />
+					<Keyword text="ИмяКомпьютера" descr="" />
+					<Keyword text="ЗавершитьРаботуСистемы" descr="" />
+					<Keyword text="ИмяПользователя" descr="" />
+					<Keyword text="ПрекратитьРаботуСистемы" descr="" />
+					<Keyword text="ПолноеИмяПользователя" descr="" />
+					<Keyword text="ЗаблокироватьРаботуПользователя" descr="" />
+					<Keyword text="КаталогПрограммы" descr="" />
+					<Keyword text="КаталогВременныхФайлов" descr="" />
+					<Keyword text="ПравоДоступа" descr="" />
+					<Keyword text="РольДоступна" descr="" />
+					<Keyword text="ТекущийЯзык" descr="" />
+					<Keyword text="ТекущийКодЛокализации" descr="" />
+					<Keyword text="СтрокаСоединенияИнформационнойБазы" descr="" />
+					<Keyword text="ПодключитьОбработчикОповещения" descr="" />
+					<Keyword text="ОтключитьОбработчикОповещения" descr="" />
+					<Keyword text="ПолучитьСообщенияПользователю" descr="" />
+					<Keyword text="ПараметрыДоступа" descr="" />
+					<Keyword text="ПредставлениеПриложения" descr="" />
+					<Keyword text="ТекущийЯзыкСистемы" descr="" />
+					<Keyword text="ЗапуститьСистему" descr="" />
+					<Keyword text="ТекущийРежимЗапуска" descr="" />
+					<Keyword text="УстановитьЧасовойПоясСеанса" descr="" />
+					<Keyword text="ЧасовойПоясСеанса" descr="" />
+					<Keyword text="ТекущаяДатаСеанса" descr="" />
+					<Keyword text="ПредставлениеПрава" descr="" />
+					<Keyword text="ВыполнитьПроверкуПравДоступа" descr="" />
+					<Keyword text="РабочийКаталогДанныхПользователя" descr="" />
+					<Keyword text="КаталогДокументов" descr="" />
+					<Keyword text="ПолучитьИнформациюЭкрановКлиента" descr="" />
+					<Keyword text="НачатьПолучениеКаталогаВременныхФайлов" descr="" />
+					<Keyword text="НачатьПолучениеКаталогаДокументов" descr="" />
+					<Keyword text="НачатьПолучениеРабочегоКаталогаДанныхПользователя" descr="" />
+					<Keyword text="ПодключитьОбработчикЗапросаНастроекКлиентаЛицензирования" descr="" />
+					<Keyword text="ОтключитьОбработчикЗапросаНастроекКлиентаЛицензирования" descr="" />
+					<!-- Процедуры и функции сохранения значений -->
+					<Keyword text="СохранитьЗначение" descr="" />
+					<Keyword text="ВосстановитьЗначение" descr="" />
+					<Keyword text="ЗначениеВСтрокуВнутр" descr="" />
+					<Keyword text="ЗначениеИзСтрокиВнутр" descr="" />
+					<Keyword text="ЗначениеВФайл" descr="" />
+					<Keyword text="ЗначениеИзФайла" descr="" />
+					<Keyword text="СохранитьНастройкиПользователя" descr="" />
+					<Keyword text="ОчиститьНастройкиПользователя" descr="" />
+					<!-- Процедуры и функции работы с операционной системой -->
+					<Keyword text="КомандаСистемы" descr="" />
+					<Keyword text="ЗапуститьПриложение" descr="" />
+					<Keyword text="ПолучитьCOMОбъект" descr="" />
+					<Keyword text="ПользователиОС" descr="" />
+					<Keyword text="НачатьЗапускПриложения" descr="" />
+					<!-- Процедуры и функции работы с внешними компонентами -->
+					<Keyword text="ЗагрузитьВнешнююКомпоненту" descr="" />
+					<Keyword text="ПодключитьВнешнююКомпоненту" descr="" />
+					<Keyword text="НачатьУстановкуВнешнейКомпоненты" descr="" />
+					<Keyword text="УстановитьВнешнююКомпоненту" descr="" />
+					<Keyword text="НачатьПодключениеВнешнейКомпоненты" descr="" />
+					<!-- Процедуры и функции работы с файлами -->
+					<Keyword text="КопироватьФайл" descr="" />
+					<Keyword text="ПереместитьФайл" descr="" />
+					<Keyword text="УдалитьФайлы" descr="" />
+					<Keyword text="НайтиФайлы" descr="" />
+					<Keyword text="СоздатьКаталог" descr="" />
+					<Keyword text="ПолучитьИмяВременногоФайла" descr="" />
+					<Keyword text="РазделитьФайл" descr="" />
+					<Keyword text="ОбъединитьФайлы" descr="" />
+					<Keyword text="ПолучитьФайл" descr="" />
+					<Keyword text="НачатьПомещениеФайла" descr="" />
+					<Keyword text="ПоместитьФайл" descr="" />
+					<Keyword text="ЭтоАдресВременногоХранилища" descr="" />
+					<Keyword text="УдалитьИзВременногоХранилища" descr="" />
+					<Keyword text="ПолучитьИзВременногоХранилища" descr="" />
+					<Keyword text="ПоместитьВоВременноеХранилище" descr="" />
+					<Keyword text="ПодключитьРасширениеРаботыСФайлами" descr="" />
+					<Keyword text="НачатьУстановкуРасширенияРаботыСФайлами" descr="" />
+					<Keyword text="УстановитьРасширениеРаботыСФайлами" descr="" />
+					<Keyword text="ПолучитьФайлы" descr="" />
+					<Keyword text="ПоместитьФайлы" descr="" />
+					<Keyword text="ЗапроситьРазрешениеПользователя" descr="" />
+					<Keyword text="ПолучитьМаскуВсеФайлы" descr="" />
+					<Keyword text="ПолучитьМаскуВсеФайлыКлиента" descr="" />
+					<Keyword text="ПолучитьМаскуВсеФайлыСервера" descr="" />
+					<Keyword text="ПолучитьРазделительПути" descr="" />
+					<Keyword text="ПолучитьРазделительПутиКлиента" descr="" />
+					<Keyword text="ПолучитьРазделительПутиСервера" descr="" />
+					<Keyword text="НачатьПодключениеРасширенияРаботыСФайлами" descr="" />
+					<Keyword text="НачатьЗапросРазрешенияПользователя" descr="" />
+					<Keyword text="НачатьПоискФайлов" descr="" />
+					<Keyword text="НачатьСозданиеКаталога" descr="" />
+					<Keyword text="НачатьКопированиеФайла" descr="" />
+					<Keyword text="НачатьПеремещениеФайла" descr="" />
+					<Keyword text="НачатьУдалениеФайлов" descr="" />
+					<Keyword text="НачатьПолучениеФайлов" descr="" />
+					<Keyword text="НачатьПомещениеФайлов" descr="" />
+					<Keyword text="НачатьСозданиеДвоичныхДанныхИзФайла" descr="" />
+					<!-- Процедуры и функции работы с информационной базой -->
+					<Keyword text="НачатьТранзакцию" descr="" />
+					<Keyword text="ЗафиксироватьТранзакцию" descr="" />
+					<Keyword text="ОтменитьТранзакцию" descr="" />
+					<Keyword text="УстановитьМонопольныйРежим" descr="" />
+					<Keyword text="МонопольныйРежим" descr="" />
+					<Keyword text="ПолучитьОперативнуюОтметкуВремени" descr="" />
+					<Keyword text="ПолучитьСоединенияИнформационнойБазы" descr="" />
+					<Keyword text="НомерСоединенияИнформационнойБазы" descr="" />
+					<Keyword text="КонфигурацияИзменена" descr="" />
+					<Keyword text="КонфигурацияБазыДанныхИзмененаДинамически" descr="" />
+					<Keyword text="УстановитьВремяОжиданияБлокировкиДанных" descr="" />
+					<Keyword text="ОбновитьНумерациюОбъектов" descr="" />
+					<Keyword text="ПолучитьВремяОжиданияБлокировкиДанных" descr="" />
+					<Keyword text="КодЛокализацииИнформационнойБазы" descr="" />
+					<Keyword text="УстановитьМинимальнуюДлинуПаролейПользователей" descr="" />
+					<Keyword text="ПолучитьМинимальнуюДлинуПаролейПользователей" descr="" />
+					<Keyword text="ИнициализироватьПредопределенныеДанные" descr="" />
+					<Keyword text="УдалитьДанныеИнформационнойБазы" descr="" />
+					<Keyword text="УстановитьПроверкуСложностиПаролейПользователей" descr="" />
+					<Keyword text="ПолучитьПроверкуСложностиПаролейПользователей" descr="" />
+					<Keyword text="ПолучитьСтруктуруХраненияБазыДанных" descr="" />
+					<Keyword text="УстановитьПривилегированныйРежим" descr="" />
+					<Keyword text="ПривилегированныйРежим" descr="" />
+					<Keyword text="ТранзакцияАктивна" descr="" />
+					<Keyword text="НеобходимостьЗавершенияСоединения" descr="" />
+					<Keyword text="НомерСеансаИнформационнойБазы" descr="" />
+					<Keyword text="ПолучитьСеансыИнформационнойБазы" descr="" />
+					<Keyword text="ЗаблокироватьДанныеДляРедактирования" descr="" />
+					<Keyword text="УстановитьСоединениеСВнешнимИсточникомДанных" descr="" />
+					<Keyword text="РазблокироватьДанныеДляРедактирования" descr="" />
+					<Keyword text="РазорватьСоединениеСВнешнимИсточникомДанных" descr="" />
+					<Keyword text="ПолучитьБлокировкуСеансов" descr="" />
+					<Keyword text="УстановитьБлокировкуСеансов" descr="" />
+					<Keyword text="ОбновитьПовторноИспользуемыеЗначения" descr="" />
+					<Keyword text="УстановитьБезопасныйРежим" descr="" />
+					<Keyword text="БезопасныйРежим" descr="" />
+					<Keyword text="ПолучитьДанныеВыбора" descr="" />
+					<Keyword text="УстановитьЧасовойПоясИнформационнойБазы" descr="" />
+					<Keyword text="ПолучитьЧасовойПоясИнформационнойБазы" descr="" />
+					<Keyword text="ПолучитьОбновлениеКонфигурацииБазыДанных" descr="" />
+					<Keyword text="УстановитьБезопасныйРежимРазделенияДанных" descr="" />
+					<Keyword text="БезопасныйРежимРазделенияДанных" descr="" />
+					<Keyword text="УстановитьВремяЗасыпанияПассивногоСеанса" descr="" />
+					<Keyword text="ПолучитьВремяЗасыпанияПассивногоСеанса" descr="" />
+					<Keyword text="УстановитьВремяЗавершенияСпящегоСеанса" descr="" />
+					<Keyword text="ПолучитьВремяЗавершенияСпящегоСеанса" descr="" />
+					<Keyword text="ПолучитьТекущийСеансИнформационнойБазы" descr="" />
+					<Keyword text="УстановитьОтключениеБезопасногоРежима" descr="" />
+					<Keyword text="ПолучитьИдентификаторКонфигурации" descr="" />
+					<Keyword text="УстановитьНастройкиКлиентаЛицензирования" descr="" />
+					<Keyword text="ПолучитьОтключениеБезопасногоРежима" descr="" />
+					<Keyword text="ПолучитьИмяКлиентаЛицензирования" descr="" />
+					<Keyword text="ПолучитьДополнительныйПараметрКлиентаЛицензирования" descr="" />
+					<!-- Процедуры и функции работы с данными информационной базы -->
+					<Keyword text="НайтиПомеченныеНаУдаление" descr="" />
+					<Keyword text="НайтиПоСсылкам" descr="" />
+					<Keyword text="УдалитьОбъекты" descr="" />
+					<Keyword text="УстановитьОбновлениеПредопределенныхДанныхИнформационнойБазы" descr="" />
+					<Keyword text="ПолучитьОбновлениеПредопределенныхДанныхИнформационнойБазы" descr="" />
+					<!-- Процедуры и функции работы с XML -->
+					<Keyword text="XMLЗначение" descr="" />
+					<Keyword text="XMLСтрока" descr="" />
+					<Keyword text="XMLТип" descr="" />
+					<Keyword text="XMLТипЗнч" descr="" />
+					<Keyword text="ИзXMLТипа" descr="" />
+					<Keyword text="ВозможностьЧтенияXML" descr="" />
+					<Keyword text="ПолучитьXMLТип" descr="" />
+					<Keyword text="ПрочитатьXML" descr="" />
+					<Keyword text="ЗаписатьXML" descr="" />
+					<Keyword text="НайтиНедопустимыеСимволыXML" descr="" />
+					<Keyword text="ИмпортМоделиXDTO" descr="" />
+					<Keyword text="СоздатьФабрикуXDTO" descr="" />
+					<!-- Процедуры и функции работы с JSON -->
+					<Keyword text="ЗаписатьJSON" descr="" />
+					<Keyword text="ПрочитатьJSON" descr="" />
+					<Keyword text="ПрочитатьДатуJSON" descr="" />
+					<Keyword text="ЗаписатьДатуJSON" descr="" />
+					<!-- Процедуры и функции работы с журналом регистрации -->
+					<Keyword text="ЗаписьЖурналаРегистрации" descr="" />
+					<Keyword text="ПолучитьИспользованиеЖурналаРегистрации" descr="" />
+					<Keyword text="УстановитьИспользованиеЖурналаРегистрации" descr="" />
+					<Keyword text="ПредставлениеСобытияЖурналаРегистрации" descr="" />
+					<Keyword text="ВыгрузитьЖурналРегистрации" descr="" />
+					<Keyword text="ПолучитьЗначенияОтбораЖурналаРегистрации" descr="" />
+					<Keyword text="УстановитьИспользованиеСобытияЖурналаРегистрации" descr="" />
+					<Keyword text="ПолучитьИспользованиеСобытияЖурналаРегистрации" descr="" />
+					<Keyword text="СкопироватьЖурналРегистрации" descr="" />
+					<Keyword text="ОчиститьЖурналРегистрации" descr="" />
+					<!-- Процедуры и функции работы с универсальными объектами -->
+					<Keyword text="ЗначениеВДанныеФормы" descr="" />
+					<Keyword text="ДанныеФормыВЗначение" descr="" />
+					<Keyword text="КопироватьДанныеФормы" descr="" />
+					<Keyword text="УстановитьСоответствиеОбъектаИФормы" descr="" />
+					<Keyword text="ПолучитьСоответствиеОбъектаИФормы" descr="" />
+					<!-- Процедуры и функции работы с функциональными опциями -->
+					<Keyword text="ПолучитьФункциональнуюОпцию" descr="" />
+					<Keyword text="ПолучитьФункциональнуюОпциюИнтерфейса" descr="" />
+					<Keyword text="УстановитьПараметрыФункциональныхОпцийИнтерфейса" descr="" />
+					<Keyword text="ПолучитьПараметрыФункциональныхОпцийИнтерфейса" descr="" />
+					<Keyword text="ОбновитьИнтерфейс" descr="" />
+					<!-- Процедуры и функции работы с криптографией -->
+					<Keyword text="УстановитьРасширениеРаботыСКриптографией" descr="" />
+					<Keyword text="НачатьУстановкуРасширенияРаботыСКриптографией" descr="" />
+					<Keyword text="ПодключитьРасширениеРаботыСКриптографией" descr="" />
+					<Keyword text="НачатьПодключениеРасширенияРаботыСКриптографией" descr="" />
+					<!-- Процедуры и функции работы с геопозиционированием -->
+					<!-- Процедуры и функции работы со стандартным интерфейсом OData -->
+					<Keyword text="УстановитьСоставСтандартногоИнтерфейсаOData" descr="" />
+					<Keyword text="ПолучитьСоставСтандартногоИнтерфейсаOData" descr="" />
+					<!-- Процедуры и функции работы с двоичными данными -->
+					<Keyword text="СоединитьБуферыДвоичныхДанных" descr="" />
+					<Keyword text="СоединитьДвоичныеДанные" descr="" />
+					<Keyword text="РазделитьДвоичныеДанные" descr="" />
+					<Keyword text="ПолучитьДвоичныеДанныеИзСтроки" descr="" />
+					<Keyword text="ПолучитьБуферДвоичныхДанныхИзСтроки" descr="" />
+					<Keyword text="ПолучитьСтрокуИзДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьСтрокуИзБуфераДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьДвоичныеДанныеИзBase64Строки" descr="" />
+					<Keyword text="ПолучитьБуферДвоичныхДанныхИзBase64Строки" descr="" />
+					<Keyword text="ПолучитьBase64СтрокуИзДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьBase64СтрокуИзБуфераДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьДвоичныеДанныеИзBase64ДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьБуферДвоичныхДанныхИзBase64БуфераДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьBase64ДвоичныеДанныеИзДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьBase64БуферДвоичныхДанныхИзБуфераДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьДвоичныеДанныеИзHexСтроки" descr="" />
+					<Keyword text="ПолучитьБуферДвоичныхДанныхИзHexСтроки" descr="" />
+					<Keyword text="ПолучитьHexСтрокуИзДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьHexСтрокуИзБуфераДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьДвоичныеДанныеИзHexДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьБуферДвоичныхДанныхИзHexБуфераДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьHexДвоичныеДанныеИзДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьHexБуферДвоичныхДанныхИзБуфераДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьБуферДвоичныхДанныхИзДвоичныхДанных" descr="" />
+					<Keyword text="ПолучитьДвоичныеДанныеИзБуфераДвоичныхДанных" descr="" />
+					<!-- Прочие процедуры и функции -->
+					<Keyword text="ПроверитьЦиклическиеСсылкиВстроенногоЯзыка" descr="" />
+					<Keyword text="Мин" descr="" />
+					<Keyword text="Макс" descr="" />
+					<Keyword text="ОписаниеОшибки" descr="" />
+					<Keyword text="Вычислить" descr="" />
+					<Keyword text="ИнформацияОбОшибке" descr="" />
+					<Keyword text="ПолучитьМакетОформления" descr="" />
+					<Keyword text="Base64Значение" descr="" />
+					<Keyword text="Base64Строка" descr="" />
+					<Keyword text="ЗаполнитьЗначенияСвойств" descr="" />
+					<Keyword text="ЗначениеЗаполнено" descr="" />
+					<Keyword text="ПолучитьПредставленияНавигационныхСсылок" descr="" />
+					<Keyword text="НайтиОкноПоНавигационнойСсылке" descr="" />
+					<Keyword text="ПолучитьОкна" descr="" />
+					<Keyword text="ПерейтиПоНавигационнойСсылке" descr="" />
+					<Keyword text="ПолучитьНавигационнуюСсылку" descr="" />
+					<Keyword text="ПолучитьДопустимыеКодыЛокализации" descr="" />
+					<Keyword text="ПолучитьНавигационнуюСсылкуИнформационнойБазы" descr="" />
+					<Keyword text="ПредставлениеКодаЛокализации" descr="" />
+					<Keyword text="ПолучитьДопустимыеЧасовыеПояса" descr="" />
+					<Keyword text="ПредставлениеЧасовогоПояса" descr="" />
+					<Keyword text="ТекущаяУниверсальнаяДата" descr="" />
+					<Keyword text="ТекущаяУниверсальнаяДатаВМиллисекундах" descr="" />
+					<Keyword text="МестноеВремя" descr="" />
+					<Keyword text="УниверсальноеВремя" descr="" />
+					<Keyword text="ЧасовойПояс" descr="" />
+					<Keyword text="СмещениеЛетнегоВремени" descr="" />
+					<Keyword text="СмещениеСтандартногоВремени" descr="" />
+					<Keyword text="КодироватьСтроку" descr="" />
+					<Keyword text="РаскодироватьСтроку" descr="" />
+					<Keyword text="Найти" descr="\iУстаревшая\i0" />
+					<Keyword text="ПродолжитьВызов" descr="" />
+					<!-- События управляемого приложения -->
+					<Keyword text="ПередНачаломРаботыСистемы" descr="" />
+					<Keyword text="ПриНачалеРаботыСистемы" descr="" />
+					<Keyword text="ПередЗавершениемРаботыСистемы" descr="" />
+					<Keyword text="ПриЗавершенииРаботыСистемы" descr="" />
+					<Keyword text="ОбработкаВнешнегоСобытия" descr="" />
+					<Keyword text="ПриИзмененииПараметровЭкрана" descr="" />
+					<!-- События модуля сеанса -->
+					<Keyword text="УстановкаПараметровСеанса" descr="" />
+					<!-- События внешнего соединения -->
+					<Keyword text="ПриНачалеРаботыСистемы" descr="" />
+					<Keyword text="ПриЗавершенииРаботыСистемы" descr="" />
+					<!-- События обычного приложения -->
+					<Keyword text="ПередНачаломРаботыСистемы" descr="" />
+					<Keyword text="ПриНачалеРаботыСистемы" descr="" />
+					<Keyword text="ПередЗавершениемРаботыСистемы" descr="" />
+					<Keyword text="ПриЗавершенииРаботыСистемы" descr="" />
+					<Keyword text="ОбработкаВнешнегоСобытия" descr="" />
+					<Keyword text="ПриИзмененииПараметровЭкрана" descr="" />
+				</Keywords>
+			</Style>
+
+			<Style id="variable" name="Переменные"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#0000FF" bkclr="#FF0000FF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+			</Style>
+
+			<Style id="metadata" name="Метаданные"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#0000FF" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+				<Keywords pattern="%CurrentWord%.">
+					<!-- Метаданные -->
+					<Keyword text="Константа" descr="" />
+					<Keyword text="Константы" descr="" />
+					<Keyword text="Справочник" descr="" />
+					<Keyword text="Справочники" descr="" />
+					<Keyword text="Перечисление" descr="" />
+					<Keyword text="Перечисления" descr="" />
+					<Keyword text="Документ" descr="" />
+					<Keyword text="Документы" descr="" />
+					<Keyword text="РегистрСведений" descr="" />
+					<Keyword text="РегистрыСведений" descr="" />
+					<Keyword text="РегистрНакоплений" descr="" />
+					<Keyword text="РегистрыНакоплений" descr="" />
+					<Keyword text="РегистрРасчета" descr="" />
+					<Keyword text="РегистрыРасчета" descr="" />
+					<Keyword text="ПланВидовХарактеристик" descr="" />
+					<Keyword text="ПланыВидовХарактеристик" descr="" />
+					<Keyword text="ЖурналДокументов" descr="" />
+					<Keyword text="WebСервис" descr="" />
+					<Keyword text="WebСервисы" descr="" />
+					<!-- Типы данных -->
+					<Keyword text="WebЦвета" descr="" />
+					<Keyword text="WindowsЦвета" descr="" />
+					<Keyword text="WindowsШрифты" descr="" />
+					<Keyword text="WSИнтерфейс" descr="" />
+					<Keyword text="WSКоллекцияОпераций" descr="" />
+					<Keyword text="WSКоллекцияПараметров" descr="" />
+					<Keyword text="WSКоллекцияСервисов" descr="" />
+					<Keyword text="WSКоллекцияТочекПодключения" descr="" />
+					<Keyword text="WSОперация" descr="" />
+					<Keyword text="WSОпределения" descr="" />
+					<Keyword text="WSПараметр" descr="" />
+					<Keyword text="WSПрокси" descr="" />
+					<Keyword text="WSСервис" descr="" />
+					<Keyword text="WSСсылкаМенеджер" descr="" />
+					<Keyword text="WSСсылкиМенеджер" descr="" />
+					<Keyword text="WSТочкаПодключения" descr="" />
+					<Keyword text="WSИнтерфейс" descr="" />
+					<Keyword text="WSКоллекцияОпераций" descr="" />
+					<Keyword text="WSКоллекцияПараметров" descr="" />
+					<Keyword text="WSКоллекцияСервисов" descr="" />
+					<Keyword text="WSКоллекцияТочекПодключения" descr="" />
+					<Keyword text="XBase" descr="" />
+					<Keyword text="FTPСоединение" descr="" />
+					<Keyword text="FTPФайл" descr="" />
+					<Keyword text="HTTPЗапрос" descr="" />
+					<Keyword text="HTTPОтвет" descr="" />
+					<Keyword text="HTTPСервисЗапрос" descr="" />
+					<Keyword text="HTTPСервисОтвет" descr="" />
+					<Keyword text="HTTPСоединение" descr="" />
+					<Keyword text="Запрос" descr="" />
+				</Keywords>
+			</Style>
+
+			<Style id="keywords" name="Ключевые слова"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#FF0000" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+				<Keywords>
+					<Keyword text="Перем" descr="Начало описания \iпеременных\i0" />
+					<Keyword text="Экспорт" descr="" />
+					<Keyword text="Процедура"  descr="" />
+					<Keyword text="КонецПроцедуры" descr="" />
+					<Keyword text="Функция" descr="" />
+					<Keyword text="КонецФункции" descr="" />
+					<Keyword text="Если" descr="" />
+					<Keyword text="Иначе" descr="" />
+					<Keyword text="ИначеЕсли" descr="" />
+					<Keyword text="Тогда" descr="" />
+					<Keyword text="КонецЕсли" descr="" />
+					<Keyword text="Для" descr="" />
+					<Keyword text="По" descr="" />
+					<Keyword text="Цикл" descr="" />
+					<Keyword text="Пока" descr="" />
+					<Keyword text="КонецЦикла" descr="" />
+					<Keyword text="Попытка" descr="" />
+					<Keyword text="Исключение" descr="" />
+					<Keyword text="КонецПопытки" descr="" />
+					<Keyword text="ВызватьИсключение" descr="" />
+					<Keyword text="Прервать" descr="" />
+					<Keyword text="Продолжить" descr="" />
+					<Keyword text="Возврат" descr="Немедленно \bвыйти\b0" />
+				</Keywords>
+			</Style>
+
+			<Style id="operators" name="Операторы"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#FF0000" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+				<Keywords>
+					<Keyword text="+" descr="" />
+					<Keyword text="-" descr="" />
+					<Keyword text="*" descr="" />
+					<Keyword text="/" descr="" />
+					<Keyword text="%" descr="Целочисленное деление" />
+					<Keyword text="mod" descr="Остаток от деления" />
+					<Keyword text="И" descr="" />
+					<Keyword text="ИЛИ" descr="" />
+					<Keyword text="НЕ" descr="" />
+				</Keywords>
+			</Style>
+
+			<Style id="preprocessor" name="Препроцессор"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#963200" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+				<Keywords>
+					<Keyword text="#Если" descr="" />
+					<Keyword text="#Иначе" descr="" />
+					<Keyword text="#ИначеЕсли" descr="" />
+					<Keyword text="#КонецЕсли" descr="" />
+					<Keyword text="&amp;НаКлиенте" descr="" />
+					<Keyword text="&amp;НаСервере" descr="" />
+					<Keyword text="&amp;НаСервереБезКонтекста" descr="" />
+					<Keyword text="&amp;НаКлиентеНаСервереБезКонтекста" descr="" />
+				</Keywords>
+			</Style>
+
+			<!--
+			<Style id="current_identifier" name="Текущий идентификатор"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#000000" bkclr="#FFFF00FF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+				<Keywords>
+					<Keyword text="" descr="" />
+				</Keywords>
+			</Style>
+
+			<Style id="selected_identifier" name="Выбранный идентификатор"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#000000" bkclr="#FFD700FF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+				<Keywords>
+					<Keyword text="" descr="" />
+				</Keywords>
+			</Style>
+			-->
+
+			<!--
+			<Style id="other" name="Прочее"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#000000" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+			</Style>
+
+			<Style id="search_results" name="Цвет фона результатов поиска"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#000000" bkclr="#F3EECDFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+			</Style>
+
+			<Style id="context_help" name="Цвет фона контекстной подсказки"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#000000" bkclr="#FFFAD9FF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+			</Style>
+			-->
+
+			<!-- Добавленнные стили, которых нет в 1С -->
+
+			<Style id="guid" name="Уникальный идентификатор" text="0"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="#33CCCC" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false"
+					box_style="2" box_clr="#000000" box_bkg_clr="#FFFFFFFF" >
+				<Blocks>
+					<Regexp text="&quot;\S{8}\-\S{4}\-\S{4}\-\S{4}\-\S{12}&quot;" />
+				</Blocks>
+			</Style>
+
+			<!-- Задачи "СДЕЛАТЬ" -->
+			<Style id="todo" name="Сделать потом" text="1"
+					bold="1" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="TODOs" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
+				<Containers>
+					<Open id="comment"/>
+				</Containers>
+				<Blocks>
+					<Block open="//! СДЕЛАТЬ" close="\n"/>
+				</Blocks>
+			</Style>
+
+		</STYLES>
+
+	</SYNTAX>
+
+</XMLConfigSettings>
