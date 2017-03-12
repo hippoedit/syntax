@@ -67,9 +67,6 @@
         <Containers>
           <Open id="preprocessor"/>
         </Containers>
-        <!--<Blocks>
-          <Regexp text="[0-9A-Fa-f]+\&gt;" lead="[^\w]"/>
-        </Blocks>-->
       </Style>
       <Style name="Instructions" image="13" bold="1" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
         <Keywords>
