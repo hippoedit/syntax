@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="nigel@eyeit.org" type="LangSpec"/>
+  <SYNTAX id="asm68hc11x" name="ASM68HC11X" inherit="asm68hc11" inherit_url="asm68hc11_spec.xml">
+    <STYLES>
+      <Style id="comment" extend="true">
+        <Containers>
+          <Open id="preprocessor"/>
+          <Close id="todo"/>
+        </Containers>
+        <Blocks>
+          <Block open="{" close="}"/>
+        </Blocks>
+      </Style>
+      <Style name="Instructions" extend="true">
+        <Keywords>
+          <Keyword text="ABDA"/>
+          <Keyword text="ADC A" descr="Add with Carry to A"/>
+          <Keyword text="ADC B" descr="Add with Carry to B"/>
+          <Keyword text="ADD A" descr="Add Memory to A"/>
+          <Keyword text="ADD B" descr="Add Memory to B"/>
+          <Keyword text="ADD D" descr="Add 16-Bit to D"/>
+          <Keyword text="ADMMUX1"/>
+          <Keyword text="ADREAD"/>
+          <Keyword text="AND A" descr="AND A with Memory"/>
+          <Keyword text="AND B" descr="AND B with Memory"/>
+          <Keyword text="ASL A" descr="Arithmetic Shift Left A"/>
+          <Keyword text="ASL B" descr="Arithmetic Shift Left B"/>
+          <Keyword text="ASL D" descr="Arithmetic Shift Left D"/>
+          <Keyword text="ASR A" descr="Arithmetic Shift Right A"/>
+          <Keyword text="ASR B" descr="Arithmetic Shift Right B"/>
+          <Keyword text="BIT A" descr="Bit(s) Test A with Memory"/>
+          <Keyword text="BIT B" descr="Bit(s) Test B with Memory"/>
+          <Keyword text="CLR A" descr="Clear Accumulator A"/>
+          <Keyword text="CLR B" descr="Clear Accumulator B"/>
+          <Keyword text="CMP A" descr="Compare A to Memory"/>
+          <Keyword text="CMP B" descr="Compare B to Memory"/>
+          <Keyword text="COM A" descr="1's Complement A"/>
+          <Keyword text="COM B" descr="1's Complement B"/>
+          <Keyword text="DEC A" descr="Decrement Accumulator A"/>
+          <Keyword text="DEC B" descr="Decrement Accumulator B"/>
+          <Keyword text="EOR A" descr="Exclusive OR A with Memory"/>
+          <Keyword text="EOR B" descr="Exclusive OR B with Memory"/>
+          <Keyword text="INC A" descr="Increment Accumulator A"/>
+          <Keyword text="INC B" descr="Increment Accumulator B"/>
+          <Keyword text="LD D"/>
+          <Keyword text="LD S"/>
+          <Keyword text="LD X"/>
+          <Keyword text="LD Y"/>
+          <Keyword text="LDA A"/>
+          <Keyword text="LDA B"/>
+          <Keyword text="LDA D"/>
+          <Keyword text="LSL A" descr="Logical Shift Left A"/>
+          <Keyword text="LSL B" descr="Logical Shift Left B"/>
+          <Keyword text="LSL D" descr="Logical Shift Left Double"/>
+          <Keyword text="LSR A" descr="Logical Shift Right A"/>
+          <Keyword text="LSR B" descr="Logical Shift Right B"/>
+          <Keyword text="LSR D" descr="Logical Shift Right Double"/>
+          <Keyword text="ORA A" descr="OR Accumulator A (Inclusive)"/>
+          <Keyword text="ORA B" descr="OR Accumulator B (Inclusive)"/>
+          <Keyword text="PSH A" descr="Push A onto Stack"/>
+          <Keyword text="PSH B" descr="Push B onto Stack"/>
+          <Keyword text="PSH X" descr="Push X onto Stack"/>
+          <Keyword text="PUL A" descr="Pull A from Stack"/>
+          <Keyword text="PUL B" descr="Pull B from Stack"/>
+          <Keyword text="PUL X" descr="Pull X from Stack"/>
+          <Keyword text="PUL Y" descr="Pull Y from Stack"/>
+          <Keyword text="ROR A" descr="Rotate Right A"/>
+          <Keyword text="ROR B" descr="Rotate Right B"/>
+          <Keyword text="SBC A" descr="Subtract with Carry from A"/>
+          <Keyword text="SBC B" descr="Subtract with Carry from B"/>
+          <Keyword text="STA A" descr="Store Accumulator A"/>
+          <Keyword text="STA B" descr="Store Accumulator B"/>
+          <Keyword text="SUB A" descr="Subtract Memory from A"/>
+          <Keyword text="SUB B" descr="Subtract Memory from B"/>
+          <Keyword text="SUB D" descr="Subtract Memory from D"/>
+          <Keyword text="TST A" descr="Test A for Zero or Minus"/>
+          <Keyword text="TST B" descr="Test B for Zero or Minus"/>
+        </Keywords>
+      </Style>
+      <Style name="Registers" image="13" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords lead="$">
+          <Keyword text="01"/>
+          <Keyword text="05"/>
+          <Keyword text="06"/>
+          <Keyword text="08"/>
+          <Keyword text="0A"/>
+          <Keyword text="0B"/>
+          <Keyword text="0C"/>
+          <Keyword text="0D"/>
+          <Keyword text="0E"/>
+          <Keyword text="0F"/>
+          <Keyword text="10"/>
+          <Keyword text="11"/>
+          <Keyword text="12"/>
+          <Keyword text="13"/>
+          <Keyword text="14"/>
+          <Keyword text="15"/>
+          <Keyword text="16"/>
+          <Keyword text="17"/>
+          <Keyword text="18"/>
+          <Keyword text="19"/>
+          <Keyword text="1A"/>
+          <Keyword text="1B"/>
+          <Keyword text="1C"/>
+          <Keyword text="1D"/>
+          <Keyword text="1E"/>
+          <Keyword text="1F"/>
+          <Keyword text="20"/>
+          <Keyword text="21"/>
+          <Keyword text="22"/>
+          <Keyword text="23"/>
+          <Keyword text="24"/>
+          <Keyword text="24"/>
+          <Keyword text="25"/>
+          <Keyword text="25"/>
+          <Keyword text="26"/>
+          <Keyword text="27"/>
+          <Keyword text="28"/>
+          <Keyword text="29"/>
+          <Keyword text="2A"/>
+          <Keyword text="2B"/>
+          <Keyword text="2C"/>
+          <Keyword text="2D"/>
+          <Keyword text="2E"/>
+          <Keyword text="2F"/>
+          <Keyword text="30"/>
+          <Keyword text="31"/>
+          <Keyword text="32"/>
+          <Keyword text="33"/>
+          <Keyword text="34"/>
+          <Keyword text="35"/>
+          <Keyword text="36"/>
+          <Keyword text="37"/>
+          <Keyword text="38"/>
+          <Keyword text="39"/>
+          <Keyword text="3A"/>
+          <Keyword text="3B"/>
+          <Keyword text="3C"/>
+          <Keyword text="3D"/>
+          <Keyword text="3E"/>
+          <Keyword text="3F"/>
+          <Keyword text="40"/>
+          <Keyword text="43"/>
+          <Keyword text="44"/>
+          <Keyword text="46"/>
+          <Keyword text="47"/>
+          <Keyword text="48"/>
+          <Keyword text="48"/>
+          <Keyword text="49"/>
+          <Keyword text="4A"/>
+          <Keyword text="4C"/>
+          <Keyword text="4D"/>
+          <Keyword text="4F"/>
+          <Keyword text="50"/>
+          <Keyword text="53"/>
+          <Keyword text="54"/>
+          <Keyword text="56"/>
+          <Keyword text="57"/>
+          <Keyword text="58"/>
+          <Keyword text="58"/>
+          <Keyword text="59"/>
+          <Keyword text="5A"/>
+          <Keyword text="5C"/>
+          <Keyword text="5D"/>
+          <Keyword text="5F"/>
+          <Keyword text="60"/>
+          <Keyword text="63"/>
+          <Keyword text="64"/>
+          <Keyword text="66"/>
+          <Keyword text="67"/>
+          <Keyword text="68"/>
+          <Keyword text="68"/>
+          <Keyword text="69"/>
+          <Keyword text="6A"/>
+          <Keyword text="6C"/>
+          <Keyword text="6D"/>
+          <Keyword text="6E"/>
+          <Keyword text="6F"/>
+          <Keyword text="70"/>
+          <Keyword text="73"/>
+          <Keyword text="74"/>
+          <Keyword text="76"/>
+          <Keyword text="77"/>
+          <Keyword text="78"/>
+          <Keyword text="78"/>
+          <Keyword text="79"/>
+          <Keyword text="7A"/>
+          <Keyword text="7C"/>
+          <Keyword text="7D"/>
+          <Keyword text="7E"/>
+          <Keyword text="7F"/>
+          <Keyword text="80"/>
+          <Keyword text="81"/>
+          <Keyword text="82"/>
+          <Keyword text="83"/>
+          <Keyword text="83"/>
+          <Keyword text="84"/>
+          <Keyword text="85"/>
+          <Keyword text="86"/>
+          <Keyword text="88"/>
+          <Keyword text="89"/>
+          <Keyword text="8A"/>
+          <Keyword text="8B"/>
+          <Keyword text="8C"/>
+          <Keyword text="8C"/>
+          <Keyword text="8D"/>
+          <Keyword text="8E"/>
+          <Keyword text="8F"/>
+          <Keyword text="90"/>
+          <Keyword text="91"/>
+          <Keyword text="92"/>
+          <Keyword text="93"/>
+          <Keyword text="93"/>
+          <Keyword text="94"/>
+          <Keyword text="95"/>
+          <Keyword text="96"/>
+          <Keyword text="97"/>
+          <Keyword text="98"/>
+          <Keyword text="99"/>
+          <Keyword text="9A"/>
+          <Keyword text="9B"/>
+          <Keyword text="9C"/>
+          <Keyword text="9C"/>
+          <Keyword text="9D"/>
+          <Keyword text="9E"/>
+          <Keyword text="9F"/>
+          <Keyword text="A0"/>
+          <Keyword text="A1"/>
+          <Keyword text="A2"/>
+          <Keyword text="A3"/>
+          <Keyword text="A3"/>
+          <Keyword text="A4"/>
+          <Keyword text="A5"/>
+          <Keyword text="A6"/>
+          <Keyword text="A7"/>
+          <Keyword text="A8"/>
+          <Keyword text="A9"/>
+          <Keyword text="AA"/>
+          <Keyword text="AB"/>
+          <Keyword text="AC"/>
+          <Keyword text="AC"/>
+          <Keyword text="AD"/>
+          <Keyword text="AE"/>
+          <Keyword text="AF"/>
+          <Keyword text="B0"/>
+          <Keyword text="B1"/>
+          <Keyword text="B2"/>
+          <Keyword text="B3"/>
+          <Keyword text="B3"/>
+          <Keyword text="B4"/>
+          <Keyword text="B5"/>
+          <Keyword text="B6"/>
+          <Keyword text="B7"/>
+          <Keyword text="B8"/>
+          <Keyword text="B9"/>
+          <Keyword text="BA"/>
+          <Keyword text="BB"/>
+          <Keyword text="BC"/>
+          <Keyword text="BC"/>
+          <Keyword text="BD"/>
+          <Keyword text="BE"/>
+          <Keyword text="BF"/>
+          <Keyword text="C0"/>
+          <Keyword text="C1"/>
+          <Keyword text="C2"/>
+          <Keyword text="C3"/>
+          <Keyword text="C4"/>
+          <Keyword text="C5"/>
+          <Keyword text="C6"/>
+          <Keyword text="C8"/>
+          <Keyword text="C9"/>
+          <Keyword text="CA"/>
+          <Keyword text="CB"/>
+          <Keyword text="CC"/>
+          <Keyword text="CE"/>
+          <Keyword text="CE"/>
+          <Keyword text="CF"/>
+          <Keyword text="D0"/>
+          <Keyword text="D1"/>
+          <Keyword text="D2"/>
+          <Keyword text="D3"/>
+          <Keyword text="D4"/>
+          <Keyword text="D5"/>
+          <Keyword text="D6"/>
+          <Keyword text="D7"/>
+          <Keyword text="D8"/>
+          <Keyword text="D9"/>
+          <Keyword text="DA"/>
+          <Keyword text="DB"/>
+          <Keyword text="DC"/>
+          <Keyword text="DD"/>
+          <Keyword text="DE"/>
+          <Keyword text="DE"/>
+          <Keyword text="DF"/>
+          <Keyword text="E0"/>
+          <Keyword text="E1"/>
+          <Keyword text="E2"/>
+          <Keyword text="E3"/>
+          <Keyword text="E4"/>
+          <Keyword text="E5"/>
+          <Keyword text="E6"/>
+          <Keyword text="E7"/>
+          <Keyword text="E8"/>
+          <Keyword text="E9"/>
+          <Keyword text="EA"/>
+          <Keyword text="EB"/>
+          <Keyword text="EC"/>
+          <Keyword text="ED"/>
+          <Keyword text="EE"/>
+          <Keyword text="EE"/>
+          <Keyword text="F0"/>
+          <Keyword text="F1"/>
+          <Keyword text="F2"/>
+          <Keyword text="F3"/>
+          <Keyword text="F4"/>
+          <Keyword text="F5"/>
+          <Keyword text="F6"/>
+          <Keyword text="F7"/>
+          <Keyword text="F8"/>
+          <Keyword text="F9"/>
+          <Keyword text="FA"/>
+          <Keyword text="FB"/>
+          <Keyword text="FC"/>
+          <Keyword text="FD"/>
+          <Keyword text="FE"/>
+          <Keyword text="FE"/>
+          <Keyword text="FF"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>
+
