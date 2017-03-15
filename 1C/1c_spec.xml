@@ -25,17 +25,7 @@
 			<Words init="A-Za-z_А-Яа-я_" override="true">0-9A-Za-zА-Яа-я_</Words>
 			<WrapBy override="true">(),</WrapBy>
 			<Numbers>-+0-9.</Numbers>
-			<!--
-			<HierarchySeparator>
-				<Separator text="." />
-			</HierarchySeparator>
-			-->
 			<Bars navigation="true" overview="true" search="true" hierarchy="true" />
-
-			<!--
-			<StyleBitmap>images\vs_styles.bmp</StyleBitmap>
-			<MarginBitmap>images\vs_margin.bmp</MarginBitmap>
-			-->
 
 		</SPECIFICATION>
 
@@ -73,56 +63,69 @@
 				<Middle text="ИначеЕсли"/>
 			</Scope>
 
+			<!-- Функции и процедуры -->
 			<Scope open="Процедура" close="КонецПроцедуры" has_name="true" separator="true" strict="true" />
 
 			<Scope open="Функция" close="КонецФункции" has_name="true" separator="true" strict="true" />
 
+			<!-- Прочие конструкции -->
 			<Scope open="Попытка" middle="Исключение" close="КонецПопытки" />
 
 			<Scope open="Для" close="КонецЦикла" strict="true">
 				<Middle text="По" />
 				<Middle text="Цикл" />
+				<Middle text="Прервать" />
+				<Middle text="Продолжить" />
 			</Scope>
 
 			<Scope open="Для каждого" close="КонецЦикла"strict="true">
 				<Middle text="В" />
 				<Middle text="Цикл" />
+				<Middle text="Прервать" />
+				<Middle text="Продолжить" />
 			</Scope>
 
 			<Scope open="Если" close="КонецЕсли" strict="true">
-				<Middle text="Иначе" />
 				<Middle text="Тогда" />
+				<Middle text="Иначе" />
 				<Middle text="ИначеЕсли"/>
 			</Scope>
 
 			<Scope open="Пока" middle="Цикл" close="КонецЦикла"  strict="true"/>
 
 			<Scope open="Возврат" strict="false"/>
-			<!-- <Scope open="Возврат;" strict="false"/> -->
 			<Scope open="Прервать" strict="false"/>
-			<!-- <Scope open="Прервать;" strict="false"/> -->
 			<Scope open="Продолжить" strict="false"/>
-			<!-- <Scope open="Продолжить;" strict="false"/> -->
 
 		</SCOPES>
 
 		<LABELS>
 
+			<!-- Одна переменная -->
 			<Label group="Переменные" match="^\s*(Перем)\s+(\w+)(,\s+(\w+))*(\s+(Экспорт)?)?;"
 					name="\2" descr="\2" image="11" scope="1" navigation="true" visible="true" > <!-- marker="11" -->
 				<SubImage if="\6" equal="Экспорт" value="2"/>
 				<SubImage if="\6" equal="" value="4"/>
 			</Label>
 
+			<!-- Несколько переменных -->
 			<Label group="Переменные" match="^\s*(Перем)\s+(\w+,\s+)(\w+)(,\s+(\w+))*(\s+(Экспорт)?)?;"
 					name="\3" descr="\3" image="11" scope="1" navigation="true" visible="true" > <!-- marker="11" -->
 				<SubImage if="\7" equal="Экспорт" value="2"/>
 				<SubImage if="\7" equal="" value="4"/>
 			</Label>
 
+			<!-- Функции и процедуры -->
 			<Label group="Процедура" match="^\s*(Процедура)\s+(\w+)(?:\s*(\([^)]*\)))(\s+(Экспорт)?)?"
 					name="\2" descr="\2" image="6" scope="1" navigation="true" visible="true"
-					style="functions" >  <!-- marker="6" -->
+					style="functions" >
+				<SubImage if="\4" equal="Экспорт" value="2"/>
+				<SubImage if="\4" equal="" value="4"/>
+			</Label>
+
+			<Label group="Функция" match="^\s*(Функция)\s+(\w+)(?:\s*(\([^)]*\)))(\s+(Экспорт)?)?"
+					name="\2" descr="\2" image="9" scope="1" navigation="true" visible="true"
+					style="functions" > <!-- marker="9" -->
 				<SubImage if="\4" equal="Экспорт" value="2"/>
 				<SubImage if="\4" equal="" value="4"/>
 			</Label>
@@ -135,14 +138,7 @@
 
 			<!-- Области кода -->
 			<Label group="ТекстоваяОбласть" match="^(#Область)\s+(\w+)$"
-					name="\2" descr="\2" image="12" scope="1" navigation="true" visible="true" > <!-- marker="7" -->
-			</Label>
-
-			<Label group="Функция" match="^\s*(Функция)\s+(\w+)(?:\s*(\([^)]*\)))(\s+(Экспорт)?)?"
-					name="\2" descr="\2" image="9" scope="1" navigation="true" visible="true"
-					style="functions" > <!-- marker="9" -->
-				<SubImage if="\4" equal="Экспорт" value="2"/>
-				<SubImage if="\4" equal="" value="4"/>
+					name="\2" descr="\2" image="12" scope="1" navigation="true" visible="true" >
 			</Label>
 
 		</LABELS>
@@ -154,6 +150,7 @@
 				<Blocks>
 					<Block open="(" close=")" />
 					<Block open="[" close="]" />
+					<Block open="{" close="}" />
 				</Blocks>
 			</Style>
 
@@ -163,21 +160,11 @@
 				</Blocks>
 			</Style>
 
-			<Style id="constant_Date" name="Константа Дата" underline="1"
-					clr="#646400" bkclr="#0000FFFF" >
-					<!-- box_style="2" box_clr="#000000" box_bkg_clr="#FFFFFFFF" > -->
-				<Keywords>
-					<Keyword descr="Дата \iГГГГММДД\i0" pattern="\&apos;\d{8}\&apos;" /> <!-- 20171231 -->
-					<Keyword descr="Дата \iГГГГММДД\i0" pattern="&apos;\d{8}&apos;" /> <!-- 20171231 -->
-					<Keyword descr="Дата \iГГГГММДДЧЧММСС\i0" pattern="\&apos;\d{14}\&apos;" /> <!-- 20171231235959 -->
-					<Keyword descr="Дата \iГГГГММДДЧЧММСС\i0" pattern="&apos;\d{14}&apos;" /> <!-- 20171231235959 -->
-				</Keywords>
-			</Style>
-
-			<!-- Вариант 2 констант типа Дата -->
-			<Style id="constant_Date2" name="Константа Дата2" bold="1"
-					clr="#CCCCCC" bkclr="#0000FFFF"
-					box_style="2" box_clr="#000000" box_bkg_clr="#FFFFFFFF" >
+			<Style id="constant_Date" name="Константа Дата" bold="1"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="0"
+					extend="false" exclude="false" override="true"
+					clr="Number" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
 				<Blocks>
 					<Regexp text="\&apos;\d{8}\&apos;" />
 					<Regexp text="&apos;\d{8}&apos;" />
@@ -187,9 +174,9 @@
 			</Style>
 
 			<Style id="constant_Digits" name="Константа Число"
-					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="0"
 					extend="false" exclude="false" override="true"
-					clr="#006464" bkclr="#FF0000FF"
+					clr="Number" bkclr="#FFFFFFFF"
 					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
 				<Keywords>
 					<Keyword text="NULL" descr="" />
@@ -201,13 +188,21 @@
 				</Keywords>
 			</Style>
 
-			<Style id="constant_String" text="1" name="Константа Строка" clr="Strings">
+			<Style id="constant_String" name="Константа Строка" text="1"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="0"
+					extend="false" exclude="false" override="true"
+					clr="Strings" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
 				<Blocks>
 					<Block open="&quot;" close="&quot;" />
 				</Blocks>
 			</Style>
 
-			<Style id="functions" name="Встроенные методы" clr="Keyword3">
+			<Style id="functions" name="Встроенные методы"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="0"
+					extend="false" exclude="false" override="true"
+					clr="Keyword3" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
 				<Keywords pattern="%CurrentWord%(%|%)">
 					<!-- Глобальный контекст -->
 					<!-- Процедуры и функции для работы со строками -->
@@ -620,10 +615,18 @@
 				</Keywords>
 			</Style>
 
-			<Style id="variable" name="Переменные" clr="#0000FF" bkclr="#FF0000FF">
+			<Style id="variable" name="Переменные"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="0"
+					extend="false" exclude="false" override="true"
+					clr="Keyword3" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
 			</Style>
 
-			<Style id="metadata" name="Метаданные" clr="Keyword2">
+			<Style id="metadata" name="Метаданные"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="0"
+					extend="false" exclude="false" override="true"
+					clr="Keyword2" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
 				<Keywords pattern="%CurrentWord%.">
 					<!-- Метаданные -->
 					<Keyword text="Константа" descr="" />
@@ -679,7 +682,11 @@
 				</Keywords>
 			</Style>
 
-			<Style id="keywords" name="Ключевые слова" clr="Keyword">
+			<Style id="keywords" name="Ключевые слова"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="0"
+					extend="false" exclude="false" override="true"
+					clr="Keyword" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
 				<Keywords>
 					<Keyword text="Перем" descr="Начало описания \iпеременных\i0" />
 					<Keyword text="Экспорт" descr="" />
@@ -707,7 +714,11 @@
 				</Keywords>
 			</Style>
 
-			<Style id="operators" name="Операторы" clr="Operators">
+			<Style id="operators" name="Операторы"
+					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="0"
+					extend="false" exclude="false" override="true"
+					clr="Operators" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
 				<Keywords>
 					<Keyword text="+" descr="" />
 					<Keyword text="-" descr="" />
@@ -721,81 +732,50 @@
 				</Keywords>
 			</Style>
 
-			<Style id="preprocessor" name="Препроцессор" clr="Preprocessor">
+			<Style id="preprocessor" name="Препроцессор"
+					bold="1" italic="0" underline="0" strikeout="0" hotspot="0" overview="0"
+					extend="false" exclude="false" override="true"
+					clr="Preprocessor" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
 				<Blocks>
 					<Block open="#" close="\n" />
 					<Block open="&amp;" close="\n" />
 				</Blocks>
 			</Style>
 
-			<Style id="preprocessor_keywords" name="Команды препроцессора" bold="1">
+			<Style id="preprocessor_keywords" name="Команды препроцессора"
+					bold="1" italic="0" underline="0" strikeout="0" hotspot="0" overview="0"
+					extend="false" exclude="false" override="true"
+					clr="Preprocessor" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
 				<Containers>
 					<Open id="preprocessor"/>
 				</Containers>
 				<Keywords>
+					<!-- Команды препроцессора # -->
 					<Keyword text="Если" descr="" />
 					<Keyword text="Иначе" descr="" />
 					<Keyword text="ИначеЕсли" descr="" />
 					<Keyword text="КонецЕсли" descr="" />
+					<!-- Команды препроцессора & -->
 					<Keyword text="НаКлиенте" descr="" />
 					<Keyword text="НаСервере" descr="" />
 					<Keyword text="Тогда" descr="" />
 					<Keyword text="НаСервереБезКонтекста" descr="" />
 					<Keyword text="НаКлиентеНаСервереБезКонтекста" descr="" />
+					<!-- Области текста -->
 					<Keyword text="Область" descr="" />
 					<Keyword text="КонецОбласти" descr="" />
 				</Keywords>
 			</Style>
 
-			<!--
-			<Style id="current_identifier" name="Текущий идентификатор"
-					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
-					extend="false" exclude="false" override="true"
-					clr="#000000" bkclr="#FFFF00FF"
-					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
-				<Keywords>
-					<Keyword text="" descr="" />
-				</Keywords>
-			</Style>
-
-			<Style id="selected_identifier" name="Выбранный идентификатор"
-					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
-					extend="false" exclude="false" override="true"
-					clr="#000000" bkclr="#FFD700FF"
-					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
-				<Keywords>
-					<Keyword text="" descr="" />
-				</Keywords>
-			</Style>
-			-->
-
-			<!--
-			<Style id="other" name="Прочее"
-					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
-					extend="false" exclude="false" override="true"
-					clr="#000000" bkclr="#FFFFFFFF"
-					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
-			</Style>
-
-			<Style id="search_results" name="Цвет фона результатов поиска"
-					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
-					extend="false" exclude="false" override="true"
-					clr="#000000" bkclr="#F3EECDFF"
-					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
-			</Style>
-
-			<Style id="context_help" name="Цвет фона контекстной подсказки"
-					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
-					extend="false" exclude="false" override="true"
-					clr="#000000" bkclr="#FFFAD9FF"
-					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
-			</Style>
-			-->
-
 			<!-- Добавленнные стили, которых нет в 1С -->
 
 			<Style id="guid" name="Уникальный идентификатор"
-					clr="#33CCCC" bkclr="#FFFFFFFF"
+					bold="1" italic="0" underline="0" strikeout="0" hotspot="0" overview="0"
+					extend="false" exclude="false" override="true"
+					clr="Tag" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false"
 					box_style="2" box_clr="#000000" box_bkg_clr="#FFFFFFFF" >
 				<Blocks>
 					<Regexp text="&quot;\S{8}\-\S{4}\-\S{4}\-\S{4}\-\S{12}&quot;" />
@@ -803,7 +783,11 @@
 			</Style>
 
 			<!-- Задачи "СДЕЛАТЬ" -->
-			<Style id="todo" name="Сделать потом" bold="1" overview="1" clr="TODOs">
+			<Style id="todo" name="Сделать потом"
+					bold="1" italic="0" underline="0" strikeout="0" hotspot="0" overview="1"
+					extend="false" exclude="false" override="true"
+					clr="TODOs" bkclr="#FFFFFFFF"
+					abstract="false" dbkclr="false" dstyle="false" box_style="0" >
 				<Containers>
 					<Open id="comment"/>
 				</Containers>
