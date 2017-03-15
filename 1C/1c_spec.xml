@@ -4,7 +4,7 @@
 
 	<FILEINFO author="Bagatckii Aleksei" email="castmax@mail.ru" type="LangSpec"/>
 
-	<SYNTAX id="1c" name="1C" inherit="def_source" inherit_url="defsource_spec.xml" abstract="false" version="0.1"
+	<SYNTAX id="1c" name="1C" inherit="def_source" inherit_url="defsource_spec.xml" abstract="false" version="0.2"
 		required="1.50" preferred="1.60" author="Bagatckii Aleksei" email="castmax@mail.ru">
 
 		<SPECIFICATION>
@@ -13,14 +13,8 @@
 			<FilePattern mask="*.bsl" >
 				<Encoding default="utf-8" bom="true" force="true" />
 			</FilePattern>
-			<!--
-			<SyntaxBlocks>
-				<Block open="Перем "/>
-			</SyntaxBlocks>
-			-->
 			<Operators override="true">?%-+/*=&lt;&gt;,;.:[]()</Operators>
 			<LineEnd>;</LineEnd>
-			<!-- <EscapeChar>\</EscapeChar> -->
 			<Delimiters override="true">&quot;'#</Delimiters>
 			<Words init="A-Za-z_А-Яа-я_" override="true">0-9A-Za-zА-Яа-я_</Words>
 			<WrapBy override="true">(),</WrapBy>
