@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="hemcr" name="HE Macros" inherit="xml" inherit_url="xml_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.hemcr"/>
+    </SPECIFICATION>
+  </SYNTAX>
+</XMLConfigSettings>

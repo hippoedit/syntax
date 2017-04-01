@@ -1,0 +1,18 @@
+#include "he_utils.js"	' generic helper functions
+
+Dim output
+Set output = Application.Output("")
+	
+output.clear() ' clean output from old text
+
+output.writeln("HippoEDIT version: " & Application.Version)
+output.writeln("HippoEDIT path: " & Application.Path)
+
+output.writeln("")
+
+output.writeln("Script Name: " + Application.ScriptName)
+For i = LBound(Application.ScriptArguments) to UBound(Application.ScriptArguments)
+	output.writeln("Argument " & i & ": " & aAruments(i))
+Next
+
+alert("Hello World")

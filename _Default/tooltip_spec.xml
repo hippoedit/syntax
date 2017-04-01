@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+	<FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+	<SYNTAX id="tooltip" name="Tooltip Window" abstract="true" readonly="true">
+    <SPECIFICATION>
+      <Bars overview="false"/>
+      <Display outlining="false" indicator_margin="false" current_line="false" guides="false"/>
+    </SPECIFICATION>
+    <STYLES>
+			<Style id="window" name="Window" dstyle="true" clr="Tooltip Text" bkclr="Tooltip Back"/>
+		</STYLES>
+		<FONTS>
+			<Font only_monospaced="false" size="8" face_name="Tahoma" charset="1"/>
+		</FONTS>
+	</SYNTAX>
+</XMLConfigSettings>

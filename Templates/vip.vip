@@ -1,0 +1,37 @@
+interface TestOracleHardLinks;
+  create view as select KATMC.NAME, X$USERS.XU$LOGINNAME from KATMC, x$users where ((katmc.nrec /== x$users.atl_nrec));
+
+  screen DummyScreen;
+    notablenavigation;
+    buttons cmOk;
+<<
+
+  <.Go.>
+ >>
+  end;
+
+  handleevent
+    cmOk: {
+      if getfirst KATMC where ((katmc.nrec /== x$users.atl_nrec)) <> tsOk {}
+ 
+      Message('getfirst katmc where done, ' + x$users.xu$loginname);
+
+      if getfirst KATMC <> tsOk {}
+
+      Message('getfirst katmc done');
+
+      _loop KATMC {}
+
+      Message('loop katmc done');
+
+      _loop x$users{}
+
+      Message('loop x$users done');
+
+      if getfirst x$users <> tsOk {}
+
+      Message('getfirst x$users done');
+
+    }
+  end;
+end.

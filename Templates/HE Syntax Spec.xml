@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="%USERNAME%" type="LangSpec" />
+  <SYNTAX id="%Enter unique string id of new syntax%" name="%Enter name of new syntax%" inherit="def_source">
+    <SPECIFICATION>
+      <FilePattern mask="%Enter file pattern%"/>
+      <CaseSensitive>true</CaseSensitive>
+      <Delimiters>,;.?:&amp;/+%%\*=|!~^#&lt;&gt;</Delimiters>
+      <OpenClose>()[]''&quot;&quot;</OpenClose>
+      <Words>0-9A-Za-z_</Words>
+      <Numbers>0-9.</Numbers>
+    </SPECIFICATION>
+    <SCOPES>
+    </SCOPES>
+    <LABELS>
+    </LABELS>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="string"/>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="0" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;">
+            <Close text="\n"/>
+          </Block>
+        </Blocks>
+      </Style>
+      <Style name="Keywords" image="13" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="keyword" descr="This is a keyword"/>
+          <Keyword text="function" descr="This is a function, it will complete with () at the end" pattern="%%CurrentWord%%(%%|%%)"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>
