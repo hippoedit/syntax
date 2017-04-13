@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
 <XMLConfigSettings>
   <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
-  <SYNTAX id="csv" name="CSV (Comma Separated Values)" inherit="def_text" inherit_url="deftext_spec.xml">
+  <SYNTAX id="csv" name="CSV" inherit="def_text" inherit_url="deftext_spec.xml">
     <SPECIFICATION>
       <FilePattern mask="*.csv"/>
       <OpenClose>()[]{}''&quot;&quot;</OpenClose>
