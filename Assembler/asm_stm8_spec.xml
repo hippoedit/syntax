@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <!-- for Stm8 Assemler syntax of 'COSMIC Software STM8 Macro-Assembler' -->
+  <FILEINFO author="Andrey Zhiltsov, aka AZh" type="LangSpec"/>
+  <SYNTAX id="stm8asmcosmic" name="STM8-ASM(Cosmic)" inherit="asm_base" inherit_url="asm_base_spec.xml">
+
+    <SPECIFICATION>
+      <Words>0-9A-Za-z_.$</Words>
+      <FilePattern mask="*.s;*.asm;*.asm8;*.stm8;*.inc"/>
+    </SPECIFICATION>
+
+    <LABELS>
+    
+      <Label group="Label" match="^\s*(\w+:\s+EQU)\s" name="\1" image="10" style="label_list">
+        <Containers open="label"/>
+        <Highlight in="\1" first="\w+" style="equlabel" global="true"/>
+      </Label>
+    
+      <Label group="Label" match="^\s*([\.\w]+|\d+\$):" name="\1" image="9" style="label_list">
+        <Containers open="label"/>
+        <Highlight in="\1" first="[\w\.\d\$]+" style="label_usage" global="false"/>
+      </Label>
+      
+      <Label group="Macro" match="^\s*\.macro ([\.\w]+)" name="\1" image="" style="macro"/>
+      
+    </LABELS>
+
+    <SCOPES>
+      <Scope open="[" close="]"/>
+      <Scope open="if" middle="else" close="endif" strict="false" sent_start="true"/>
+      <Scope open="if" middle="elsec" close="endc" strict="false" sent_start="true"/>
+      <Scope open="ifc" middle="elsec" close="endc" strict="false" sent_start="true"/>
+      <Scope open="ifeq" middle="elsec" close="endc" strict="false" sent_start="true"/>
+      <Scope open="ifge" middle="elsec" close="endc" strict="false" sent_start="true"/>
+      <Scope open="ifgt" middle="elsec" close="endc" strict="false" sent_start="true"/>
+      <Scope open="ifle" middle="elsec" close="endc" strict="false" sent_start="true"/>
+      <Scope open="iflt" middle="elsec" close="endc" strict="false" sent_start="true"/>
+      <Scope open="ifdef" middle="elsec" close="endc" strict="false" sent_start="true"/>
+      <Scope open="ifndef" middle="elsec" close="endc" strict="false" sent_start="true"/>
+      <Scope open="ifne" middle="elsec" close="endc" strict="false" sent_start="true"/>
+      <Scope open="ifnc" middle="elsec" close="endc" strict="false" sent_start="true"/>
+      <Scope open="ifnc" middle="elsec" close="endc" strict="false" sent_start="true"/>
+      <Scope open="macro" close="endm" sent_start="true" scope="1" has_name="true"/>
+      <Scope open="&gt;" close="&lt;" has_name="true" decoration="true">
+        <Containers open="format_tag"/>
+      </Scope>
+
+    </SCOPES>
+
+    <STYLES>
+    
+      <Style id="equlabel" bold="1" italic="0" underline="0" clr="Highlight 1" bkclr="#FFFFFFFF"/>
+      <Style id="label_list" bold="1" italic="0" underline="0" clr="Symbol control" bkclr="#FFFFFFFF"/>
+    
+      <Style id="label_usage" name="Label usage" underline="0" hotspot="1" clr="Highlight 2" bkclr="#FFFFFFFF"/>
+      
+      <Style id="format_tag" name="Format tags" bold="0" italic="0" underline="0" clr="Format tag" bkclr="#FFFFFFFF">
+        <Blocks>
+            <Block open=";&gt;" close="\n"/>
+            <Block open=";&lt;" close="\n"/>
+        </Blocks>
+      </Style>
+      
+      <!-- preprocessor -->
+      <Style id="preprocessor" name="Preprocessor" bold="0" italic="1" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Regexp text="^\s*#include(\s|$)"/>
+          <Regexp text="^\s*#define(\s|$)"/>
+          <Regexp text="^\s*#if(\s|$)"/>
+          <Regexp text="^\s*#ifdef(\s|$)"/>
+          <Regexp text="^\s*#ifndef(\s|$)"/>
+          <Regexp text="^\s*#else(\s|$)"/>
+          <Regexp text="^\s*#endif(\s|$)"/>
+          <Regexp text="^\s*#error(\s|$)"/>
+        </Blocks>
+      </Style>
+
+      <Style id="label" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Regexp text="^\s*[\.\w]+:"/>
+          <Regexp text="^\s*[\d]+\$:"/>
+        </Blocks>
+      </Style>
+
+      <!-- special operators -->
+      <Style id="special_ops" name="Section control directives" text="1" bold="0" italic="0" underline="0" clr="Symbol control" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Regexp open="\sdefined" open_trail="\(" close="\)|"/>
+          <Regexp open="\shigh" open_trail="\(" close="\)|"/>
+          <Regexp open="\slow" open_trail="\(" close="\)|"/>
+          <Regexp open="\spage" open_trail="\(" close="\)|"/>
+        </Blocks>
+      </Style>
+      
+      <Style id="number" extend="true">
+        <Blocks>
+          <!--  0xFFFF, $FFFF, 0FFFFh  -->
+          <Regexp text="0x[0-9A-Fa-f]+" lead="[^\w]"/>
+          <Regexp text="\$[0-9A-Fa-f]+" lead="[^\w]"/>
+          <Regexp text="0[0-9A-Fa-f]+h" lead="[^\w]"/>
+          <!-- Binary: 0b1010 -->
+          <Regexp text="%[01]+" lead="[^\w]"/>
+          <Regexp text="[01]+b" lead="[^\w]"/>
+          <!-- Octal: 01234567 -->
+          <Regexp text="@[0-7]+" lead="[^\w]"/>
+          <Regexp text="[0-7]+q" lead="[^\w]"/>
+          <!-- Decimal are part built-in -->
+	      <Regexp text="[0-9]+d" lead="[^\w]"/>
+        </Blocks>
+      </Style>
+
+      <!-- Comments  -->
+      <Style id="comment" extend="true">
+        <Blocks>
+          <Block open=";" close="\n"/>
+        </Blocks>
+      </Style>
+
+      <Style id="string" extend="true">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+
+      <Style id="operator" extend="true">
+        <Keywords>
+          <Keyword text="&gt;&gt;" descr="Logical shift right."/>
+          <Keyword text="&lt;&lt;" descr="Logical shift left."/>
+          <Keyword text="&amp;&amp;" descr="Logical AND."/>
+          <Keyword text="||" descr="Logical OR."/>
+          <Keyword text="XOR" descr="Logical exclusive OR."/>
+          <Keyword text="==" descr="Equal."/>
+          <Keyword text="&lt;&gt;" descr="Not equal."/>
+          <Keyword text="!=" descr="Not equal."/>
+          <Keyword text="UGT" descr="Unsigned greater than."/>
+          <Keyword text="ULT" descr="Unsigned less than."/>
+          <Keyword text="&gt;=" descr="Greater than or equal."/>
+          <Keyword text="&lt;=" descr="Less than or equal."/>
+        </Keywords>
+      </Style>
+
+      <Style id="macro" name="Macro" image="13" bold="1" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF"/>
+
+      <Style name="Command Not Branched" image="13" bold="1" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <!-- STM8 instructions -->
+          <Keyword text="ADC"/>
+          <Keyword text="ADD"/>
+          <Keyword text="ADDW"/>
+          <Keyword text="AND"/>
+          <Keyword text="BCCM"/>
+          <Keyword text="BCP"/>
+          <Keyword text="BCPL"/>
+          <Keyword text="BKPT"/>
+          <Keyword text="BREAK"/>
+          <Keyword text="BRES"/>
+          <Keyword text="BSET"/>
+          <Keyword text="CCF"/>
+          <Keyword text="CLR"/>
+          <Keyword text="CLRW"/>
+          <Keyword text="CP"/>
+          <Keyword text="CPW"/>
+          <Keyword text="CPL"/>
+          <Keyword text="CPLW"/>
+          <Keyword text="DEC"/>
+          <Keyword text="DECW"/>
+          <Keyword text="DIV"/>
+          <Keyword text="DIVW"/>
+          <Keyword text="EXG"/>
+          <Keyword text="EXGW"/>
+          <Keyword text="HALT"/>
+          <Keyword text="INC"/>
+          <Keyword text="INCW"/>
+          <Keyword text="LD"/>
+          <Keyword text="LDF"/>
+          <Keyword text="LDW"/>
+          <Keyword text="MOV"/>
+          <Keyword text="MUL"/>
+          <Keyword text="NEG"/>
+          <Keyword text="NEGW"/>
+          <Keyword text="NOP"/>
+          <Keyword text="OR"/>
+          <Keyword text="POP"/>
+          <Keyword text="POPW"/>
+          <Keyword text="PUSH"/>
+          <Keyword text="PUSHW"/>
+          <Keyword text="RCF"/>
+          <Keyword text="RIM"/>
+          <Keyword text="RLC"/>
+          <Keyword text="RLCW"/>
+          <Keyword text="RLWA"/>
+          <Keyword text="RRC"/>
+          <Keyword text="RRCW"/>
+          <Keyword text="RRWA"/>
+          <Keyword text="RVF"/>
+          <Keyword text="SBC"/>
+          <Keyword text="SCF"/>
+          <Keyword text="SIM"/>
+          <Keyword text="SLA"/>
+          <Keyword text="SLAW"/>
+          <Keyword text="SLL"/>
+          <Keyword text="SLLW"/>
+          <Keyword text="SRA"/>
+          <Keyword text="SRAW"/>
+          <Keyword text="SRL"/>
+          <Keyword text="SRLW"/>
+          <Keyword text="SUB"/>
+          <Keyword text="SUBW"/>
+          <Keyword text="SWAP"/>
+          <Keyword text="SWAPW"/>
+          <Keyword text="TNZ"/>
+          <Keyword text="TNZW"/>
+          <Keyword text="TRAP"/>
+          <Keyword text="WFE"/>
+          <Keyword text="WFI"/>
+          <Keyword text="XOR"/>
+        </Keywords>
+      </Style>
+
+      <Style name="Command Branched" image="13" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <!-- STM8 branch instructions -->
+          <Keyword text="BTJF"/>
+          <Keyword text="BTJT"/>
+          <Keyword text="CALL"/>
+          <Keyword text="CALLF"/>
+          <Keyword text="CALLR"/>
+          <Keyword text="IRET"/>
+          <Keyword text="JP"/>
+          <Keyword text="JPF"/> 
+          <Keyword text="JRA"/>
+          <Keyword text="JRC"/> 
+          <Keyword text="JREQ"/>
+          <Keyword text="JRF"/> 
+          <Keyword text="JRH"/>
+          <Keyword text="JRIH"/> 
+          <Keyword text="JRIL"/>
+          <Keyword text="JRM"/> 
+          <Keyword text="JRMI"/> 
+          <Keyword text="JRNC"/>
+          <Keyword text="JRNE"/> 
+          <Keyword text="JRNH"/> 
+          <Keyword text="JRNM"/>
+          <Keyword text="JRNV"/> 
+          <Keyword text="JRPL"/> 
+          <Keyword text="JRSGE"/>
+          <Keyword text="JRSGT"/> 
+          <Keyword text="JRSLE"/> 
+          <Keyword text="JRSLT"/>
+          <Keyword text="JRT"/> 
+          <Keyword text="JRUGE"/> 
+          <Keyword text="JRUGT"/>
+          <Keyword text="JRULE"/> 
+          <Keyword text="JRULT"/> 
+          <Keyword text="JRV"/>
+          <Keyword text="JR"/> 
+          <Keyword text="RET"/> 
+          <Keyword text="RETF"/>
+        </Keywords>
+      </Style>
+
+      <Style name="Registers" image="13" bold="1" italic="0" underline="0" clr="Highlight 4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="A"/>
+          <Keyword text="X"/>
+          <Keyword text="XL"/>
+          <Keyword text="XH"/>
+          <Keyword text="Y"/>
+          <Keyword text="YL"/>
+          <Keyword text="YH"/>
+          <Keyword text="PC"/>
+          <Keyword text="PCL"/>
+          <Keyword text="PCH"/>
+          <Keyword text="PCE"/>
+          <Keyword text="SP"/>
+          <Keyword text="CC"/>
+        </Keywords>
+      </Style>
+
+      <!-- Conditional assembly -->
+      <Style id="symbctr" name="Symbol control directives" text="1" bold="0" italic="0" underline="0" clr="Keyword5" bkclr="#FFFFFFFF">
+        <Keywords>
+            <Keyword text="if"/>
+            <Keyword text="ifc"/>
+            <Keyword text="ifge"/>
+            <Keyword text="ifgt"/>
+            <Keyword text="ifdef"/>
+            <Keyword text="ifeq"/>
+            <Keyword text="ifle"/>
+            <Keyword text="iflt"/>
+            <Keyword text="ifndef"/>
+            <Keyword text="ifne"/>
+            <Keyword text="ifnc"/>
+            <Keyword text="else"/>
+            <Keyword text="elsec"/>
+            <Keyword text="endif"/>
+            <Keyword text="endc"/>
+        </Keywords>
+      </Style>
+      <!-- Assembler control directives -->
+      <Style id="assmctr" name="Assembler control directives" text="1" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="align"/>
+          <Keyword text="base"/>
+          <Keyword text="clist"/>
+          <Keyword text="dlist"/>
+          <Keyword text="list"/>
+          <Keyword text="nolist"/>
+          <Keyword text="nopage"/>
+          <Keyword text="even"/>
+          <Keyword text="fail"/>
+          <Keyword text="org"/>
+          <Keyword text="spc"/>
+          <Keyword text="title"/>
+          <Keyword text="tabs"/>
+          <Keyword text="page"/>
+          <Keyword text="plen"/>
+          <Keyword text="end"/>
+        </Keywords>
+      </Style>
+
+      <Style id="value_assigment" name="Value assignment directives" image="6" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+        <!-- Value assignment and cross named directives -->
+        <Keywords>
+          <Keyword text="equ"/>
+          <Keyword text="set"/>
+          <Keyword text="lit"/>
+          <Keyword text="xref"/>
+          <Keyword text="xref.b"/>
+          <Keyword text="xbit"/>
+          <Keyword text="xbit.b"/>
+          <Keyword text="xdef"/>
+          <Keyword text="wdef"/>
+        </Keywords>
+      </Style>
+
+      <Style id="ddefalloc_control" name="Data definition or allocation directives" image="6" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <!-- Data definition or allocation directives -->
+        <Keywords>
+          <Keyword text="DC"/>
+          <Keyword text="DC.B"/>
+          <Keyword text="DC.W"/>
+          <Keyword text="DC.L"/>
+          <Keyword text="DCB"/>
+          <Keyword text="DCB.B"/>
+          <Keyword text="DCB.W"/>
+          <Keyword text="DCB.L"/>
+          <Keyword text="DS"/>
+          <Keyword text="DS.B"/>
+          <Keyword text="DS.W"/>
+          <Keyword text="DS.L"/>
+        </Keywords>
+      </Style>
+      <!-- Sections e.t.c. -->
+      <Style id="sections" name="Section control directives" text="1" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="section"/>
+          <Keyword text="switch"/>
+          <Keyword text="bsct"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>
