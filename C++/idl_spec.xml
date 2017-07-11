@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
 <XMLConfigSettings>
   <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
-  <SYNTAX id="idl" name="IDL" inherit="cbased" inherit_url="cbased_spec.xml">
+  <SYNTAX id="idl" name="IDL" version="1.1" inherit="cbased" inherit_url="cbase_spec.xml">
     <SPECIFICATION>
       <FilePattern mask="*.idl"/>
     </SPECIFICATION>
@@ -15,6 +15,9 @@
     <SCOPES>
       <Scope open="[" close="]"/>
     </SCOPES>
+    <LABELS>
+      <Label group="Data Type" match="(enum|union|interface|struct)\s+(\w+)" name="\2" descr="\1 \2" scope="1" image="6" style="data_types" highlight="\2"/>
+    </LABELS>
     <STYLES>
       <Style name="Preprocessor Keywords" inherit="cpp:preprocessor_keyword" bold="0" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
         <Containers>
@@ -35,6 +38,12 @@
         <Containers>
           <Open id="preprocessor"/>
         </Containers>
+      </Style>
+      <Style id="function" name="Method" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF"/>
+      <Style id="guid" name="GUID" image="7" clr="Number" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Regexp text="[{(][0-9A-Fa-f]{8}-(?:[0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}[)}]"/>
+        </Blocks>
       </Style>
       <Style name="Attributes" image="13" bold="0" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">
         <Keywords>
@@ -116,17 +125,11 @@
           <Keyword text="wire_marshal"/>
         </Keywords>
       </Style>
-      <Style name="DataTypes" image="12" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+      <Style id="data_types" name="DataTypes" image="12" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
         <Keywords>
-          <Keyword text="auto"/>
-          <Keyword text="boolean"/>
           <Keyword text="BSTR"/>
-          <Keyword text="byte"/>
-          <Keyword text="char"/>
-          <Keyword text="double"/>
-          <Keyword text="error_status_t"/>
-          <Keyword text="float"/>
-          <Keyword text="handle_t"/>
+          <Keyword text="DWORD_PTR"/>
+          <Keyword text="HANDLE_PTR"/>
           <Keyword text="HBITMAP"/>
           <Keyword text="HENHMETAFILE"/>
           <Keyword text="HGLOBAL"/>
@@ -134,23 +137,36 @@
           <Keyword text="HMETAFILE_PICT"/>
           <Keyword text="HPALETTE"/>
           <Keyword text="HRESULT"/>
-          <Keyword text="hyper"/>
-          <Keyword text="int"/>
-          <Keyword text="IUnknown"/>
           <Keyword text="IDispatch"/>
           <Keyword text="IDispatchEx"/>
-          <Keyword text="long"/>
+          <Keyword text="IUnknown"/>
+          <Keyword text="LONG"/>
+          <Keyword text="OLE_COLOR"/>
           <Keyword text="SAFEARRAY"/>
+          <Keyword text="UINT"/>
+          <Keyword text="ULONG"/>
+          <Keyword text="VARIANT"/>
+          <Keyword text="VARIANT_BOOL"/>
+          <Keyword text="__int32"/>
+          <Keyword text="__int64"/>
+          <Keyword text="auto"/>
+          <Keyword text="boolean"/>
+          <Keyword text="byte"/>
+          <Keyword text="char"/>
+          <Keyword text="double"/>
+          <Keyword text="error_status_t"/>
+          <Keyword text="float"/>
+          <Keyword text="handle_t"/>
+          <Keyword text="hyper"/>
+          <Keyword text="int"/>
+          <Keyword text="long"/>
           <Keyword text="short"/>
           <Keyword text="signed"/>
           <Keyword text="small"/>
           <Keyword text="unsigned"/>
           <Keyword text="variant"/>
-          <Keyword text="VARIANT_BOOL"/>
           <Keyword text="void"/>
           <Keyword text="wchar_t"/>
-          <Keyword text="__int32"/>
-          <Keyword text="__int64"/>
         </Keywords>
       </Style>
       <Style name="Keywords" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
@@ -171,6 +187,14 @@
           <Keyword text="switch"/>
           <Keyword text="typedef"/>
           <Keyword text="union"/>
+        </Keywords>
+      </Style>
+      <Style id="constants" name="Constants" image="7" bold="1" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="DISPID_NEWENUM"/>
+          <Keyword text="DISPID_VALUE"/>
+          <Keyword text="VARIANT_FALSE"/>
+          <Keyword text="VARIANT_TRUE"/>
         </Keywords>
       </Style>
     </STYLES>

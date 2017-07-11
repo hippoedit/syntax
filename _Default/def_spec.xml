@@ -52,25 +52,25 @@
       <Style id="url" name="WWW addresses and E-Mails" text="2" underline="1" clr="#FFFFFFFF" bkclr="#FFFFFFFF" hotspot="1" bold="2" italic="2">
         <Blocks>
           <Block open="http://">
-            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;'()*+,;="/>
+            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;*+,;="/>
           </Block>
           <Block open="ftp://">
-            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;'()*+,;="/>
+            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;*+,;="/>
           </Block>
           <Block open="sftp://">
-            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;'()*+,;="/>
+            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;*+,;="/>
           </Block>
           <Block open="https://">
-            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;'()*+,;="/>
+            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;*+,;="/>
           </Block>
           <Block open="file://">
-            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;'()*+,;="/>
+            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;*+,;="/>
           </Block>
           <Block open="irc://">
-            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;'()*+,;="/>
+            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;*+,;="/>
           </Block>
           <Block open="mailto:">
-            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;'()*+,;="/>
+            <Close noneof="0-9A-Za-z--._~%:\/?#[]@!$&amp;*+,;="/>
           </Block>
         </Blocks>
       </Style>

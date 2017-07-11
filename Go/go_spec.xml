@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
 <XMLConfigSettings>
   <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
-  <SYNTAX id="go" name="Go" inherit="def_source" inherit_url="defsource_spec.xml">
+  <SYNTAX id="go" name="Go" inherit="def_source" inherit_url="defsource_spec.xml" version="1.1">
     <SPECIFICATION>
       <CaseSensitive>true</CaseSensitive>
       <OpenClose>()[]{}''""``</OpenClose>
@@ -15,7 +15,7 @@
       <Bars navigation="true"/>
     </SPECIFICATION>
     <LABELS>
-      <Label group="Function" match="func\s+([^\{]+?)\s+?\{" name="\1" descr="\1" scope="1" image="18"/>
+      <Label group="Function" match="func\s+(?:(\([^\)]+?\))\s+)?(\w+)\s*(\([^\)]+?\))\s*(?:([^\{]+?)\s*)?\{" name="\1 \2 \3 \4" descr="\1" scope="1" image="18"/>
       <Label group="" match="(if|switch|while|for)\s*\(((?:[^\(\)]|\\r|\\n|\((?-1)\))*+)\)\s*\{" name="\1" descr="\1 (\2)" scope="1" image="13" navigation="false"/>            
     </LABELS>
     <SCOPES>
