@@ -50,8 +50,8 @@
 
     <STYLES>
     
-      <Style id="equlabel" bold="1" italic="0" underline="0" clr="Highlight 1" bkclr="#FFFFFFFF"/>
-      <Style id="label_list" bold="1" italic="0" underline="0" clr="Symbol control" bkclr="#FFFFFFFF"/>
+      <Style id="equlabel" name="Equ Label" bold="1" italic="0" underline="0" clr="Highlight 1" bkclr="#FFFFFFFF"/>
+      <Style id="label_list" name="Label List" bold="1" italic="0" underline="0" clr="Symbol control" bkclr="#FFFFFFFF"/>
     
       <Style id="label_usage" name="Label usage" underline="0" hotspot="1" clr="Highlight 2" bkclr="#FFFFFFFF"/>
       
