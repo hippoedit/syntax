@@ -7,7 +7,7 @@
       <FilePattern mask="*.mak;*.mk"/>
       <CaseSensitive>true</CaseSensitive>
       <EscapeChar>\</EscapeChar>
-      <Words init"A-Za-z_.^">0-9A-Za-z_</Words>
+      <Words init="A-Za-z_.^">0-9A-Za-z_</Words>
       <Delimiters>~!&amp;|\;&quot;',$%*?@^</Delimiters>
       <Operators>()[]{}+-*/%=&lt;&gt;:;?</Operators>
       <Bars navigation="true"/>
@@ -17,7 +17,7 @@
       <Label group="Variable" match="^\s*(\w+)\s*(?:=|\?=|:=|\+=)(.+?)$" name="\1" image="6" descr="\2" style="variable" highlight="\1"/>
       <Label group="Label" match="^(\w+:)" name="\1" image="9" style="label">
         <Containers open="label"/>
-		<Highlight in="\1" first="\w+" style="label_usage" global="true"/>
+        <Highlight in="\1" first="\w+" style="label_usage" global="true"/>
       </Label>
     </LABELS>
     <SCOPES>
@@ -151,7 +151,7 @@
           <Regexp text="^[\w]+:"/>
         </Blocks>
       </Style>
-	  <Style id="label_usage" name="Label Usage" underline="1" hotspot="1" clr="Keyword" bkclr="#FFFFFFFF">
+      <Style id="label_usage" name="Label Usage" underline="1" hotspot="1" clr="Keyword" bkclr="#FFFFFFFF">
         <Containers>
           <Open id="normal"/>
           <Open id="var_usage"/>
