@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="make" name="Makefile" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.mak;*.mk"/>
+      <CaseSensitive>true</CaseSensitive>
+      <EscapeChar>\</EscapeChar>
+      <Words init"A-Za-z_.^">0-9A-Za-z_</Words>
+      <Delimiters>~!&amp;|\;&quot;',$%*?@^</Delimiters>
+      <Operators>()[]{}+-*/%=&lt;&gt;:;?</Operators>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <LABELS>
+      <Label group="Macro" match="define\s+([\w\.\/]+)\s+(.+?)$" name="\1" image="12" descr="\1 \2" context="macro" style="function" highlight="\1"/>
+      <Label group="Variable" match="^\s*(\w+)\s*(?:=|\?=|:=|\+=)(.+?)$" name="\1" image="6" descr="\2" style="variable" highlight="\1"/>
+      <Label group="Label" match="^(\w+:)" name="\1" image="9" style="label">
+        <Containers open="label"/>
+		<Highlight in="\1" first="\w+" style="label_usage" global="true"/>
+      </Label>
+    </LABELS>
+    <SCOPES>
+      <Scope open="ifeq" middle="else" close="endif" strict="false" sent_start="true"/>
+      <Scope open="ifneq" middle="else" close="endif" strict="false" sent_start="true"/>
+      <Scope open="ifdef" middle="else" close="endif" strict="false" sent_start="true"/>
+      <Scope open="ifndef" middle="else" close="endif" strict="false" sent_start="true"/>
+      <Scope open="define" close="endef" has_name="true" sent_start="true"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="var_usage"/>
+        </Containers>
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+          <Block open="'" close="'"/>
+        </Blocks>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style name="Variable Usage" id="var_usage" clr="Keyword2">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="var_usage"/>
+        </Containers>
+        <Blocks>
+          <Regexp open="\${1,2}\(" close="\)"/>
+        </Blocks>
+      </Style>
+      <Style name="Variables" id="variable" bold="1">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="var_usage"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="CURDIR"/>
+          <Keyword text="MAKE"/>
+          <Keyword text="MAKEFILES"/>
+          <Keyword text="MAKESHELL"/>
+          <Keyword text="MAKEFLAGS"/>
+          <Keyword text="MAKELEVEL"/>
+          <Keyword text="MAKECMDGOALS"/>
+          <Keyword text="MFLAGS"/>
+          <Keyword text="SHELL"/>
+          <Keyword text="SUFFIXES"/>
+          <Keyword text="VPATH"/>
+          <Keyword text=".LIBPATTERNS"/>
+        </Keywords>
+      </Style>
+      <Style name="Targets" clr="Keyword4">
+        <Keywords>
+          <Keyword text=".DEFAULT"/>
+          <Keyword text=".EXPORT_ALL_VARIABLES"/>
+          <Keyword text=".IGNORE"/>
+          <Keyword text=".PHONY"/>
+          <Keyword text=".PRECIOUS"/>
+          <Keyword text=".SILENT"/>
+          <Keyword text=".SUFFIXES"/>
+        </Keywords>
+      </Style>
+      <Style name="Functions" id="function" clr="Keyword3">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="var_usage"/>
+        </Containers>
+        <Keywords>
+          <Keyword text="abspath"/>
+          <Keyword text="addprefix"/>
+          <Keyword text="addsuffix"/>
+          <Keyword text="and"/>
+          <Keyword text="basename"/>
+          <Keyword text="call"/>
+          <Keyword text="dir"/>
+          <Keyword text="error"/>
+          <Keyword text="eval"/>
+          <Keyword text="file"/>
+          <Keyword text="filter"/>
+          <Keyword text="filter-out"/>
+          <Keyword text="findstring"/>
+          <Keyword text="firstword"/>
+          <Keyword text="foreach"/>
+          <Keyword text="join"/>
+          <Keyword text="guile"/>
+          <Keyword text="notdir"/>
+          <Keyword text="if"/>
+          <Keyword text="info"/>
+          <Keyword text="join"/>
+          <Keyword text="lastword"/>
+          <Keyword text="notdir"/>
+          <Keyword text="or"/>
+          <Keyword text="or"/>
+          <Keyword text="origin"/>
+          <Keyword text="patsubst"/>
+          <Keyword text="realpath"/>
+          <Keyword text="shell"/>
+          <Keyword text="sort"/>
+          <Keyword text="strip"/>
+          <Keyword text="subst"/>
+          <Keyword text="suffix"/>
+          <Keyword text="value"/>
+          <Keyword text="warning"/>
+          <Keyword text="wildcard"/>
+          <Keyword text="word"/>
+          <Keyword text="words"/>
+          <Keyword text="wordlist"/>
+        </Keywords>
+      </Style>
+      <Style name="Directives" clr="Keyword">
+        <Keywords>
+          <Keyword text="define"/>
+          <Keyword text="else"/>
+          <Keyword text="endef"/>
+          <Keyword text="endif"/>
+          <Keyword text="export"/>
+          <Keyword text="ifdef"/>
+          <Keyword text="ifeq"/>
+          <Keyword text="ifndef"/>
+          <Keyword text="ifneq"/>
+          <Keyword text="include"/>
+          <Keyword text="override"/>
+          <Keyword text="unexport"/>
+        </Keywords>
+      </Style>
+      <Style id="label" name="Label" bold="0" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Regexp text="^[\w]+:"/>
+        </Blocks>
+      </Style>
+	  <Style id="label_usage" name="Label Usage" underline="1" hotspot="1" clr="Keyword" bkclr="#FFFFFFFF">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="var_usage"/>
+        </Containers>
+      </Style>
+      <Style name="Conventional" clr="Tag">
+        <Keywords>
+          <Keyword text="ALL_CFLAGS"/>
+          <Keyword text="AR"/>
+          <Keyword text="ARFLAGS"/>
+          <Keyword text="AS"/>
+          <Keyword text="ASFLAGS"/>
+          <Keyword text="CC"/>
+          <Keyword text="CFLAGS"/>
+          <Keyword text="CO"/>
+          <Keyword text="COFLAGS"/>
+          <Keyword text="CPP"/>
+          <Keyword text="CPPFLAGS"/>
+          <Keyword text="CTANGLE"/>
+          <Keyword text="CWEAVE"/>
+          <Keyword text="CXX"/>
+          <Keyword text="CXXFLAGS"/>
+          <Keyword text="FC"/>
+          <Keyword text="FFLAGS"/>
+          <Keyword text="FORCE"/>
+          <Keyword text="GET"/>
+          <Keyword text="GFLAGS"/>
+          <Keyword text="INSTALL_DATA"/>
+          <Keyword text="INSTALL_PROGRAM"/>
+          <Keyword text="LD"/>
+          <Keyword text="LDFLAGS"/>
+          <Keyword text="LEX"/>
+          <Keyword text="LFLAGS"/>
+          <Keyword text="MAKEINFO"/>
+          <Keyword text="PC"/>
+          <Keyword text="PFLAGS"/>
+          <Keyword text="RFLAGS"/>
+          <Keyword text="RM"/>
+          <Keyword text="TAGS"/>
+          <Keyword text="TANGLE"/>
+          <Keyword text="TEX"/>
+          <Keyword text="TEXI2DVI"/>
+          <Keyword text="WEAVE"/>
+          <Keyword text="YACC"/>
+          <Keyword text="YACCR"/>
+          <Keyword text="YFLAGS"/>
+          <Keyword text="all"/>
+          <Keyword text="bindir"/>
+          <Keyword text="check"/>
+          <Keyword text="clean"/>
+          <Keyword text="clobber"/>
+          <Keyword text="datadir"/>
+          <Keyword text="dist"/>
+          <Keyword text="distclean"/>
+          <Keyword text="dvi"/>
+          <Keyword text="exec_prefix"/>
+          <Keyword text="includedir"/>
+          <Keyword text="info"/>
+          <Keyword text="infodir"/>
+          <Keyword text="install"/>
+          <Keyword text="installcheck"/>
+          <Keyword text="installdirs"/>
+          <Keyword text="libdir"/>
+          <Keyword text="man0dir"/>
+          <Keyword text="man0ext"/>
+          <Keyword text="man1dir"/>
+          <Keyword text="man1ext"/>
+          <Keyword text="man2dir"/>
+          <Keyword text="man2ext"/>
+          <Keyword text="man3dir"/>
+          <Keyword text="man3ext"/>
+          <Keyword text="man4dir"/>
+          <Keyword text="man4ext"/>
+          <Keyword text="man5dir"/>
+          <Keyword text="man5ext"/>
+          <Keyword text="man6dir"/>
+          <Keyword text="man6ext"/>
+          <Keyword text="man7dir"/>
+          <Keyword text="man7ext"/>
+          <Keyword text="man8dir"/>
+          <Keyword text="man8ext"/>
+          <Keyword text="man9dir"/>
+          <Keyword text="man9ext"/>
+          <Keyword text="mandir"/>
+          <Keyword text="manext"/>
+          <Keyword text="mostlyclean"/>
+          <Keyword text="oldincludedir"/>
+          <Keyword text="prefix"/>
+          <Keyword text="print"/>
+          <Keyword text="realclean"/>
+          <Keyword text="shar"/>
+          <Keyword text="srcdir"/>
+          <Keyword text="statedir"/>
+          <Keyword text="tar"/>
+          <Keyword text="test"/>
+        </Keywords>
+      </Style>
+      <Style name="Operators" id="operator" clr="Operator" extend="true"/>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="string"/>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="number" extend="true">
+        <Blocks>
+          <Block open="0x" noneof="0-9A-Fa-fU"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>
