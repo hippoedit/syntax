@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
 <XMLConfigSettings>
-	<FILEINFO author="HippoEDIT.com" type="LangUser"/>
-	<SYNTAX id="html5" inherit="xml" inherit_url="xml_user.xml">
-		<CodeTemplates>
+  <FILEINFO author="HippoEDIT.com" type="LangUser"/>
+  <SYNTAX id="html5" inherit="xml" inherit_url="xml_user.xml">
+    <CodeTemplates>
       <Template key="&lt;!--" descr="&lt;!--">&lt;!-- %|% --&gt;</Template>
       <Template key="&lt;!doctype" descr="Document type">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot;&gt;</Template>
       <Template key="&lt;a" descr="&lt;a href=&quot;&quot;&gt;...&lt;/a&gt;\nHyperlink">&lt;a href=&quot;%Link URL%&quot;&gt;%Link Text%&lt;/a&gt;%|%</Template>
       <Template key="&lt;abbr" descr="&lt;abbr&gt;...&lt;/abbr&gt;\nAbbreviation">&lt;abbr&gt;%SelectedText%%|%&lt;/abbr&gt;</Template>
       <Template key="&lt;address" descr="&lt;address&gt;...&lt;/address&gt;\nContact information for the author/owner of a document.">&lt;address&gt;%SelectedText%%|%&lt;/address&gt;</Template>
-      <Template key="&lt;are" descr="&lt;area ...&gt;\nArea inside an image-map">&lt;area shape=&quot;%Enter shape%&quot; href=&quot;%URL%&quot; coords=&quot;%Coordinates%&quot; alt=&quot;%Alternative Text%&quot;&gt;%|%\n</Template>
+      <Template key="&lt;area" descr="&lt;area ...&gt;\nArea inside an image-map">&lt;area shape=&quot;%Enter shape%&quot; href=&quot;%URL%&quot; coords=&quot;%Coordinates%&quot; alt=&quot;%Alternative Text%&quot;&gt;%|%\n</Template>
       <Template key="&lt;article" descr="&lt;article&gt;&lt;/article&gt;\nSpecifies independent, self-contained content.">&lt;article&gt;\n%SelectedText%%|%\n&lt;/article&gt;</Template>
       <Template key="&lt;aside" descr="&lt;aside&gt;...&lt;/aside&gt;\nContent aside from the page content">&lt;aside&gt;\n%SelectedText%%|%\n&lt;/aside&gt;</Template>
       <Template key="&lt;audio" descr="&lt;audio&gt;...&lt;/audio&gt;\nSound content">&lt;audio controls&gt;\n\t&lt;source src=&quot;%|%&quot; type=&quot;audio/mpeg&quot;&gt;\n\t Your browser does not support the audio tag.\n&lt;/audio&gt;</Template>
@@ -117,9 +117,9 @@
       <Template key="&lt;var" descr="&lt;var&gt;...&lt;/var&gt;\nVariable">&lt;var&gt;%SelectedText%%|%&lt;/var&gt;</Template>
       <Template key="&lt;video" descr="&lt;video&gt;...&lt;/video&gt;\nA video or movie">&lt;video width=&quot;&quot; height=&quot;&quot; controls&gt;\n  &lt;source src=&quot;%|%&quot; type=&quot;&quot;&gt;\n  Your browser does not support the video tag.\n&lt;/video&gt;</Template>
       <Template key="&lt;wbr" descr="&lt;wbr&gt;\nPossible line-break">&lt;wbr&gt;</Template>
-		</CodeTemplates>
-		<HELP>
-			<Help name="W3 Schools" arguments="'as_q=%CurrentWord%" key="112" virt="true" ctrl="true" url="http://www.google.com/search?sitesearch=www.w3schools.com"/>
-		</HELP>
-	</SYNTAX>
+    </CodeTemplates>
+    <HELP>
+      <Help name="W3 Schools" arguments="'as_q=%CurrentWord%" key="112" virt="true" ctrl="true" url="http://www.google.com/search?sitesearch=www.w3schools.com"/>
+    </HELP>
+  </SYNTAX>
 </XMLConfigSettings>
