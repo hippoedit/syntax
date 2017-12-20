@@ -5,101 +5,101 @@
   <SYNTAX id="html" inherit="xml" inherit_url="xml_user.xml">
     <CodeTemplates>
       <Template key="&lt;!--" descr="&lt;!--">&lt;!-- %|% --&gt;</Template>
-      <Template key="&lt;!doctype" descr="Document type">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot;&gt;</Template>
-      <Template key="&lt;a" descr="&lt;a href=&quot;&quot;&gt;...&lt;/a&gt;\nHyperlink">&lt;a href=&quot;%Link URL%&quot;&gt;%Link Text%&lt;/a&gt;%|%</Template>
-      <Template key="&lt;abbr" descr="&lt;abbr&gt;...&lt;/abbr&gt;\nAbbreviation">&lt;abbr&gt;%SelectedText%%|%&lt;/abbr&gt;</Template>
-      <Template key="&lt;acronym" descr="&lt;acronym&gt;...&lt;/acronym&gt;\nAcronym. Not supported in HTML5. Use &lt;abbr&gt; instead.">&lt;acronym&gt;%SelectedText%%|%&lt;/acronym&gt;</Template>
-      <Template key="&lt;address" descr="&lt;address&gt;...&lt;/address&gt;\nContact information for the author/owner of a document.">&lt;address&gt;%SelectedText%%|%&lt;/address&gt;</Template>
-      <Template key="&lt;applet" descr="&lt;applet ...&gt;...&lt;/applet&gt;\nEmbedded applet. Not supported in HTML5. Use &lt;object&gt; instead.">&lt;address&gt;%SelectedText%%|%&lt;/address&gt;</Template>
-      <Template key="&lt;area" descr="&lt;area ...&gt;\nArea inside an image-map">&lt;applet code=&quot;%|%&quot; width=&quot;&quot; height=&quot;&quot;&gt;\n&lt;/applet&gt;</Template>
-      <Template key="&lt;b" descr="&lt;b&gt;...&lt;/b&gt;\nBold text">&lt;area shape=&quot;%Enter shape%&quot; href=&quot;%URL%&quot; coords=&quot;%Coordinates%&quot; alt=&quot;%Alternative Text%&quot;&gt;%|%\n</Template>
-      <Template key="&lt;base" descr="&lt;base ...&gt;\nBase URL/target for all relative URLs in a document">&lt;base href=&quot;%|%&quot;&gt;</Template>
-      <Template key="&lt;basefont" descr="&lt;basefont ...&gt;\nSpecifies a default color, size, and font for all text in a document.\nNot supported in HTML5. Use CSS instead.">&lt;basefont size=&quot;%|%&quot;&gt;</Template>
-      <Template key="&lt;bdo" descr="&lt;bdo ...&gt;...&lt;/bdo&gt;\nOverrides the current text direction">&lt;bdo dir=&quot;%Direction%&quot;&gt;%|%&lt;/bdo&gt;</Template>
-      <Template key="&lt;big" descr="&lt;big&gt;...&lt;/big&gt;\nBig text. Not supported in HTML5. Use CSS instead.">&lt;big&gt;%SelectedText%%|%&lt;/big&gt;</Template>
-      <Template key="&lt;block" descr="&lt;blockquote&gt;...&lt;/blockquote&gt;\nSection that is quoted from another source">&lt;blockquote&gt;%SelectedText%%|%&lt;/blockquote&gt;</Template>
-      <Template key="&lt;body" descr="&lt;body&gt;...&lt;/body&gt;\nDocument&apos;s body">&lt;blockquote&gt;%SelectedText%%|%&lt;/blockquote&gt;</Template>
-      <Template key="&lt;br" descr="&lt;br&gt;\nSingle line break">&lt;br&gt;</Template>
-      <Template key="&lt;button" descr="&lt;button&gt;...&lt;/button&gt;\nClickable button">&lt;button&gt;%|%&lt;/button&gt;</Template>
-      <Template key="&lt;caption" descr="&lt;caption&gt;...&lt;/caption&gt;\nTable caption">&lt;button&gt;%|%&lt;/button&gt;</Template>
-      <Template key="&lt;center" descr="&lt;center&gt;...&lt;/center&gt;\nCentered text. Not supported in HTML5. Use CSS instead.">&lt;caption&gt;%SelectedText%%|%&lt;/caption&gt;</Template>
-      <Template key="&lt;cite" descr="&lt;cite&gt;...&lt;/cite&gt;\nTitle of a work">&lt;center&gt;%SelectedText%%|%&lt;/center&gt;</Template>
-      <Template key="&lt;code" descr="&lt;code&gt;...&lt;/code&gt;\nPiece of computer code">&lt;code&gt;%SelectedText%%|%&lt;/code&gt;</Template>
-      <Template key="&lt;col" descr="&lt;col&gt;\nColumn properties for each column within a &lt;colgroup&gt; element">&lt;col&gt;</Template>
-      <Template key="&lt;colgroup" descr="&lt;colgroup&gt;...&lt;/colgroup&gt;\nGroup of one or more columns in a table for formatting">&lt;colgroup&gt;%|%&lt;/colgroup&gt;</Template>
-      <Template key="&lt;dd" descr="&lt;dd&gt;\nDescription/value of a term in a description list">&lt;colgroup&gt;%|%&lt;/colgroup&gt;</Template>
-      <Template key="&lt;del" descr="&lt;del&gt;...&lt;/del&gt;\nText that has been deleted from a document">&lt;del&gt;%SelectedText%%|%&lt;/del&gt;</Template>
-      <Template key="&lt;dfn" descr="&lt;dfn&gt;...&lt;/dfn&gt;\nDefinition term">&lt;dfn&gt;%|%&lt;/dfn&gt;</Template>
-      <Template key="&lt;dir" descr="&lt;dir&gt;...&lt;/dir&gt;\nDirectory list. Not supported in HTML5. Use &lt;ul&gt; instead.">&lt;dir&gt;%|%&lt;/dir&gt;</Template>
-      <Template key="&lt;div" descr="&lt;div ...&gt;...&lt;/div&gt;\nSection in a document">&lt;div align=&quot;&quot;&gt;%SelectedText%%|%&lt;/div&gt;</Template>
-      <Template key="&lt;dl" descr="&lt;dl&gt;...&lt;/dl&gt;\nDescription list">&lt;dl&gt;\n\t&lt;dt&gt;%|%&lt;/dt&gt;\n\t\t&lt;dd&gt;&lt;/dd&gt;\n&lt;/dl&gt;</Template>
-      <Template key="&lt;dt" descr="&lt;dt&gt;...&lt;/dt&gt;\nTerm/name in a description list">&lt;dt&gt;%|%&lt;/dt&gt;</Template>
-      <Template key="&lt;em" descr="&lt;em&gt;...&lt;/em&gt;\nEmphasized text">&lt;em&gt;%SelectedText%%|%&lt;/em&gt;</Template>
-      <Template key="&lt;fieldset" descr="&lt;fieldset&gt;...&lt;/fieldset&gt;\nGroups related elements in a form">&lt;fieldset&gt;\n\t&lt;legend&gt;%|%&lt;/legend&gt;\n&lt;/fieldset&gt;</Template>
-      <Template key="&lt;font" descr="&lt;font size=&quot;&quot;&gt;...&lt;/font&gt;\nFont, color, and size for text.\nNot supported in HTML5. Use CSS instead.">&lt;fieldset&gt;\n\t&lt;legend&gt;%|%&lt;/legend&gt;\n&lt;/fieldset&gt;</Template>
-      <Template key="&lt;form" descr="&lt;form ...&gt;...&lt;/form&gt;\nHTML form for user input">&lt;font size=&quot;&quot;&gt;%|%&lt;/font&gt;</Template>
-      <Template key="&lt;frame" descr="&lt;frame ...&gt;\nWindow (a frame) in a frameset.\nNot supported in HTML5.">&lt;frame src=&quot;%|%&quot; name=&quot;&quot;&gt;</Template>
-      <Template key="&lt;frameset" descr="&lt;frameset ...&gt;...&lt;/frameset&gt;\nSet of frames. Not supported in HTML5.">&lt;form method=&quot;post&quot; action=&quot;&quot;&gt;\n%|%\n&lt;/form&gt;</Template>
-      <Template key="&lt;h1" descr="&lt;h1&gt;...&lt;/h1&gt;\nHeadings H1">&lt;frameset rows=&quot;%|%,&quot; cols=&quot;,&quot;&gt;\n\t&lt;frame src=&quot;&quot; name=&quot;&quot;&gt;\n\t&lt;frame src=&quot;&quot; name=&quot;&quot;&gt;\n&lt;/frameset&gt;</Template>
-      <Template key="&lt;h2" descr="&lt;h2&gt;...&lt;/h2&gt;\nHeadings H2">&lt;h2&gt;%SelectedText%%|%&lt;/h2&gt;</Template>
-      <Template key="&lt;h3" descr="&lt;h3&gt;...&lt;/h3&gt;\nHeadings H3">&lt;h3&gt;%SelectedText%%|%&lt;/h3&gt;</Template>
-      <Template key="&lt;h4" descr="&lt;h4&gt;...&lt;/h4&gt;\nHeadings H4">&lt;h4&gt;%SelectedText%%|%&lt;/h4&gt;</Template>
-      <Template key="&lt;h5" descr="&lt;h5&gt;...&lt;/h5&gt;\nHeadings H5">&lt;h5&gt;%SelectedText%%|%&lt;/h5&gt;</Template>
-      <Template key="&lt;h6" descr="&lt;h6&gt;...&lt;/h6&gt;\nHeadings H6">&lt;h6&gt;%SelectedText%%|%&lt;/h6&gt;</Template>
-      <Template key="&lt;head" descr="&lt;head&gt;...&lt;/head&gt;\nInformation about the document">&lt;head&gt;\n%|%\n&lt;/head&gt;</Template>
-      <Template key="&lt;hr" descr="&lt;hr&gt;\nThematic change in the content">&lt;hr&gt;</Template>
-      <Template key="&lt;html" descr="&lt;html&gt;...&lt;/html&gt;\nRoot of an HTML document">&lt;html&gt;\n%|%\n&lt;/html&gt;</Template>
-      <Template key="&lt;i" descr="&lt;i&gt;...&lt;/i&gt;\nPart of text in an alternate voice or mood">&lt;i&gt;%SelectedText%%|%&lt;/i&gt;</Template>
-      <Template key="&lt;iframe" descr="&lt;iframe ...&gt;...&lt;/iframe&gt;\nIn-line frame">&lt;iframe name=&quot;&quot; src=&quot;&quot; width=&quot;&quot; height=&quot;&quot;&gt;%|%&lt;/iframe&gt;</Template>
-      <Template key="&lt;img" descr="&lt;img .../&gt;\nImage">&lt;iframe name=&quot;&quot; src=&quot;&quot; width=&quot;&quot; height=&quot;&quot;&gt;%|%&lt;/iframe&gt;</Template>
-      <Template key="&lt;input" descr="&lt;input ...&gt;\nInput control">&lt;input type=&quot;%|%&quot; name=&quot;&quot;&gt;</Template>
-      <Template key="&lt;ins" descr="&lt;ins&gt;...&lt;/ins&gt;\nText that has been inserted into a document">&lt;input type=&quot;%|%&quot; name=&quot;&quot;&gt;</Template>
-      <Template key="&lt;kbd" descr="&lt;kbd&gt;...&lt;/kbd&gt;\nKeyboard input">&lt;kbd&gt;%|%&lt;/kbd&gt;</Template>
-      <Template key="&lt;label" descr="&lt;label&gt;...&lt;/label&gt;\nLabel for an &lt;input&gt; element">&lt;label&gt;%|%&lt;/label&gt;</Template>
-      <Template key="&lt;legend" descr="&lt;legend&gt;...&lt;/legend&gt;\nCaption for a &lt;fieldset&gt; element">&lt;label&gt;%|%&lt;/label&gt;</Template>
-      <Template key="&lt;li" descr="&lt;li&gt;...&lt;/li&gt;\nList item">&lt;legend&gt;%|%&lt;/legend&gt;</Template>
+      <Template key="&lt;form" descr="&lt;form ...&gt;...&lt;/form&gt;\nHTML form for user input">&lt;form method=&quot;post&quot; action=&quot;&quot;&gt;\n%|%\n&lt;/form&gt;</Template>
       <Template key="&lt;link" descr="&lt;link ...&gt;\nRelationship between a document and an external resource (most used to link to style sheets)">&lt;link rel=&quot;%|%&quot; href=&quot;&quot; type=&quot;&quot;&gt;</Template>
-      <Template key="&lt;map" descr="&lt;map ...&gt;&lt;/map&gt;\nClient-side image-map">&lt;link rel=&quot;%|%&quot; href=&quot;&quot; type=&quot;&quot;&gt;</Template>
-      <Template key="&lt;menu" descr="&lt;menu&gt;...&lt;/menu&gt;\nList/menu of commands">&lt;menu&gt;%|%&lt;/menu&gt;</Template>
-      <Template key="&lt;meta" descr="&lt;meta ...&gt;\nMetadata about an HTML document">&lt;meta name=&quot;%|%&quot; content=&quot;&quot;&gt;</Template>
-      <Template key="&lt;noframes" descr="&lt;noframes&gt;...&lt;/noframes&gt;\nAlternate content for users that do not support frames.\nNot supported in HTML5.">&lt;noframes&gt;\n%SelectedText%%|%\n&lt;/noframes&gt;</Template>
-      <Template key="&lt;noscript" descr="&lt;noscript&gt;...&lt;/noscript&gt;\nAlternate content for users that do not support client-side scripts">&lt;noframes&gt;\n%SelectedText%%|%\n&lt;/noframes&gt;</Template>
-      <Template key="&lt;object" descr="&lt;object ...&gt;...&lt;/object&gt;\nEmbedded object">&lt;noscript&gt;\n%SelectedText%%|%\n&lt;/noscript&gt;</Template>
-      <Template key="&lt;ol" descr="&lt;ol&gt;...&lt;/ol&gt;\nOrdered list">&lt;object id=&quot;&quot; width=&quot;&quot; height=&quot;&quot; classid=&quot;&quot;&gt;\n%|%\n&lt;/object&gt;</Template>
-      <Template key="&lt;optgroup" descr="&lt;optgroup ...&gt;...&lt;/optgroup&gt;\nGroup of related options in a drop-down list">&lt;optgroup label=&quot;&quot;&gt;\n%|%\n&lt;/optgroup&gt;</Template>
-      <Template key="&lt;option" descr="&lt;option&gt;...&lt;/option&gt;\nOption in a drop-down list">&lt;optgroup label=&quot;&quot;&gt;\n%|%\n&lt;/optgroup&gt;</Template>
-      <Template key="&lt;p" descr="&lt;p&gt;...&lt;/p&gt;\nParagraph">&lt;option&gt;%|%&lt;/option&gt;</Template>
-      <Template key="&lt;pa" descr="&lt;param ...&gt;\nParameter for an object">&lt;param name=&quot;%|%&quot; value=&quot;&quot;&gt;</Template>
-      <Template key="&lt;pre" descr="&lt;pre&gt;...&lt;/pre&gt;\nPreformatted text">&lt;param name=&quot;%|%&quot; value=&quot;&quot;&gt;</Template>
-      <Template key="&lt;q" descr="&lt;q&gt;...&lt;/q&gt;\nShort quotation">&lt;q&gt;%SelectedText%%|%&lt;/q&gt;</Template>
-      <Template key="&lt;s" descr="&lt;s&gt;...&lt;/s&gt;\nText that is no longer correct">&lt;s&gt;%SelectedText%%|%&lt;/s&gt;</Template>
-      <Template key="&lt;samp" descr="&lt;samp&gt;...&lt;/samp&gt;\nSample output from a computer program">&lt;samp&gt;%SelectedText%%|%&lt;/samp&gt;</Template>
-      <Template key="&lt;scriptvb" descr="&lt;script language=&quot;VBScript&quot;&gt;...&lt;/script&gt;\nClient-side script">&lt;script language=&quot;text/vbscript&quot;&gt;\n%SelectedText%%|%\n&lt;/script&gt;</Template>
-      <Template key="&lt;script" descr="&lt;script language=&quot;JavaScript&quot;&gt;...&lt;/script&gt;\nClient-side script">&lt;script language=&quot;text/javascript&quot;&gt;\n%SelectedText%%|%\n&lt;/script&gt;</Template>
-      <Template key="&lt;select" descr="&lt;select ...&gt;...&lt;/select&gt;\nDrop-down list">&lt;select name=&quot;&quot;&gt;%|%&lt;/select&gt;</Template>
-      <Template key="&lt;sm" descr="&lt;small&gt;...&lt;/small&gt;\nSmaller text">&lt;select name=&quot;&quot;&gt;%|%&lt;/select&gt;</Template>
-      <Template key="&lt;sp" descr="&lt;span ...&gt;...&lt;/span&gt;\nSection in a document">&lt;small&gt;%SelectedText%%|%&lt;/small&gt;</Template>
-      <Template key="&lt;strike" descr="&lt;strike&gt;...&lt;/strike&gt;\nStrikethrough text.\nNot supported in HTML5. Use &lt;del&gt; instead.">&lt;span class=&quot;&quot;&gt;%SelectedText%%|%&lt;/span&gt;</Template>
-      <Template key="&lt;strong" descr="&lt;strong&gt;...&lt;/strong&gt;\nImportant text">&lt;strike&gt;%SelectedText%%|%&lt;/strike&gt;</Template>
-      <Template key="&lt;style" descr="&lt;style ...&gt;...&lt;/style&gt;\nStyle information for a document">&lt;strong&gt;%SelectedText%%|%&lt;/strong&gt;</Template>
-      <Template key="&lt;sub" descr="&lt;sub&gt;...&lt;/sub&gt;\nSubscripted text">&lt;sub&gt;%SelectedText%%|%&lt;/sub&gt;</Template>
-      <Template key="&lt;sup" descr="&lt;sup&gt;...&lt;/sup&gt;\nSuperscripted text">&lt;sup&gt;%SelectedText%%|%&lt;/sup&gt;</Template>
-      <Template key="&lt;table" descr="&lt;table&gt;...&lt;table&gt;\nTable">&lt;table&gt;\n\t&lt;tr&gt;\n\t\t&lt;td&gt;%|%&lt;/td&gt;\n\t\t&lt;td&gt;&lt;/td&gt;\n\t&lt;/tr&gt;\n&lt;/table&gt;</Template>
-      <Template key="&lt;tbody" descr="&lt;tbody&gt;...&lt;/tbody&gt;\nGroups the body content in a table">&lt;table&gt;\n\t&lt;tr&gt;\n\t\t&lt;td&gt;%|%&lt;/td&gt;\n\t\t&lt;td&gt;&lt;/td&gt;\n\t&lt;/tr&gt;\n&lt;/table&gt;</Template>
-      <Template key="&lt;td" descr="&lt;td&gt;...&lt;/td&gt;\nCell in a table">&lt;tbody&gt;%|%&lt;/tbody&gt;</Template>
-      <Template key="&lt;textarea" descr="&lt;textarea ...&gt;...&lt;/textarea&gt;\nMultiline input control (text area)">&lt;textarea name=&quot;&quot; rows=&quot;&quot; cols=&quot;&quot;&gt;%|%&lt;/textarea&gt;</Template>
-      <Template key="&lt;tfoot" descr="&lt;tfoot&gt;...&lt;/tfoot&gt;\nGroups the footer content in a table">&lt;textarea name=&quot;&quot; rows=&quot;&quot; cols=&quot;&quot;&gt;%|%&lt;/textarea&gt;</Template>
-      <Template key="&lt;th" descr="&lt;th&gt;...&lt;/th&gt;\nHeader cell in a table">&lt;tfoot&gt;%|%&lt;/tfoot&gt;</Template>
-      <Template key="&lt;thead" descr="&lt;thead&gt;...&lt;/thead&gt;\nHeader content in a table">&lt;thead&gt;%|%&lt;/thead&gt;</Template>
-      <Template key="&lt;title" descr="&lt;title&gt;...&lt;/title&gt;\nTitle for the document">&lt;thead&gt;%|%&lt;/thead&gt;</Template>
-      <Template key="&lt;tr" descr="&lt;tr&gt;...&lt;/tr&gt;\nRow in a table">&lt;title&gt;%|%&lt;/title&gt;</Template>
+      <Template key="&lt;!doctype" descr="Document type">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot;&gt;</Template>
+      <Template key="&lt;del" descr="&lt;del&gt;...&lt;/del&gt;\nText that has been deleted from a document">&lt;del&gt;%SelectedText%%|%&lt;/del&gt;</Template>
       <Template key="&lt;tt" descr="&lt;tt&gt;...&lt;/tt&gt;\nTeletype text. Not supported in HTML5. Use CSS instead.">&lt;tt&gt;%|%&lt;/tt&gt;</Template>
-      <Template key="&lt;u" descr="&lt;u&gt;...&lt;/u&gt;\nText that should be stylistically different from normal text">&lt;u&gt;%SelectedText%%|%&lt;/u&gt;</Template>
-      <Template key="&lt;ul" descr="&lt;ul&gt;...&lt;/ul&gt;\nUnordered list">&lt;var&gt;%SelectedText%%|%&lt;/var&gt;</Template>
+      <Template key="&lt;tr" descr="&lt;tr&gt;...&lt;/tr&gt;\nRow in a table">&lt;tr&gt;%|%&lt;/tr&gt;</Template>
+      <Template key="&lt;address" descr="&lt;address&gt;...&lt;/address&gt;\nContact information for the author/owner of a document.">&lt;address&gt;%SelectedText%%|%&lt;/address&gt;</Template>
+      <Template key="&lt;pre" descr="&lt;pre&gt;...&lt;/pre&gt;\nPreformatted text">&lt;pre&gt;%SelectedText%%|%&lt;/p&gt;</Template>
+      <Template key="&lt;noframes" descr="&lt;noframes&gt;...&lt;/noframes&gt;\nAlternate content for users that do not support frames.\nNot supported in HTML5.">&lt;noframes&gt;\n%SelectedText%%|%\n&lt;/noframes&gt;</Template>
+      <Template key="&lt;dir" descr="&lt;dir&gt;...&lt;/dir&gt;\nDirectory list. Not supported in HTML5. Use &lt;ul&gt; instead.">&lt;dir&gt;%|%&lt;/dir&gt;</Template>
+      <Template key="&lt;col" descr="&lt;col&gt;\nColumn properties for each column within a &lt;colgroup&gt; element">&lt;col&gt;</Template>
+      <Template key="&lt;strike" descr="&lt;strike&gt;...&lt;/strike&gt;\nStrikethrough text.\nNot supported in HTML5. Use &lt;del&gt; instead.">&lt;strike&gt;%SelectedText%%|%&lt;/strike&gt;</Template>
+      <Template key="&lt;td" descr="&lt;td&gt;...&lt;/td&gt;\nCell in a table">&lt;td&gt;%|%&lt;/td&gt;</Template>
+      <Template key="&lt;div" descr="&lt;div ...&gt;...&lt;/div&gt;\nSection in a document">&lt;div align=&quot;&quot;&gt;%SelectedText%%|%&lt;/div&gt;</Template>
+      <Template key="&lt;tbody" descr="&lt;tbody&gt;...&lt;/tbody&gt;\nGroups the body content in a table">&lt;tbody&gt;%|%&lt;/tbody&gt;</Template>
+      <Template key="&lt;label" descr="&lt;label&gt;...&lt;/label&gt;\nLabel for an &lt;input&gt; element">&lt;label&gt;%|%&lt;/label&gt;</Template>
+      <Template key="&lt;tfoot" descr="&lt;tfoot&gt;...&lt;/tfoot&gt;\nGroups the footer content in a table">&lt;tfoot&gt;%|%&lt;/tfoot&gt;</Template>
+      <Template key="&lt;meta" descr="&lt;meta ...&gt;\nMetadata about an HTML document">&lt;meta name=&quot;%|%&quot; content=&quot;&quot;&gt;</Template>
+      <Template key="&lt;ul" descr="&lt;ul&gt;...&lt;/ul&gt;\nUnordered list">&lt;ul&gt;\n\t&lt;li&gt;%|%&lt;/li&gt;\n\t&lt;li&gt;&lt;/li&gt;\n&lt;/ul&gt;</Template>
       <Template key="&lt;var" descr="&lt;var&gt;...&lt;/var&gt;\nVariable">&lt;var&gt;%SelectedText%%|%&lt;/var&gt;</Template>
+      <Template key="&lt;dd" descr="&lt;dd&gt;\nDescription/value of a term in a description list">&lt;dd&gt;%SelectedText%%|%&lt;/dd&gt;</Template>
+      <Template key="&lt;th" descr="&lt;th&gt;...&lt;/th&gt;\nHeader cell in a table">&lt;th&gt;%|%&lt;/th&gt;</Template>
+      <Template key="&lt;h3" descr="&lt;h3&gt;...&lt;/h3&gt;\nHeadings H3">&lt;h3&gt;%SelectedText%%|%&lt;/h3&gt;</Template>
+      <Template key="&lt;h2" descr="&lt;h2&gt;...&lt;/h2&gt;\nHeadings H2">&lt;h2&gt;%SelectedText%%|%&lt;/h2&gt;</Template>
+      <Template key="&lt;area" descr="&lt;area ...&gt;\nArea inside an image-map">&lt;area shape=&quot;%Enter shape%&quot; href=&quot;%URL%&quot; coords=&quot;%Coordinates%&quot; alt=&quot;%Alternative Text%&quot;&gt;%|%\n</Template>
+      <Template key="&lt;h1" descr="&lt;h1&gt;...&lt;/h1&gt;\nHeadings H1">&lt;h1&gt;%SelectedText%%|%&lt;/h1&gt;</Template>
+      <Template key="&lt;dl" descr="&lt;dl&gt;...&lt;/dl&gt;\nDescription list">&lt;dl&gt;\n\t&lt;dt&gt;%|%&lt;/dt&gt;\n\t&lt;dd&gt;&lt;/dd&gt;\n&lt;/dl&gt;</Template>
+      <Template key="&lt;ol" descr="&lt;ol&gt;...&lt;/ol&gt;\nOrdered list">&lt;ol&gt;%SelectedText%%|%&lt;/ol&gt;</Template>
+      <Template key="&lt;object" descr="&lt;object ...&gt;...&lt;/object&gt;\nEmbedded object">&lt;object id=&quot;&quot; width=&quot;&quot; height=&quot;&quot; classid=&quot;&quot;&gt;\n%|%\n&lt;/object&gt;</Template>
+      <Template key="&lt;h6" descr="&lt;h6&gt;...&lt;/h6&gt;\nHeadings H6">&lt;h6&gt;%SelectedText%%|%&lt;/h6&gt;</Template>
+      <Template key="&lt;h5" descr="&lt;h5&gt;...&lt;/h5&gt;\nHeadings H5">&lt;h5&gt;%SelectedText%%|%&lt;/h5&gt;</Template>
+      <Template key="&lt;h4" descr="&lt;h4&gt;...&lt;/h4&gt;\nHeadings H4">&lt;h4&gt;%SelectedText%%|%&lt;/h4&gt;</Template>
+      <Template key="&lt;font" descr="&lt;font size=&quot;&quot;&gt;...&lt;/font&gt;\nFont, color, and size for text.\nNot supported in HTML5. Use CSS instead.">&lt;font size=&quot;&quot;&gt;%|%&lt;/font&gt;</Template>
+      <Template key="&lt;menu" descr="&lt;menu&gt;...&lt;/menu&gt;\nList/menu of commands">&lt;menu&gt;%|%&lt;/menu&gt;</Template>
+      <Template key="&lt;dt" descr="&lt;dt&gt;...&lt;/dt&gt;\nTerm/name in a description list">&lt;dt&gt;%SelectedText%%|%&lt;/dt&gt;</Template>
+      <Template key="&lt;style" descr="&lt;style ...&gt;...&lt;/style&gt;\nStyle information for a document">&lt;style type=&quot;text/css&quot;&gt;\n%|%\n&lt;/style&gt;</Template>
+      <Template key="&lt;map" descr="&lt;map ...&gt;&lt;/map&gt;\nClient-side image-map">&lt;map name=&quot;%|%&quot;&gt;\n&lt;/map&gt;</Template>
+      <Template key="&lt;center" descr="&lt;center&gt;...&lt;/center&gt;\nCentered text. Not supported in HTML5. Use CSS instead.">&lt;center&gt;%SelectedText%%|%&lt;/center&gt;</Template>
+      <Template key="&lt;thead" descr="&lt;thead&gt;...&lt;/thead&gt;\nHeader content in a table">&lt;thead&gt;%|%&lt;/thead&gt;</Template>
+      <Template key="&lt;input" descr="&lt;input ...&gt;\nInput control">&lt;input type=&quot;%|%&quot; name=&quot;&quot;&gt;</Template>
+      <Template key="&lt;q" descr="&lt;q&gt;...&lt;/q&gt;\nShort quotation">&lt;q&gt;%SelectedText%%|%&lt;/q&gt;</Template>
+      <Template key="&lt;code" descr="&lt;code&gt;...&lt;/code&gt;\nPiece of computer code">&lt;code&gt;%SelectedText%%|%&lt;/code&gt;</Template>
+      <Template key="&lt;p" descr="&lt;p&gt;...&lt;/p&gt;\nParagraph">&lt;p&gt;%SelectedText%%|%&lt;/p&gt;</Template>
+      <Template key="&lt;dfn" descr="&lt;dfn&gt;...&lt;/dfn&gt;\nDefinition term">&lt;dfn&gt;%|%&lt;/dfn&gt;</Template>
+      <Template key="&lt;span" descr="&lt;span ...&gt;...&lt;/span&gt;\nSection in a document">&lt;span class=&quot;&quot;&gt;%SelectedText%%|%&lt;/span&gt;</Template>
+      <Template key="&lt;s" descr="&lt;s&gt;...&lt;/s&gt;\nText that is no longer correct">&lt;s&gt;%SelectedText%%|%&lt;/s&gt;</Template>
+      <Template key="&lt;frame" descr="&lt;frame ...&gt;\nWindow (a frame) in a frameset.\nNot supported in HTML5.">&lt;frame src=&quot;%|%&quot; name=&quot;&quot;&gt;</Template>
+      <Template key="&lt;html" descr="&lt;html&gt;...&lt;/html&gt;\nRoot of an HTML document">&lt;html&gt;\n%|%\n&lt;/html&gt;</Template>
+      <Template key="&lt;u" descr="&lt;u&gt;...&lt;/u&gt;\nText that should be stylistically different from normal text">&lt;u&gt;%SelectedText%%|%&lt;/u&gt;</Template>
+      <Template key="&lt;bdo" descr="&lt;bdo ...&gt;...&lt;/bdo&gt;\nOverrides the current text direction">&lt;bdo dir=&quot;%Direction%&quot;&gt;%|%&lt;/bdo&gt;</Template>
+      <Template key="&lt;frameset" descr="&lt;frameset ...&gt;...&lt;/frameset&gt;\nSet of frames. Not supported in HTML5.">&lt;frameset rows=&quot;%|%,&quot; cols=&quot;,&quot;&gt;\n\t&lt;frame src=&quot;&quot; name=&quot;&quot;&gt;\n\t&lt;frame src=&quot;&quot; name=&quot;&quot;&gt;\n&lt;/frameset&gt;</Template>
+      <Template key="&lt;param" descr="&lt;param ...&gt;\nParameter for an object">&lt;param name=&quot;%|%&quot; value=&quot;&quot;&gt;</Template>
+      <Template key="&lt;i" descr="&lt;i&gt;...&lt;/i&gt;\nPart of text in an alternate voice or mood">&lt;i&gt;%SelectedText%%|%&lt;/i&gt;</Template>
+      <Template key="&lt;cite" descr="&lt;cite&gt;...&lt;/cite&gt;\nTitle of a work">&lt;cite&gt;%SelectedText%%|%&lt;/cite&gt;</Template>
+      <Template key="&lt;samp" descr="&lt;samp&gt;...&lt;/samp&gt;\nSample output from a computer program">&lt;samp&gt;%SelectedText%%|%&lt;/samp&gt;</Template>
+      <Template key="&lt;script" descr="&lt;script language=&quot;JavaScript&quot;&gt;...&lt;/script&gt;\nClient-side script">&lt;script language=&quot;text/javascript&quot;&gt;\n%SelectedText%%|%\n&lt;/script&gt;</Template>
+      <Template key="&lt;title" descr="&lt;title&gt;...&lt;/title&gt;\nTitle for the document">&lt;title&gt;%|%&lt;/title&gt;</Template>
+      <Template key="&lt;a" descr="&lt;a href=&quot;&quot;&gt;...&lt;/a&gt;\nHyperlink">&lt;a href=&quot;%Link URL%&quot;&gt;%Link Text%&lt;/a&gt;%|%</Template>
+      <Template key="&lt;table" descr="&lt;table&gt;...&lt;table&gt;\nTable">&lt;table&gt;\n\t&lt;tr&gt;\n\t\t&lt;td&gt;%|%&lt;/td&gt;\n\t\t&lt;td&gt;&lt;/td&gt;\n\t&lt;/tr&gt;\n&lt;/table&gt;</Template>
+      <Template key="&lt;abbr" descr="&lt;abbr&gt;...&lt;/abbr&gt;\nAbbreviation">&lt;abbr&gt;%SelectedText%%|%&lt;/abbr&gt;</Template>
+      <Template key="&lt;button" descr="&lt;button&gt;...&lt;/button&gt;\nClickable button">&lt;button&gt;%|%&lt;/button&gt;</Template>
+      <Template key="&lt;kbd" descr="&lt;kbd&gt;...&lt;/kbd&gt;\nKeyboard input">&lt;kbd&gt;%|%&lt;/kbd&gt;</Template>
+      <Template key="&lt;b" descr="&lt;b&gt;...&lt;/b&gt;\nBold text">&lt;b&gt;%SelectedText%%|%&lt;/b&gt;</Template>
+      <Template key="&lt;iframe" descr="&lt;iframe ...&gt;...&lt;/iframe&gt;\nIn-line frame">&lt;iframe name=&quot;&quot; src=&quot;&quot; width=&quot;&quot; height=&quot;&quot;&gt;%|%&lt;/iframe&gt;</Template>
+      <Template key="&lt;li" descr="&lt;li&gt;...&lt;/li&gt;\nList item">&lt;li&gt;%SelectedText%%|%&lt;/li&gt;</Template>
+      <Template key="&lt;strong" descr="&lt;strong&gt;...&lt;/strong&gt;\nImportant text">&lt;strong&gt;%SelectedText%%|%&lt;/strong&gt;</Template>
+      <Template key="&lt;caption" descr="&lt;caption&gt;...&lt;/caption&gt;\nTable caption">&lt;caption&gt;%SelectedText%%|%&lt;/caption&gt;</Template>
+      <Template key="&lt;sup" descr="&lt;sup&gt;...&lt;/sup&gt;\nSuperscripted text">&lt;sup&gt;%SelectedText%%|%&lt;/sup&gt;</Template>
+      <Template key="&lt;basefont" descr="&lt;basefont ...&gt;\nSpecifies a default color, size, and font for all text in a document.\nNot supported in HTML5. Use CSS instead.">&lt;basefont size=&quot;%|%&quot;&gt;</Template>
+      <Template key="&lt;big" descr="&lt;big&gt;...&lt;/big&gt;\nBig text. Not supported in HTML5. Use CSS instead.">&lt;big&gt;%SelectedText%%|%&lt;/big&gt;</Template>
+      <Template key="&lt;acronym" descr="&lt;acronym&gt;...&lt;/acronym&gt;\nAcronym. Not supported in HTML5. Use &lt;abbr&gt; instead.">&lt;acronym&gt;%SelectedText%%|%&lt;/acronym&gt;</Template>
+      <Template key="&lt;scriptvb" descr="&lt;script language=&quot;VBScript&quot;&gt;...&lt;/script&gt;\nClient-side script">&lt;script language=&quot;text/vbscript&quot;&gt;\n%SelectedText%%|%\n&lt;/script&gt;</Template>
+      <Template key="&lt;colgroup" descr="&lt;colgroup&gt;...&lt;/colgroup&gt;\nGroup of one or more columns in a table for formatting">&lt;colgroup&gt;%|%&lt;/colgroup&gt;</Template>
+      <Template key="&lt;optgroup" descr="&lt;optgroup ...&gt;...&lt;/optgroup&gt;\nGroup of related options in a drop-down list">&lt;optgroup label=&quot;&quot;&gt;\n%|%\n&lt;/optgroup&gt;</Template>
+      <Template key="&lt;select" descr="&lt;select ...&gt;...&lt;/select&gt;\nDrop-down list">&lt;select name=&quot;&quot;&gt;%|%&lt;/select&gt;</Template>
+      <Template key="&lt;option" descr="&lt;option&gt;...&lt;/option&gt;\nOption in a drop-down list">&lt;option&gt;%|%&lt;/option&gt;</Template>
+      <Template key="&lt;legend" descr="&lt;legend&gt;...&lt;/legend&gt;\nCaption for a &lt;fieldset&gt; element">&lt;legend&gt;%|%&lt;/legend&gt;</Template>
+      <Template key="&lt;hr" descr="&lt;hr&gt;\nThematic change in the content">&lt;hr&gt;</Template>
+      <Template key="&lt;small" descr="&lt;small&gt;...&lt;/small&gt;\nSmaller text">&lt;small&gt;%SelectedText%%|%&lt;/small&gt;</Template>
+      <Template key="&lt;blockquote" descr="&lt;blockquote&gt;...&lt;/blockquote&gt;\nSection that is quoted from another source">&lt;blockquote&gt;%SelectedText%%|%&lt;/blockquote&gt;</Template>
+      <Template key="&lt;noscript" descr="&lt;noscript&gt;...&lt;/noscript&gt;\nAlternate content for users that do not support client-side scripts">&lt;noscript&gt;\n%SelectedText%%|%\n&lt;/noscript&gt;</Template>
+      <Template key="&lt;base" descr="&lt;base ...&gt;\nBase URL/target for all relative URLs in a document">&lt;base href=&quot;%|%&quot;&gt;</Template>
+      <Template key="&lt;head" descr="&lt;head&gt;...&lt;/head&gt;\nInformation about the document">&lt;head&gt;\n%|%\n&lt;/head&gt;</Template>
+      <Template key="&lt;sub" descr="&lt;sub&gt;...&lt;/sub&gt;\nSubscripted text">&lt;sub&gt;%SelectedText%%|%&lt;/sub&gt;</Template>
+      <Template key="&lt;ins" descr="&lt;ins&gt;...&lt;/ins&gt;\nText that has been inserted into a document">&lt;ins&gt;%SelectedText%%|%&lt;/ins&gt;</Template>
+      <Template key="&lt;textarea" descr="&lt;textarea ...&gt;...&lt;/textarea&gt;\nMultiline input control (text area)">&lt;textarea name=&quot;&quot; rows=&quot;&quot; cols=&quot;&quot;&gt;%|%&lt;/textarea&gt;</Template>
+      <Template key="&lt;em" descr="&lt;em&gt;...&lt;/em&gt;\nEmphasized text">&lt;em&gt;%SelectedText%%|%&lt;/em&gt;</Template>
+      <Template key="&lt;body" descr="&lt;body&gt;...&lt;/body&gt;\nDocument's body">&lt;body&gt;\n  %SelectedText%%|%\n&lt;/body&gt;</Template>
+      <Template key="&lt;img" descr="&lt;img .../&gt;\nImage">&lt;img src=&quot;&quot; alt=&quot;&quot; width=&quot;&quot; height=&quot;&quot;&gt;</Template>
+      <Template key="&lt;applet" descr="&lt;applet ...&gt;...&lt;/applet&gt;\nEmbedded applet. Not supported in HTML5. Use &lt;object&gt; instead.">&lt;applet code=&quot;%|%&quot; width=&quot;&quot; height=&quot;&quot;&gt;\n&lt;/applet&gt;</Template>
+      <Template key="&lt;br" descr="&lt;br&gt;\nSingle line break">&lt;br&gt;</Template>
+      <Template key="&lt;fieldset" descr="&lt;fieldset&gt;...&lt;/fieldset&gt;\nGroups related elements in a form">&lt;fieldset&gt;\n\t&lt;legend&gt;%|%&lt;/legend&gt;\n&lt;/fieldset&gt;</Template>
     </CodeTemplates>
     <HELP>
-      <Help name="W3 Schools" arguments="&amp;as_q=%CurrentWord%" key="112" virt="true" ctrl="true" url="http://www.google.com/search?sitesearch=www.w3schools.com"/>
+      <Help name="W3 Schools" arguments="'as_q=%CurrentWord%" key="112" virt="true" ctrl="true" url="http://www.google.com/search?sitesearch=www.w3schools.com"/>
     </HELP>
   </SYNTAX>
 </XMLConfigSettings>
