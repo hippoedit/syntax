@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+	<FILEINFO author="0CodErr(KolibriOS team)" type="LangUser"/>
+	<SYNTAX id="Oberon-07" inherit="def_source" inherit_url="defsource_user.xml">
+		<SPECIFICATION>
+			<ShowInheritedStyles>true</ShowInheritedStyles>
+			<ShowInheritedTemplates>true</ShowInheritedTemplates>
+			<WordWrap mode="0" page_width="75" show_page_width="false" show_glyphs="true"/>
+			<Bars navigation="true" overview="true" search="false" hierarchy="false"/>
+			<Display outlining="true" line_numbers="true" indicator_margin="true" current_line="true" white_space="false" trailing_white_space="false" scope_separator="true" scope_nesting="false" alternating="false" guides="true" changed_lines="true" ruler="false" virtual_spaces="false" inactive_code="false" page_break="true"/>
+			<LineSpacing style="0" value="0,000000"/>
+		</SPECIFICATION>
+		<STYLES>
+			<Style id="scope" bold="1" italic="0" underline="0" overview="0" clr="#8000FF00" bkclr="#FFFFFFFF"/>
+			<Style id="scope_error" bold="1" italic="0" underline="0" overview="1" clr="Error" bkclr="#FFFFFFFF"/>
+			<Style id="comment" bold="0" italic="0" underline="0" overview="0" clr="#80008000" bkclr="#FFFFFFFF"/>
+			<Style id="char" bold="0" italic="0" underline="0" overview="0" clr="#00800000" bkclr="#FFFFFFFF"/>
+			<Style name="Reserved" bold="1" italic="0" underline="0" overview="0" clr="Keyword4" bkclr="#FFFFFFFF"/>
+			<Style name="Identifiers" bold="1" italic="0" underline="0" overview="0" clr="#00808000" bkclr="#FFFFFFFF"/>
+			<Style id="comment1" bold="0" italic="0" underline="0" overview="0" clr="#80008000" bkclr="#FFFFFFFF"/>
+			<Style id="comment2" bold="0" italic="0" underline="0" overview="0" clr="#80008000" bkclr="#FFFFFFFF"/>
+		</STYLES>
+		<CodeTemplates>
+			<Template key="FOR" descr="FOR $ END">FOR  :=  TO  BY  DO\n  %SelectedText%%|%\nEND;</Template>
+			<Template key="BEGIN" descr="BEGIN $ END">BEGIN\n  %SelectedText%%|%\nEND</Template>
+			<Template key="WHILE" descr="WHILE $ END">WHILE  DO\n  %SelectedText%%|%\nEND;</Template>
+			<Template key="CASE" descr="CASE $ END">CASE\n  %SelectedText%%|%\nEND</Template>
+			<Template key="MOD" descr="MODULE $ BEGIN $ END">MODULE ;\n\nIMPORT ;\n\nBEGIN\n  %SelectedText%%|%\nEND .</Template>
+			<Template key="REPEAT" descr="REPEAT $ UNTIL">REPEAT\n  %SelectedText%%|%\nUNTIL ;</Template>
+			<Template key="IF" descr="IF $ END">IF  THEN\n  %SelectedText%%|%\nEND</Template>
+			<Template key="(*" descr="(* $ *)">(* %SelectedText%%|% *)</Template>
+			<Template key="PROC" descr="PROCEDURE $ BEGIN $ END">PROCEDURE (): ;\nBEGIN\n  %SelectedText%%|%\n  RETURN \nEND ;</Template>
+		</CodeTemplates>
+		<TOOLS>
+			<Tool name="Ob-07 Compiler" arguments="%MainFile% con" initial_dir="%FileDir%" capture_output="true" save="1" key="120" ctrl="true" command="Path\\To\\Compiler\\Compiler.exe"/>
+			<Tool name="Run" key="120" command="%MainFileDir%\\%FileNameWOExt%.exe"/>
+		</TOOLS>
+	</SYNTAX>
+</XMLConfigSettings>
