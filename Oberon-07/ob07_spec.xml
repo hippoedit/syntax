@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
 <XMLConfigSettings>
   <FILEINFO author="0CodErr(KolibriOS team)" type="LangSpec"/>
-  <SYNTAX id="Oberon-07" name="Oberon-07" inherit="def_source" inherit_url="defsource_spec.xml">
+  <SYNTAX id="Oberon07" name="Oberon-07" inherit="def_source" inherit_url="defsource_spec.xml">
     <SPECIFICATION>
       <CaseSensitive>true</CaseSensitive>
       <FilePattern mask="*.ob07"></FilePattern>
