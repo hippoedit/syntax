@@ -1,150 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
 <XMLConfigSettings>
-	<FILEINFO author="0CodErr(KolibriOS team)" type="LangSpec"/>
-	<SYNTAX id="Oberon-07" name="Oberon-07" inherit="def_source" inherit_url="defsource_spec.xml">
-		<SPECIFICATION>
-			<CaseSensitive>true</CaseSensitive>
-			<FilePattern mask="*.ob07"></FilePattern>
-			<OpenClose>()[]{}""</OpenClose>
-			<LineEnd>;</LineEnd>
-			<Operators>?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]</Operators>
-			<Delimiters></Delimiters>
-			<Words init="A-Za-z_">0-9A-Za-z_</Words>
-			<Numbers init="[0-9]">[0-9A-F]*H?</Numbers>
-			<Bars navigation="true"/>
-		</SPECIFICATION>
-		<SCOPES>
-			<Scope open="MODULE" middle="BEGIN" close="END"/>
-			<Scope open="PROCEDURE" middle="BEGIN" close="END"/>
-			<Scope open="RECORD" close="END"/>
-			<Scope open="REPEAT" close="UNTIL"/>
-			<Scope open="IF" middle="THEN" close="END">
-				<Middle text="ELSE"/>
-				<Middle text="ELSIF"/>
-			</Scope>
-			<Scope open="WHILE" middle="DO" close="END">
-				<Middle text="ELSIF"/>
-			</Scope>
-			<Scope open="CASE" middle="OF" close="END">
-				<Middle text="ELSE"/>
-			</Scope>
-			<Scope open="FOR" middle="TO" close="END">
-				<Middle text="BY"/>
-				<Middle text="DO"/>
-			</Scope>
-		</SCOPES>
-		<LABELS>
-			<Label group="Exits" match="\&lt;(RETURN)\s+(.*?)" name="\1" descr="\1 \2" navigation="false" marker="20" context="exit_all" visible="false"/>
-			<Label group="Subroutines" match="((PROCEDURE)\s+([A-Za-z_][A-Za-z0-9_]*\*?)\s*\([^)]*\)[^;]*;)" name="\3" descr="\1" scope="1" image="9"></Label>
-			<Label group="Subroutines" match="((PROCEDURE)\s+([A-Za-z_][A-Za-z0-9_]*\*?)\s*;)" name="\3" descr="\1" scope="1" image="9"></Label>
-			<Label group="Subroutines" match="((PROCEDURE\s*\[\w+\])\s+([A-Za-z_][A-Za-z0-9_]*\*?)\s*\([^)]*\)[^;]*;)" name="\3" descr="\1" scope="1" image="9"></Label>
-			<Label group="Subroutines" match="((PROCEDURE\s*\[\w+\])\s+([A-Za-z_][A-Za-z0-9_]*\*?)\s*;)" name="\3" descr="\1" scope="1" image="9"></Label>
-		</LABELS>
-		<STYLES>
-      		<Style id="scope" name="Text Highlights" bold="1" italic="0" underline="0" box_style="0" bkclr="Window Back" clr="#8000FF00"/>
-			<Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments">
-				<Containers>
-					<Open id="normal"/>
-					<Open id="comment"/>
-				</Containers>
-				<Blocks>
-					<Block open="//" close="\n"/>
-					<Block open="(*" close="*)"/>
-				</Blocks>
-			</Style>
-			<Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings">
-				<Blocks>
-					<Block open="&quot;" close="&quot;"/>
-					<Regexp text="[0-9][0-9A-F]*X" lead="[^\w]"/>
-				</Blocks>
-			</Style>
-			<Style name="Reserved" image="13" bold="1" italic="0" underline="0">
-				<Keywords>
-					<Keyword text="ARRAY"/>
-					<Keyword text="BEGIN"/>
-					<Keyword text="CASE"/>
-					<Keyword text="CONST"/>
-					<Keyword text="DIV"/>
-					<Keyword text="DO"/>
-					<Keyword text="ELSE"/>
-					<Keyword text="ELSIF"/>
-					<Keyword text="END"/>
-					<Keyword text="FOR"/>
-					<Keyword text="BY"/>
-					<Keyword text="IF"/>
-					<Keyword text="IN"/>
-					<Keyword text="MOD"/>
-					<Keyword text="MODULE"/>
-					<Keyword text="OF"/>
-					<Keyword text="OR"/>
-					<Keyword text="PROCEDURE"/>
-					<Keyword text="POINTER"/>
-					<Keyword text="RETURN"/>
-					<Keyword text="RECORD"/>
-					<Keyword text="REPEAT"/>
-					<Keyword text="THEN"/>
-					<Keyword text="TO"/>
-					<Keyword text="TYPE"/>
-					<Keyword text="UNTIL"/>
-					<Keyword text="IMPORT"/>
-					<Keyword text="VAR"/>
-					<Keyword text="WHILE"/>
-					<Keyword text="TRUE"/>
-					<Keyword text="FALSE"/>
-					<Keyword text="NIL"/>
-				</Keywords>
-			</Style>
-			<Style name="Identifiers" image="12" bold="0" italic="0" underline="0" clr="Keyword3">
-				<Keywords>
-					<!-- Basic types  -->
-					<Keyword text="INTEGER"/>
-					<Keyword text="BOOLEAN"/>
-					<Keyword text="CHAR"/>
-					<Keyword text="REAL"/>
-					<Keyword text="LONGREAL"/>
-					<Keyword text="SET"/>
-					<!-- Type conversion functions -->
-					<Keyword text="CHR"/>
-					<Keyword text="ORD"/>
-					<Keyword text="FLOOR"/>
-					<Keyword text="FLT"/>
-					<Keyword text="LONG"/>
-					<Keyword text="SHORT"/>
-					<!-- Function procedures -->
-					<Keyword text="ABS"/>
-					<Keyword text="ODD"/>
-					<Keyword text="LEN"/>
-					<Keyword text="LSL"/>
-					<Keyword text="LSR"/>
-					<Keyword text="ASR"/>
-					<Keyword text="ROR"/>
-					<!-- Proper procedures -->
-					<Keyword text="INC"/>
-					<Keyword text="DEC"/>
-					<Keyword text="INCL"/>
-					<Keyword text="EXCL"/>
-					<Keyword text="COPY"/>
-					<Keyword text="NEW"/>
-					<Keyword text="DISPOSE"/>
-					<Keyword text="BITS"/>
-					<Keyword text="ASSERT"/>
-					<Keyword text="MAX"/>
-					<Keyword text="MIN"/>
-					<Keyword text="PACK"/>
-					<Keyword text="UNPK"/>
-					<Keyword text="LENGTH"/>
-				</Keywords>
-			</Style>
-			<Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" overview="1">
-				<Containers>
-					<Open id="comment"/>
-				</Containers>
-				<Blocks>
-					<Block open="TODO" close="\n"/>
-					<Block open="todo" close="\n"/>
-				</Blocks>
-			</Style>
-		</STYLES>
-	</SYNTAX>
+  <FILEINFO author="0CodErr(KolibriOS team)" type="LangSpec"/>
+  <SYNTAX id="Oberon-07" name="Oberon-07" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <CaseSensitive>true</CaseSensitive>
+      <FilePattern mask="*.ob07"></FilePattern>
+      <OpenClose>()[]{}""</OpenClose>
+      <LineEnd>;</LineEnd>
+      <Operators>?%--+/&amp;*=&lt;&gt;|!~^,;.:()[]</Operators>
+      <Delimiters></Delimiters>
+      <Words init="A-Za-z_">0-9A-Za-z_</Words>
+      <Bars navigation="true"/>
+    </SPECIFICATION>
+    <SCOPES>
+      <Scope open="MODULE" middle="BEGIN" close="END"/>
+      <Scope open="PROCEDURE" middle="BEGIN" close="END"/>
+      <Scope open="RECORD" close="END"/>
+      <Scope open="REPEAT" close="UNTIL"/>
+      <Scope open="IF" middle="THEN" close="END">
+        <Middle text="ELSE"/>
+        <Middle text="ELSIF"/>
+      </Scope>
+      <Scope open="WHILE" middle="DO" close="END">
+        <Middle text="ELSIF"/>
+      </Scope>
+      <Scope open="CASE" middle="OF" close="END">
+        <Middle text="ELSE"/>
+      </Scope>
+      <Scope open="FOR" middle="TO" close="END">
+        <Middle text="BY"/>
+        <Middle text="DO"/>
+      </Scope>
+    </SCOPES>
+    <LABELS>
+      <Label group="Exits" match="\&lt;(RETURN)\s+(.*?)" name="\1" descr="\1 \2" navigation="false" marker="20" context="exit_all" visible="false"/>
+      <Label group="Subroutines" match="((PROCEDURE)\s+([A-Za-z_][A-Za-z0-9_]*\*?)\s*\([^)]*\)[^;]*;)" name="\3" descr="\1" scope="1" image="9"></Label>
+      <Label group="Subroutines" match="((PROCEDURE)\s+([A-Za-z_][A-Za-z0-9_]*\*?)\s*;)" name="\3" descr="\1" scope="1" image="9"></Label>
+      <Label group="Subroutines" match="((PROCEDURE\s*\[\w+\])\s+([A-Za-z_][A-Za-z0-9_]*\*?)\s*\([^)]*\)[^;]*;)" name="\3" descr="\1" scope="1" image="9"></Label>
+      <Label group="Subroutines" match="((PROCEDURE\s*\[\w+\])\s+([A-Za-z_][A-Za-z0-9_]*\*?)\s*;)" name="\3" descr="\1" scope="1" image="9"></Label>
+    </LABELS>
+    <STYLES>
+      <Style id="scope" name="Text Highlights" bold="1" italic="0" underline="0" box_style="0" bkclr="Window Back" clr="#8000FF00"/>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments">
+        <Containers>
+          <Open id="normal"/>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="//" close="\n"/>
+          <Block open="(*" close="*)"/>
+        </Blocks>
+      </Style>
+      <Style id="number" extend="true">
+        <Blocks>
+          <Regexp text="[0-9][0-9A-F]*H?"/>
+        </Blocks>
+      </Style>
+      <Style id="char" name="Char" text="1" bold="0" italic="0" underline="0" clr="Strings">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+          <Regexp text="[0-9][0-9A-F]*X" lead="[^\\w]"/>
+        </Blocks>
+      </Style>
+      <Style name="Reserved" image="13" bold="1" italic="0" underline="0">
+        <Keywords>
+          <Keyword text="ARRAY"/>
+          <Keyword text="BEGIN"/>
+          <Keyword text="CASE"/>
+          <Keyword text="CONST"/>
+          <Keyword text="DIV"/>
+          <Keyword text="DO"/>
+          <Keyword text="ELSE"/>
+          <Keyword text="ELSIF"/>
+          <Keyword text="END"/>
+          <Keyword text="FOR"/>
+          <Keyword text="BY"/>
+          <Keyword text="IF"/>
+          <Keyword text="IN"/>
+          <Keyword text="MOD"/>
+          <Keyword text="MODULE"/>
+          <Keyword text="OF"/>
+          <Keyword text="OR"/>
+          <Keyword text="PROCEDURE"/>
+          <Keyword text="POINTER"/>
+          <Keyword text="RETURN"/>
+          <Keyword text="RECORD"/>
+          <Keyword text="REPEAT"/>
+          <Keyword text="THEN"/>
+          <Keyword text="TO"/>
+          <Keyword text="TYPE"/>
+          <Keyword text="UNTIL"/>
+          <Keyword text="IMPORT"/>
+          <Keyword text="VAR"/>
+          <Keyword text="WHILE"/>
+          <Keyword text="TRUE"/>
+          <Keyword text="FALSE"/>
+          <Keyword text="NIL"/>
+        </Keywords>
+      </Style>
+      <Style name="Identifiers" image="12" bold="0" italic="0" underline="0" clr="Keyword3">
+        <Keywords>
+          <!-- Basic types  -->
+          <Keyword text="INTEGER"/>
+          <Keyword text="BOOLEAN"/>
+          <Keyword text="CHAR"/>
+          <Keyword text="REAL"/>
+          <Keyword text="LONGREAL"/>
+          <Keyword text="SET"/>
+          <!-- Type conversion functions -->
+          <Keyword text="CHR"/>
+          <Keyword text="ORD"/>
+          <Keyword text="FLOOR"/>
+          <Keyword text="FLT"/>
+          <Keyword text="LONG"/>
+          <Keyword text="SHORT"/>
+          <!-- Function procedures -->
+          <Keyword text="ABS"/>
+          <Keyword text="ODD"/>
+          <Keyword text="LEN"/>
+          <Keyword text="LSL"/>
+          <Keyword text="LSR"/>
+          <Keyword text="ASR"/>
+          <Keyword text="ROR"/>
+          <!-- Proper procedures -->
+          <Keyword text="INC"/>
+          <Keyword text="DEC"/>
+          <Keyword text="INCL"/>
+          <Keyword text="EXCL"/>
+          <Keyword text="COPY"/>
+          <Keyword text="NEW"/>
+          <Keyword text="DISPOSE"/>
+          <Keyword text="BITS"/>
+          <Keyword text="ASSERT"/>
+          <Keyword text="MAX"/>
+          <Keyword text="MIN"/>
+          <Keyword text="PACK"/>
+          <Keyword text="UNPK"/>
+          <Keyword text="LENGTH"/>
+        </Keywords>
+      </Style>
+      <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" overview="1">
+        <Containers>
+          <Open id="comment"/>
+        </Containers>
+        <Blocks>
+          <Block open="TODO" close="\n"/>
+          <Block open="todo" close="\n"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
 </XMLConfigSettings>
