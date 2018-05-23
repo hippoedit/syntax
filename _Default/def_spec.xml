@@ -40,11 +40,11 @@
       <Style id="highlight4" name="Highlight 4" bold="2" italic="2" underline="2" clr="#FFFFFFFF" bkclr="Highlight 4" overview="1"/>
       <Style id="highlight5" name="Highlight 5" bold="2" italic="2" underline="2" clr="#FFFFFFFF" bkclr="Highlight 5" overview="1"/>
       <Style id="white_space" name="Visible White Space" clr="Format tag" bkclr="#FFFFFFFF" bold="2" italic="2" underline="2" overview="3"/>
-      <Style id="line_break" name="Line Break" clr="Format tag" bkclr="#FFFFFFFF" bold="2" italic="2" underline="2" overview="3"/>      
+      <Style id="line_break" name="Line Break" clr="Format tag" bkclr="#FFFFFFFF" bold="2" italic="2" underline="2" overview="3"/>
       <Style id="trailing_white_space" name="Trailing White Space" clr="Error" bkclr="#FFFFFFFF" bold="2" italic="2" underline="2" overview="3"/>
-      <Style id="typed_text" name="Typed text (Completion List)" clr="#FFFFFFFF" bkclr="#FFFFFFFF" dstyle="true" image="6" overview="3"/>
+      <Style id="auto_correction" name="Auto Correction Text (Completion List)" clr="$1000" bkclr="#FFFFFFFF" dstyle="true" image="6" overview="3"/>
       <Style id="template" name="Template (Completion List)" clr="#FFFFFFFF" bkclr="#FFFFFFFF" dstyle="true" image="15" overview="3"/>
-      <Style id="normal" name="Normal" dbkclr="false" bold="0" italic="0" underline="0" clr="Window Text" bkclr="#FFFFFFFF" overview="3"/>
+      <Style id="normal" name="Normal" dbkclr="false" bold="0" italic="0" underline="0" clr="Window Text" bkclr="#FFFFFFFF" image="6" overview="3"/>
       <Style id="inactive_code" name="Inactive Code" bold="2" italic="2" underline="2" clr="Inactive Code" bkclr="#FFFFFFFF" overview="3"/>
       <Style id="syntax_error" name="Syntax Error" clr="#FFFFFFFF" bkclr="#FFFFFFFF" overview="2" underline_style="3" underline_clr="Error" italic="2" underline="2" bold="2" abstract="true"/>
       <Style id="syntax_warning" name="Syntax Warning" clr="#FFFFFFFF" bkclr="#FFFFFFFF" overview="2" underline_style="3" underline_clr="#0000FF" italic="2" underline="2" bold="2" abstract="true"/>
