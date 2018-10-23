@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
 <XMLConfigSettings>
   <FILEINFO author="pokey" type="LangSpec"/>
-  <SYNTAX id="iTCL" name="iTCL/Tk" inherit="def_source" inherit_url="defsource_spec.xml">
+  <SYNTAX id="iTCL" name="iTCL/Tk" inherit="def_source" inherit_url="defsource_spec.xml" version="1.1">
     <SPECIFICATION>
       <FilePattern mask="*.tcl;*.itcl;*.tcx;"/>
       <CaseSensitive>true</CaseSensitive>
@@ -42,7 +42,7 @@
         <SubImage if="\1" equal="protected" value="3"/>
         <SubImage if="\1" equal="private" value="4"/>
       </Label>
-      <Label group="Procedure" match="proc\s+(\w+)\s+(\{[^}]*\})\s+\{" name="\1" descr="proc \1 \2" scope="1" image="9"/>
+      <Label group="Procedure" match="proc\s+(\w*)\s+(\{((?>[^\{\}]|(?-2))*)\})\s*\{" name="\1" descr="proc \1 \2" scope="1" image="9"/>
       <Label group="Body" match="itcl::body\s+([\w-]+::[\w-]+)\s+(\{[^}]*\})\s*\{" name="\1" descr="body \1 \2" scope="1" image="11"/>
       <Label group="Configbody" match="(itcl::)*configbody\s+(\w::\w)[\s+\{]" name="\2" descr="configbody \2\3" scope="1" image="11"/>
       <Label group="" match="(if|switch|while|for|foreach)\s*\{((?:[^\{\}]|\\r|\\n|\((?-1)\))*+)\}\s*\{" name="\1" descr="\1 (\2)" scope="1" image="13" navigation="false"/>
