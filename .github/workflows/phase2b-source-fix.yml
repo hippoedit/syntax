@@ -19,17 +19,27 @@ jobs:
           ref: phase2b-source-reconciliation
           fetch-depth: 0
 
-      - name: Remove duplicate bold attribute from 1C syntax
+      - name: Repair malformed 1C syntax XML
         run: |
           python3 - <<'PY'
           from pathlib import Path
           path = Path('1C/1c_spec.xml')
           data = path.read_text(encoding='utf-8-sig')
-          old = '<Style id="constant_Date" name="Константа Дата" bold="1"\n\t\t\t\t\tbold="0"'
-          new = '<Style id="constant_Date" name="Константа Дата"\n\t\t\t\t\tbold="0"'
-          if old not in data:
-              raise SystemExit('expected duplicate bold sequence not found')
-          path.write_text(data.replace(old, new, 1), encoding='utf-8')
+          replacements = [
+              (
+                  '<Style id="constant_Date" name="Константа Дата" bold="1"\n\t\t\t\t\tbold="0"',
+                  '<Style id="constant_Date" name="Константа Дата"\n\t\t\t\t\tbold="0"',
+              ),
+              (
+                  '<Scope open="Для каждого" close="КонецЦикла"strict="true">',
+                  '<Scope open="Для каждого" close="КонецЦикла" strict="true">',
+              ),
+          ]
+          for old, new in replacements:
+              if old not in data:
+                  raise SystemExit(f'expected malformed sequence not found: {old}')
+              data = data.replace(old, new, 1)
+          path.write_text(data, encoding='utf-8')
           PY
 
       - name: Validate corrected XML
