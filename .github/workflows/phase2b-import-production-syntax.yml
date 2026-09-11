@@ -1,0 +1,117 @@
+name: Phase 2B Import Production Syntax
+
+on:
+  push:
+    branches:
+      - phase2b-source-reconciliation
+    paths:
+      - .github/workflows/phase2b-import-production-syntax.yml
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout syntax reconciliation branch
+        uses: actions/checkout@v4
+        with:
+          ref: phase2b-source-reconciliation
+          fetch-depth: 0
+
+      - name: Download exact production syntax snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .phase2b-import
+
+          while IFS='|' read -r source target expected; do
+            [ -n "$source" ] || continue
+            tmp=".phase2b-import/$source"
+            mkdir -p "$(dirname "$tmp")" "$(dirname "$target")"
+            curl --fail --silent --show-error --location \
+              --retry 3 --retry-delay 1 \
+              "https://www.hippoedit.com/download/syntax/$source" \
+              --output "$tmp"
+
+            actual="$(git hash-object "$tmp")"
+            if [ "$actual" != "$expected" ]; then
+              echo "Git blob mismatch for $source: expected=$expected actual=$actual" >&2
+              exit 1
+            fi
+
+            cp "$tmp" "$target"
+            echo "$source -> $target ($actual)"
+          done <<'FILES'
+          css_ms_spec.xml|CSS/css_ms_spec.xml|643077ce49c4c6c4dc80ff1f3f5df4fae36ac9dc
+          css_spec.xml|CSS/css_spec.xml|6e368398ef816ffdfafa9c17b868296346411aac
+          def_spec.xml|_Default/def_spec.xml|2aec231f1649c15b7705dcf118f4fc1493f0f322
+          deftext_spec.xml|_Default/deftext_spec.xml|b12b99977a28c877246b323d928c647d18088341
+          txt_spec.xml|Text/txt_spec.xml|0156f2af2259264cef6f2791537eee52aa7cebd7
+          ini_spec.xml|INI/ini_spec.xml|106b269678ac29f857490a7fe9473171d06233e2
+          harbour_spec.xml|Clipper/harbour_spec.xml|ab9b12156cba5761d83ba2cfb63e4ea7f0fedcb1
+          gedcom_spec.xml|GEDCOM/gedcom_spec.xml|f0968b465b9d8213f0cdfd466d8a3c07b57aecb1
+          smv_spec.xml|SMV/smv_spec.xml|afc74fc0e03a69d03bc3154ace291fbec886657f
+          smv_user.xml|SMV/smv_user.xml|f6debf02714918955b5a271e6b949293d4c59ac0
+          vssln_spec.xml|VisualStudio/vssln_spec.xml|072893b15e10325737356f16e7c4bc4dfea9f748
+          xbcml_spec.xml|XBCML/xbcml_spec.xml|f0c2fa1be3f4b0fc55e78043e178f2debc71fbc6
+          mmd_spec.xml|Markdown/mmd_spec.xml|d6def3329699513dbc1dc3793ac34f39fb0a2cf8
+          FILES
+
+      - name: Validate imported publication XML
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          expected = {
+              'CSS/css_ms_spec.xml': 'css_ms',
+              'CSS/css_spec.xml': 'css',
+              '_Default/def_spec.xml': 'def',
+              '_Default/deftext_spec.xml': 'def_text',
+              'Text/txt_spec.xml': 'text',
+              'INI/ini_spec.xml': 'ini',
+              'Clipper/harbour_spec.xml': 'harbour',
+              'GEDCOM/gedcom_spec.xml': 'gedcom',
+              'SMV/smv_spec.xml': 'smv',
+              'SMV/smv_user.xml': 'smv',
+              'VisualStudio/vssln_spec.xml': 'vssln',
+              'XBCML/xbcml_spec.xml': 'xbcml',
+              'Markdown/mmd_spec.xml': 'mmd',
+          }
+
+          for filename, syntax_id in expected.items():
+              path = Path(filename)
+              tree = ET.parse(path)
+              root = tree.getroot()
+              syntax = root.find('./SYNTAX')
+              if syntax is None or syntax.get('id') != syntax_id:
+                  raise SystemExit(f'{filename}: expected syntax id {syntax_id!r}')
+              info = root.find('./FILEINFO')
+              if info is None or (info.get('type') or '').lower() not in {'langspec', 'languser'}:
+                  raise SystemExit(f'{filename}: invalid FILEINFO type')
+              print(f'OK {filename}: {info.get("type")} id={syntax_id}')
+          PY
+
+          git diff --check
+          git status --short
+
+      - name: Commit reconciled production syntax source
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .phase2b-import
+          git config user.name "HippoEDIT"
+          git config user.email "hippoedit@users.noreply.github.com"
+          git add \
+            CSS/css_ms_spec.xml CSS/css_spec.xml \
+            _Default/def_spec.xml _Default/deftext_spec.xml \
+            Text/txt_spec.xml INI/ini_spec.xml Clipper/harbour_spec.xml \
+            GEDCOM/gedcom_spec.xml SMV/smv_spec.xml SMV/smv_user.xml \
+            VisualStudio/vssln_spec.xml XBCML/xbcml_spec.xml Markdown/mmd_spec.xml
+          git diff --cached --check
+          git commit -m "reconcile: preserve production syntax semantics"
+          git push origin HEAD:phase2b-source-reconciliation
