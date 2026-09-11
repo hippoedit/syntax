@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
 <XMLConfigSettings>
 
@@ -72,7 +72,7 @@
 				<Middle text="Продолжить" />
 			</Scope>
 
-			<Scope open="Для каждого" close="КонецЦикла"strict="true">
+			<Scope open="Для каждого" close="КонецЦикла" strict="true">
 				<Middle text="В" />
 				<Middle text="Цикл" />
 				<Middle text="Прервать" />
@@ -154,7 +154,7 @@
 				</Blocks>
 			</Style>
 
-			<Style id="constant_Date" name="Константа Дата" bold="1"
+			<Style id="constant_Date" name="Константа Дата"
 					bold="0" italic="0" underline="0" strikeout="0" hotspot="0" overview="0"
 					extend="false" exclude="false" override="true"
 					clr="Number" bkclr="#FFFFFFFF"
