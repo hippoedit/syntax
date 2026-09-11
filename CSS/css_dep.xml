@@ -2,6 +2,6 @@
 <XMLConfigSettings>
   <FILEINFO author="HippoEDIT.com" type="Dependency"/>
   <SYNTAX id="css">
-	<File local="./download/syntax/css_spec.xml.alt" dest="data/syntax/css_spec.xml.alt" descr="Alternative, old style version of CSS syntax. Also working"/>
+	<File local="CSS/css_spec.xml.alt" dest="data/syntax/css_spec.xml.alt" descr="Alternative, old style version of CSS syntax. Also working"/>
   </SYNTAX>
 </XMLConfigSettings>

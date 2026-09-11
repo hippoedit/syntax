@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
 <XMLConfigSettings>
   <FILEINFO author="Alexandr Cojocari" type="LangSpec"/>
-  <SYNTAX id="au3" name="AutoIt" version="1.0" inherit="def_source" inherit_url="defsource_spec.xml" version="1.1">
+  <SYNTAX id="au3" name="AutoIt" inherit="def_source" inherit_url="defsource_spec.xml" version="1.1">
     <SPECIFICATION>
       <FilePattern mask="*.au3;*.aut;"/>
       <Delimiters>~%=#|/:;&quot;'?</Delimiters>

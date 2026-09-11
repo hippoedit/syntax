@@ -2,6 +2,6 @@
 <XMLConfigSettings>
   <FILEINFO author="HippoEDIT.com" type="Dependency"/>
   <SYNTAX id="autolisp">
-	<File local="./download/syntax/autodcl_spec.xml" dest="data/syntax/autodcl_spec.xml" descr="AutoCAD DCL syntax"/>
+	<File local="AutoCAD/autodcl_spec.xml" dest="data/syntax/autodcl_spec.xml" descr="AutoCAD DCL syntax"/>
   </SYNTAX>
 </XMLConfigSettings>
