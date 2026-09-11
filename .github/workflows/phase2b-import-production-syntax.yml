@@ -115,4 +115,5 @@ jobs:
             VisualStudio/vssln_spec.xml XBCML/xbcml_spec.xml Markdown/mmd_spec.xml
           git diff --cached --check
           git commit -m "reconcile: preserve production syntax semantics"
-          git push origin HEAD:phase2b-source-reconciliation
+          echo "IMPORT_COMMIT=$(git rev-parse HEAD)"
+          git push origin HEAD:refs/heads/phase2b-import-result
