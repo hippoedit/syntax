@@ -1,4 +1,4 @@
-name: Phase 2B Source Audit
+name: Phase 2B Source Reconciliation
 
 on:
   push:
@@ -8,86 +8,127 @@ on:
       - .github/workflows/phase2b-source-fix.yml
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  audit-source:
+  reconcile-source:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
           ref: phase2b-source-reconciliation
+          fetch-depth: 0
 
-      - name: Audit all XML and dependency source paths
+      - name: Apply evidenced source corrections
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              'AutoIt/au3_spec.xml': [
+                  (
+                      '<SYNTAX id="au3" name="AutoIt" version="1.0" inherit="def_source" inherit_url="defsource_spec.xml" version="1.1">',
+                      '<SYNTAX id="au3" name="AutoIt" inherit="def_source" inherit_url="defsource_spec.xml" version="1.1">',
+                  ),
+              ],
+              'ASP/asp_dep.xml': [
+                  ('local="./download/syntax/asp/html_asp_spec.xml"', 'local="ASP/html_asp_spec.xml"'),
+                  ('local="./download/syntax/asp/html_asp_user.xml"', 'local="ASP/html_asp_user.xml"'),
+                  ('local="./download/syntax/asp/scripts/browser_preview_firefox.vbs"', 'local="ASP/scripts/browser_preview_firefox.vbs"'),
+                  ('local="./download/syntax/asp/scripts/browser_preview_ie.vbs"', 'local="ASP/scripts/browser_preview_ie.vbs"'),
+              ],
+              'AutoCAD/autodcl_dep.xml': [
+                  ('local="./download/syntax/autolisp_spec.xml"', 'local="AutoCAD/autolisp_spec.xml"'),
+              ],
+              'AutoCAD/autolisp_dep.xml': [
+                  ('local="./download/syntax/autodcl_spec.xml"', 'local="AutoCAD/autodcl_spec.xml"'),
+              ],
+              'CSS/css_dep.xml': [
+                  ('local="./download/syntax/css_spec.xml.alt"', 'local="CSS/css_spec.xml.alt"'),
+              ],
+              'Clipper/clipper_dep.xml': [
+                  ('local="./download/syntax/add/Cli_Hippo.ch"', 'local="Clipper/add/Cli_Hippo.ch"'),
+              ],
+              'HTML/html_dep.xml': [
+                  ('local="./download/syntax/html_user.xml.alt"', 'local="HTML/html_user.xml.alt"'),
+              ],
+          }
+
+          for filename, changes in replacements.items():
+              path = Path(filename)
+              data = path.read_text(encoding='utf-8-sig')
+              for old, new in changes:
+                  if old not in data:
+                      raise SystemExit(f'expected source sequence not found in {filename}: {old}')
+                  data = data.replace(old, new, 1)
+              path.write_text(data, encoding='utf-8')
+          PY
+
+      - name: Validate publication XML and dependency paths
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import xml.etree.ElementTree as ET
 
           root = Path('.')
-          invalid_xml = []
-          path_mismatches = []
-          missing_paths = []
-
-          def resolve_case_insensitive(relative: Path):
-              current = root
-              resolved = []
-              for part in relative.parts:
-                  if not current.is_dir():
-                      return None
-                  matches = [child for child in current.iterdir() if child.name.lower() == part.lower()]
-                  if len(matches) != 1:
-                      return None
-                  current = matches[0]
-                  resolved.append(current.name)
-              return Path(*resolved)
+          invalid = []
+          missing = []
+          legacy = []
+          publication = []
 
           for path in sorted(root.rglob('*.xml')):
               if '.git' in path.parts:
                   continue
-              relative_xml = path.as_posix()
+              lower = path.name.lower()
+              if not lower.endswith(('_spec.xml', '_user.xml', '_dep.xml')):
+                  continue
+              publication.append(path)
               try:
                   tree = ET.parse(path)
               except ET.ParseError as exc:
-                  invalid_xml.append(f'{relative_xml}: {exc}')
+                  invalid.append(f'{path.as_posix()}: {exc}')
                   continue
 
-              if not path.name.lower().endswith('_dep.xml'):
+              if not lower.endswith('_dep.xml'):
                   continue
 
               for node in tree.findall('.//File'):
                   declared = (node.get('local') or '').replace('\\', '/').strip()
                   if not declared:
                       continue
-                  normalized = declared
-                  for prefix in ('./download/syntax/', 'download/syntax/'):
-                      if normalized.startswith(prefix):
-                          normalized = normalized[len(prefix):]
-                          break
-                  while normalized.startswith('./'):
-                      normalized = normalized[2:]
-                  relative = Path(normalized)
-                  exact = root / relative
-                  if exact.is_file():
-                      if declared != normalized:
-                          path_mismatches.append(f'{relative_xml}: {declared} -> {normalized}')
+                  if declared.startswith(('./download/syntax/', 'download/syntax/', '/')) or '..' in Path(declared).parts:
+                      legacy.append(f'{path.as_posix()}: {declared}')
                       continue
-                  resolved = resolve_case_insensitive(relative)
-                  if resolved is not None and (root / resolved).is_file():
-                      path_mismatches.append(f'{relative_xml}: {declared} -> {resolved.as_posix()}')
-                  else:
-                      missing_paths.append(f'{relative_xml}: {declared}')
+                  if not (root / declared).is_file():
+                      missing.append(f'{path.as_posix()}: {declared}')
 
-          print('INVALID XML:', len(invalid_xml))
-          for item in invalid_xml:
+          print('PUBLICATION XML:', len(publication))
+          print('INVALID XML:', len(invalid))
+          for item in invalid:
               print('  ', item)
-          print('LEGACY/CASE PATHS:', len(path_mismatches))
-          for item in path_mismatches:
+          print('LEGACY/UNSAFE PATHS:', len(legacy))
+          for item in legacy:
               print('  ', item)
-          print('MISSING PATHS:', len(missing_paths))
-          for item in missing_paths:
+          print('MISSING PATHS:', len(missing))
+          for item in missing:
               print('  ', item)
 
-          if invalid_xml or missing_paths:
+          if invalid or legacy or missing:
               raise SystemExit(1)
           PY
+
+      - name: Commit source corrections
+        run: |
+          git config user.name "HippoEDIT"
+          git config user.email "hippoedit@users.noreply.github.com"
+          git add \
+            AutoIt/au3_spec.xml \
+            ASP/asp_dep.xml \
+            AutoCAD/autodcl_dep.xml \
+            AutoCAD/autolisp_dep.xml \
+            CSS/css_dep.xml \
+            Clipper/clipper_dep.xml \
+            HTML/html_dep.xml
+          git diff --cached --check
+          git commit -m "fix: normalize syntax dependency source paths"
+          git push origin HEAD:phase2b-source-reconciliation
