@@ -1,4 +1,4 @@
-name: Phase 2B Source Reconciliation
+name: Phase 2B Source Bitmap Reconciliation
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  reconcile-source:
+  reconcile-css-bitmap:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -19,116 +19,46 @@ jobs:
           ref: phase2b-source-reconciliation
           fetch-depth: 0
 
-      - name: Apply evidenced source corrections
+      - name: Restore CSS bitmap from canonical shared payload
         run: |
-          python3 - <<'PY'
-          from pathlib import Path
+          test ! -e CSS/images/vs_styles.bmp
+          test -f C++/images/vs_styles.bmp
+          grep -Fq '<StyleBitmap>images\vs_styles.bmp</StyleBitmap>' CSS/css_ms_spec.xml
+          mkdir -p CSS/images
+          cp C++/images/vs_styles.bmp CSS/images/vs_styles.bmp
+          test "$(sha256sum C++/images/vs_styles.bmp | cut -d' ' -f1)" = "$(sha256sum CSS/images/vs_styles.bmp | cut -d' ' -f1)"
 
-          replacements = {
-              'AutoIt/au3_spec.xml': [
-                  (
-                      '<SYNTAX id="au3" name="AutoIt" version="1.0" inherit="def_source" inherit_url="defsource_spec.xml" version="1.1">',
-                      '<SYNTAX id="au3" name="AutoIt" inherit="def_source" inherit_url="defsource_spec.xml" version="1.1">',
-                  ),
-              ],
-              'ASP/asp_dep.xml': [
-                  ('local="./download/syntax/asp/html_asp_spec.xml"', 'local="ASP/html_asp_spec.xml"'),
-                  ('local="./download/syntax/asp/html_asp_user.xml"', 'local="ASP/html_asp_user.xml"'),
-                  ('local="./download/syntax/asp/scripts/browser_preview_firefox.vbs"', 'local="ASP/scripts/browser_preview_firefox.vbs"'),
-                  ('local="./download/syntax/asp/scripts/browser_preview_ie.vbs"', 'local="ASP/scripts/browser_preview_ie.vbs"'),
-              ],
-              'AutoCAD/autodcl_dep.xml': [
-                  ('local="./download/syntax/autolisp_spec.xml"', 'local="AutoCAD/autolisp_spec.xml"'),
-              ],
-              'AutoCAD/autolisp_dep.xml': [
-                  ('local="./download/syntax/autodcl_spec.xml"', 'local="AutoCAD/autodcl_spec.xml"'),
-              ],
-              'CSS/css_dep.xml': [
-                  ('local="./download/syntax/css_spec.xml.alt"', 'local="CSS/css_spec.xml.alt"'),
-              ],
-              'Clipper/clipper_dep.xml': [
-                  ('local="./download/syntax/add/Cli_Hippo.ch"', 'local="Clipper/add/Cli_Hippo.ch"'),
-              ],
-              'HTML/html_dep.xml': [
-                  ('local="./download/syntax/html_user.xml.alt"', 'local="HTML/html_user.xml.alt"'),
-              ],
-          }
-
-          for filename, changes in replacements.items():
-              path = Path(filename)
-              data = path.read_text(encoding='utf-8-sig')
-              for old, new in changes:
-                  if old not in data:
-                      raise SystemExit(f'expected source sequence not found in {filename}: {old}')
-                  data = data.replace(old, new, 1)
-              path.write_text(data, encoding='utf-8')
-          PY
-
-      - name: Validate publication XML and dependency paths
+      - name: Validate all bitmap references
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import xml.etree.ElementTree as ET
 
           root = Path('.')
-          invalid = []
           missing = []
-          legacy = []
-          publication = []
-
-          for path in sorted(root.rglob('*.xml')):
-              if '.git' in path.parts:
-                  continue
-              lower = path.name.lower()
-              if not lower.endswith(('_spec.xml', '_user.xml', '_dep.xml')):
-                  continue
-              publication.append(path)
-              try:
-                  tree = ET.parse(path)
-              except ET.ParseError as exc:
-                  invalid.append(f'{path.as_posix()}: {exc}')
-                  continue
-
-              if not lower.endswith('_dep.xml'):
-                  continue
-
-              for node in tree.findall('.//File'):
-                  declared = (node.get('local') or '').replace('\\', '/').strip()
-                  if not declared:
-                      continue
-                  if declared.startswith(('./download/syntax/', 'download/syntax/', '/')) or '..' in Path(declared).parts:
-                      legacy.append(f'{path.as_posix()}: {declared}')
-                      continue
-                  if not (root / declared).is_file():
-                      missing.append(f'{path.as_posix()}: {declared}')
-
-          print('PUBLICATION XML:', len(publication))
-          print('INVALID XML:', len(invalid))
-          for item in invalid:
-              print('  ', item)
-          print('LEGACY/UNSAFE PATHS:', len(legacy))
-          for item in legacy:
-              print('  ', item)
-          print('MISSING PATHS:', len(missing))
+          count = 0
+          for path in sorted(root.rglob('*_spec.xml')):
+              tree = ET.parse(path)
+              for tag in ('StyleBitmap', 'MarginBitmap'):
+                  for node in tree.findall(f'.//SPECIFICATION/{tag}'):
+                      declared = (node.text or '').strip().replace('\\', '/')
+                      source = path.parent / declared
+                      count += 1
+                      if not source.is_file():
+                          missing.append(f'{path.as_posix()}: {declared}')
+          print('BITMAP REFERENCES:', count)
+          print('MISSING BITMAP REFERENCES:', len(missing))
           for item in missing:
               print('  ', item)
-
-          if invalid or legacy or missing:
+          if missing:
               raise SystemExit(1)
           PY
 
-      - name: Commit source corrections
+      - name: Commit CSS bitmap source
         run: |
           git config user.name "HippoEDIT"
           git config user.email "hippoedit@users.noreply.github.com"
-          git add \
-            AutoIt/au3_spec.xml \
-            ASP/asp_dep.xml \
-            AutoCAD/autodcl_dep.xml \
-            AutoCAD/autolisp_dep.xml \
-            CSS/css_dep.xml \
-            Clipper/clipper_dep.xml \
-            HTML/html_dep.xml
+          git add CSS/images/vs_styles.bmp
           git diff --cached --check
-          git commit -m "fix: normalize syntax dependency source paths"
+          git commit -m "fix: restore CSS syntax bitmap payload"
           git push origin HEAD:phase2b-source-reconciliation
