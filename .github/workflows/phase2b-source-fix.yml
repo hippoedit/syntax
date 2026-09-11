@@ -1,4 +1,4 @@
-name: Phase 2B Source Fix
+name: Phase 2B Source Audit
 
 on:
   push:
@@ -8,47 +8,86 @@ on:
       - .github/workflows/phase2b-source-fix.yml
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  fix-source:
+  audit-source:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
           ref: phase2b-source-reconciliation
-          fetch-depth: 0
 
-      - name: Repair malformed 1C syntax XML
+      - name: Audit all XML and dependency source paths
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          path = Path('1C/1c_spec.xml')
-          data = path.read_text(encoding='utf-8-sig')
-          replacements = [
-              (
-                  '<Style id="constant_Date" name="Константа Дата" bold="1"\n\t\t\t\t\tbold="0"',
-                  '<Style id="constant_Date" name="Константа Дата"\n\t\t\t\t\tbold="0"',
-              ),
-              (
-                  '<Scope open="Для каждого" close="КонецЦикла"strict="true">',
-                  '<Scope open="Для каждого" close="КонецЦикла" strict="true">',
-              ),
-          ]
-          for old, new in replacements:
-              if old not in data:
-                  raise SystemExit(f'expected malformed sequence not found: {old}')
-              data = data.replace(old, new, 1)
-          path.write_text(data, encoding='utf-8')
+          import xml.etree.ElementTree as ET
+
+          root = Path('.')
+          invalid_xml = []
+          path_mismatches = []
+          missing_paths = []
+
+          def resolve_case_insensitive(relative: Path):
+              current = root
+              resolved = []
+              for part in relative.parts:
+                  if not current.is_dir():
+                      return None
+                  matches = [child for child in current.iterdir() if child.name.lower() == part.lower()]
+                  if len(matches) != 1:
+                      return None
+                  current = matches[0]
+                  resolved.append(current.name)
+              return Path(*resolved)
+
+          for path in sorted(root.rglob('*.xml')):
+              if '.git' in path.parts:
+                  continue
+              relative_xml = path.as_posix()
+              try:
+                  tree = ET.parse(path)
+              except ET.ParseError as exc:
+                  invalid_xml.append(f'{relative_xml}: {exc}')
+                  continue
+
+              if not path.name.lower().endswith('_dep.xml'):
+                  continue
+
+              for node in tree.findall('.//File'):
+                  declared = (node.get('local') or '').replace('\\', '/').strip()
+                  if not declared:
+                      continue
+                  normalized = declared
+                  for prefix in ('./download/syntax/', 'download/syntax/'):
+                      if normalized.startswith(prefix):
+                          normalized = normalized[len(prefix):]
+                          break
+                  while normalized.startswith('./'):
+                      normalized = normalized[2:]
+                  relative = Path(normalized)
+                  exact = root / relative
+                  if exact.is_file():
+                      if declared != normalized:
+                          path_mismatches.append(f'{relative_xml}: {declared} -> {normalized}')
+                      continue
+                  resolved = resolve_case_insensitive(relative)
+                  if resolved is not None and (root / resolved).is_file():
+                      path_mismatches.append(f'{relative_xml}: {declared} -> {resolved.as_posix()}')
+                  else:
+                      missing_paths.append(f'{relative_xml}: {declared}')
+
+          print('INVALID XML:', len(invalid_xml))
+          for item in invalid_xml:
+              print('  ', item)
+          print('LEGACY/CASE PATHS:', len(path_mismatches))
+          for item in path_mismatches:
+              print('  ', item)
+          print('MISSING PATHS:', len(missing_paths))
+          for item in missing_paths:
+              print('  ', item)
+
+          if invalid_xml or missing_paths:
+              raise SystemExit(1)
           PY
-
-      - name: Validate corrected XML
-        run: php -r '$x=simplexml_load_file("1C/1c_spec.xml"); if ($x === false) exit(1);'
-
-      - name: Commit correction
-        run: |
-          git config user.name "HippoEDIT"
-          git config user.email "hippoedit@users.noreply.github.com"
-          git add 1C/1c_spec.xml
-          git commit -m "fix: repair malformed 1C syntax XML"
-          git push origin HEAD:phase2b-source-reconciliation
