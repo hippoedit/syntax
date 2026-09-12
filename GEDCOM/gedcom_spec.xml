@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="Alex" type="LangSpec"/>
+  <SYNTAX id="gedcom" name="GEDCOM" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.ged"/>
+      <CaseSensitive>true</CaseSensitive>
+      <Words init="A-Za-z_">A-Za-z0-9_</Words>
+    </SPECIFICATION>
+    <SCOPES>
+    </SCOPES>
+    <STYLES>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="@" close="@"/>
+        </Blocks>
+      </Style>
+      <Style name="Keywords 1" clr="Keyword">
+        <Keywords>
+          <Keyword text="__FILE__"/>
+          <Keyword text="__LINE__"/>
+          <Keyword text="NOTE"/>
+          <Keyword text="CONT"/>
+          <Keyword text="CONC"/>
+        </Keywords>
+      </Style>
+      <Style name="Keywords 2" clr="Keyword2">
+        <Keywords>
+          <Keyword text="ABBR"/>
+          <Keyword text="ADDR"/>
+          <Keyword text="ADR1"/>
+          <Keyword text="ADR2"/>
+          <Keyword text="ADOP"/>
+          <Keyword text="AFN"/>
+          <Keyword text="AGE"/>
+          <Keyword text="AGNC"/>
+          <Keyword text="ALIA"/>
+          <Keyword text="ANCE"/>
+          <Keyword text="ANCI"/>
+          <Keyword text="ANUL"/>
+          <Keyword text="ASSO"/>
+          <Keyword text="AUTH"/>
+          <Keyword text="BAPL"/>
+          <Keyword text="BAPM"/>
+          <Keyword text="BARM"/>
+          <Keyword text="BASM"/>
+          <Keyword text="BIRT"/>
+          <Keyword text="BLES"/>
+          <Keyword text="BLOB"/>
+          <Keyword text="BURI"/>
+          <Keyword text="CALN"/>
+          <Keyword text="CAST"/>
+          <Keyword text="CAUS"/>
+          <Keyword text="CENS"/>
+          <Keyword text="CHAN"/>
+          <Keyword text="CHAR"/>
+          <Keyword text="CHIL"/>
+          <Keyword text="CHR"/>
+          <Keyword text="CHRA"/>
+          <Keyword text="CITY"/>
+          <Keyword text="CONF"/>
+          <Keyword text="CONL"/>
+          <Keyword text="COPR"/>
+          <Keyword text="CORP"/>
+          <Keyword text="CREM"/>
+          <Keyword text="CTRY"/>
+          <Keyword text="DATA"/>
+          <Keyword text="DATE"/>
+          <Keyword text="DEAT"/>
+          <Keyword text="DESC"/>
+          <Keyword text="DESI"/>
+          <Keyword text="DEST"/>
+          <Keyword text="DIV"/>
+          <Keyword text="DIVF"/>
+          <Keyword text="DSCR"/>
+          <Keyword text="EDUC"/>
+          <Keyword text="EMIG"/>
+          <Keyword text="ENDL"/>
+          <Keyword text="ENGA"/>
+          <Keyword text="EVEN"/>
+          <Keyword text="FAM"/>
+          <Keyword text="FAMC"/>
+          <Keyword text="FAMF"/>
+          <Keyword text="FAMS"/>
+          <Keyword text="FCOM"/>
+          <Keyword text="FILE"/>
+          <Keyword text="FORM"/>
+          <Keyword text="GIVN"/>
+          <Keyword text="GRAD"/>
+          <Keyword text="IDNO"/>
+          <Keyword text="IMMI"/>
+          <Keyword text="LEGA"/>
+          <Keyword text="MARB"/>
+          <Keyword text="MARC"/>
+          <Keyword text="MARL"/>
+          <Keyword text="MARR"/>
+          <Keyword text="MARS"/>
+          <Keyword text="NAME"/>
+          <Keyword text="NATI"/>
+          <Keyword text="NATU"/>
+          <Keyword text="NCHI"/>
+          <Keyword text="NICK"/>
+          <Keyword text="NMR"/>
+          <Keyword text="NPFX"/>
+          <Keyword text="NSFX"/>
+          <Keyword text="OBJE"/>
+          <Keyword text="OCCU"/>
+          <Keyword text="ORDI"/>
+          <Keyword text="ORDN"/>
+          <Keyword text="PAGE"/>
+          <Keyword text="PEDI"/>
+          <Keyword text="PLAC"/>
+          <Keyword text="PHON"/>
+          <Keyword text="POST"/>
+          <Keyword text="PROB"/>
+          <Keyword text="PROP"/>
+          <Keyword text="PUBL"/>
+          <Keyword text="QUAY"/>
+          <Keyword text="REPO"/>
+          <Keyword text="REFN"/>
+          <Keyword text="RELI"/>
+          <Keyword text="RESI"/>
+          <Keyword text="RESN"/>
+          <Keyword text="RETI"/>
+          <Keyword text="RFN"/>
+          <Keyword text="RIN"/>
+          <Keyword text="ROLE"/>
+          <Keyword text="SEX"/>
+          <Keyword text="SLGC"/>
+          <Keyword text="SLGS"/>
+          <Keyword text="SOUR"/>
+          <Keyword text="SPFX"/>
+          <Keyword text="SSN"/>
+          <Keyword text="STAE"/>
+          <Keyword text="STAT"/>
+          <Keyword text="SUBM"/>
+          <Keyword text="SUBN"/>
+          <Keyword text="SURN"/>
+          <Keyword text="TEMP"/>
+          <Keyword text="TEXT"/>
+          <Keyword text="TIME"/>
+          <Keyword text="TITL"/>
+          <Keyword text="TYPE"/>
+          <Keyword text="WILL"/>
+          <Keyword text="VERS"/>
+          <Keyword text="GEDC"/>
+          <Keyword text="HEAD"/>
+          <Keyword text="INDI"/>
+          <Keyword text="HUSB"/>
+          <Keyword text="WIFE"/>
+          <Keyword text="MAP"/>
+          <Keyword text="LATI"/>
+          <Keyword text="LONG"/>
+          <Keyword text="TRLR"/>
+        </Keywords>
+      </Style>
+      <Style name="Keywords 3" clr="Keyword3">
+        <Keywords>
+          <Keyword text="_LIST"/>
+          <Keyword text="_IDS"/>
+          <Keyword text="_ASID"/>
+          <Keyword text="_AREA"/>
+          <Keyword text="_FILE"/>
+          <Keyword text="_DATE"/>
+          <Keyword text="_NOTE"/>
+          <Keyword text="_ATTR"/>
+          <Keyword text="_USED"/>
+          <Keyword text="_WEB"/>
+          <Keyword text="_ROOT"/>
+          <Keyword text="_UID"/>
+          <Keyword text="_FLAG"/>
+          <Keyword text="_FLGS"/>
+          <Keyword text="__????"/>
+          <Keyword text="_TYPE"/>
+          <Keyword text="_EMAIL"/>
+          <Keyword text="_SHAR"/>
+          <Keyword text="_SHAR"/>
+        </Keywords>
+      </Style>
+      <Style name="Keywords 4" clr="Keyword4">
+        <Keywords>
+          <Keyword text="_STAT"/>
+          <Keyword text="_EXCL"/>
+          <Keyword text="_CAPT"/>
+          <Keyword text="_PLAC"/>
+          <Keyword text="_SENT"/>
+        </Keywords>
+      </Style>
+      <Style name="Operators" id="operator" clr="Operator">
+      </Style>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+        </Containers>
+      </Style>
+      <Style id="number" exclude="true"/>
+	  <Style id="level" name="Level" clr="Comments" bold="1" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Regexp first_pos="true" text="[0-9]+"/>
+        </Blocks>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

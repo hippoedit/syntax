@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+	<FILEINFO author="Ramon" type="LangUser"/>
+	<SYNTAX id="smv" inherit="def_source" inherit_url="defsource_user.xml">
+		<CodeTemplates>
+			<Template key="MODULE" descr="MODULE $">MODULE %|%\nVAR\n\nASSIGN</Template>
+		</CodeTemplates>
+		<HELP>
+			<Help name="The SMV System" external_browser="true" url="http://www.cs.cmu.edu/~modelcheck/smv.html"/>
+		</HELP>
+	</SYNTAX>
+</XMLConfigSettings>

@@ -19,7 +19,6 @@
           <Keyword text="background-position-x" descr="Defines the x-coordinate of the background-position property (IE4)"/>
           <Keyword text="background-position-y" descr="Defines the y-coordinate of the background-position property (IE4)"/>
           <Keyword text="behavior" descr="Used to define the URL for a script providing DHTML behavior (IE5)"/>
-          <Keyword text="filter" descr="Used to apply filter effects to associated HTML elements (IE4)"/>
           <Keyword text="ime-mode" descr="Used to set the state of an Input Method Editor (IME); for use with Chinese, Japanese, and Korean character sets (IE5)"/>
           <Keyword text="layout-grid" descr="Defines a grid to be used in laying out Japanese or Chinese characters in a Web document.\nThis is a shorthand property for the layout grid properties discussed next (IE5)"/>
           <Keyword text="layout-grid-char" descr="Defines the size of the character grid used for laying out Japanese or Chinese characters in a Web document (IE5)"/>

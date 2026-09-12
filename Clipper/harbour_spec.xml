@@ -2,10 +2,10 @@
 <?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
 <XMLConfigSettings>
   <FILEINFO author="Curiosoaqp" type="LangSpec"/>
-  <SYNTAX id="harbour" name="Harbour" inherit="clipper" version="1.0" inherit_url="clipper_spec.xml">
+  <SYNTAX id="harbour" name="Harbour" inherit="def_source" version="1.0" inherit_url="defsource_spec.xml">
     <SPECIFICATION>
-      <FilePattern mask="*.prg;*.ch;*.fmg;*.rmg">
-        <Pair file1="*.prg" file2="*.ch"/>
+      <FilePattern mask="*.prg;*.ch;*.fmg;*.rmg;*.rc">
+        <Pair file1="*.prg" file2="*.fmg"/>
       </FilePattern>
       <SyntaxBlocks>
         <Block open="#include "/>
@@ -17,23 +17,7 @@
       <Bars navigation="true"/>
     </SPECIFICATION>
     <SCOPES>
-      <Scope open="FUNCTION" close="RETURN" strict="false"/>
-      <Scope open="PROCEDURE" close="RETURN" strict="false"/>
-      <Scope open="START" close="END" strict="false"/>
       <Scope open="DEFINE" close="END" strict="false"/>
-      <Scope open="TEXT" close="ENDTEXT"/>
-      <Scope open="IF" middle="ELSE" strict="false">
-        <Close text="END" trail="\s+?(:?/|$)"/>
-        <Close text="ENDIF"/>
-        <Middle text="ELSEIF"/>
-      </Scope>
-      <Scope open="BEGIN SEQUENCE" middle="RECOVER" close="END SEQUENCE"/>
-      <Scope open="WHILE" strict="false">
-        <Close text="END" trail="\s+?(:?/|$)"/>
-        <Close text="ENDDO"/>
-      </Scope>
-      <Scope open="START PRINTDOC NAME" close="END PRINTDOC"/>
-      <Scope open="START PRINTPAGE" close="END PRINTPAGE"/>
       <Scope open="DEFINE WINDOW" close="END WINDOW"/>
       <Scope open="DEFINE CHECKBOX" close="END CHECKBOX"/>
       <Scope open="DEFINE ACTIVEX" close="END ACTIVEX"/>
@@ -68,7 +52,7 @@
       <Scope open="DEFINE PROGRESSBAR" close="END PROGRESSBAR"/>
       <Scope open="DEFINE RADIOGROUP" close="END RADIOGROUP"/>
       <Scope open="DEFINE RICHEDITBOX" close="END RICHEDITBOX"/>
-      <Scope open="DEFINE SLIDER" close="END SLIDEREND SLIDER"/>
+      <Scope open="DEFINE SLIDER" close="END SLIDER"/>
       <Scope open="DEFINE SPINNER" close="END SPINNER"/>
       <Scope open="DEFINE SPLITBOX" close="END SPLITBOX"/>
       <Scope open="DEFINE STATUSBAR" close="END STATUSBAR"/>
@@ -76,7 +60,6 @@
       <Scope open="DEFINE TEXTBOX" close="END TEXTBOX"/>
       <Scope open="DEFINE TIMEPICKER" close="END TIMEPICKER"/>
       <Scope open="DEFINE TREE" close="END TREE"/>
-      <Scope open="NODE" close="END NODE"/>
       <Scope open="DEFINE TOOLBAR" close="END TOOLBAR"/>
       <Scope open="DEFINE REPORT" close="END REPORT"/>
       <Scope open="BEGIN DATA" close="END DATA"/>
@@ -92,22 +75,21 @@
       <Scope open="BEGIN PICTURE" close="END PICTURE"/>
       <Scope open="BEGIN LINE" close="END LINE"/>
       <Scope open="BEGIN RECTANGLE" close="END RECTANGLE"/>
-      <Scope open="START HPDFDOC" close="END HPDFDOC"/>
-      <Scope open="DO WHILE" close="ENDDO"/>
+      <Scope open="BEGIN SEQUENCE" close="END"/>
+      <Scope open="BEGIN SEQUENCE" middle="RECOVER" close="END SEQUENCE"/>
+      <Scope open="NODE" close="END NODE"/>
+      <Scope open="FUNCTION" close="RETURN" strict="false"/>
+      <Scope open="PROCEDURE" close="RETURN" strict="false"/>
       <Scope open="MENU" close="ENDMENU" strict="false"/>
       <Scope open="FOR" close="NEXT" strict="false"/>
       <Scope open="FOR EACH" close="NEXT"/>
       <Scope open="WITH OBJECT" close="ENDWITH"/>
-      <Scope open="DO CASE" middle="CASE" close="ENDCASE">
-        <Middle text="OTHERWISE"/>
-        <Close text="END CASE"/>
-      </Scope>
-      <Scope open="SWITCH" middle="CASE" close="ENDSWITCH">
-        <Middle text="DEFAULTSWITCH"/>
-        <Middle text="DEFAULT"/>
-      </Scope>
-      <Scope open="TRY" middle="CATCH" close="ENDTRY">
-        <Middle text="FINALLY"/>
+      <Scope open="TEXT" close="ENDTEXT"/>
+      <Scope open="IF" strict="false">
+        <Middle text="ELSE"/>
+        <Middle text="ELSEIF"/>
+        <Close text="END" trail="\s+?(:?/|$)"/>
+        <Close text="ENDIF"/>
       </Scope>
       <Scope open="IFDEF" middle="ELSE" close="ENDIF">
         <Containers>
@@ -121,6 +103,27 @@
           <Open id="preprocessor"/>
         </Containers>
       </Scope>
+      <Scope open="WHILE" strict="false">
+        <Close text="END" trail="\s+?(:?/|$)"/>
+        <Close text="ENDDO"/>
+      </Scope>
+      <Scope open="DO WHILE" close="ENDDO"/>
+      <Scope open="DO CASE" middle="CASE" close="ENDCASE">
+        <Middle text="OTHERWISE"/>
+        <Close text="ENDCASE"/>
+      </Scope>
+      <Scope open="SWITCH" middle="CASE" close="ENDSWITCH">
+        <Middle text="DEFAULTSWITCH"/>
+        <Middle text="DEFAULT"/>
+      </Scope>
+      <Scope open="TRY" middle="CATCH" close="ENDTRY">
+        <Middle text="FINALLY"/>
+      </Scope>
+      <Scope open="LOCATE FOR" close=""/>
+      <Scope open="START" close="END" strict="false"/>
+      <Scope open="START PRINTDOC NAME" close="END PRINTDOC"/>
+      <Scope open="START PRINTPAGE" close="END PRINTPAGE"/>
+      <Scope open="START HPDFDOC" close="END HPDFDOC"/>
       <Scope open="Region" close="EndRegion"/>
     </SCOPES>
     <LABELS>
@@ -140,7 +143,7 @@
       <Label group="Region" match="(?:^|\s)Label\s+(\w+)\s+(\w+)" name="\2" descr="Label \1 \2" image="8" scope="1"/>
     </LABELS>
     <STYLES>
-      <Style name="BeginEnds" image="13" bold="1" italic="0" underline="0" clr="#8B000000" bkclr="#FFFFFFFF">
+      <Style name="BeginEnds" image="13" bold="1" italic="0" underline="0" clr="#8E030C" bkclr="#FFFFFFFF">
         <Keywords>
           <Keyword text="BEGIN SEQUENCE"/>
           <Keyword text="BREAK"/>
@@ -149,6 +152,7 @@
           <Keyword text="DEFAULT"/>
           <Keyword text="DEFAULTSWITCH"/>
           <Keyword text="DO"/>
+          <Keyword text="DO CASE"/>
           <Keyword text="EACH"/>
           <Keyword text="ELSE"/>
           <Keyword text="ELSEIF"/>
@@ -167,6 +171,7 @@
           <Keyword text="FUNCTION"/>
           <Keyword text="Field"/>
           <Keyword text="IF"/>
+          <Keyword text="IIF"/>
           <Keyword text="INIT"/>
           <Keyword text="LOOP"/>
           <Keyword text="Local"/>
@@ -189,10 +194,9 @@
           <Keyword text="TRY"/>
           <Keyword text="WHILE"/>
           <Keyword text="WITH OBJECT"/>
-          <Keyword text="iIF"/>
         </Keywords>
       </Style>
-      <Style id="character" name="Character" text="1" bold="2" italic="0" underline="0" clr="#0D92FF00" bkclr="#FFFFFFFF">
+      <Style id="character" name="Character" text="1" bold="2" italic="0" underline="0" clr="#0925C8" bkclr="#FFFFFFFF">
         <Containers>
           <Open id="normal"/>
           <Open id="preprocessor"/>
@@ -201,7 +205,7 @@
           <Block open="&quot;" close="&quot;"/>
         </Blocks>
       </Style>
-      <Style name="Commands" image="7" bold="0" italic="0" underline="0" clr="#8B000000" bkclr="#FFFFFFFF">
+      <Style name="Commands" image="7" bold="0" italic="0" underline="0" clr="#7B04B1" bkclr="#FFFFFFFF">
         <Keywords>
           <Keyword text=".and."/>
           <Keyword text=".f."/>
@@ -212,7 +216,6 @@
           <Keyword text="::"/>
           <Keyword text="?"/>
           <Keyword text="??!"/>
-          <Keyword text="??"/>
           <Keyword text="??"/>
           <Keyword text="??&gt;"/>
           <Keyword text="??&lt;"/>
@@ -568,7 +571,7 @@
           <Keyword text="zap"/>
         </Keywords>
       </Style>
-      <Style id="comment" name="Comments" text="1" bold="0" italic="2" underline="0" clr="#008C0000" bkclr="#FFFFFFFF">
+      <Style id="comment" name="Comments" text="1" bold="0" italic="2" underline="0" clr="#045610" bkclr="#FFFFFFFF">
         <Containers>
           <Open id="normal"/>
           <Open id="preprocessor"/>
@@ -581,10 +584,9 @@
           <Block open="**" close="\n"/>
         </Blocks>
       </Style>
-      <Style id="function" name="Functions" image="10" bold="2" italic="2" underline="0" clr="#703DBC00" bkclr="#FFFFFFFF">
+      <Style id="function" name="Functions" image="10" bold="2" italic="2" underline="0" clr="#0F69FF" bkclr="#FFFFFFFF">
         <Keywords>
           <Keyword text="AADD"/>
-          <Keyword text="AAdd"/>
           <Keyword text="ABS"/>
           <Keyword text="ACCEPT"/>
           <Keyword text="ACCESS"/>
@@ -618,9 +620,7 @@
           <Keyword text="AFIELDS"/>
           <Keyword text="AFILL"/>
           <Keyword text="AFields"/>
-          <Keyword text="AFill"/>
           <Keyword text="AINS"/>
-          <Keyword text="AIns"/>
           <Keyword text="ALERT"/>
           <Keyword text="ALIAS"/>
           <Keyword text="ALL"/>
@@ -7371,7 +7371,7 @@
           <Keyword text="xpp_op_Overload"/>
         </Keywords>
       </Style>
-      <Style name="Keywords" image="12" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
+      <Style name="Keywords" image="12" bold="1" italic="0" underline="0" clr="#0FFFF5" bkclr="#FFFFFFFF">
         <Keywords>
           <Keyword text="Nil"/>
           <Keyword text="Color"/>
@@ -7387,22 +7387,22 @@
           <Keyword text="In"/>
         </Keywords>
       </Style>
-      <Style id="number" bold="1" italic="0" underline="0" overview="3" clr="#0000FF00" bkclr="#FFFFFFFF">
+      <Style id="number" bold="1" italic="0" underline="0" overview="3" clr="#F38C11" bkclr="#FFFFFFFF">
         <Containers>
           <Open id="preprocessor"/>
         </Containers>
       </Style>
-      <Style id="operator" bold="1" italic="0" underline="0" overview="3" clr="#0000FF00" bkclr="#FFFFFFFF">
+      <Style id="operator" bold="1" italic="0" underline="0" overview="3" clr="#6428D1" bkclr="#FFFFFFFF">
         <Containers>
           <Open id="preprocessor"/>
         </Containers>
       </Style>
-      <Style id="preprocessor" name="Preprocessor" bold="2" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+      <Style id="preprocessor" name="Preprocessor" bold="2" italic="0" underline="0" clr="#73042C" bkclr="#FFFFFFFF">
         <Blocks>
           <Block open="#" close="\n"/>
         </Blocks>
       </Style>
-      <Style id="preprocessor_keyword" name="Preprocessor keyword" bold="0" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+      <Style id="preprocessor_keyword" name="Preprocessor keyword" bold="0" italic="0" underline="0" clr="#F31A79" bkclr="#FFFFFFFF" abstract="true">
         <Containers>
           <Open id="preprocessor"/>
         </Containers>
@@ -7427,22 +7427,15 @@
           <Keyword text="Xuntranslate"/>
         </Keywords>
       </Style>
-      <Style id="region" name="Region" bold="1" image="18" italic="0" underline="0" overview="0" clr="#D200D200" bkclr="#FFFFFFFF">
+      <Style id="region" name="Region" bold="1" image="18" italic="0" underline="0" overview="0" clr="#C4FA0D" bkclr="#FFFFFFFF">
         <Keywords>
+          <Keyword text="Region"/>
           <Keyword text="EndRegion"/>
           <Keyword text="Label"/>
-          <Keyword text="Region"/>
         </Keywords>
       </Style>
       <Style id="scope" bold="1" italic="2" underline="2" overview="0" clr="#FF682000" bkclr="#FFFFFFFF"/>
-      <Style name="Strangers" image="14" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF">
-        <Keywords>
-          <Keyword text="Forr"/>
-          <Keyword text="Iff"/>
-          <Keyword text="Whilee"/>
-        </Keywords>
-      </Style>
-      <Style id="string" name="Strings" text="1" bold="2" italic="0" underline="0" clr="#0D92FF00" bkclr="#FFFFFFFF">
+      <Style id="string" name="Strings" text="1" bold="2" italic="0" underline="0" clr="#002BFF" bkclr="#FFFFFFFF">
         <Containers>
           <Open id="normal"/>
           <Open id="preprocessor"/>
@@ -7450,65 +7443,6 @@
         <Blocks>
           <Block open="'" close="'"/>
         </Blocks>
-      </Style>
-      <Style name="TBrowse Methods" image="20" bold="0" italic="0" underline="0" clr="#28999900" bkclr="#FFFFFFFF">
-        <Keywords>
-          <Keyword text="AddColumn"/>
-          <Keyword text="AutoLite"/>
-          <Keyword text="Block"/>
-          <Keyword text="Cargo"/>
-          <Keyword text="ColCount"/>
-          <Keyword text="ColPos"/>
-          <Keyword text="ColSep"/>
-          <Keyword text="ColorBlock"/>
-          <Keyword text="ColorSpec"/>
-          <Keyword text="Configure"/>
-          <Keyword text="DefColor"/>
-          <Keyword text="DelColumn"/>
-          <Keyword text="Down"/>
-          <Keyword text="FootSep"/>
-          <Keyword text="Footing"/>
-          <Keyword text="ForceStable"/>
-          <Keyword text="Freeze"/>
-          <Keyword text="GetColumn"/>
-          <Keyword text="GoBottom"/>
-          <Keyword text="GoBottomBlock"/>
-          <Keyword text="GoTop"/>
-          <Keyword text="GoTopBlock"/>
-          <Keyword text="HeadSep"/>
-          <Keyword text="Heading"/>
-          <Keyword text="HitBottom"/>
-          <Keyword text="HitTop"/>
-          <Keyword text="Home"/>
-          <Keyword text="InsColumn"/>
-          <Keyword text="Left"/>
-          <Keyword text="LeftVisible"/>
-          <Keyword text="NBottom"/>
-          <Keyword text="NRight"/>
-          <Keyword text="NTop"/>
-          <Keyword text="PageUp"/>
-          <Keyword text="Pagedown"/>
-          <Keyword text="PanEnd"/>
-          <Keyword text="PanHome"/>
-          <Keyword text="PanLeft"/>
-          <Keyword text="PanRight"/>
-          <Keyword text="RefreshAll"/>
-          <Keyword text="RefreshCurrent"/>
-          <Keyword text="Right"/>
-          <Keyword text="RightVisible"/>
-          <Keyword text="RowCount"/>
-          <Keyword text="RowPos"/>
-          <Keyword text="SetColumn"/>
-          <Keyword text="SkipBlock"/>
-          <Keyword text="Stabilize"/>
-          <Keyword text="Stable"/>
-          <Keyword text="TBColumnNew"/>
-          <Keyword text="TBrowseDb"/>
-          <Keyword text="TBrowseNew"/>
-          <Keyword text="Up"/>
-          <Keyword text="Width"/>
-          <Keyword text="nLeft"/>
-        </Keywords>
       </Style>
       <Style name="TODOs" id="todo" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
         <Containers>

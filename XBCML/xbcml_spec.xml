@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+    <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+    <SYNTAX id="xbcml" name="XBCML" inherit="xml" inherit_url="xml_spec.xml">
+        <SPECIFICATION>
+            <CaseSensitive>1</CaseSensitive>
+            <SyntaxBlocks>
+                <Block open="&lt;XBCML"/>
+                <Block open="&lt;SCXML"/>
+            </SyntaxBlocks>
+        </SPECIFICATION>
+        <SCOPES open_container="xml_open_tag" close_container="xml_close_tag">
+            <Scope open="Header" close="Header">
+                <Containers open="header" close="header"/>
+            </Scope>
+            <Scope open="Windows" close="Windows">
+                <Containers open="windows" close="windows"/>
+            </Scope>
+            <Scope open="Automation" close="Automation">
+                <Containers open="automation" close="automation"/>
+            </Scope>
+            <Scope open="Messages" close="Messages">
+                <Containers open="messages" close="messages"/>
+            </Scope>
+            <Scope open="Data" close="Data">
+                <Containers open="data" close="data"/>
+            </Scope>
+            <Scope open="SimpleTypes" close="SimpleTypes">
+                <Containers open="simple_type" close="simple_type"/>
+            </Scope>
+            <Scope open="ComplexTypes" close="ComplexTypes">
+                <Containers open="complex_type" close="complex_type"/>
+            </Scope>
+            <Scope open="ContainerTypes" close="ContainerTypes">
+                <Containers open="container_type" close="container_type"/>
+            </Scope>
+            <Scope open="ContainerTypes" close="ContainerTypes">
+                <Containers open="container_type" close="container_type"/>
+            </Scope>
+            <Scope open="Views" close="Views">
+                <Containers open="views" close="views"/>
+            </Scope>
+            <Scope open="Actions" close="Actions">
+                <Containers open="actions" close="actions"/>
+            </Scope>
+            <Scope open="XBCML" close="XBCML"/>
+            <Scope open="Table" close="Table"/>
+            <Scope open="InputField" close="InputField"/>
+            <Scope open="TransparentContainer" close="TransparentContainer"/>
+            <Scope open="ToolBar" close="ToolBar"/>
+            <Scope open="ToolBarPopin" close="ToolBarPopin"/>
+            <Scope open="InvisibleElement" close="InvisibleElement"/>
+            <Scope open="ToolBarRightItems" close="ToolBarRightItems"/>
+            <Scope open="ToolBarButtonChoice" close="ToolBarButtonChoice"/>
+            <Scope open="ToolBarItems" close="ToolBarItems"/>
+            <Scope open="ToolBarButton" close="ToolBarButton"/>
+            <Scope open="ToolBarToggleButton" close="ToolBarToggleButton"/>
+            <Scope open="Popin" close="Popin"/>
+            <Scope open="Group" close="Group"/>
+            <Scope open="Content" close="Content"/>
+            <Scope open="Set" close="Set"/>
+            <Scope open="Children" close="Children"/>
+            <Scope open="View" close="View"/>
+            <Scope open="Container" close="Container"/>
+            <Scope open="Node" close="Node"/>
+            <Scope open="Invoke" close="Invoke"/>
+            <Scope open="Call" close="Call"/>
+            <Scope open="Element" close="Element"/>
+            <Scope open="ElementPage" close="ElementPage"/>
+            <Scope open="SimpleType" close="SimpleType"/>
+            <Scope open="ContainerType" close="ContainerType"/>
+            <Scope open="Choices" close="Choices"/>
+            <Scope open="ToolBarDropDownByKey" close="ToolBarDropDownByKey"/>
+            <Scope open="RowCreator" close="RowCreator"/>
+            <Scope open="TableCellEditor" close="TableCellEditor"/>
+            <Scope open="GroupedColumns" close="GroupedColumns"/>
+            <Scope open="TableColumn" close="TableColumn"/>
+            <Scope open="Action" close="Action"/>
+            <Scope open="LinkToAction" close="LinkToAction"/>
+            <Scope open="FormattedTextView" close="FormattedTextView"/>
+            <Scope open="TextView" close="TextView"/>
+            <Scope open="HorizontalGutter" close="HorizontalGutter"/>
+            <Scope open="ViewContainerUIElement" close="ViewContainerUIElement"/>
+            <Scope open="Window" close="Window"/>
+            <Scope open="Tray" close="Tray"/>
+            <Scope open="Tree" close="Tree"/>
+            <Scope open="NodeTypes" close="NodeTypes"/>
+            <Scope open="Button" close="Button"/>
+            <Scope open="Label" close="Label"/>
+            <Scope open="CheckBox" close="CheckBox"/>
+            <Scope open="DropDownByKey" close="DropDownByKey"/>
+            <Scope open="Image" close="Image"/>
+            <Scope open="Merge" close="Merge"/>
+            <Scope open="Columns" close="Columns"/>
+            <Scope open="CellVariants" close="CellVariants"/>
+            <Scope open="TableStandardCell" close="TableStandardCell"/>
+            <Scope open="Editor" close="Editor"/>
+        </SCOPES>
+        <STYLES>
+            <Style id="scope" name="Text Highlights" bold="1" italic="2" underline="2" clr="Keyword" bkclr="#FFFFFFFF"/>
+            <Style id="scope_error" name="Text Highlights Error" bold="1" italic="0" underline="0" clr="Error" bkclr="#FFFFFFFF" overview="1"/>
+            <Style id="string" name="Strings" text="1" bold="2" italic="2" underline="2" clr="#00930099" bkclr="#FFFFFFFF">
+                <Containers>
+                    <Open id="actions"/>
+                    <Open id="simple_type"/>
+                    <Open id="container_type"/>
+                    <Open id="complex_type"/>
+                    <Open id="automation"/>
+                    <Open id="views"/>
+                    <Open id="messages"/>
+                    <Open id="windows"/>
+                    <Open id="header"/>
+                    <Open id="data"/>
+                </Containers>
+            </Style>
+            <Style id="comment" extend="true">
+                <Containers>
+                    <Open id="actions"/>
+                    <Open id="simple_type"/>
+                    <Open id="container_type"/>
+                    <Open id="complex_type"/>
+                    <Open id="automation"/>
+                    <Open id="views"/>
+                    <Open id="messages"/>
+                    <Open id="windows"/>
+                    <Open id="header"/>
+                    <Open id="data"/>
+                </Containers>
+            </Style>
+            <Style id="xml_open_tag" name="Open Tags" bold="2" italic="2" underline="2" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="actions"/>
+                    <Open id="simple_type"/>
+                    <Open id="container_type"/>
+                    <Open id="complex_type"/>
+                    <Open id="automation"/>
+                    <Open id="views"/>
+                    <Open id="messages"/>
+                    <Open id="windows"/>
+                    <Open id="header"/>
+                    <Open id="data"/>
+                </Containers>
+            </Style>
+            <Style id="xml_close_tag" name="Close Tags" bold="0" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="actions"/>
+                    <Open id="simple_type"/>
+                    <Open id="container_type"/>
+                    <Open id="complex_type"/>
+                    <Open id="automation"/>
+                    <Open id="views"/>
+                    <Open id="messages"/>
+                    <Open id="windows"/>
+                    <Open id="header"/>
+                    <Open id="data"/>
+                </Containers>
+            </Style>
+            <Style id="container_type" name="ContainerTypes" image="9" bold="0" italic="0" underline="0" clr="#00404000" bkclr="#FFFFFFFF">
+                <Blocks>
+                    <Block open="&lt;ContainerTypes&gt;" close="&lt;/ContainerTypes&gt;"/>
+                    <Block text="&lt;ContainerTypes/&gt;"/>
+                </Blocks>
+            </Style>
+            <Style name="ContainerTypes Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="xml_close_tag"/>
+                    <Open id="xml_open_tag"/>
+                    <Open id="container_type"/>
+                </Containers>
+                <Keywords>
+                    <Keyword text="Set"/>
+                    <Keyword text="Node"/>
+                    <Keyword text="ContainerType"/>
+                    <Keyword text="Attribute"/>
+                </Keywords>
+            </Style>
+            <Style id="simple_type" name="SimpleTypes" image="9" bold="0" italic="0" underline="0" clr="#8B000000" bkclr="#FFFFFFFF">
+                <Blocks>
+                    <Block open="&lt;SimpleTypes&gt;" close="&lt;/SimpleTypes&gt;"/>
+                    <Block text="&lt;SimpleTypes/&gt;"/>
+                </Blocks>
+            </Style>
+            <Style name="SimpleType Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="xml_close_tag"/>
+                    <Open id="xml_open_tag"/>
+                    <Open id="simple_type"/>
+                </Containers>
+                <Keywords>
+                    <Keyword text="Set"/>
+                    <Keyword text="Enum"/>
+                    <Keyword text="SimpleType"/>
+                </Keywords>
+            </Style>
+            <Style id="complex_type" name="ComplexTypes" image="9" bold="0" italic="0" underline="0" clr="#7D9EC000" bkclr="#FFFFFFFF">
+                <Blocks>
+                    <Block open="&lt;ComplexTypes&gt;" close="&lt;/ComplexTypes&gt;"/>
+                    <Block text="&lt;ComplexTypes/&gt;"/>
+                </Blocks>
+            </Style>
+            <Style name="ComplexTypes Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="xml_close_tag"/>
+                    <Open id="xml_open_tag"/>
+                    <Open id="complex_type"/>
+                </Containers>
+                <Keywords>
+                    <Keyword text="Set"/>
+                    <Keyword text="ComplexType"/>
+                    <Keyword text="Attribute"/>
+                </Keywords>
+            </Style>
+            <Style id="automation" name="Automation" image="9" bold="0" italic="0" underline="0" clr="#FF682000" bkclr="#FFFFFFFF">
+                <Blocks>
+                    <Block open="&lt;Automation&gt;" close="&lt;/Automation&gt;"/>
+                    <Block text="&lt;Automation/&gt;"/>
+                </Blocks>
+            </Style>
+            <Style name="Automation Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="xml_close_tag"/>
+                    <Open id="xml_open_tag"/>
+                    <Open id="automation"/>
+                </Containers>
+                <Keywords>
+                    <Keyword text="Invoke"/>
+                    <Keyword text="Param"/>
+                    <Keyword text="Call"/>
+                </Keywords>
+            </Style>
+            <Style id="messages" name="Messages" image="9" bold="0" italic="0" underline="0" clr="#32CD3200" bkclr="#FFFFFFFF">
+                <Blocks>
+                    <Block open="&lt;Messages&gt;" close="&lt;/Messages&gt;"/>
+                    <Block text="&lt;Messages/&gt;"/>
+                </Blocks>
+            </Style>
+            <Style name="Messages Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="xml_close_tag"/>
+                    <Open id="xml_open_tag"/>
+                    <Open id="messages"/>
+                </Containers>
+                <Keywords>
+                    <Keyword text="Message"/>
+                </Keywords>
+            </Style>
+            <Style id="windows" name="Windows" image="9" bold="0" italic="0" underline="0" clr="#00005E00" bkclr="#FFFFFFFF">
+                <Blocks>
+                    <Block open="&lt;Windows&gt;" close="&lt;/Windows&gt;"/>
+                    <Block text="&lt;Windows/&gt;"/>
+                </Blocks>
+            </Style>
+            <Style name="Windows Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="xml_close_tag"/>
+                    <Open id="xml_open_tag"/>
+                    <Open id="windows"/>
+                </Containers>
+                <Keywords>
+                    <Keyword text="Set"/>
+                    <Keyword text="Window"/>
+                </Keywords>
+            </Style>
+            <Style id="header" name="Header" image="9" bold="0" italic="0" underline="0" clr="#0080FF00" bkclr="#FFFFFFFF">
+                <Blocks>
+                    <Block open="&lt;Header&gt;" close="&lt;/Header&gt;"/>
+                    <Block text="&lt;Header/&gt;"/>
+                </Blocks>
+            </Style>
+            <Style name="Header Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="xml_close_tag"/>
+                    <Open id="xml_open_tag"/>
+                    <Open id="header"/>
+                </Containers>
+                <Keywords>
+                    <Keyword text="Set"/>
+                    <Keyword text="Server"/>
+                    <Keyword text="Localization"/>
+                    <Keyword text="Client"/>
+                    <Keyword text="Statistics"/>
+                    <Keyword text="Statistic"/>
+                </Keywords>
+            </Style>
+            <Style id="actions" name="Actions" image="9" bold="0" italic="0" underline="0" clr="#8B8B0000" bkclr="#FFFFFFFF">
+                <Blocks>
+                    <Block open="&lt;Actions&gt;" close="&lt;/Actions&gt;"/>
+                    <Block text="&lt;Actions/&gt;"/>
+                </Blocks>
+            </Style>
+            <Style name="Actions Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="xml_close_tag"/>
+                    <Open id="xml_open_tag"/>
+                    <Open id="actions"/>
+                </Containers>
+                <Keywords>
+                    <Keyword text="Action"/>
+                    <Keyword text="Event"/>
+                    <Keyword text="Set"/>
+                </Keywords>
+            </Style>
+            <Style id="views" name="Views" image="9" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+                <Blocks>
+                    <Block open="&lt;Views&gt;" close="&lt;/Views&gt;"/>
+                    <Block text="&lt;Views/&gt;"/>
+                </Blocks>
+            </Style>
+            <Style id="data" name="Data" image="9" bold="0" italic="0" underline="0" clr="#66666600" bkclr="#FFFFFFFF">
+                <Blocks>
+                    <Block open="&lt;Data&gt;" close="&lt;/Data&gt;"/>
+                    <Block text="&lt;Data/&gt;"/>
+                </Blocks>
+            </Style>
+            <Style name="Data Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="xml_close_tag"/>
+                    <Open id="xml_open_tag"/>
+                    <Open id="data"/>
+                </Containers>
+                <Keywords>
+                    <Keyword text="Element"/>
+                    <Keyword text="Node"/>
+                    <Keyword text="Set"/>
+                    <Keyword text="Container"/>
+                    <Keyword text="SAP"/>
+                    <Keyword text="index"/>
+                    <Keyword text="selected"/>
+                    <Keyword text="ElementPage"/>
+                    <Keyword text="Merge"/>
+                    <Keyword text="XBCML"/>
+                </Keywords>
+            </Style>
+            <Style id="views" name="Views" image="9" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+                <Blocks>
+                    <Block open="&lt;Views&gt;" close="&lt;/Views&gt;"/>
+                    <Block text="&lt;Views/&gt;"/>
+                </Blocks>
+            </Style>
+            <Style name="Views Keyword" image="9" bold="1" italic="0" underline="0" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="xml_close_tag"/>
+                    <Open id="xml_open_tag"/>
+                    <Open id="views"/>
+                </Containers>
+                <Keywords>
+                    <Keyword text="AbsolutePortalNavigation"/>
+                    <Keyword text="Accordion"/>
+                    <Keyword text="AcfExecute"/>
+                    <Keyword text="AcfUpDownload"/>
+                    <Keyword text="ActiveX"/>
+                    <Keyword text="AnalyticsChart"/>
+                    <Keyword text="Applet"/>
+                    <Keyword text="AttributePointer"/>
+                    <Keyword text="BIApplicationFrame"/>
+                    <Keyword text="BarCodeReader"/>
+                    <Keyword text="BreadCrumb"/>
+                    <Keyword text="BreadCrumbStep"/>
+                    <Keyword text="BusinessGraphics"/>
+                    <Keyword text="Button"/>
+                    <Keyword text="ButtonChoice"/>
+                    <Keyword text="ButtonRow"/>
+                    <Keyword text="CalendarDayView"/>
+                    <Keyword text="CalendarEntry"/>
+                    <Keyword text="CalendarMonthView"/>
+                    <Keyword text="CalendarPaginator"/>
+                    <Keyword text="CalendarWeekView"/>
+                    <Keyword text="CalendarYearView"/>
+                    <Keyword text="Caption"/>
+                    <Keyword text="Category"/>
+                    <Keyword text="CategoryAxis"/>
+                    <Keyword text="CellVariants"/>
+                    <Keyword text="CheckBox"/>
+                    <Keyword text="CheckBoxGroup"/>
+                    <Keyword text="Children"/>
+                    <Keyword text="Choices"/>
+                    <Keyword text="ClientSideNavigationLink"/>
+                    <Keyword text="ClientSideSubViewSwitch"/>
+                    <Keyword text="ClientSideViewSwitch"/>
+                    <Keyword text="Clock"/>
+                    <Keyword text="Columns"/>
+                    <Keyword text="Content"/>
+                    <Keyword text="ContextualPanel"/>
+                    <Keyword text="DataSeries"/>
+                    <Keyword text="DateNavigator"/>
+                    <Keyword text="DateNavigatorLegend"/>
+                    <Keyword text="DateNavigatorMarking"/>
+                    <Keyword text="DayPattern"/>
+                    <Keyword text="DragSourceInfo"/>
+                    <Keyword text="DropDownByIndex"/>
+                    <Keyword text="DropDownByKey"/>
+                    <Keyword text="DropTarget"/>
+                    <Keyword text="DropTargetInfo"/>
+                    <Keyword text="Editor"/>
+                    <Keyword text="EpTreeItemType"/>
+                    <Keyword text="EpTreeNodeType"/>
+                    <Keyword text="ExpandableTitle"/>
+                    <Keyword text="Explanation"/>
+                    <Keyword text="FileDownload"/>
+                    <Keyword text="FileUpload"/>
+                    <Keyword text="FlashIsland"/>
+                    <Keyword text="FormattedText"/>
+                    <Keyword text="FormattedTextEdit"/>
+                    <Keyword text="FormattedTextView"/>
+                    <Keyword text="FrameworkLegendItem"/>
+                    <Keyword text="FreeContextualArea"/>
+                    <Keyword text="FunctionKey"/>
+                    <Keyword text="GACDataSource"/>
+                    <Keyword text="GACEvent"/>
+                    <Keyword text="GACEventParameter"/>
+                    <Keyword text="GACEventParameterCollection"/>
+                    <Keyword text="GACProperty"/>
+                    <Keyword text="Gantt"/>
+                    <Keyword text="Gauge"/>
+                    <Keyword text="GenericActiveComponent"/>
+                    <Keyword text="GeoMap"/>
+                    <Keyword text="GeoPosition"/>
+                    <Keyword text="GeoPositions"/>
+                    <Keyword text="Grid"/>
+                    <Keyword text="GridCell"/>
+                    <Keyword text="GridCellEditor"/>
+                    <Keyword text="GridCellStyle"/>
+                    <Keyword text="GridCellTemplate"/>
+                    <Keyword text="GridCellTextStyle"/>
+                    <Keyword text="Group"/>
+                    <Keyword text="GroupedColumns"/>
+                    <Keyword text="Header"/>
+                    <Keyword text="HierarchicalCalendarMonthView"/>
+                    <Keyword text="HorizontalContextualPanel"/>
+                    <Keyword text="HorizontalFlow"/>
+                    <Keyword text="HorizontalGutter"/>
+                    <Keyword text="HorizontalRange"/>
+                    <Keyword text="HorizontalSlider"/>
+                    <Keyword text="IFrame"/>
+                    <Keyword text="Image"/>
+                    <Keyword text="InputField"/>
+                    <Keyword text="InteractiveForm"/>
+                    <Keyword text="InternalMessageAreaLink"/>
+                    <Keyword text="InvisibleElement"/>
+                    <Keyword text="ItemListBox"/>
+                    <Keyword text="Items"/>
+                    <Keyword text="Label"/>
+                    <Keyword text="Legend"/>
+                    <Keyword text="LegendItem"/>
+                    <Keyword text="LinkChoice"/>
+                    <Keyword text="LinkToAction"/>
+                    <Keyword text="LinkToURL"/>
+                    <Keyword text="MeltingGroup"/>
+                    <Keyword text="Menu"/>
+                    <Keyword text="MenuActionItem"/>
+                    <Keyword text="MenuBar"/>
+                    <Keyword text="MenuCheckBox"/>
+                    <Keyword text="MenuRadioButton"/>
+                    <Keyword text="MenuSeparator"/>
+                    <Keyword text="MessageArea"/>
+                    <Keyword text="MessageBasedTrigger"/>
+                    <Keyword text="MultiPane"/>
+                    <Keyword text="MultipleBreadCrumbStep"/>
+                    <Keyword text="MultipleLegendItem"/>
+                    <Keyword text="MultiplePhase"/>
+                    <Keyword text="MultipleRoadMapStep"/>
+                    <Keyword text="NavigationList"/>
+                    <Keyword text="Network"/>
+                    <Keyword text="NodeTypes"/>
+                    <Keyword text="NumericValue"/>
+                    <Keyword text="OfficeControl"/>
+                    <Keyword text="PageFullWidthPanel"/>
+                    <Keyword text="PageHeader"/>
+                    <Keyword text="PageHeaderArea"/>
+                    <Keyword text="PageLayout"/>
+                    <Keyword text="PagePanel"/>
+                    <Keyword text="Pane"/>
+                    <Keyword text="PatternContentArea"/>
+                    <Keyword text="PatternExpandFunction"/>
+                    <Keyword text="PatternSequence"/>
+                    <Keyword text="PatternSequenceStep"/>
+                    <Keyword text="PatternTab"/>
+                    <Keyword text="PatternTabStrip"/>
+                    <Keyword text="PatternTray"/>
+                    <Keyword text="Phase"/>
+                    <Keyword text="PhaseIndicator"/>
+                    <Keyword text="Point"/>
+                    <Keyword text="Popin"/>
+                    <Keyword text="PortalIFrame"/>
+                    <Keyword text="PrintButton"/>
+                    <Keyword text="ProgressIndicator"/>
+                    <Keyword text="RFIDReader"/>
+                    <Keyword text="RadioButton"/>
+                    <Keyword text="RadioButtonGroupByIndex"/>
+                    <Keyword text="RadioButtonGroupByKey"/>
+                    <Keyword text="RecurrenceDayPattern"/>
+                    <Keyword text="RecursiveMenu"/>
+                    <Keyword text="Resource"/>
+                    <Keyword text="RoadMap"/>
+                    <Keyword text="RoadMapStep"/>
+                    <Keyword text="RowCreator"/>
+                    <Keyword text="RowRepeater"/>
+                    <Keyword text="SAPGUIControlContainer"/>
+                    <Keyword text="ScrollContainer"/>
+                    <Keyword text="SectionHeader"/>
+                    <Keyword text="Series"/>
+                    <Keyword text="Shuttle"/>
+                    <Keyword text="SilverLightIsland"/>
+                    <Keyword text="SimpleFormattedTextField"/>
+                    <Keyword text="SimpleSeries"/>
+                    <Keyword text="Spinner"/>
+                    <Keyword text="Stroke"/>
+                    <Keyword text="Tab"/>
+                    <Keyword text="TabStrip"/>
+                    <Keyword text="Table"/>
+                    <Keyword text="TableCellEditor"/>
+                    <Keyword text="TableColumn"/>
+                    <Keyword text="TableColumnGroup"/>
+                    <Keyword text="TablePopin"/>
+                    <Keyword text="TablePopinToggleCell"/>
+                    <Keyword text="TableRowCreator"/>
+                    <Keyword text="TableRowGrouping"/>
+                    <Keyword text="TableScrollTipProvider"/>
+                    <Keyword text="TableSingleMarkableCell"/>
+                    <Keyword text="TableStandardCell"/>
+                    <Keyword text="TableSummaryCell"/>
+                    <Keyword text="TableSummaryHierarchyCell"/>
+                    <Keyword text="TextBar"/>
+                    <Keyword text="TextEdit"/>
+                    <Keyword text="TextView"/>
+                    <Keyword text="Ticker"/>
+                    <Keyword text="TimeValue"/>
+                    <Keyword text="TimeZone"/>
+                    <Keyword text="TimedTrigger"/>
+                    <Keyword text="ToggleButton"/>
+                    <Keyword text="ToggleLink"/>
+                    <Keyword text="ToolBar"/>
+                    <Keyword text="ToolBarButton"/>
+                    <Keyword text="ToolBarButtonChoice"/>
+                    <Keyword text="ToolBarDropDownByIndex"/>
+                    <Keyword text="ToolBarDropDownByKey"/>
+                    <Keyword text="ToolBarInputField"/>
+                    <Keyword text="ToolBarItems"/>
+                    <Keyword text="ToolBarLinkChoice"/>
+                    <Keyword text="ToolBarLinkToAction"/>
+                    <Keyword text="ToolBarLinkToURL"/>
+                    <Keyword text="ToolBarPopin"/>
+                    <Keyword text="ToolBarRightItems"/>
+                    <Keyword text="ToolBarSeparator"/>
+                    <Keyword text="ToolBarToggleButton"/>
+                    <Keyword text="TransparentContainer"/>
+                    <Keyword text="Tray"/>
+                    <Keyword text="Tree"/>
+                    <Keyword text="TreeByKeyTableColumn"/>
+                    <Keyword text="TreeByNestingTableColumn"/>
+                    <Keyword text="TreeItemType"/>
+                    <Keyword text="TreeNodeType"/>
+                    <Keyword text="TriStateCheckBox"/>
+                    <Keyword text="ValueComparison"/>
+                    <Keyword text="VerticalFlow"/>
+                    <Keyword text="VerticalGutter"/>
+                    <Keyword text="VerticalRange"/>
+                    <Keyword text="VerticalSlider"/>
+                    <Keyword text="View"/>
+                    <Keyword text="ViewContainerUIElement"/>
+                    <Keyword text="ViewSwitch"/>
+                    <Keyword text="WebDynproIViewArea"/>
+                    <Keyword text="WorkingTime"/>
+                </Keywords>
+            </Style>
+            <Style name="Views Keyword Table" image="9" bold="1" italic="0" underline="1" clr="#FFFFFFFF" bkclr="#FFFFFFFF" abstract="true">
+                <Containers>
+                    <Open id="xml_close_tag"/>
+                    <Open id="xml_open_tag"/>
+                    <Open id="views"/>
+                </Containers>
+                <Keywords>
+                    <Keyword text="Table"/>
+                </Keywords>
+            </Style>
+            <Style name="Views (Layout)" image="9" bold="0" italic="0" underline="0" clr="Inactive Code" bkclr="#FFFFFFFF" text="">
+                <Containers>
+                    <Open id="views"/>
+                </Containers>
+                <Blocks>
+                    <Block open="&lt;Layout&gt;" close="&lt;/Layout&gt;"/>
+                    <Block text="&lt;Layout/&gt;"/>
+                    <Block open="&lt;LayoutData&gt;" close="&lt;/LayoutData&gt;"/>
+                    <Block text="&lt;LayoutData/&gt;"/>
+                </Blocks>
+            </Style>
+        </STYLES>
+        <FONTS>
+            <Font only_monospaced="true" face_name="Consolas" size="10"/>
+        </FONTS>
+    </SYNTAX>
+</XMLConfigSettings>

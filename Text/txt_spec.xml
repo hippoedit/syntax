@@ -5,11 +5,12 @@
   <SYNTAX id="text" name="Plain Text" inherit="def_text" inherit_url="deftext_spec.xml">
     <SPECIFICATION>
       <FilePattern mask="*.txt;*.diz;*.log;*.trc"/>
-      <OpenClose>()[]{}''</OpenClose>
+      <OpenClose>()[]{}&quot;&quot;</OpenClose>
       <Operators>?--+/*=&lt;&gt;</Operators>
       <Delimiters>"'&lt;&gt;@,;.?:&amp;/+--%\*=|!~^#(){}[]</Delimiters>
       <LineEnd>.</LineEnd>
       <Words>0-9A-Za-z_</Words>
+      <WrapBy override="true">-</WrapBy>      
       <WordWrap show_glyphs="false"/>
       <Display outlining="false" guides="false" indicator_margin="false"/>
     </SPECIFICATION>

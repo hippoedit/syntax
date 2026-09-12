@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+	<FILEINFO author="Ramon" type="LangSpec"/>
+	<SYNTAX id="smv" name="SMV" descr="Symbolic Model Verifier" inherit="def_source" inherit_url="defsource_spec.xml">
+		<SPECIFICATION>
+			<FilePattern mask="*.smv"/>
+			<CaseSensitive>true</CaseSensitive>
+			<OpenClose>()[]{}""</OpenClose>
+			<LineEnd>;</LineEnd>
+			<Delimiters>.,:;()</Delimiters>
+			<EscapeChar>\</EscapeChar>
+			<Operators>%--+/&amp;*=&lt;&gt;|!()[].:</Operators>
+			<Words init="A-Za-z_">A-Za-z0-9_\$#-</Words>
+			<HierarchySeparator>
+				<Separator text="."/>
+			</HierarchySeparator>
+			<Bars navigation="true"/>
+		</SPECIFICATION>
+		<LABELS>
+			<Label group="module" match="MODULE\s+([A-Za-z][A-Za-z0-9_\$#-]*)" name="\1" descr="Module \1" scope="0" image="8"/>
+			<Label group="variable" match="^\s*([A-Za-z][A-Za-z0-9_\$#-]*)\s*:" name="\1" descr="Variable \1" scope="0" image="9" highlight="\1" style="variable"/>
+		</LABELS>
+		<SCOPES>
+			<Scope open="case" close="esac"/>
+		</SCOPES>
+		<STYLES>
+			<Style id="url" extend="true">
+				<Containers>
+					<Open id="normal" exclude="true"/>
+					<Open id="comment"/>
+				</Containers>
+			</Style>
+			<Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+				<Blocks>
+					<Block open="--" close="\n"/>
+				</Blocks>
+			</Style>
+			<Style id="preprocessor" name="Preprocessor" bold="0" italic="0" underline="0" clr="Preprocessor" bkclr="#FFFFFFFF">
+				<Blocks>
+					<Block open="#" close="\n"/>
+				</Blocks>
+			</Style>
+			<Style name="Blocks" bold="1" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+				<Keywords>
+					<Keyword text="MODULE"/>
+					<Keyword text="VAR"/>
+					<Keyword text="ISA"/>
+					<Keyword text="INIT"/>
+					<Keyword text="TRANS"/>
+					<Keyword text="INVAR"/>
+					<Keyword text="DEFINE"/>
+					<Keyword text="SPEC"/>
+					<Keyword text="COMPUTE"/>
+					<Keyword text="FAIRNESS"/>
+					<Keyword text="ASSIGN"/>
+					<Keyword text="INPUT"/>
+					<Keyword text="OUTPUT"/>
+					<Keyword text="ASYNC"/>
+					<Keyword text="IMPLEMENTS"/>
+					<Keyword text="CONSTANT"/>
+					<Keyword text="FORMAT"/>
+					<Keyword text="GOTO"/>
+					<Keyword text="LET"/>
+					<Keyword text="STEP"/>
+					<Keyword text="EVAL"/>
+					<Keyword text="RESET"/>
+					<Keyword text="case"/>
+					<Keyword text="esac"/>
+				</Keywords>
+			</Style>
+			<Style id="variable" name="Variables" bold="1"/>
+			<Style name="Types" bold="0" italic="0" underline="0" clr="Keyword2" bkclr="#FFFFFFFF">
+				<Keywords>
+					<Keyword text="boolean"/>
+					<Keyword text="process"/>
+					<Keyword text="array"/>
+					<Keyword text="of"/>
+				</Keywords>
+			</Style>
+			<Style name="Constants" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+				<Keywords>
+					<Keyword text="TRUE"/>
+					<Keyword text="FALSE"/>
+					<Keyword text="self"/>
+					<Keyword text="running"/>
+				</Keywords>
+			</Style>
+			<Style name="Functions" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
+				<Keywords>
+					<Keyword text="main"/>
+					<Keyword text="init"/>
+					<Keyword text="next"/>
+				</Keywords>
+			</Style>
+			<Style name="Operators" bold="1" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF">
+				<Keywords>
+					<Keyword text=".."/>
+					<Keyword text=":="/>
+					<Keyword text="-&gt;"/>
+					<Keyword text="&lt;-&gt;"/>
+					<Keyword text="MIN"/>
+					<Keyword text="MAX"/>
+					<Keyword text="in"/>
+					<Keyword text="mod"/>
+					<Keyword text="sigma"/>
+					<Keyword text="union"/>
+					<Keyword text="EX"/>
+					<Keyword text="AX"/>
+					<Keyword text="EF"/>
+					<Keyword text="AF"/>
+					<Keyword text="EG"/>
+					<Keyword text="AG"/>
+					<Keyword text="E"/>
+					<Keyword text="A"/>
+					<Keyword text="U"/>
+					<Keyword text="BU"/>
+					<Keyword text="EBF"/>
+					<Keyword text="ABF"/>
+					<Keyword text="EBG"/>
+					<Keyword text="ABG"/>
+				</Keywords>
+			</Style>
+			<Style name="TODOs" text="1" bold="1" italic="1" underline="0" clr="TODOs" bkclr="#FFFFFFFF" overview="1">
+				<Containers>
+					<Open id="comment"/>
+				</Containers>
+				<Blocks>
+					<Block open="TODO" close="\n"/>
+				</Blocks>
+			</Style>
+		</STYLES>
+	</SYNTAX>
+</XMLConfigSettings>

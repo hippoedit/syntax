@@ -104,34 +104,34 @@
         </Containers>
         <Keywords>
           <!-- Pseudo classes - these should have their own color! -->
-          <Keyword text="link" descr="Selects all unvisited links"/>
-          <Keyword text="visited" descr="Selects all visited links"/>
           <Keyword text="active" descr="Selects the active link"/>
-          <Keyword text="focus" descr="Selects the input element which has focus"/>
-          <Keyword text="hover" descr="Selects links on mouse over"/>
+          <Keyword text="after" descr="Insert content after element"/>
+          <Keyword text="before" descr="Insert content before element"/>
+          <Keyword text="disabled" descr="Selects every disabled input element"/>
+          <Keyword text="empty" descr="Selects every element x that has no children (including text nodes)"/>
+          <Keyword text="enabled" descr="Selects every enabled input element"/>
+          <Keyword text="first-child" descr="Selects the first line of element"/>
           <Keyword text="first-letter" descr="Selects the first letter of element"/>
           <Keyword text="first-line" descr="Selects the first line of element"/>
-          <Keyword text="first-child" descr="Selects the first line of element"/>
-          <Keyword text="before" descr="Insert content before element"/>
-          <Keyword text="after" descr="Insert content after element"/>
-          <Keyword text="lang" descr="Selects every element with a lang attribute starting with a mathing value"/>
           <Keyword text="first-of-type" descr="Selects every element x that is the first element x of its parent"/>
+          <Keyword text="focus" descr="Selects the input element which has focus"/>
+          <Keyword text="hover" descr="Selects links on mouse over"/>
+          <Keyword text="lang" descr="Selects every element with a lang attribute starting with a mathing value"/>
+          <Keyword text="last-child" descr="Selects every element x that is the last child of its parent"/>
           <Keyword text="last-of-type" descr="Selects every element x that is the last element x of its parent"/>
           <Keyword text="last-of-type" descr="Selects every element x that is the last element x of its parent"/>
-          <Keyword text="only-child" descr="Selects every element x that is the only child of its parent"/>
+          <Keyword text="link" descr="Selects all unvisited links"/>
+          <Keyword text="moz-selection" descr="Selects the portion of an element that is selected by a user"/>
+          <Keyword text="not" descr="Selects every element that is not element x"/>
           <Keyword text="nth-child" descr="Selects every element x that is the n:th child of its parent"/>
           <Keyword text="nth-last-child" descr="Selects every element x that is the n:th child of its parent, counting from the last child"/>
-          <Keyword text="nth-of-type" descr="Selects every element x that is the n:th x element of its parent"/>
           <Keyword text="nth-last-of-type" descr="Selects every element x that is the n:th element x of its parent, counting from the last child"/>
-          <Keyword text="last-child" descr="Selects every element x that is the last child of its parent"/>
+          <Keyword text="nth-of-type" descr="Selects every element x that is the n:th x element of its parent"/>
+          <Keyword text="only-child" descr="Selects every element x that is the only child of its parent"/>
           <Keyword text="root" descr="Selects the document's root element"/>
-          <Keyword text="empty" descr="Selects every element x that has no children (including text nodes)"/>
-          <Keyword text="target" descr="Selects the current active element x (clicked on a URL containing that anchor name)"/>
-          <Keyword text="enabled" descr="Selects every enabled input element"/>
-          <Keyword text="disabled" descr="Selects every disabled input element"/>
-          <Keyword text="not" descr="Selects every element that is not element x"/>
           <Keyword text="selection" descr="Selects the portion of an element that is selected by a user"/>
-          <Keyword text="moz-selection" descr="Selects the portion of an element that is selected by a user"/>
+          <Keyword text="target" descr="Selects the current active element x (clicked on a URL containing that anchor name)"/>
+          <Keyword text="visited" descr="Selects all visited links"/>
         </Keywords>
       </Style>
       <Style id="attributes" bold="2" italic="2" underline="2" clr="Error" bkclr="#FFFFFFFF" abstract="true"/>
@@ -166,52 +166,52 @@
           <Keyword text="orientation"/>
 
           <!--  Media queries. All withing @media block -->
-          <Keyword text="color" descr="Number of bits per color component"/>
-          <Keyword text="min-color" descr="Number of bits per color component"/>
-          <Keyword text="max-color" descr="Number of bits per color component"/>
-          <Keyword text="color-index" descr="Number of entries in the color lookup table"/>
-          <Keyword text="min-color-index" descr="Number of entries in the color lookup table"/>
-          <Keyword text="max-color-index" descr="Number of entries in the color lookup table"/>
-          <Keyword text="device-aspect-ratio" descr="Aspect ratio of the output device"/>
-          <Keyword text="min-device-aspect-ratio" descr="Aspect ratio of the output device"/>
-          <Keyword text="max-device-aspect-ratio" descr="Aspect ratio of the output device"/>
-          <Keyword text="-webkit-device-pixel-ratio" descr="Screen density of the output device"/>
-          <Keyword text="-webkit-min-device-pixel-ratio" descr="Screen density of the output device"/>
-          <Keyword text="-webkit-max-device-pixel-ratio" descr="Screen density of the output device"/>
-          <Keyword text="-o-device-pixel-ratio" descr="Screen density of the output device"/>
-          <Keyword text="-o-min-device-pixel-ratio" descr="Screen density of the output device"/>
-          <Keyword text="-o-max-device-pixel-ratio" descr="Screen density of the output device"/>
-          <Keyword text="min-device-pixel-ratio" descr="Screen density of the output device"/>
           <Keyword text="-moz-device-pixel-ratio" descr="Screen density of the output device"/>
-          <Keyword text="min--moz-device-pixel-ratio" descr="Screen density of the output device"/>
-          <Keyword text="max--moz-device-pixel-ratio" descr="Screen density of the output device"/>
-          <Keyword text="device-height" descr="Height of the output device"/>
-          <Keyword text="min-device-height" descr="Height of the output device"/>
-          <Keyword text="max-device-height" descr="Height of the output device"/>
-          <Keyword text="device-width" descr="Width of the output device"/>
-          <Keyword text="min-device-width" descr="Width of the output device"/>
-          <Keyword text="max-device-width" descr="Width of the output device"/>
-          <Keyword text="grid" descr="Used to query whether the output device is grid or bitmap"/>
-          <Keyword text="height" descr="Height of the rendering surface"/>
-          <Keyword text="min-height" descr="Height of the rendering surface"/>
-          <Keyword text="max-height" descr="Height of the rendering surface"/>
-          <Keyword text="monochrome" descr="Number of bits per pixel in a monochrome frame buffer"/>
-          <Keyword text="min-monochrome" descr="Number of bits per pixel in a monochrome frame buffer"/>
-          <Keyword text="max-monochrome" descr="Number of bits per pixel in a monochrome frame buffer"/>
-          <Keyword text="resolution" descr="Resolution of the output device"/>
-          <Keyword text="min-resolution" descr="Resolution of the output device"/>
-          <Keyword text="max-resolution" descr="Resolution of the output device"/>
-          <Keyword text="scan" descr="Scanning process of tv media types"/>
-          <Keyword text="width" descr="Width of the output device"/>
-          <Keyword text="min-width" descr="Width of the output device"/>
-          <Keyword text="max-width" descr="Width of the output device"/>
+          <Keyword text="-o-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="-o-max-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="-o-min-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="-webkit-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="-webkit-max-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="-webkit-min-device-pixel-ratio" descr="Screen density of the output device"/>
           <Keyword text="all" descr="Suitable for all devices. If media is not specified, all is implied."/>
+          <Keyword text="color" descr="Number of bits per color component"/>
+          <Keyword text="color-index" descr="Number of entries in the color lookup table"/>
+          <Keyword text="device-aspect-ratio" descr="Aspect ratio of the output device"/>
+          <Keyword text="device-height" descr="Height of the output device"/>
+          <Keyword text="device-width" descr="Width of the output device"/>
+          <Keyword text="grid" descr="Used to query whether the output device is grid or bitmap"/>
           <Keyword text="handheld" descr="Intended for handheld devices (typically small screen, limited bandwidth)."/>
+          <Keyword text="height" descr="Height of the rendering surface"/>
+          <Keyword text="max--moz-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="max-color" descr="Number of bits per color component"/>
+          <Keyword text="max-color-index" descr="Number of entries in the color lookup table"/>
+          <Keyword text="max-device-aspect-ratio" descr="Aspect ratio of the output device"/>
+          <Keyword text="max-device-height" descr="Height of the output device"/>
+          <Keyword text="max-device-width" descr="Width of the output device"/>
+          <Keyword text="max-height" descr="Height of the rendering surface"/>
+          <Keyword text="max-monochrome" descr="Number of bits per pixel in a monochrome frame buffer"/>
+          <Keyword text="max-resolution" descr="Resolution of the output device"/>
+          <Keyword text="max-width" descr="Width of the output device"/>
+          <Keyword text="min--moz-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="min-color" descr="Number of bits per color component"/>
+          <Keyword text="min-color-index" descr="Number of entries in the color lookup table"/>
+          <Keyword text="min-device-aspect-ratio" descr="Aspect ratio of the output device"/>
+          <Keyword text="min-device-height" descr="Height of the output device"/>
+          <Keyword text="min-device-pixel-ratio" descr="Screen density of the output device"/>
+          <Keyword text="min-device-width" descr="Width of the output device"/>
+          <Keyword text="min-height" descr="Height of the rendering surface"/>
+          <Keyword text="min-monochrome" descr="Number of bits per pixel in a monochrome frame buffer"/>
+          <Keyword text="min-resolution" descr="Resolution of the output device"/>
+          <Keyword text="min-width" descr="Width of the output device"/>
+          <Keyword text="monochrome" descr="Number of bits per pixel in a monochrome frame buffer"/>
           <Keyword text="print" descr="Intended for paged material and for documents viewed on screen in print preview mode."/>
           <Keyword text="projection" descr="Intended for projected presentations, for example projectors."/>
+          <Keyword text="resolution" descr="Resolution of the output device"/>
+          <Keyword text="scan" descr="Scanning process of tv media types"/>
           <Keyword text="screen" descr="Intended primarily for color computer screens. "/>
           <Keyword text="speech" descr="Intended for speech synthesizers."/>
           <Keyword text="tv" descr="Intended for television-type devices (low resolution, color, limited-scrollability screens, sound available)."/>
+          <Keyword text="width" descr="Width of the output device"/>
         </Keywords>
       </Style>
       <Style name="Attributes" image="12" bold="0" italic="0" underline="0" clr="Keyword3" bkclr="#FFFFFFFF">
@@ -220,172 +220,259 @@
         </Containers>
         <Keywords>
           <!-- Web fonts and related stuff. -->
-          <Keyword text="-webkit-font-smoothing" descr="Optional anti-aliasing parameter for webkit font rendering."/>
-          <Keyword text="text-rendering" descr="Optional svg-parameter for controlling Firefox and Webkit font rendering. Has no effect on iOS."/>
-          <Keyword text="-webkit-text-size-adjust" descr="iOS text size adjustment"/>
           <Keyword text="-ms-text-size-adjust" descr="IE text size adjustment"/>
+          <Keyword text="-webkit-font-smoothing" descr="Optional anti-aliasing parameter for webkit font rendering."/>
+          <Keyword text="-webkit-text-size-adjust" descr="iOS text size adjustment"/>
+          <Keyword text="text-rendering" descr="Optional svg-parameter for controlling Firefox and Webkit font rendering. Has no effect on iOS."/>
 
-          <!-- Common CSS3 as of Feb 2012-->
-          <Keyword text="src" descr="Path to font file within @font-face"/>
-          <Keyword text="opacity" descr="Sets the opacity level for an element"/>
-          <Keyword text="outline-offset" descr="Offsets an outline, and draws it beyond the border edge"/>
-          <Keyword text="resize" descr="Specifies whether or not an element is resizable by the user"/>
-          <Keyword text="animation" descr="A shorthand property for all the animation properties below, except the animation-play-state property"/>
+          <!-- Common CSS3 as of Sep 2016-->
           <Keyword text="-moz-animation" descr="A shorthand property for all the animation properties below, except the animation-play-state property"/>
-          <Keyword text="-webkit-animation" descr="A shorthand property for all the animation properties below, except the animation-play-state property"/>
-          <Keyword text="-ms-animation" descr="A shorthand property for all the animation properties below, except the animation-play-state property"/>
-          <Keyword text="animation-name" descr="Specifies a name for the @keyframes animation"/>
-          <Keyword text="-moz-animation-name" descr="Specifies a name for the @keyframes animation"/>
-          <Keyword text="-webkit-animation-name" descr="Specifies a name for the @keyframes animation"/>
-          <Keyword text="animation-duration" descr="Specifies how many seconds or milliseconds an animation takes to complete one cycle"/>
-          <Keyword text="-moz-animation-duration" descr="Specifies how many seconds or milliseconds an animation takes to complete one cycle"/>
-          <Keyword text="-webkit-animation-duration" descr="Specifies how many seconds or milliseconds an animation takes to complete one cycle"/>
-          <Keyword text="animation-timing-function" descr="Specifies the speed curve of the animation"/>
-          <Keyword text="-moz-animation-timing-function" descr="Specifies the speed curve of the animation"/>
-          <Keyword text="-webkit-animation-timing-function" descr="Specifies the speed curve of the animation"/>
-          <Keyword text="animation-delay" descr="Specifies when the animation will start"/>
           <Keyword text="-moz-animation-delay" descr="Specifies when the animation will start"/>
-          <Keyword text="-webkit-animation-delay" descr="Specifies when the animation will start"/>
-          <Keyword text="animation-iteration-count" descr="Specifies the number of times an animation should be played"/>
-          <Keyword text="-moz-animation-iteration-count" descr="Specifies the number of times an animation should be played"/>
-          <Keyword text="-webkit-animation-iteration-count" descr="Specifies the number of times an animation should be played"/>
-          <Keyword text="animation-direction" descr="Specifies whether or not the animation should play in reverse on alternate cycles"/>
           <Keyword text="-moz-animation-direction" descr="Specifies whether or not the animation should play in reverse on alternate cycles"/>
-          <Keyword text="-webkit-animation-direction" descr="Specifies whether or not the animation should play in reverse on alternate cycles"/>
-          <Keyword text="animation-play-state" descr="Specifies whether the animation is running or paused"/>
+          <Keyword text="-moz-animation-duration" descr="Specifies how many seconds or milliseconds an animation takes to complete one cycle"/>
+          <Keyword text="-moz-animation-iteration-count" descr="Specifies the number of times an animation should be played"/>
+          <Keyword text="-moz-animation-name" descr="Specifies a name for the @keyframes animation"/>
           <Keyword text="-moz-animation-play-state" descr="Specifies whether the animation is running or paused"/>
-          <Keyword text="-webkit-animation-play-state" descr="Specifies whether the animation is running or paused"/>
-          <Keyword text="from" descr="Specifies whether the animation is running or paused"/>
-          <Keyword text="to " descr="Specifies whether the animation is running or paused"/>
-          <Keyword text="background-clip" descr="Specifies the painting area of the background"/>
+          <Keyword text="-moz-animation-timing-function" descr="Specifies the speed curve of the animation"/>
+          <Keyword text="-moz-appearance" descr="Allows you to make an element look like a standard user interface element"/>
+          <Keyword text="-moz-backface-visibility" descr="Defines whether or not an element should be visible when not facing the screen"/>
           <Keyword text="-moz-background-clip" descr="Specifies the painting area of the background"/>
-          <Keyword text="-webkit-background-clip" descr="Specifies the painting area of the background"/>
-          <Keyword text="-o-background-clip" descr="Specifies the painting area of the background"/>
-          <Keyword text="-ms-background-clip" descr="Specifies the painting area of the background"/>
-          <Keyword text="background-origin" descr="Specifies the positioning area of the background images"/>
           <Keyword text="-moz-background-origin" descr="Specifies the positioning area of the background images"/>
-          <Keyword text="-webkit-background-origin" descr="Specifies the positioning area of the background images"/>
+          <Keyword text="-moz-background-size" descr="Specifies the size of the background images"/>
+          <Keyword text="-moz-background-size" descr="Specifies the size of the background images"/>
+          <Keyword text="-moz-border-image" descr="A shorthand property for setting all the border-image-* properties"/>
+          <Keyword text="-moz-border-radius" descr="A shorthand property for setting all the four border-*-radius properties for FF1-3.6"/>
+          <Keyword text="-moz-box-align" descr="Specifies how to align the child elements of a box"/>
+          <Keyword text="-moz-box-direction" descr="Specifies in which direction the children of a box are displayed"/>
+          <Keyword text="-moz-box-flex" descr="Specifies whether the children of a box is flexible or inflexible in size"/>
+          <Keyword text="-moz-box-ordinal-group" descr="Specifies the display order of the child elements of a box"/>
+          <Keyword text="-moz-box-orient" descr="Specifies whether the children of a box should be laid out horizontally or vertically"/>
+          <Keyword text="-moz-box-pack" descr="Specifies the horizontal position in horizontal boxes and the vertical position in vertical boxes"/>
+          <Keyword text="-moz-box-shadow" descr="Attaches one or more drop-shadows to the box"/>
+          <Keyword text="-moz-box-sizing" descr="Allows you to define certain elements to fit an area in a certain way"/>
+          <Keyword text="-moz-column-count" descr="Specifies the number of columns an element should be divided into"/>
+          <Keyword text="-moz-column-gap" descr="Specifies the gap between the columns"/>
+          <Keyword text="-moz-column-rule" descr="A shorthand property for setting all the column-rule-* properties"/>
+          <Keyword text="-moz-column-rule-color" descr="Specifies the color of the rule between columns"/>
+          <Keyword text="-moz-column-rule-span" descr="Specifies how many columns an element should span across"/>
+          <Keyword text="-moz-column-rule-style" descr="Specifies the style of the rule between columns"/>
+          <Keyword text="-moz-column-rule-width" descr="Specifies the width of the rule between columns"/>
+          <Keyword text="-moz-column-width" descr="Specifies the width of the columns"/>
+          <Keyword text="-moz-columns" descr="Shorthand property for setting column-width and column-count"/>
+          <Keyword text="-moz-transform" descr="Applies a 2D or 3D transformation to an element"/>
+          <Keyword text="-moz-transform-origin" descr="Allows you to change the position on transformed elements"/>
+          <Keyword text="-moz-transition" descr="A shorthand property for setting the four transition properties"/>
+          <Keyword text="-moz-transition-delay" descr="Specifies when the transition effect will start"/>
+          <Keyword text="-moz-transition-duration" descr="Specifies how many seconds or milliseconds a transition effect takes to complete"/>
+          <Keyword text="-moz-transition-property" descr="Specifies the name of the CSS property the transition effect is for"/>
+          <Keyword text="-moz-transition-timing-function" descr="Specifies the speed curve of the transition effect"/>
+          <Keyword text="-ms-animation" descr="A shorthand property for all the animation properties below, except the animation-play-state property"/>
+          <Keyword text="-ms-background-clip" descr="Specifies the painting area of the background"/>
           <Keyword text="-ms-background-origin" descr="Specifies the positioning area of the background images"/>
+          <Keyword text="-ms-transform" descr="Applies a 2D or 3D transformation to an element"/>
+          <Keyword text="-ms-transform-origin" descr="Allows you to change the position on transformed elements"/>
+          <Keyword text="-ms-transition" descr="A shorthand property for setting the four transition properties"/>
+          <Keyword text="-o-background-clip" descr="Specifies the painting area of the background"/>
           <Keyword text="-o-background-origin" descr="Specifies the positioning area of the background images"/>
-          <Keyword text="background-size" descr="Specifies the size of the background images"/>
-          <Keyword text="-moz-background-size" descr="Specifies the size of the background images"/>
+          <Keyword text="-o-border-image" descr="A shorthand property for setting all the border-image-* properties"/>
+          <Keyword text="-o-column-count" descr="Specifies the number of columns an element should be divided into"/>
+          <Keyword text="-o-column-gap" descr="Specifies the gap between the columns"/>
+          <Keyword text="-o-column-rule" descr="A shorthand property for setting all the column-rule-* properties"/>
+          <Keyword text="-o-column-width" descr="Specifies the width of the columns"/>
+          <Keyword text="-o-transform" descr="Applies a 2D or 3D transformation to an element"/>
+          <Keyword text="-o-transform-origin" descr="Allows you to change the position on transformed elements"/>
+          <Keyword text="-o-transition" descr="A shorthand property for setting the four transition properties"/>
+          <Keyword text="-o-transition-delay" descr="Specifies when the transition effect will start"/>
+          <Keyword text="-o-transition-duration" descr="Specifies how many seconds or milliseconds a transition effect takes to complete"/>
+          <Keyword text="-o-transition-property" descr="Specifies the name of the CSS property the transition effect is for"/>
+          <Keyword text="-o-transition-timing-function" descr="Specifies the speed curve of the transition effect"/>
+          <Keyword text="-webkit-animation" descr="A shorthand property for all the animation properties below, except the animation-play-state property"/>
+          <Keyword text="-webkit-animation-delay" descr="Specifies when the animation will start"/>
+          <Keyword text="-webkit-animation-direction" descr="Specifies whether or not the animation should play in reverse on alternate cycles"/>
+          <Keyword text="-webkit-animation-duration" descr="Specifies how many seconds or milliseconds an animation takes to complete one cycle"/>
+          <Keyword text="-webkit-animation-iteration-count" descr="Specifies the number of times an animation should be played"/>
+          <Keyword text="-webkit-animation-name" descr="Specifies a name for the @keyframes animation"/>
+          <Keyword text="-webkit-animation-play-state" descr="Specifies whether the animation is running or paused"/>
+          <Keyword text="-webkit-animation-timing-function" descr="Specifies the speed curve of the animation"/>
+          <Keyword text="-webkit-appearance" descr="Allows you to make an element look like a standard user interface element"/>
+          <Keyword text="-webkit-backface-visibility" descr="Defines whether or not an element should be visible when not facing the screen"/>
+          <Keyword text="-webkit-background-clip" descr="Specifies the painting area of the background"/>
+          <Keyword text="-webkit-background-origin" descr="Specifies the positioning area of the background images"/>
           <Keyword text="-webkit-background-size" descr="Specifies the size of the background images"/>
-          <Keyword text="-moz-background-size" descr="Specifies the size of the background images"/>
+          <Keyword text="-webkit-border-image" descr="A shorthand property for setting all the border-image-* properties"/>
+          <Keyword text="-webkit-border-radius" descr="A shorthand property for setting all the four border-*-radius properties for Safari3-4, iOS 1-3.2, Android ≤1.6"/>
+          <Keyword text="-webkit-box-align" descr="Specifies how to align the child elements of a box"/>
+          <Keyword text="-webkit-box-direction" descr="Specifies in which direction the children of a box are displayed"/>
+          <Keyword text="-webkit-box-flex" descr="Specifies whether the children of a box is flexible or inflexible in size"/>
+          <Keyword text="-webkit-box-ordinal-group" descr="Specifies the display order of the child elements of a box"/>
+          <Keyword text="-webkit-box-orient" descr="Specifies whether the children of a box should be laid out horizontally or vertically"/>
+          <Keyword text="-webkit-box-pack" descr="Specifies the horizontal position in horizontal boxes and the vertical position in vertical boxes"/>
+          <Keyword text="-webkit-box-shadow" descr="Attaches one or more drop-shadows to the box"/>
+          <Keyword text="-webkit-box-sizing" descr="Allows you to define certain elements to fit an area in a certain way"/>
+          <Keyword text="-webkit-column-count" descr="Specifies the number of columns an element should be divided into"/>
+          <Keyword text="-webkit-column-gap" descr="Specifies the gap between the columns"/>
+          <Keyword text="-webkit-column-rule" descr="A shorthand property for setting all the column-rule-* properties"/>
+          <Keyword text="-webkit-column-rule-color" descr="Specifies the color of the rule between columns"/>
+          <Keyword text="-webkit-column-rule-span" descr="Specifies how many columns an element should span across"/>
+          <Keyword text="-webkit-column-rule-style" descr="Specifies the style of the rule between columns"/>
+          <Keyword text="-webkit-column-rule-width" descr="Specifies the width of the rule between columns"/>
+          <Keyword text="-webkit-column-width" descr="Specifies the width of the columns"/>
+          <Keyword text="-webkit-columns" descr="Shorthand property for setting column-width and column-count"/>
+          <Keyword text="-webkit-transform" descr="Applies a 2D or 3D transformation to an element"/>
+          <Keyword text="-webkit-transform-origin" descr="Allows you to change the position on transformed elements"/>
+          <Keyword text="-webkit-transition" descr="A shorthand property for setting the four transition properties"/>
+          <Keyword text="-webkit-transition-delay" descr="Specifies when the transition effect will start"/>
+          <Keyword text="-webkit-transition-duration" descr="Specifies how many seconds or milliseconds a transition effect takes to complete"/>
+          <Keyword text="-webkit-transition-property" descr="Specifies the name of the CSS property the transition effect is for"/>
+          <Keyword text="-webkit-transition-timing-function" descr="Specifies the speed curve of the transition effect"/>
+          <Keyword text="align-content" descr="Specifies the alignment between the lines inside a flexible container when the items do not use all available space"/>
+          <Keyword text="align-items" descr="Specifies the alignment for items inside a flexible container"/>
+          <Keyword text="align-self" descr="Specifies the alignment for selected items inside a flexible container"/>
+          <Keyword text="animation" descr="A shorthand property for all the animation properties (except animation-play-state and animation-fill-mode)"/>
+          <Keyword text="animation-delay" descr="Specifies a delay for the start of an animation"/>
+          <Keyword text="animation-direction" descr="Specifies whether or not the animation should play in reverse on alternate cycles"/>
+          <Keyword text="animation-fill-mode" descr="Specifies a style for the element when the animation is not playing (when it is finished, or when it has a delay)"/>
+          <Keyword text="animation-iteration-count" descr="Specifies the number of times an animation should be played"/>
+          <Keyword text="animation-name" descr="Specifies the name of the @keyframes animation"/>
+          <Keyword text="animation-play-state" descr="Specifies whether the animation is running or paused"/>
+          <Keyword text="animation-timing-function" descr="Specifies the speed curve of an animation"/>
+          <Keyword text="appearance" descr="Allows you to make an element look like a standard user interface element"/>
+          <Keyword text="backface-visibility" descr="Defines whether or not an element should be visible when not facing the screen"/>
+          <Keyword text="background-blend-mode" descr="Specifies the blending mode of each background layer (color/image)"/>
+          <Keyword text="background-clip" descr="Specifies the painting area of the background"/>
+          <Keyword text="background-origin" descr="Specifies the positioning area of the background images"/>
+          <Keyword text="background-size" descr="Specifies the size of the background images"/>
           <Keyword text="border-bottom-left-radius" descr="Defines the shape of the border of the bottom-left corner"/>
           <Keyword text="border-bottom-right-radius" descr="Defines the shape of the border of the bottom-right corner"/>
           <Keyword text="border-image" descr="A shorthand property for setting all the border-image-* properties"/>
-          <Keyword text="-moz-border-image" descr="A shorthand property for setting all the border-image-* properties"/>
-          <Keyword text="-webkit-border-image" descr="A shorthand property for setting all the border-image-* properties"/>
-          <Keyword text="-o-border-image" descr="A shorthand property for setting all the border-image-* properties"/>
+          <Keyword text="border-image-outset" descr="Specifies the amount by which the border image area extends beyond the border box"/>
+          <Keyword text="border-image-repeat" descr="Specifies whether the border image should be repeated, rounded or stretched"/>
+          <Keyword text="border-image-slice" descr="Specifies how to slice the border image"/>
+          <Keyword text="border-image-source" descr="Specifies the path to the image to be used as a border"/>
+          <Keyword text="border-image-width" descr="Specifies the widths of the image-border"/>
           <Keyword text="border-radius" descr="A shorthand property for setting all the four border-*-radius properties"/>
-          <Keyword text="-moz-border-radius" descr="A shorthand property for setting all the four border-*-radius properties for FF1-3.6"/>
-          <Keyword text="-webkit-border-radius" descr="A shorthand property for setting all the four border-*-radius properties for Safari3-4, iOS 1-3.2, Android ≤1.6"/>
           <Keyword text="border-top-left-radius" descr="Defines the shape of the border of the top-left corner"/>
           <Keyword text="border-top-right-radius" descr="Defines the shape of the border of the top-right corner"/>
-          <Keyword text="box-shadow" descr="Attaches one or more drop-shadows to the box"/>
-          <Keyword text="-webkit-box-shadow" descr="Attaches one or more drop-shadows to the box"/>
-          <Keyword text="-moz-box-shadow" descr="Attaches one or more drop-shadows to the box"/>
           <Keyword text="box-align" descr="Specifies how to align the child elements of a box"/>
-          <Keyword text="-moz-box-align" descr="Specifies how to align the child elements of a box"/>
-          <Keyword text="-webkit-box-align" descr="Specifies how to align the child elements of a box"/>
+          <Keyword text="box-decoration-break" descr="Sets the behaviour of the background and border of an element at page-break, or, for in-line elements, at line-break"/>
           <Keyword text="box-direction" descr="Specifies in which direction the children of a box are displayed"/>
-          <Keyword text="-moz-box-direction" descr="Specifies in which direction the children of a box are displayed"/>
-          <Keyword text="-webkit-box-direction" descr="Specifies in which direction the children of a box are displayed"/>
           <Keyword text="box-flex" descr="Specifies whether the children of a box is flexible or inflexible in size"/>
-          <Keyword text="-moz-box-flex" descr="Specifies whether the children of a box is flexible or inflexible in size"/>
-          <Keyword text="-webkit-box-flex" descr="Specifies whether the children of a box is flexible or inflexible in size"/>
           <Keyword text="box-ordinal-group" descr="Specifies the display order of the child elements of a box"/>
-          <Keyword text="-moz-box-ordinal-group" descr="Specifies the display order of the child elements of a box"/>
-          <Keyword text="-webkit-box-ordinal-group" descr="Specifies the display order of the child elements of a box"/>
           <Keyword text="box-orient" descr="Specifies whether the children of a box should be laid out horizontally or vertically"/>
-          <Keyword text="-moz-box-orient" descr="Specifies whether the children of a box should be laid out horizontally or vertically"/>
-          <Keyword text="-webkit-box-orient" descr="Specifies whether the children of a box should be laid out horizontally or vertically"/>
           <Keyword text="box-pack" descr="Specifies the horizontal position in horizontal boxes and the vertical position in vertical boxes"/>
-          <Keyword text="-moz-box-pack" descr="Specifies the horizontal position in horizontal boxes and the vertical position in vertical boxes"/>
-          <Keyword text="-webkit-box-pack" descr="Specifies the horizontal position in horizontal boxes and the vertical position in vertical boxes"/>
+          <Keyword text="box-shadow" descr="Attaches one or more drop-shadows to the box"/>
+          <Keyword text="box-sizing" descr="Tells the browser what the sizing properties (width and height) should include"/>
+          <Keyword text="break-after" descr="Specifies the page-, column-, or region-break behavior after the generated box"/>
+          <Keyword text="break-before" descr="Specifies the page-, column-, or region-break behavior before the generated box"/>
+          <Keyword text="break-inside" descr="Specifies the page-, column-, or region-break behavior inside the generated box"/>
           <Keyword text="column-count" descr="Specifies the number of columns an element should be divided into"/>
-          <Keyword text="-moz-column-count" descr="Specifies the number of columns an element should be divided into"/>
-          <Keyword text="-webkit-column-count" descr="Specifies the number of columns an element should be divided into"/>
-          <Keyword text="-o-column-count" descr="Specifies the number of columns an element should be divided into"/>
+          <Keyword text="column-fill" descr="Specifies how to fill columns"/>
           <Keyword text="column-gap" descr="Specifies the gap between the columns"/>
-          <Keyword text="-moz-column-gap" descr="Specifies the gap between the columns"/>
-          <Keyword text="-webkit-column-gap" descr="Specifies the gap between the columns"/>
-          <Keyword text="-o-column-gap" descr="Specifies the gap between the columns"/>
           <Keyword text="column-rule" descr="A shorthand property for setting all the column-rule-* properties"/>
-          <Keyword text="-moz-column-rule" descr="A shorthand property for setting all the column-rule-* properties"/>
-          <Keyword text="-webkit-column-rule" descr="A shorthand property for setting all the column-rule-* properties"/>
-          <Keyword text="-o-column-rule" descr="A shorthand property for setting all the column-rule-* properties"/>
           <Keyword text="column-rule-color" descr="Specifies the color of the rule between columns"/>
-          <Keyword text="-moz-column-rule-color" descr="Specifies the color of the rule between columns"/>
-          <Keyword text="-webkit-column-rule-color" descr="Specifies the color of the rule between columns"/>
-          <Keyword text="column-rule-style" descr="Specifies the style of the rule between columns"/>
-          <Keyword text="-moz-column-rule-style" descr="Specifies the style of the rule between columns"/>
-          <Keyword text="-webkit-column-rule-style" descr="Specifies the style of the rule between columns"/>
-          <Keyword text="column-rule-width" descr="Specifies the width of the rule between columns"/>
-          <Keyword text="-moz-column-rule-width" descr="Specifies the width of the rule between columns"/>
-          <Keyword text="-webkit-column-rule-width" descr="Specifies the width of the rule between columns"/>
           <Keyword text="column-rule-span" descr="Specifies how many columns an element should span across"/>
-          <Keyword text="-moz-column-rule-span" descr="Specifies how many columns an element should span across"/>
-          <Keyword text="-webkit-column-rule-span" descr="Specifies how many columns an element should span across"/>
+          <Keyword text="column-rule-style" descr="Specifies the style of the rule between columns"/>
+          <Keyword text="column-rule-width" descr="Specifies the width of the rule between columns"/>
+          <Keyword text="column-span" descr="Specifies how many columns an element should span across"/>
           <Keyword text="column-width" descr="Specifies the width of the columns"/>
-          <Keyword text="-moz-column-width" descr="Specifies the width of the columns"/>
-          <Keyword text="-webkit-column-width" descr="Specifies the width of the columns"/>
-          <Keyword text="-o-column-width" descr="Specifies the width of the columns"/>
-          <Keyword text="columns" descr="Shorthand property for setting column-width and column-count"/>
-          <Keyword text="-moz-columns" descr="Shorthand property for setting column-width and column-count"/>
-          <Keyword text="-webkit-columns" descr="Shorthand property for setting column-width and column-count"/>
-          <Keyword text="text-justify" descr="Specifies the justification method used when text-align is justify"/>
-          <Keyword text="text-overflow" descr="Specifies what should happen when text overflows the containing element"/>
-          <Keyword text="text-shadow" descr="Adds shadow to text"/>
-          <Keyword text="word-wrap" descr="Allows long, unbreakable words to be broken and wrap to the next line"/>
-          <Keyword text="transform" descr="Applies a 2D or 3D transformation to an element"/>
-          <Keyword text="-moz-transform" descr="Applies a 2D or 3D transformation to an element"/>
-          <Keyword text="-ms-transform" descr="Applies a 2D or 3D transformation to an element"/>
-          <Keyword text="-webkit-transform" descr="Applies a 2D or 3D transformation to an element"/>
-          <Keyword text="-o-transform" descr="Applies a 2D or 3D transformation to an element"/>
-          <Keyword text="transform-origin" descr="Allows you to change the position on transformed elements"/>
-          <Keyword text="-moz-transform-origin" descr="Allows you to change the position on transformed elements"/>
-          <Keyword text="-ms-transform-origin" descr="Allows you to change the position on transformed elements"/>
-          <Keyword text="-webkit-transform-origin" descr="Allows you to change the position on transformed elements"/>
-          <Keyword text="-o-transform-origin" descr="Allows you to change the position on transformed elements"/>
-          <Keyword text="backface-visibility" descr="Defines whether or not an element should be visible when not facing the screen"/>
-          <Keyword text="-moz-backface-visibility" descr="Defines whether or not an element should be visible when not facing the screen"/>
-          <Keyword text="-webkit-backface-visibility" descr="Defines whether or not an element should be visible when not facing the screen"/>
-          <Keyword text="transition" descr="A shorthand property for setting the four transition properties"/>
-          <Keyword text="-moz-transition" descr="A shorthand property for setting the four transition properties"/>
-          <Keyword text="-webkit-transition" descr="A shorthand property for setting the four transition properties"/>
-          <Keyword text="-ms-transition" descr="A shorthand property for setting the four transition properties"/>
-          <Keyword text="-o-transition" descr="A shorthand property for setting the four transition properties"/>
-          <Keyword text="transition-property" descr="Specifies the name of the CSS property the transition effect is for"/>
-          <Keyword text="-moz-transition-property" descr="Specifies the name of the CSS property the transition effect is for"/>
-          <Keyword text="-webkit-transition-property" descr="Specifies the name of the CSS property the transition effect is for"/>
-          <Keyword text="-o-transition-property" descr="Specifies the name of the CSS property the transition effect is for"/>
-          <Keyword text="transition-duration" descr="Specifies how many seconds or milliseconds a transition effect takes to complete"/>
-          <Keyword text="-moz-transition-duration" descr="Specifies how many seconds or milliseconds a transition effect takes to complete"/>
-          <Keyword text="-webkit-transition-duration" descr="Specifies how many seconds or milliseconds a transition effect takes to complete"/>
-          <Keyword text="-o-transition-duration" descr="Specifies how many seconds or milliseconds a transition effect takes to complete"/>
-          <Keyword text="transition-timing-function" descr="Specifies the speed curve of the transition effect"/>
-          <Keyword text="-moz-transition-timing-function" descr="Specifies the speed curve of the transition effect"/>
-          <Keyword text="-webkit-transition-timing-function" descr="Specifies the speed curve of the transition effect"/>
-          <Keyword text="-o-transition-timing-function" descr="Specifies the speed curve of the transition effect"/>
-          <Keyword text="transition-delay" descr="Specifies when the transition effect will start"/>
-          <Keyword text="-moz-transition-delay" descr="Specifies when the transition effect will start"/>
-          <Keyword text="-o-transition-delay" descr="Specifies when the transition effect will start"/>
-          <Keyword text="-webkit-transition-delay" descr="Specifies when the transition effect will start"/>
-          <Keyword text="appearance" descr="Allows you to make an element look like a standard user interface element"/>
-          <Keyword text="-moz-appearance" descr="Allows you to make an element look like a standard user interface element"/>
-          <Keyword text="-webkit-appearance" descr="Allows you to make an element look like a standard user interface element"/>
-          <Keyword text="box-sizing" descr="Allows you to define certain elements to fit an area in a certain way"/>
-          <Keyword text="-moz-box-sizing" descr="Allows you to define certain elements to fit an area in a certain way"/>
-          <Keyword text="-webkit-box-sizing" descr="Allows you to define certain elements to fit an area in a certain way"/>
+          <Keyword text="columns" descr="A shorthand property for setting column-width and column-count"/>
+          <Keyword text="filter" descr="Defines effects (e.g. blurring or color shifting) on an element before the element is displayed"/>
+          <Keyword text="flex" descr="Specifies the length of the item, relative to the rest"/>
+          <Keyword text="flex-basis" descr="Specifies the initial length of a flexible item"/>
+          <Keyword text="flex-direction" descr="Specifies the direction of the flexible items"/>
+          <Keyword text="flex-flow" descr="A shorthand property for the flex-direction and the flex-wrap properties"/>
+          <Keyword text="flex-grow" descr="Specifies how much the item will grow relative to the rest"/>
+          <Keyword text="flex-shrink" descr="Specifies how the item will shrink relative to the rest"/>
+          <Keyword text="flex-wrap" descr="Specifies whether the flexible items should wrap or not"/>
+          <Keyword text="font-feature-settings" descr="Allows control over advanced typographic features in OpenType fonts"/>
+          <Keyword text="font-kerning" descr="Controls the usage of the kerning information (how letters are spaced)"/>
+          <Keyword text="font-language-override" descr="Controls the usage of language-specific glyphs in a typeface"/>
+          <Keyword text="font-size-adjust" descr="Preserves the readability of text when font fallback occurs"/>
+          <Keyword text="font-stretch" descr="Selects a normal, condensed, or expanded face from a font family"/>
+          <Keyword text="font-synthesis" descr="Controls which missing typefaces (bold or italic) may be synthesized by the browser"/>
+          <Keyword text="font-variant-alternates" descr="Controls the usage of alternate glyphs associated to alternative names defined in @font-feature-values"/>
+          <Keyword text="font-variant-caps" descr="Controls the usage of alternate glyphs for capital letters"/>
+          <Keyword text="font-variant-east-asian" descr="Controls the usage of alternate glyphs for East Asian scripts (e.g Japanese and Chinese)"/>
+          <Keyword text="font-variant-ligatures" descr="Controls which ligatures and contextual forms are used in textual content of the elements it applies to"/>
+          <Keyword text="font-variant-numeric" descr="Controls the usage of alternate glyphs for numbers, fractions, and ordinal markers"/>
+          <Keyword text="font-variant-position" descr="Controls the usage of alternate glyphs of smaller size positioned as superscript or subscript regarding the baseline of the font"/>
+          <Keyword text="from" descr="Specifies whether the animation is running or paused"/>
+          <Keyword text="hanging-punctuation" descr="Specifies whether a punctuation character may be placed outside the line box"/>
+          <Keyword text="hyphens" descr="Sets how to split words to improve the layout of paragraphs"/>
+          <Keyword text="image-orientation" descr="Specifies a rotation in the right or clockwise direction that a user agent applies to an image (This property is likely going to be deprecated and its functionality moved to HTML)"/>
+          <Keyword text="image-rendering" descr="Gives a hint to the browser about what aspects of an image are most important to preserve when the image is scaled"/>
+          <Keyword text="image-resolution" descr="Specifies the intrinsic resolution of all raster images used in/on the element"/>
+          <Keyword text="ime-mode" descr="Controls the state of the input method editor for text fields"/>
+          <Keyword text="justify-content" descr="Specifies the alignment between the items inside a flexible container when the items do not use all available space"/>
+          <Keyword text="line-break" descr="Specifies how/if to break lines"/>
+          <Keyword text="mark" descr="A shorthand property for setting the mark-before and mark-after properties"/>
+          <Keyword text="mark-after" descr="Allows named markers to be attached to the audio stream"/>
+          <Keyword text="mark-before" descr="Allows named markers to be attached to the audio stream"/>
+          <Keyword text="marks" descr="Adds crop and/or cross marks to the document"/>
+          <Keyword text="marquee-direction" descr="Sets the direction of the moving content"/>
+          <Keyword text="marquee-play-count" descr="Sets how many times the content move"/>
+          <Keyword text="marquee-speed" descr="Sets how fast the content scrolls"/>
+          <Keyword text="marquee-style" descr="Sets the style of the moving content"/>
+          <Keyword text="mask"/>
+          <Keyword text="mask-type"/>
+          <Keyword text="nav-down" descr="Specifies where to navigate when using the arrow-down navigation key"/>
+          <Keyword text="nav-index" descr="Specifies the tabbing order for an element"/>
+          <Keyword text="nav-left" descr="Specifies where to navigate when using the arrow-left navigation key"/>
+          <Keyword text="nav-right" descr="Specifies where to navigate when using the arrow-right navigation key"/>
+          <Keyword text="nav-up" descr="Specifies where to navigate when using the arrow-up navigation key"/>
+          <Keyword text="object-fit" descr="Specifies how the contents of a replaced element should be fitted to the box established by its used height and width"/>
+          <Keyword text="object-position" descr="Specifies the alignment of the replaced element inside its box"/>
+          <Keyword text="opacity" descr="Sets the opacity level for an element"/>
+          <Keyword text="order" descr="Sets the order of the flexible item, relative to the rest"/>
+          <Keyword text="outline-offset" descr="Offsets an outline, and draws it beyond the border edge"/>
+          <Keyword text="overflow-wrap" descr="Specifies whether or not the browser may break lines within words in order to prevent overflow (when a string is too long to fit its containing box)"/>
           <Keyword text="overflow-x" descr="Specifies whether or not to clip the left/right edges of the content, if it overflows the element's content area"/>
           <Keyword text="overflow-y" descr="Specifies whether or not to clip the top/bottom edges of the content, if it overflows the element's content area"/>
+          <Keyword text="perspective" descr="Specifies the perspective on how 3D elements are viewed"/>
+          <Keyword text="perspective-origin" descr="Specifies the bottom position of 3D elements"/>
+          <Keyword text="phonemes" descr="Specifies a phonetic pronunciation for the text contained by the corresponding element"/>
+          <Keyword text="resize" descr="Specifies whether or not an element is resizable by the user"/>
+          <Keyword text="rest" descr="A shorthand property for setting the rest-before and rest-after properties"/>
+          <Keyword text="rest-after" descr="Specifies a rest or prosodic boundary to be observed after speaking an element's content"/>
+          <Keyword text="rest-before" descr="Specifies a rest or prosodic boundary to be observed before speaking an element's content"/>
+          <Keyword text="src" descr="Path to font file within @font-face"/>
+          <Keyword text="tab-size" descr="Specifies the length of the tab-character"/>
+          <Keyword text="text-align-last" descr="Describes how the last line of a block or a line right before a forced line break is aligned when text-align is 'justify'"/>
+          <Keyword text="text-combine-upright" descr="Specifies the combination of multiple characters into the space of a single character"/>
+          <Keyword text="text-decoration-color" descr="Specifies the color of the text-decoration"/>
+          <Keyword text="text-decoration-line" descr="Specifies the type of line in a text-decoration"/>
+          <Keyword text="text-decoration-style" descr="Specifies the style of the line in a text decoration"/>
+          <Keyword text="text-justify" descr="Specifies the justification method used when text-align is 'justify'"/>
+          <Keyword text="text-justify" descr="Specifies the justification method used when text-align is justify"/>
+          <Keyword text="text-orientation" descr="Defines the orientation of the text in a line"/>
+          <Keyword text="text-overflow" descr="Specifies what should happen when text overflows the containing element"/>
+          <Keyword text="text-shadow" descr="Adds shadow to text"/>
+          <Keyword text="text-underline-position" descr="Specifies the position of the underline which is set using the text-decoration property"/>
+          <Keyword text="to" descr="Specifies whether the animation is running or paused"/>
+          <Keyword text="transform" descr="Applies a 2D or 3D transformation to an element"/>
+          <Keyword text="transform-origin" descr="Allows you to change the position on transformed elements"/>
+          <Keyword text="transform-style" descr="Specifies how nested elements are rendered in 3D space"/>
+          <Keyword text="transition" descr="A shorthand property for setting the four transition properties"/>
+          <Keyword text="transition-delay" descr="Specifies when the transition effect will start"/>
+          <Keyword text="transition-duration" descr="Specifies how many seconds or milliseconds a transition effect takes to complete"/>
+          <Keyword text="transition-property" descr="Specifies the name of the CSS property the transition effect is for"/>
+          <Keyword text="transition-timing-function" descr="Specifies the speed curve of the transition effect"/>
+          <Keyword text="voice-balance" descr="Specifies the balance between left and right channels"/>
+          <Keyword text="voice-duration" descr="Specifies how long it should take to render the selected element's content"/>
+          <Keyword text="voice-pitch" descr="Specifies the average pitch (a frequency) of the speaking voice"/>
+          <Keyword text="voice-pitch-range" descr="Specifies variation in average pitch"/>
+          <Keyword text="voice-rate" descr="Controls the speaking rate"/>
+          <Keyword text="voice-stress" descr="Indicates the strength of emphasis to be applied"/>
+          <Keyword text="voice-volume" descr="Refers to the amplitude of the waveform output by the speech synthesises"/>
+          <Keyword text="word-break" descr="Specifies line breaking rules for non-CJK scripts"/>
+          <Keyword text="word-wrap" descr="Allows long, unbreakable words to be broken and wrap to the next line"/>
+          <Keyword text="writing-mode"/>
 
           <!-- CSS2 additions to the spec -->
-          <Keyword text="page-break-inside" descr="Sets the page-breaking behavior inside an element"/>
+          <Keyword text="orphans" descr="Sets the minimum number of lines that must be left at the bottom of a page when a page break occurs inside an element"/>
           <Keyword text="page-break-after" descr="Sets the page-breaking behavior after an element"/>
           <Keyword text="page-break-before" descr="Sets the page-breaking behavior before an element"/>
-          <Keyword text="orphans" descr="Sets the minimum number of lines that must be left at the bottom of a page when a page break occurs inside an element"/>
+          <Keyword text="page-break-inside" descr="Sets the page-breaking behavior inside an element"/>
           <Keyword text="widows" descr="Sets the minimum number of lines that must be left at the top of a page when a page break occurs inside an element"/>
 
           <!-- Existing schema -->
@@ -496,95 +583,111 @@
         <Keywords>
           <!--  CSS3 additions Feb 2012 -->
           <Keyword text="-moz-linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
-          <Keyword text="-ms-linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference. IE10+"/>
-          <Keyword text="-webkit-linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
-          <Keyword text="-webkit-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
-          <Keyword text="-o-linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
-          <Keyword text="linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
-          <Keyword text="radial-gradient" descr="Allows the creation of a radial gradient on an element using a function that's included where you would normally place an image reference."/>
           <Keyword text="-moz-radial-gradient" descr="Allows the creation of a radial gradient on an element using a function that's included where you would normally place an image reference."/>
+          <Keyword text="-ms-linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference. IE10+"/>
           <Keyword text="-ms-radial-gradient" descr="Allows the creation of a radial gradient on an element using a function that's included where you would normally place an image reference."/>
+          <Keyword text="-o-linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
+          <Keyword text="-webkit-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
+          <Keyword text="-webkit-linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
           <Keyword text="-webkit-radial-gradient" descr="Allows the creation of a radial gradient on an element using a function that's included where you would normally place an image reference."/>
-          <Keyword text="radial" descr=""/>
+          <Keyword text="antialiased"/>
+          <Keyword text="auto"/>
+          <Keyword text="avoid" descr=""/>
+          <Keyword text="border-box" descr="The background is clipped to the border box"/>
+          <Keyword text="box-axis"/>
+          <Keyword text="break-word"/>
+          <Keyword text="button"/>
+          <Keyword text="clip"/>
           <Keyword text="closest-corner" descr=""/>
           <Keyword text="color-stop" descr=""/>
-          <Keyword text="avoid" descr=""/>
-          <Keyword text="format" descr="Web font format definition within @font-face rule"/>
-          <Keyword text="hsla" pattern="%CurrentWord%(%|%|%|%)"/>
-          <Keyword text="rgba" pattern="%CurrentWord%(%|%|%|%)"/>
-          <Keyword text="src" pattern="%CurrentWord%(&quot;%url%&quot;)"/>
-          <Keyword text="border-box"/>
-          <Keyword text="padding-box"/>
-          <Keyword text="content-box"/>
-          <Keyword text="visible"/>
-          <Keyword text="scroll"/>
-          <Keyword text="auto"/>
-          <Keyword text="no-display"/>
-          <Keyword text="no-content"/>
-          <Keyword text="start"/>
-          <Keyword text="end"/>
-          <Keyword text="stretch"/>
-          <Keyword text="reverse"/>
-          <Keyword text="inline-axis"/>
-          <Keyword text="box-axis"/>
+          <Keyword text="cover" descr="Scale the background image to be as large as possible so that the background area is completely covered by the background image. Some parts of the background image may not be in view within the background positioning area"/>
+          <Keyword text="contain" descr="Scale the image to the largest size such that both its width and its height can fit inside the content area"/>          
           <Keyword text="condensed"/>
-          <Keyword text="extra-condensed"/>
-          <Keyword text="semi-condensed"/>
-          <Keyword text="ultra-condensed"/>
-          <Keyword text="expanded"/>
-          <Keyword text="extra-expanded"/>
-          <Keyword text="semi-expanded"/>
-          <Keyword text="ultra-expanded"/>
-          <Keyword text="inter-word"/>
-          <Keyword text="inter-ideograph"/>
-          <Keyword text="inter-cluster"/>
+          <Keyword text="content-box" descr="The background is clipped to the content box"/>
+          <Keyword text="perspecive"/>
+          <Keyword text="cubic-bezier"/>
           <Keyword text="distribute"/>
-          <Keyword text="kashida"/>
-          <Keyword text="clip"/>
+          <Keyword text="ease"/>
+          <Keyword text="ease-in"/>
+          <Keyword text="ease-in-out"/>
+          <Keyword text="ease-out"/>
           <Keyword text="ellipsis"/>
-          <Keyword text="break-word"/>
+          <Keyword text="end"/>
+          <Keyword text="expanded"/>
+          <Keyword text="extra-condensed"/>
+          <Keyword text="extra-expanded"/>
+          <Keyword text="field"/>
+          <Keyword text="format" descr="Web font format definition within @font-face rule"/>
+          <Keyword text="geometricPrecision"/>
+          <Keyword text="hsla" pattern="%CurrentWord%(%|%|%|%)"/>
+          <Keyword text="icon"/>
+          <Keyword text="inline-axis"/>
+          <Keyword text="inter-cluster"/>
+          <Keyword text="inter-ideograph"/>
+          <Keyword text="inter-word"/>
+          <Keyword text="kashida"/>
+          <Keyword text="linear"/>
+          <Keyword text="linear-gradient" descr="Allows the creation of a linear gradient on an element using a function that's included where you would normally place an image reference"/>
           <Keyword text="matrix"/>
           <Keyword text="matrix3d"/>
-          <Keyword text="translate"/>
-          <Keyword text="translate3d"/>
-          <Keyword text="translateX"/>
-          <Keyword text="translateY"/>
-          <Keyword text="translateZ"/>
-          <Keyword text="scale"/>
-          <Keyword text="scale3d"/>
-          <Keyword text="scaleX"/>
-          <Keyword text="scaleY"/>
-          <Keyword text="scaleZ"/>
+          <Keyword text="menu"/>
+          <Keyword text="no-content"/>
+          <Keyword text="no-display"/>
+          <Keyword text="optimizeLegibility"/>
+          <Keyword text="optimizeSpeed"/>
+          <Keyword text="padding-box" descr="The background is clipped to the padding box"/>
+          <Keyword text="radial" descr=""/>
+          <Keyword text="radial-gradient" descr="Allows the creation of a radial gradient on an element using a function that's included where you would normally place an image reference."/>
+          <Keyword text="reverse"/>
+          <Keyword text="rgba" pattern="%CurrentWord%(%|%|%|%)"/>
           <Keyword text="rotate"/>
           <Keyword text="rotate3d"/>
           <Keyword text="rotateX"/>
           <Keyword text="rotateY"/>
           <Keyword text="rotateZ"/>
+          <Keyword text="scale"/>
+          <Keyword text="scale3d"/>
+          <Keyword text="scaleX"/>
+          <Keyword text="scaleY"/>
+          <Keyword text="scaleZ"/>
+          <Keyword text="scroll"/>
+          <Keyword text="semi-condensed"/>
+          <Keyword text="semi-expanded"/>
           <Keyword text="skew"/>
           <Keyword text="skewX"/>
           <Keyword text="skewY"/>
-          <Keyword text="perspecive"/>
-          <Keyword text="linear"/>
-          <Keyword text="ease"/>
-          <Keyword text="ease-in"/>
-          <Keyword text="ease-out"/>
-          <Keyword text="ease-in-out"/>
-          <Keyword text="cubic-bezier"/>
-          <Keyword text="icon"/>
-          <Keyword text="window"/>
-          <Keyword text="button"/>
-          <Keyword text="menu"/>
-          <Keyword text="field"/>
-          <Keyword text="content-box"/>
-          <Keyword text="border-box"/>
-          <Keyword text="optimizeSpeed"/>
-          <Keyword text="optimizeLegibility"/>
-          <Keyword text="geometricPrecision"/>
+          <Keyword text="src" pattern="%CurrentWord%(&quot;%url%&quot;)"/>
+          <Keyword text="start"/>
+          <Keyword text="stretch" descr="Default value. Lines stretch to take up the remaining space"/>
           <Keyword text="subpixel-antialiased"/>
-          <Keyword text="antialiased"/>
+          <Keyword text="translate"/>
+          <Keyword text="translate3d"/>
+          <Keyword text="translateX"/>
+          <Keyword text="translateY"/>
+          <Keyword text="translateZ"/>
+          <Keyword text="ultra-condensed"/>
+          <Keyword text="ultra-expanded"/>
+          <Keyword text="visible"/>
+          <Keyword text="window"/>
 
           <Keyword text="landscape"/>
           <Keyword text="portrait"/>
+          
+          <Keyword text="normal" descr="This is default. Sets the blending mode to normal"/>
+          <Keyword text="multiply" descr="Sets the blending mode to multiply"/>
+          <Keyword text="screen" descr="Sets the blending mode to screen"/>
+          <Keyword text="overlay" descr="Sets the blending mode to overlay"/>
+          <Keyword text="darken" descr="Sets the blending mode to darken"/>
+          <Keyword text="lighten" descr="Sets the blending mode to lighten"/>
+          <Keyword text="color-dodge" descr="Sets the blending mode to color-dodge"/>
+          <Keyword text="saturation" descr="Sets the blending mode to saturation"/>
+          <Keyword text="color" descr="Sets the blending mode to color"/>
+          <Keyword text="luminosity" descr="Sets the blending mode to luminosity"/>
+
+          <Keyword text="flex-start" descr="Lines are packed toward the start of the flex container"/>
+          <Keyword text="flex-end" descr="Lines are packed toward the end of the flex container"/>
+          <Keyword text="space-between" descr="Lines are evenly distributed in the flex container"/>
+          <Keyword text="space-around" descr="Lines are evenly distributed in the flex container, with half-size spaces on either end"/>
 
           <!-- Existing schema. Comic sans removed - it's evil! -->
           <Keyword text="Century Gothic"/>
@@ -596,7 +699,7 @@
           <Keyword text="announcer"/>
           <Keyword text="arial"/>
           <Keyword text="armenian"/>
-          <Keyword text="attr" pattern="%CurrentWord%(%|%)"/>
+          <Keyword text="attr" pattern="%CurrentWord%(%|%)" descr="Returns the value of an attribute of the selected element"/>
           <Keyword text="auto"/>
           <Keyword text="baseline"/>
           <Keyword text="bidi-override"/>
@@ -609,12 +712,13 @@
           <Keyword text="bottom left"/>
           <Keyword text="bottom right"/>
           <Keyword text="bottom"/>
+          <Keyword text="calc" pattern="%CurrentWord%(%|%)" descr="Allows you to perform calculations to determine CSS property values"/>
           <Keyword text="capitalize"/>
           <Keyword text="caption"/>
           <Keyword text="center center"/>
           <Keyword text="center left"/>
           <Keyword text="center right"/>
-          <Keyword text="center"/>
+          <Keyword text="center" descr="Lines are packed toward the center of the flex container"/>
           <Keyword text="child"/>
           <Keyword text="circle"/>
           <Keyword text="cjk-ideographic"/>
@@ -651,10 +755,11 @@
           <Keyword text="hiragana-iroha"/>
           <Keyword text="hsl" pattern="%CurrentWord%(%|%)"/>
           <Keyword text="icon"/>
-          <Keyword text="inherit"/>
+          <Keyword text="initial" desr="Sets this property to its default value"/>
+          <Keyword text="inherit" desr="Inherits this property from its parent element"/>
           <Keyword text="inline"/>
-          <Keyword text="inline-table"/>
           <Keyword text="inline-block"/>
+          <Keyword text="inline-table"/>
           <Keyword text="inset"/>
           <Keyword text="inside"/>
           <Keyword text="italic"/>
@@ -667,6 +772,7 @@
           <Keyword text="left"/>
           <Keyword text="lighter"/>
           <Keyword text="line-through"/>
+          <Keyword text="linear-gradient" pattern="%CurrentWord%(%|%)" descr="Creates an 'image' which represents a linear gradient of colors"/>
           <Keyword text="list-item"/>
           <Keyword text="lower-alpha"/>
           <Keyword text="lower-greek"/>
@@ -690,7 +796,7 @@
           <Keyword text="no-close-quote"/>
           <Keyword text="no-open-quote"/>
           <Keyword text="no-repeat"/>
-          <Keyword text="none"/>
+          <Keyword text="none" descr="Default value"/>
           <Keyword text="normal" descr="Collapse whitespace."/>
           <Keyword text="nowrap" descr="Same as normal but suppresses line breaks."/>
           <Keyword text="nw-resize"/>
@@ -702,10 +808,13 @@
           <Keyword text="pre" descr="Preserve whitespace."/>
           <Keyword text="pre-line" descr="Collapse whitespace but preserve line breaks."/>
           <Keyword text="pre-wrap" descr="Preserve whitespace but wrap text."/>
+          <Keyword text="radial-gradient" pattern="%CurrentWord%(%|%)" descr="Creates an 'image' which represents a gradient of colors radiating from the center of the gradient"/>
           <Keyword text="relative"/>
           <Keyword text="repeat"/>
           <Keyword text="repeat-x"/>
           <Keyword text="repeat-y"/>
+          <Keyword text="repeating-linear-gradient" pattern="%CurrentWord%(%|%)" descr="Creates an 'image' consisting of repeating gradients"/>
+          <Keyword text="repeating-radial-gradient" pattern="%CurrentWord%(%|%)" descr="Similarly to radial-gradient(), but it automatically repeats the color stops infinitely in both directions"/>
           <Keyword text="rgb" pattern="%CurrentWord%(%|%)"/>
           <Keyword text="ridge"/>
           <Keyword text="right"/>
@@ -770,6 +879,11 @@
           <Keyword text="x-small"/>
           <Keyword text="xx-large"/>
           <Keyword text="xx-small"/>
+          <Keyword text="h-shadow" descr="Required. The position of the horizontal shadow. Negative values are allowed"/>
+          <Keyword text="v-shadow" descr="Required. The position of the vertical shadow. Negative values are allowed"/>
+          <Keyword text="blur" descr="Optional. The blur distance"/>
+          <Keyword text="spread" descr="Optional. The size of shadow. Negative values are allowed"/>
+          <Keyword text="inset" descr="Optional. Changes the shadow from an outer shadow (outset) to an inner shadow"/>
         </Keywords>
       </Style>
       <Style name="Color" id="color" bold="1" italic="0" underline="0" clr="Keyword4" bkclr="#FFFFFFFF">

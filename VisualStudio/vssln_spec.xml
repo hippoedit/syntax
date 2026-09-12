@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="syntax.xslt"?>
+<XMLConfigSettings>
+  <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
+  <SYNTAX id="vssln" name="VS SLN" descr="Visual Studio Solution" inherit="def_source" inherit_url="defsource_spec.xml">
+    <SPECIFICATION>
+      <FilePattern mask="*.sln;"/>
+      <OpenClose>()[]{}''""</OpenClose>
+      <Delimiters>{}#\</Delimiters>
+      <Operators>@?--+/&amp;*=&lt;&gt;|!~^,;.:()[]</Operators>
+	  <SyntaxBlocks>
+        <Block open="Microsoft Visual Studio Solution File"/>
+      </SyntaxBlocks>
+      <Bars navigation="true" hierarchy="true"/>
+    </SPECIFICATION>
+	<LABELS>
+      <Label group="Project" match="Project\(&quot;\{[0-9A-F\-]+\}&quot;\)\s*\=\s*&quot;([^&quot;]+?)&quot;" name="\1" descr="Project \1" scope="1" image="18"/>
+      <Label group="Project Section" match="ProjectSection\((\w+)\)" name="\1" descr="Project Section \1" scope="1" navigation="false"/>
+      <Label group="Global Section" match="GlobalSection\((\w+)\)" name="\1" descr="Global Section \1" scope="1" image="17"/>
+    </LABELS>
+    <SCOPES>
+      <Scope open="Project" close="EndProject"/>
+      <Scope open="ProjectSection" close="EndProjectSection"/>
+      <Scope open="Global" close="EndGlobal"/>
+      <Scope open="GlobalSection" close="EndGlobalSection"/>
+    </SCOPES>
+    <STYLES>
+      <Style id="url" extend="true">
+        <Containers>
+          <Open id="normal" exclude="true"/>
+          <Open id="string"/>
+          <Open id="comment"/>
+        </Containers>
+      </Style>
+      <Style id="comment" name="Comments" text="1" bold="0" italic="1" underline="0" clr="Comments" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="#" close="\n"/>
+        </Blocks>
+      </Style>
+      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Block open="&quot;" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="operator" name="Operator" bold="0" italic="0" underline="0" clr="Operator" bkclr="#FFFFFFFF"/>
+      <Style id="matching_brace" name="Matching Brace" bold="2" italic="2" underline="2" clr="#FFFFFFFF" bkclr="Matching Braces"/>
+      <Style name="Keywords" image="13" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="EndGlobal"/>
+          <Keyword text="EndGlobalSection"/>
+          <Keyword text="EndProject"/>
+          <Keyword text="EndProjectSection"/>
+          <Keyword text="Format Version"/>
+          <Keyword text="Global"/>
+          <Keyword text="GlobalSection"/>
+          <Keyword text="Microsoft Visual Studio Solution File"/>
+          <Keyword text="Project"/>
+          <Keyword text="ProjectSection"/>
+        </Keywords>
+      </Style>
+	  <Style name="Properties" image="11" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="DPCodeReviewSolutionGUID"/>
+          <Keyword text="HideSolutionNode"/>
+          <Keyword text="MinimumVisualStudioVersion"/>
+          <Keyword text="VisualStudioVersion"/>
+        </Keywords>
+      </Style>
+	  <Style name="GUID" bold="1">
+		<Containers>
+          <Open id="normal"/>
+          <Open id="string"/>
+        </Containers>
+		<Blocks>
+          <Regexp text="\{[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}\}"/>
+        </Blocks>
+      </Style>
+	  <Style name="Configuration" clr="Keyword3">
+		  <Blocks>
+			<Regexp text="(?:Release|Debug|Debug \(Unicode\)|Release \(Unicode\)|Instrument \(Unicode\)|Instrument)\|(?:Win32|x64)"/>
+		  </Blocks>
+	  </Style>
+	  <Style id="constants" name="Constants" image="7" bold="1" italic="0" underline="0" clr="Keyword" bkclr="#FFFFFFFF">
+        <Keywords>
+          <Keyword text="TRUE"/>
+          <Keyword text="FALSE"/>
+        </Keywords>
+      </Style>
+    </STYLES>
+  </SYNTAX>
+</XMLConfigSettings>

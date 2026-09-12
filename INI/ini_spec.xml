@@ -4,7 +4,7 @@
   <FILEINFO author="HippoEDIT.com" type="LangSpec"/>
   <SYNTAX id="ini" name="INI Files" inherit="def_text" inherit_url="deftext_spec.xml">
     <SPECIFICATION>
-      <FilePattern mask="*.ini"/>
+      <FilePattern mask="*.ini;*.reg;"/>
       <OpenClose>()[]{}''""</OpenClose>
       <Numbers>0-9.</Numbers>
       <Operators>=</Operators>
@@ -28,7 +28,15 @@
           <Block open=";" close="\n"/>
         </Blocks>
       </Style>
-      <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+	  <Style id="string" name="Strings" text="1" bold="0" italic="0" underline="0" clr="Strings" bkclr="#FFFFFFFF">
+        <Blocks>
+          <Regexp open="&quot;" open_lead="\s*=" close="&quot;"/>
+        </Blocks>
+      </Style>
+      <Style id="name" name="Name" bold="2" italic="2" underline="2" clr="Keyword2" bkclr="#FFFFFFFF">
+        <Words>
+          <Word trail="="/>
+        </Words>
         <Blocks>
           <Block open="&quot;" close="&quot;"/>
         </Blocks>
