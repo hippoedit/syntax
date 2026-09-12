@@ -117,7 +117,6 @@ jobs:
               print(f'OK {filename}: {actual_type} id={syntax_id}')
           PY
 
-          git diff --check
           git status --short
 
       - name: Upload failed production snapshot diagnostics
@@ -134,7 +133,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf .phase2b-import
           git config user.name "HippoEDIT"
           git config user.email "hippoedit@users.noreply.github.com"
           git add \
@@ -143,7 +141,32 @@ jobs:
             Text/txt_spec.xml INI/ini_spec.xml Clipper/harbour_spec.xml \
             GEDCOM/gedcom_spec.xml SMV/smv_spec.xml SMV/smv_user.xml \
             VisualStudio/vssln_spec.xml XBCML/xbcml_spec.xml Markdown/mmd_spec.xml
-          git diff --cached --check
+
+          while IFS='|' read -r target expected; do
+            [ -n "$target" ] || continue
+            staged="$(git rev-parse ":$target")"
+            if [ "$staged" != "$expected" ]; then
+              echo "Staged blob mismatch for $target: expected=$expected actual=$staged" >&2
+              exit 1
+            fi
+            echo "Verified staged production blob $target ($staged)"
+          done <<'FILES'
+          CSS/css_ms_spec.xml|643077ce49c4c6c4dc80ff1f3f5df4fae36ac9dc
+          CSS/css_spec.xml|6e368398ef816ffdfafa9c17b868296346411aac
+          _Default/def_spec.xml|2aec231f1649c15b7705dcf118f4fc1493f0f322
+          _Default/deftext_spec.xml|b12b99977a28c877246b323d928c647d18088341
+          Text/txt_spec.xml|0156f2af2259264cef6f2791537eee52aa7cebd7
+          INI/ini_spec.xml|106b269678ac29f857490a7fe9473171d06233e2
+          Clipper/harbour_spec.xml|ab9b12156cba5761d83ba2cfb63e4ea7f0fedcb1
+          GEDCOM/gedcom_spec.xml|f0968b465b9d8213f0cdfd466d8a3c07b57aecb1
+          SMV/smv_spec.xml|afc74fc0e03a69d03bc3154ace291fbec886657f
+          SMV/smv_user.xml|f6debf02714918955b5a271e6b949293d4c59ac0
+          VisualStudio/vssln_spec.xml|072893b15e10325737356f16e7c4bc4dfea9f748
+          XBCML/xbcml_spec.xml|f0c2fa1be3f4b0fc55e78043e178f2debc71fbc6
+          Markdown/mmd_spec.xml|d6def3329699513dbc1dc3793ac34f39fb0a2cf8
+          FILES
+
+          rm -rf .phase2b-import
           git commit -m "reconcile: preserve production syntax semantics"
           echo "IMPORT_COMMIT=$(git rev-parse HEAD)"
           git push origin HEAD:refs/heads/phase2b-import-result
