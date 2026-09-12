@@ -86,19 +86,46 @@ jobs:
 
           for filename, syntax_id in expected.items():
               path = Path(filename)
-              tree = ET.parse(path)
+              try:
+                  tree = ET.parse(path)
+              except (ET.ParseError, OSError) as exc:
+                  print(f'DIAG {filename}: parse/read error: {exc}', flush=True)
+                  raise
+
               root = tree.getroot()
               syntax = root.find('./SYNTAX')
-              if syntax is None or syntax.get('id') != syntax_id:
-                  raise SystemExit(f'{filename}: expected syntax id {syntax_id!r}')
               info = root.find('./FILEINFO')
-              if info is None or (info.get('type') or '').lower() not in {'langspec', 'languser'}:
-                  raise SystemExit(f'{filename}: invalid FILEINFO type')
-              print(f'OK {filename}: {info.get("type")} id={syntax_id}')
+              actual_id = syntax.get('id') if syntax is not None else None
+              actual_type = info.get('type') if info is not None else None
+              print(
+                  f'DIAG {filename}: expected_id={syntax_id!r} actual_id={actual_id!r} '
+                  f'actual_FILEINFO_type={actual_type!r}',
+                  flush=True,
+              )
+
+              if syntax is None or actual_id != syntax_id:
+                  raise SystemExit(
+                      f'{filename}: expected syntax id {syntax_id!r}, actual={actual_id!r}'
+                  )
+              if info is None or (actual_type or '').lower() not in {'langspec', 'languser'}:
+                  raise SystemExit(
+                      f'{filename}: invalid FILEINFO type {actual_type!r}; '
+                      "expected 'langspec' or 'languser'"
+                  )
+              print(f'OK {filename}: {actual_type} id={syntax_id}')
           PY
 
           git diff --check
           git status --short
+
+      - name: Upload failed production snapshot diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase2b-production-snapshots-${{ github.run_id }}
+          path: .phase2b-import
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Commit reconciled production syntax source
         shell: bash
