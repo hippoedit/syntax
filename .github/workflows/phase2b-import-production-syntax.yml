@@ -13,6 +13,7 @@ permissions:
 jobs:
   import:
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
       - name: Checkout syntax reconciliation branch
         uses: actions/checkout@v4
@@ -31,7 +32,8 @@ jobs:
             tmp=".phase2b-import/$source"
             mkdir -p "$(dirname "$tmp")" "$(dirname "$target")"
             curl --fail --silent --show-error --location \
-              --retry 3 --retry-delay 1 \
+              --connect-timeout 10 --max-time 30 \
+              --retry 3 --retry-delay 1 --retry-all-errors \
               --resolve www.hippoedit.com:443:195.30.107.177 \
               "https://www.hippoedit.com/download/syntax/$source" \
               --output "$tmp"
